@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.zoho_login_tokens.json
+.env
+zoho_auth/.env
+zoho_auth/.zoho_login_tokens.json
