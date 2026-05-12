@@ -1,0 +1,19 @@
+-- Optional approximate vector index (run after bulk load when VECTOR_MEMORY_SIZE is set).
+-- Match DISTANCE metric with application search (COSINE recommended for normalized embeddings).
+-- Replace tablespace if needed.
+
+/*
+CREATE VECTOR INDEX kb_chunk_vec_idx ON kb_chunk (embedding)
+    ORGANIZATION INMEMORY NEIGHBOR GRAPH
+    DISTANCE COSINE
+    WITH TARGET ACCURACY 95
+    PARAMETERS (TYPE HNSW, NEIGHBORS 16, EFCONSTRUCTION 200);
+*/
+
+-- If INMEMORY is not available, use neighbor partitions variant (see Oracle docs for 23ai):
+/*
+CREATE VECTOR INDEX kb_chunk_vec_idx ON kb_chunk (embedding)
+    ORGANIZATION NEIGHBOR PARTITIONS
+    DISTANCE COSINE
+    WITH TARGET ACCURACY 95;
+*/
