@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aiva-chatbot"
+version = "0.1.0"
+description = "RAG chatbot orchestrating embedding_service, llm_service, and zoho_auth."
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+  "llm-service @ file:../llm_service",
+  "pydantic>=2.7",
+  "pydantic-settings>=2.3",
+  "httpx>=0.27",
+  "oracledb>=2.0",
+  "redis>=5.0",
+  "requests>=2.32",
+  "python-dotenv>=1.0",
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+]
+
+[project.scripts]
+aiva-chatbot-api = "aiva_chatbot.serve:main"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["aiva_chatbot"]
+
+[tool.hatch.build.targets.sdist]
+include = ["aiva_chatbot"]
