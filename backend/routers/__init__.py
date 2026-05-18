@@ -5,6 +5,7 @@ from backend.routers import (
     analytics,
     auth,
     chat,
+    corpora,
     ingestion,
     llm_configs,
     organizations,
@@ -19,6 +20,7 @@ def build_api_router() -> APIRouter:
     router.include_router(auth.router)
     router.include_router(organizations.router)
     router.include_router(accounts.router)
+    router.include_router(corpora.router)
     router.include_router(users.router)
     router.include_router(chat.router)
     router.include_router(prompts.router)

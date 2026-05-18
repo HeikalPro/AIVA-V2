@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, Query
 
 from backend.auth.deps import (
     ROLE_ACCOUNT_MANAGER,
+    ROLE_AGENT,
     ROLE_ORG_ADMIN,
     ROLE_SUPER_ADMIN,
     ROLE_SUPERVISOR,
@@ -34,7 +35,15 @@ def _scoped_org_filter(user: UserContext, organization_id: int | None) -> int | 
 async def list_accounts(
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(
+            require_roles(
+                ROLE_SUPER_ADMIN,
+                ROLE_ORG_ADMIN,
+                ROLE_ACCOUNT_MANAGER,
+                ROLE_AGENT,
+                ROLE_SUPERVISOR,
+            )
+        ),
     ],
     db: DbDep,
     organization_id: int | None = Query(default=None),

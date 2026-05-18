@@ -41,6 +41,38 @@ async def create_session(
     return SessionOut(**serialize_row(row) or {})
 
 
+@router.get("/sessions", response_model=list[SessionOut])
+async def list_sessions(
+    account_id: int,
+    user: Annotated[UserContext, Depends(require_roles(ROLE_AGENT, ROLE_SUPERVISOR))],
+    db: DbDep,
+) -> list[SessionOut]:
+    account = await db.fetch_one("SELECT * FROM AIVA_accounts WHERE id = :id", {"id": account_id})
+    if not account:
+        raise NotFoundError("Account not found")
+    if not user.can_access_account(account_id, int(account["organization_id"])):
+        raise ForbiddenError("No access to this account")
+
+    params: dict = {"account_id": account_id}
+    user_clause = ""
+    if user.has_role(ROLE_AGENT) and not user.has_role(ROLE_SUPERVISOR):
+        user_clause = "AND cs.user_id = :user_id"
+        params["user_id"] = user.id
+
+    rows = await db.fetch_all(
+        f"""
+        SELECT cs.*,
+               (SELECT COUNT(*) FROM AIVA_chat_messages cm WHERE cm.session_id = cs.id) AS message_count
+        FROM AIVA_chat_sessions cs
+        WHERE cs.account_id = :account_id {user_clause}
+        ORDER BY cs.id DESC
+        FETCH FIRST 50 ROWS ONLY
+        """,
+        params,
+    )
+    return [SessionOut(**serialize_row(r) or {}) for r in rows]
+
+
 @router.get("/sessions/{session_id}", response_model=list[MessageOut])
 async def get_session_messages(
     session_id: int,

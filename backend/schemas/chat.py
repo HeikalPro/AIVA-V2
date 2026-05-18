@@ -12,6 +12,7 @@ class SessionOut(BaseModel):
     session_status: str | None
     started_at: str | None
     ended_at: str | None
+    message_count: int | None = None
 
 
 class MessageCreate(BaseModel):

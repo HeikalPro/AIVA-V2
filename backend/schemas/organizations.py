@@ -19,3 +19,20 @@ class OrganizationOut(BaseModel):
     status: str
     created_at: str | None = None
     updated_at: str | None = None
+
+
+class OrganizationDeleteSummary(BaseModel):
+    organization_id: int
+    name: str
+    code: str
+    user_count: int
+    account_count: int
+    ticket_count: int
+    account_names: list[str] = []
+
+
+class OrganizationDeleteResult(BaseModel):
+    message: str
+    accounts_deleted: int
+    users_deleted: int
+    tickets_deleted: int

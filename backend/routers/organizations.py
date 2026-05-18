@@ -5,11 +5,19 @@ from fastapi import APIRouter, Depends
 from backend.auth.deps import ROLE_SUPER_ADMIN, UserContext, require_roles
 from backend.dependencies import DbDep
 from backend.exceptions import ConflictError, NotFoundError
-from backend.schemas.common import MessageResponse
-from backend.schemas.organizations import OrganizationCreate, OrganizationOut, OrganizationUpdate
+from backend.schemas.organizations import (
+    OrganizationCreate,
+    OrganizationDeleteResult,
+    OrganizationDeleteSummary,
+    OrganizationOut,
+    OrganizationUpdate,
+)
 from backend.services.audit import write_audit_log
-from backend.services.organization_dependencies import organization_delete_blockers
-from backend.utils import serialize_row, serialize_rows
+from backend.services.organization_dependencies import (
+    delete_organization_cascade,
+    organization_delete_summary,
+)
+from backend.utils import serialize_row
 
 router = APIRouter(prefix="/organizations", tags=["organizations"])
 
@@ -55,6 +63,18 @@ async def create_organization(
         new_value=body.model_dump(),
     )
     return OrganizationOut(**serialize_row(row) or {})
+
+
+@router.get("/{org_id}/delete-preview", response_model=OrganizationDeleteSummary)
+async def preview_delete_organization(
+    org_id: int,
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    db: DbDep,
+) -> OrganizationDeleteSummary:
+    summary = await organization_delete_summary(db, org_id)
+    if not summary:
+        raise NotFoundError("Organization not found")
+    return OrganizationDeleteSummary(**summary)
 
 
 @router.get("/{org_id}", response_model=OrganizationOut)
@@ -103,31 +123,30 @@ async def update_organization(
     return OrganizationOut(**serialize_row(row) or {})
 
 
-@router.delete("/{org_id}", response_model=MessageResponse)
+@router.delete("/{org_id}", response_model=OrganizationDeleteResult)
 async def delete_organization(
     org_id: int,
     user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
     db: DbDep,
-) -> MessageResponse:
+) -> OrganizationDeleteResult:
     old = await db.fetch_one("SELECT * FROM AIVA_organizations WHERE id = :id", {"id": org_id})
     if not old:
         raise NotFoundError("Organization not found")
 
-    blockers = await organization_delete_blockers(db, org_id)
-    if blockers:
-        raise ConflictError(
-            "Cannot delete organization while it still has: "
-            + ", ".join(blockers)
-            + ". Remove or reassign those records first."
-        )
-
-    await db.execute("DELETE FROM AIVA_organizations WHERE id = :id", {"id": org_id})
+    summary = await organization_delete_summary(db, org_id)
+    stats = await delete_organization_cascade(db, org_id)
     await write_audit_log(
         db,
         user_id=user.id,
         entity_type="organization",
         entity_id=org_id,
         action_type="DELETE",
-        old_value=serialize_row(old),
+        old_value={**(serialize_row(old) or {}), "cascade_summary": summary},
+        new_value=stats,
     )
-    return MessageResponse(message="Organization deleted")
+    return OrganizationDeleteResult(
+        message=f"Organization '{old['name']}' and all related data were permanently deleted.",
+        accounts_deleted=stats["accounts_deleted"],
+        users_deleted=stats["users_deleted"],
+        tickets_deleted=stats["tickets_deleted"],
+    )

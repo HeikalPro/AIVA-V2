@@ -46,6 +46,7 @@ class UserContext:
     last_name: str | None
     status: str
     roles: list[RoleAssignment] = field(default_factory=list)
+    membership_account_ids: set[int] = field(default_factory=set)
 
     @property
     def role_names(self) -> set[str]:
@@ -61,7 +62,7 @@ class UserContext:
 
     @property
     def account_ids(self) -> set[int]:
-        ids: set[int] = set()
+        ids: set[int] = set(self.membership_account_ids)
         for r in self.roles:
             if r.account_id is not None:
                 ids.add(r.account_id)
@@ -109,6 +110,14 @@ async def _load_user_context(db: Database, user_id: int) -> UserContext:
         )
         for row in role_rows
     ]
+    membership_rows = await db.fetch_all(
+        """
+        SELECT account_id FROM AIVA_account_users
+        WHERE user_id = :user_id AND status = 'ACTIVE'
+        """,
+        {"user_id": user_id},
+    )
+    membership_account_ids = {int(row["account_id"]) for row in membership_rows}
     return UserContext(
         id=int(user["id"]),
         email=str(user["email"]),
@@ -117,6 +126,7 @@ async def _load_user_context(db: Database, user_id: int) -> UserContext:
         last_name=user.get("last_name"),
         status=str(user["status"]),
         roles=roles,
+        membership_account_ids=membership_account_ids,
     )
 
 
