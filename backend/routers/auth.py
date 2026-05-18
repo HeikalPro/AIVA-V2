@@ -14,8 +14,8 @@ from backend.limiter import limiter
 from backend.schemas.auth import LoginRequest, RefreshRequest, TokenResponse, UserProfile, ZohoLoginResponse
 from backend.schemas.common import MessageResponse
 from backend.services.zoho_auth_service import (
-    consume_oauth_state,
     get_zoho_auth_service,
+    pop_oauth_state,
 )
 from backend.services.zoho_user_provisioning import provision_zoho_user
 
@@ -128,9 +128,11 @@ async def login(body: LoginRequest, request: Request, db: DbDep) -> TokenRespons
 async def zoho_login(
     request: Request,
     redirect: Annotated[bool, Query()] = False,
+    return_to: Annotated[str | None, Query()] = None,
 ):
     service = get_zoho_auth_service()
-    auth_url, _state = service.start_login()
+    callback_url = service.validate_return_to(return_to)
+    auth_url, _state = service.start_login(return_to=callback_url)
     if redirect:
         return RedirectResponse(auth_url, status_code=302)
     return ZohoLoginResponse(auth_url=auth_url)
@@ -147,20 +149,24 @@ async def zoho_callback(
     error_description: Annotated[str | None, Query(alias="error_description")] = None,
 ) -> RedirectResponse:
     service = get_zoho_auth_service()
+    state_ok, return_to = pop_oauth_state(state)
 
     if error:
         detail = error_description or error
-        return RedirectResponse(service.format_frontend_redirect({}, error=detail), status_code=302)
-
-    if not code:
         return RedirectResponse(
-            service.format_frontend_redirect({}, error="Missing authorization code"),
+            service.format_frontend_redirect({}, error=detail, return_to=return_to),
             status_code=302,
         )
 
-    if not consume_oauth_state(state):
+    if not code:
         return RedirectResponse(
-            service.format_frontend_redirect({}, error="Invalid or expired login state"),
+            service.format_frontend_redirect({}, error="Missing authorization code", return_to=return_to),
+            status_code=302,
+        )
+
+    if not state_ok:
+        return RedirectResponse(
+            service.format_frontend_redirect({}, error="Invalid or expired login state", return_to=return_to),
             status_code=302,
         )
 
@@ -168,7 +174,9 @@ async def zoho_callback(
     email = session.email
     if not email:
         return RedirectResponse(
-            service.format_frontend_redirect({}, error="Zoho profile did not include an email"),
+            service.format_frontend_redirect(
+                {}, error="Zoho profile did not include an email", return_to=return_to
+            ),
             status_code=302,
         )
 
@@ -176,12 +184,12 @@ async def zoho_callback(
         tokens = await _issue_tokens_for_zoho_user(db, request, session=session)
     except (UnauthorizedError, BadRequestError) as exc:
         return RedirectResponse(
-            service.format_frontend_redirect({}, error=str(exc.detail)),
+            service.format_frontend_redirect({}, error=str(exc.detail), return_to=return_to),
             status_code=302,
         )
 
     return RedirectResponse(
-        service.format_frontend_redirect(tokens.model_dump()),
+        service.format_frontend_redirect(tokens.model_dump(), return_to=return_to),
         status_code=302,
     )
 

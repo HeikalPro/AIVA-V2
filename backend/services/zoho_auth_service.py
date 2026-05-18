@@ -16,33 +16,40 @@ from backend.exceptions import BadRequestError, ForbiddenError, UnauthorizedErro
 _log = logging.getLogger(__name__)
 
 _STATE_TTL_SECONDS = 600
-_states: dict[str, float] = {}
+# state -> (expiry monotonic, optional frontend callback URL)
+_states: dict[str, tuple[float, str | None]] = {}
 _state_lock = Lock()
 
 
 def _cleanup_expired_states(now: float) -> None:
-    expired = [key for key, expiry in _states.items() if expiry <= now]
+    expired = [key for key, (expiry, _) in _states.items() if expiry <= now]
     for key in expired:
         _states.pop(key, None)
 
 
-def create_oauth_state() -> str:
+def create_oauth_state(return_to: str | None = None) -> str:
     state = secrets.token_urlsafe(24)
     deadline = time.time() + _STATE_TTL_SECONDS
     with _state_lock:
         _cleanup_expired_states(time.time())
-        _states[state] = deadline
+        _states[state] = (deadline, return_to)
     return state
 
 
-def consume_oauth_state(state: str | None) -> bool:
+def pop_oauth_state(state: str | None) -> tuple[bool, str | None]:
+    """Validate OAuth state. Returns (ok, return_to callback URL)."""
     if not state:
-        return False
+        return False, None
     now = time.time()
     with _state_lock:
-        expiry = _states.pop(state, None)
+        entry = _states.pop(state, None)
         _cleanup_expired_states(now)
-    return expiry is not None and now < expiry
+    if entry is None:
+        return False, None
+    expiry, return_to = entry
+    if now >= expiry:
+        return False, None
+    return True, return_to
 
 
 class ZohoAuthService:
@@ -59,6 +66,21 @@ class ZohoAuthService:
             self._settings.zoho_frontend_redirect_url,
         ).rstrip("/")
 
+    def validate_return_to(self, return_to: str | None) -> str | None:
+        """Allow localhost callback URLs from the dev UI (any port)."""
+        if not return_to:
+            return None
+        from urllib.parse import urlparse
+
+        parsed = urlparse(return_to.strip())
+        if parsed.scheme not in ("http", "https"):
+            return None
+        if parsed.hostname not in ("localhost", "127.0.0.1"):
+            return None
+        if not parsed.path.endswith("/auth/zoho-callback"):
+            return None
+        return return_to.strip().rstrip("/")
+
     def _get_container(self) -> ServiceContainer:
         if self._container is None:
             try:
@@ -68,8 +90,8 @@ class ZohoAuthService:
                 raise BadRequestError("Zoho login is not configured") from exc
         return self._container
 
-    def start_login(self) -> tuple[str, str]:
-        state = create_oauth_state()
+    def start_login(self, *, return_to: str | None = None) -> tuple[str, str]:
+        state = create_oauth_state(return_to)
         container = self._get_container()
         return container.auth_service.build_auth_url(state), state
 
@@ -89,7 +111,13 @@ class ZohoAuthService:
         except (ZohoAuthError, ZohoTransportError) as exc:
             raise UnauthorizedError(f"Zoho login failed: {exc}") from exc
 
-    def format_frontend_redirect(self, tokens: dict[str, str], *, error: str | None = None) -> str:
+    def format_frontend_redirect(
+        self,
+        tokens: dict[str, str],
+        *,
+        error: str | None = None,
+        return_to: str | None = None,
+    ) -> str:
         from urllib.parse import urlencode
 
         params: dict[str, str] = {}
@@ -99,7 +127,8 @@ class ZohoAuthService:
             params["access_token"] = tokens["access_token"]
             params["refresh_token"] = tokens["refresh_token"]
             params["token_type"] = tokens.get("token_type", "bearer")
-        return f"{self.frontend_redirect_url}?{urlencode(params)}"
+        base = (return_to or self.frontend_redirect_url).rstrip("/")
+        return f"{base}?{urlencode(params)}"
 
 
 _zoho_auth_service: ZohoAuthService | None = None
