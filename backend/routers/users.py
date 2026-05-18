@@ -1,0 +1,302 @@
+from typing import Annotated
+
+from fastapi import APIRouter, Depends, Query
+
+from backend.auth.deps import (
+    ROLE_ACCOUNT_MANAGER,
+    ROLE_ORG_ADMIN,
+    ROLE_SUPER_ADMIN,
+    UserContext,
+    require_account_access,
+    require_roles,
+)
+from backend.auth.hashing import hash_password
+from backend.database import Database
+from backend.dependencies import DbDep
+from backend.exceptions import ConflictError, ForbiddenError, NotFoundError
+from backend.schemas.common import MessageResponse
+from backend.schemas.users import (
+    AccountUserAssign,
+    UserCreate,
+    UserOut,
+    UserRoleAssign,
+    UserUpdate,
+)
+from backend.services.account_membership import (
+    get_user_and_account,
+    grant_account_role_access,
+    prepare_user_for_account_assignment,
+    remove_account_membership,
+    upsert_account_membership,
+)
+from backend.services.audit import write_audit_log
+from backend.services.user_queries import build_user_out
+from backend.utils import serialize_row
+
+router = APIRouter(prefix="/users", tags=["users"])
+
+
+async def _user_out(db: Database, user_id: int) -> UserOut:
+    return await build_user_out(db, user_id)
+
+
+@router.get("", response_model=list[UserOut])
+async def list_users(
+    user: Annotated[
+        UserContext,
+        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+    ],
+    db: DbDep,
+    organization_id: int | None = Query(default=None),
+) -> list[UserOut]:
+    if user.is_super_admin:
+        if organization_id:
+            rows = await db.fetch_all(
+                "SELECT id FROM AIVA_users WHERE organization_id = :org_id ORDER BY id",
+                {"org_id": organization_id},
+            )
+        else:
+            rows = await db.fetch_all("SELECT id FROM AIVA_users ORDER BY id")
+    else:
+        rows = await db.fetch_all(
+            "SELECT id FROM AIVA_users WHERE organization_id = :org_id ORDER BY id",
+            {"org_id": user.organization_id},
+        )
+    return [await _user_out(db, int(r["id"])) for r in rows]
+
+
+@router.post("", response_model=UserOut, status_code=201)
+async def create_user(
+    body: UserCreate,
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    db: DbDep,
+) -> UserOut:
+    if not user.is_super_admin and body.organization_id != user.organization_id:
+        raise ForbiddenError("Cannot create user in another organization")
+
+    existing = await db.fetch_one(
+        "SELECT id FROM AIVA_users WHERE LOWER(email) = LOWER(:email)",
+        {"email": body.email},
+    )
+    if existing:
+        raise ConflictError("Email already registered")
+
+    if body.account_id:
+        account = await db.fetch_one(
+            "SELECT organization_id FROM AIVA_accounts WHERE id = :id",
+            {"id": body.account_id},
+        )
+        if not account:
+            raise NotFoundError("Account not found")
+        if int(account["organization_id"]) != body.organization_id:
+            raise ForbiddenError("Account must belong to the same organization as the user")
+
+    user_id = await db.execute(
+        """
+        INSERT INTO AIVA_users (
+            organization_id, first_name, last_name, email, password_hash, status
+        ) VALUES (
+            :organization_id, :first_name, :last_name, :email, :password_hash, :status
+        )
+        RETURNING id INTO :out_id
+        """,
+        {
+            "organization_id": body.organization_id,
+            "first_name": body.first_name,
+            "last_name": body.last_name,
+            "email": body.email,
+            "password_hash": hash_password(body.password),
+            "status": body.status,
+        },
+        return_id=True,
+    )
+    await db.execute(
+        """
+        INSERT INTO AIVA_user_roles (user_id, role_id, account_id)
+        VALUES (:user_id, :role_id, :account_id)
+        """,
+        {"user_id": user_id, "role_id": body.role_id, "account_id": body.account_id},
+    )
+    if body.account_id:
+        await db.execute(
+            """
+            INSERT INTO AIVA_account_users (account_id, user_id, assigned_by, status)
+            VALUES (:account_id, :user_id, :assigned_by, 'ACTIVE')
+            """,
+            {"account_id": body.account_id, "user_id": user_id, "assigned_by": user.id},
+        )
+        await grant_account_role_access(db, int(user_id), body.account_id)
+
+    await write_audit_log(
+        db,
+        user_id=user.id,
+        entity_type="user",
+        entity_id=int(user_id or 0),
+        action_type="CREATE",
+        new_value={"email": body.email, "role_id": body.role_id},
+    )
+    return await _user_out(db, int(user_id))
+
+
+@router.get("/{user_id}", response_model=UserOut)
+async def get_user(
+    user_id: int,
+    current: Annotated[
+        UserContext,
+        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+    ],
+    db: DbDep,
+) -> UserOut:
+    row = await db.fetch_one("SELECT * FROM AIVA_users WHERE id = :id", {"id": user_id})
+    if not row:
+        raise NotFoundError("User not found")
+    if not current.is_super_admin and int(row["organization_id"]) != current.organization_id:
+        raise ForbiddenError("Cannot view user in another organization")
+    return await _user_out(db, user_id)
+
+
+@router.patch("/{user_id}", response_model=UserOut)
+async def update_user(
+    user_id: int,
+    body: UserUpdate,
+    current: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    db: DbDep,
+) -> UserOut:
+    old = await db.fetch_one("SELECT * FROM AIVA_users WHERE id = :id", {"id": user_id})
+    if not old:
+        raise NotFoundError("User not found")
+    if not current.is_super_admin and int(old["organization_id"]) != current.organization_id:
+        raise ForbiddenError("Cannot update user in another organization")
+
+    updates = body.model_dump(exclude_unset=True)
+    if "password" in updates:
+        updates["password_hash"] = hash_password(updates.pop("password"))
+    if updates:
+        updates["id"] = user_id
+        set_parts = [f"{k} = :{k}" for k in updates if k != "id"]
+        await db.execute(
+            f"UPDATE AIVA_users SET {', '.join(set_parts)} WHERE id = :id",
+            updates,
+        )
+    await write_audit_log(
+        db,
+        user_id=current.id,
+        entity_type="user",
+        entity_id=user_id,
+        action_type="UPDATE",
+        old_value=serialize_row(old),
+        new_value=updates,
+    )
+    return await _user_out(db, user_id)
+
+
+@router.delete("/{user_id}", response_model=MessageResponse)
+async def delete_user(
+    user_id: int,
+    current: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    db: DbDep,
+) -> MessageResponse:
+    old = await db.fetch_one("SELECT * FROM AIVA_users WHERE id = :id", {"id": user_id})
+    if not old:
+        raise NotFoundError("User not found")
+    if not current.is_super_admin and int(old["organization_id"]) != current.organization_id:
+        raise ForbiddenError("Cannot delete user in another organization")
+    await db.execute("DELETE FROM AIVA_users WHERE id = :id", {"id": user_id})
+    await write_audit_log(
+        db,
+        user_id=current.id,
+        entity_type="user",
+        entity_id=user_id,
+        action_type="DELETE",
+        old_value=serialize_row(old),
+    )
+    return MessageResponse(message="User deleted")
+
+
+@router.post("/{user_id}/roles", response_model=UserOut)
+async def assign_role(
+    user_id: int,
+    body: UserRoleAssign,
+    current: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    db: DbDep,
+) -> UserOut:
+    row = await db.fetch_one("SELECT organization_id FROM AIVA_users WHERE id = :id", {"id": user_id})
+    if not row:
+        raise NotFoundError("User not found")
+    if not current.is_super_admin and int(row["organization_id"]) != current.organization_id:
+        raise ForbiddenError("Cannot assign role in another organization")
+
+    await db.execute(
+        """
+        INSERT INTO AIVA_user_roles (user_id, role_id, account_id)
+        VALUES (:user_id, :role_id, :account_id)
+        """,
+        {"user_id": user_id, "role_id": body.role_id, "account_id": body.account_id},
+    )
+    return await _user_out(db, user_id)
+
+
+@router.post("/{user_id}/accounts", response_model=UserOut)
+async def assign_account(
+    user_id: int,
+    body: AccountUserAssign,
+    current: Annotated[
+        UserContext,
+        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+    ],
+    db: DbDep,
+) -> UserOut:
+    user_row, account = await prepare_user_for_account_assignment(
+        db,
+        user_id,
+        body.account_id,
+        allow_org_move=current.is_super_admin,
+    )
+    if not current.is_super_admin and int(user_row["organization_id"]) != current.organization_id:
+        raise ForbiddenError("Cannot assign account in another organization")
+    require_account_access(body.account_id, current, int(account["organization_id"]))
+
+    await upsert_account_membership(
+        db,
+        user_id=user_id,
+        account_id=body.account_id,
+        assigned_by=current.id,
+        status=body.status,
+    )
+    await grant_account_role_access(db, user_id, body.account_id)
+    await write_audit_log(
+        db,
+        user_id=current.id,
+        entity_type="account_user",
+        entity_id=user_id,
+        action_type="ASSIGN",
+        new_value={"account_id": body.account_id, "user_id": user_id},
+    )
+    return await _user_out(db, user_id)
+
+
+@router.delete("/{user_id}/accounts/{account_id}", response_model=UserOut)
+async def unassign_account(
+    user_id: int,
+    account_id: int,
+    current: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    db: DbDep,
+) -> UserOut:
+    user_row, account = await get_user_and_account(db, user_id, account_id)
+    if not current.is_super_admin:
+        if int(user_row["organization_id"]) != current.organization_id:
+            raise ForbiddenError("Cannot remove account assignment in another organization")
+        if int(account["organization_id"]) != current.organization_id:
+            raise ForbiddenError("Cannot remove account assignment in another organization")
+    require_account_access(account_id, current, int(account["organization_id"]))
+
+    await remove_account_membership(db, user_id, account_id)
+    await write_audit_log(
+        db,
+        user_id=current.id,
+        entity_type="account_user",
+        entity_id=user_id,
+        action_type="UNASSIGN",
+        old_value={"account_id": account_id, "user_id": user_id},
+    )
+    return await _user_out(db, user_id)
