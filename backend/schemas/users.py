@@ -33,6 +33,8 @@ class AccountUserAssign(BaseModel):
 class UserOut(BaseModel):
     id: int
     organization_id: int
+    organization_name: str | None = None
+    organization_code: str | None = None
     email: str
     first_name: str | None
     last_name: str | None

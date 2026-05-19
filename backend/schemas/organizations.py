@@ -17,6 +17,8 @@ class OrganizationOut(BaseModel):
     name: str
     code: str
     status: str
+    account_count: int = 0
+    account_names: list[str] = []
     created_at: str | None = None
     updated_at: str | None = None
 

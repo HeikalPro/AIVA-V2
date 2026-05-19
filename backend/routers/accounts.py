@@ -24,6 +24,24 @@ from backend.utils import serialize_row
 
 router = APIRouter(prefix="/accounts", tags=["accounts"])
 
+_ACCOUNT_WITH_ORG_SELECT = """
+SELECT a.id, a.organization_id, a.llm_config_id, a.name, a.description, a.corpus_id, a.status, a.created_at,
+       o.name AS organization_name, o.code AS organization_code
+FROM AIVA_accounts a
+JOIN AIVA_organizations o ON o.id = a.organization_id
+"""
+
+
+def _to_account_out(row: dict | None) -> AccountOut:
+    return AccountOut(**serialize_row(row) or {})
+
+
+async def _fetch_account_by_id(db: DbDep, account_id: int) -> dict | None:
+    return await db.fetch_one(
+        f"{_ACCOUNT_WITH_ORG_SELECT} WHERE a.id = :id",
+        {"id": account_id},
+    )
+
 
 def _scoped_org_filter(user: UserContext, organization_id: int | None) -> int | None:
     if user.is_super_admin:
@@ -51,28 +69,28 @@ async def list_accounts(
     org = _scoped_org_filter(user, organization_id)
     if user.is_super_admin:
         if org is None:
-            rows = await db.fetch_all("SELECT * FROM AIVA_accounts ORDER BY id")
+            rows = await db.fetch_all(f"{_ACCOUNT_WITH_ORG_SELECT} ORDER BY a.id")
         else:
             rows = await db.fetch_all(
-                "SELECT * FROM AIVA_accounts WHERE organization_id = :org_id ORDER BY id",
+                f"{_ACCOUNT_WITH_ORG_SELECT} WHERE a.organization_id = :org_id ORDER BY a.id",
                 {"org_id": org},
             )
     elif user.is_org_admin:
         rows = await db.fetch_all(
-            "SELECT * FROM AIVA_accounts WHERE organization_id = :org_id ORDER BY id",
+            f"{_ACCOUNT_WITH_ORG_SELECT} WHERE a.organization_id = :org_id ORDER BY a.id",
             {"org_id": org},
         )
     else:
         rows = await db.fetch_all(
-            """
-            SELECT a.* FROM AIVA_accounts a
+            f"""
+            {_ACCOUNT_WITH_ORG_SELECT}
             JOIN AIVA_account_users au ON au.account_id = a.id
             WHERE au.user_id = :user_id AND au.status = 'ACTIVE'
             ORDER BY a.id
             """,
             {"user_id": user.id},
         )
-    return [AccountOut(**serialize_row(r) or {}) for r in rows]
+    return [_to_account_out(r) for r in rows]
 
 
 @router.post("", response_model=AccountOut, status_code=201)
@@ -99,7 +117,7 @@ async def create_account(
         body.model_dump(),
         return_id=True,
     )
-    row = await db.fetch_one("SELECT * FROM AIVA_accounts WHERE id = :id", {"id": account_id})
+    row = await _fetch_account_by_id(db, int(account_id or 0))
     await write_audit_log(
         db,
         user_id=user.id,
@@ -108,7 +126,7 @@ async def create_account(
         action_type="CREATE",
         new_value=body.model_dump(),
     )
-    return AccountOut(**serialize_row(row) or {})
+    return _to_account_out(row)
 
 
 @router.get("/{account_id}", response_model=AccountOut)
@@ -120,11 +138,11 @@ async def get_account(
     ],
     db: DbDep,
 ) -> AccountOut:
-    row = await db.fetch_one("SELECT * FROM AIVA_accounts WHERE id = :id", {"id": account_id})
+    row = await _fetch_account_by_id(db, account_id)
     if not row:
         raise NotFoundError("Account not found")
     require_account_access(account_id, user, int(row["organization_id"]))
-    return AccountOut(**serialize_row(row) or {})
+    return _to_account_out(row)
 
 
 @router.get("/{account_id}/users", response_model=list[UserOut])
@@ -169,7 +187,8 @@ async def update_account(
 
     updates = body.model_dump(exclude_unset=True)
     if not updates:
-        return AccountOut(**serialize_row(old) or {})
+        row = await _fetch_account_by_id(db, account_id)
+        return _to_account_out(row)
 
     updates["id"] = account_id
     set_parts = [f"{k} = :{k}" for k in updates if k != "id"]
@@ -177,7 +196,7 @@ async def update_account(
         f"UPDATE AIVA_accounts SET {', '.join(set_parts)} WHERE id = :id",
         updates,
     )
-    row = await db.fetch_one("SELECT * FROM AIVA_accounts WHERE id = :id", {"id": account_id})
+    row = await _fetch_account_by_id(db, account_id)
     await write_audit_log(
         db,
         user_id=user.id,
@@ -187,7 +206,7 @@ async def update_account(
         old_value=serialize_row(old),
         new_value=updates,
     )
-    return AccountOut(**serialize_row(row) or {})
+    return _to_account_out(row)
 
 
 @router.delete("/{account_id}", response_model=MessageResponse)

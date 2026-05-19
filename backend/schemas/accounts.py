@@ -21,6 +21,8 @@ class AccountUpdate(BaseModel):
 class AccountOut(BaseModel):
     id: int
     organization_id: int
+    organization_name: str | None = None
+    organization_code: str | None = None
     llm_config_id: int | None
     name: str
     description: str | None

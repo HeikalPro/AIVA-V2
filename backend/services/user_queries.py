@@ -5,7 +5,16 @@ from backend.utils import serialize_row
 
 
 async def build_user_out(db: Database, user_id: int) -> UserOut:
-    row = await db.fetch_one("SELECT * FROM AIVA_users WHERE id = :id", {"id": user_id})
+    row = await db.fetch_one(
+        """
+        SELECT u.id, u.organization_id, u.email, u.first_name, u.last_name, u.status, u.created_at,
+               o.name AS organization_name, o.code AS organization_code
+        FROM AIVA_users u
+        JOIN AIVA_organizations o ON o.id = u.organization_id
+        WHERE u.id = :id
+        """,
+        {"id": user_id},
+    )
     if not row:
         raise NotFoundError("User not found")
     roles = await db.fetch_all(

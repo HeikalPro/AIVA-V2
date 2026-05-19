@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import Annotated
 
 from fastapi import APIRouter, Depends
@@ -22,13 +23,40 @@ from backend.utils import serialize_row
 router = APIRouter(prefix="/organizations", tags=["organizations"])
 
 
+async def _accounts_by_organization(db: DbDep) -> dict[int, list[str]]:
+    rows = await db.fetch_all(
+        """
+        SELECT organization_id, name
+        FROM AIVA_accounts
+        ORDER BY organization_id, name
+        """
+    )
+    grouped: dict[int, list[str]] = defaultdict(list)
+    for row in rows:
+        grouped[int(row["organization_id"])].append(str(row["name"]))
+    return grouped
+
+
+def _to_organization_out(org_row: dict, account_names: list[str]) -> OrganizationOut:
+    data = serialize_row(org_row) or {}
+    return OrganizationOut(
+        **data,
+        account_count=len(account_names),
+        account_names=account_names,
+    )
+
+
 @router.get("", response_model=list[OrganizationOut])
 async def list_organizations(
     user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
     db: DbDep,
 ) -> list[OrganizationOut]:
-    rows = await db.fetch_all("SELECT * FROM AIVA_organizations ORDER BY id")
-    return [OrganizationOut(**serialize_row(r) or {}) for r in rows]
+    org_rows = await db.fetch_all("SELECT * FROM AIVA_organizations ORDER BY id")
+    accounts_by_org = await _accounts_by_organization(db)
+    return [
+        _to_organization_out(org, accounts_by_org.get(int(org["id"]), []))
+        for org in org_rows
+    ]
 
 
 @router.post("", response_model=OrganizationOut, status_code=201)
@@ -86,7 +114,8 @@ async def get_organization(
     row = await db.fetch_one("SELECT * FROM AIVA_organizations WHERE id = :id", {"id": org_id})
     if not row:
         raise NotFoundError("Organization not found")
-    return OrganizationOut(**serialize_row(row) or {})
+    accounts_by_org = await _accounts_by_organization(db)
+    return _to_organization_out(row, accounts_by_org.get(org_id, []))
 
 
 @router.patch("/{org_id}", response_model=OrganizationOut)
