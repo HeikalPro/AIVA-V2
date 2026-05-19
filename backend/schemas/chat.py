@@ -9,6 +9,9 @@ class SessionOut(BaseModel):
     id: int
     account_id: int
     user_id: int
+    agent_first_name: str | None = None
+    agent_last_name: str | None = None
+    agent_email: str | None = None
     session_status: str | None
     started_at: str | None
     ended_at: str | None

@@ -37,7 +37,18 @@ async def create_session(
         {"account_id": body.account_id, "user_id": user.id},
         return_id=True,
     )
-    row = await db.fetch_one("SELECT * FROM AIVA_chat_sessions WHERE id = :id", {"id": session_id})
+    row = await db.fetch_one(
+        """
+        SELECT cs.*,
+               u.first_name AS agent_first_name,
+               u.last_name AS agent_last_name,
+               u.email AS agent_email
+        FROM AIVA_chat_sessions cs
+        JOIN AIVA_users u ON u.id = cs.user_id
+        WHERE cs.id = :id
+        """,
+        {"id": session_id},
+    )
     return SessionOut(**serialize_row(row) or {})
 
 
@@ -62,8 +73,12 @@ async def list_sessions(
     rows = await db.fetch_all(
         f"""
         SELECT cs.*,
+               u.first_name AS agent_first_name,
+               u.last_name AS agent_last_name,
+               u.email AS agent_email,
                (SELECT COUNT(*) FROM AIVA_chat_messages cm WHERE cm.session_id = cs.id) AS message_count
         FROM AIVA_chat_sessions cs
+        JOIN AIVA_users u ON u.id = cs.user_id
         WHERE cs.account_id = :account_id {user_clause}
         ORDER BY cs.id DESC
         FETCH FIRST 50 ROWS ONLY
