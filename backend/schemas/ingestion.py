@@ -6,14 +6,31 @@ from pydantic import BaseModel, Field
 class IngestionRequestCreate(BaseModel):
     account_id: int
     request_type: str = Field(min_length=1, max_length=100)
-    priority: str = "MEDIUM"
     description: str = Field(min_length=1)
+    requester_phone: str = Field(min_length=1, max_length=50)
+
+
+INGESTION_STATUSES = ("PENDING", "IN_PROGRESS", "COMPLETED", "FAILED", "CANCELLED")
+
+
+class IngestionPendingCountOut(BaseModel):
+    pending_count: int
+
+
+class IngestionRequestUpdate(BaseModel):
+    status: str = Field(min_length=1, max_length=50)
 
 
 class IngestionRequestOut(BaseModel):
     id: int
     account_id: int
+    account_name: str | None = None
+    organization_id: int | None = None
+    organization_name: str | None = None
     requested_by: int
+    requester_name: str | None = None
+    requester_email: str | None = None
+    requester_phone: str | None = None
     request_type: str | None
     status: str | None
     priority: str | None

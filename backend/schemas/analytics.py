@@ -14,6 +14,9 @@ class DashboardStats(BaseModel):
 class AgentMetricOut(BaseModel):
     user_id: int
     account_id: int
+    agent_first_name: str | None = None
+    agent_last_name: str | None = None
+    agent_email: str | None = None
     avg_response_time: float | None
     ai_usage_count: int | None
     successful_answers: int | None

@@ -78,12 +78,44 @@ async def agent_metrics(
 
     rows = await db.fetch_all(
         """
-        SELECT user_id, account_id, avg_response_time, ai_usage_count,
-               successful_answers, escalation_count, calculated_at
-        FROM AIVA_agent_performance_metrics
-        WHERE account_id = :account_id
-        ORDER BY calculated_at DESC
+        SELECT
+            cs.user_id,
+            :account_id AS account_id,
+            u.first_name AS agent_first_name,
+            u.last_name AS agent_last_name,
+            u.email AS agent_email,
+            AVG(ar.response_time_ms) AS avg_response_time,
+            COUNT(ar.id) AS ai_usage_count,
+            SUM(CASE WHEN UPPER(TRIM(ar.status)) = 'SUCCESS' THEN 1 ELSE 0 END) AS successful_answers,
+            0 AS escalation_count,
+            MAX(cs.started_at) AS calculated_at
+        FROM AIVA_chat_sessions cs
+        JOIN AIVA_users u ON u.id = cs.user_id
+        LEFT JOIN AIVA_ai_requests ar ON ar.session_id = cs.id
+        WHERE cs.account_id = :account_id
+        GROUP BY cs.user_id, u.first_name, u.last_name, u.email
+        HAVING COUNT(ar.id) > 0
+        ORDER BY COUNT(ar.id) DESC, cs.user_id
         """,
         {"account_id": account_id},
     )
-    return [AgentMetricOut(**serialize_row(r) or {}) for r in rows]
+    result: list[AgentMetricOut] = []
+    for row in rows:
+        data = serialize_row(row) or {}
+        result.append(
+            AgentMetricOut(
+                user_id=int(data["user_id"]),
+                account_id=int(data["account_id"]),
+                agent_first_name=data.get("agent_first_name"),
+                agent_last_name=data.get("agent_last_name"),
+                agent_email=data.get("agent_email"),
+                avg_response_time=float(data["avg_response_time"])
+                if data.get("avg_response_time") is not None
+                else None,
+                ai_usage_count=int(data.get("ai_usage_count") or 0),
+                successful_answers=int(data.get("successful_answers") or 0),
+                escalation_count=int(data.get("escalation_count") or 0),
+                calculated_at=data.get("calculated_at"),
+            )
+        )
+    return result

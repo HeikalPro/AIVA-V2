@@ -5,7 +5,6 @@ class TicketCreate(BaseModel):
     organization_id: int
     account_id: int | None = None
     ticket_type: str = Field(min_length=1, max_length=100)
-    priority: str = "MEDIUM"
     subject: str = Field(min_length=1, max_length=500)
     description: str = Field(min_length=1)
 
@@ -13,10 +12,13 @@ class TicketCreate(BaseModel):
 class TicketUpdate(BaseModel):
     assigned_to: int | None = None
     ticket_type: str | None = None
-    priority: str | None = None
     status: str | None = None
     subject: str | None = Field(default=None, max_length=500)
     description: str | None = None
+
+
+class TicketOpenCountOut(BaseModel):
+    open_count: int
 
 
 class TicketOut(BaseModel):

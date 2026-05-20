@@ -1,5 +1,6 @@
 from typing import Annotated
 
+import oracledb
 from fastapi import APIRouter, Depends, Query
 
 from backend.auth.deps import (
@@ -38,6 +39,28 @@ router = APIRouter(prefix="/users", tags=["users"])
 
 async def _user_out(db: Database, user_id: int) -> UserOut:
     return await build_user_out(db, user_id)
+
+
+async def _replace_user_role(
+    db: Database,
+    user_id: int,
+    role_id: int,
+    *,
+    conn: oracledb.AsyncConnection | None = None,
+) -> None:
+    role_row = await db.fetch_one("SELECT id, name FROM AIVA_roles WHERE id = :id", {"id": role_id}, conn=conn)
+    if not role_row:
+        raise NotFoundError("Role not found")
+
+    await db.execute("DELETE FROM AIVA_user_roles WHERE user_id = :user_id", {"user_id": user_id}, conn=conn)
+    await db.execute(
+        """
+        INSERT INTO AIVA_user_roles (user_id, role_id, account_id)
+        VALUES (:user_id, :role_id, NULL)
+        """,
+        {"user_id": user_id, "role_id": role_id},
+        conn=conn,
+    )
 
 
 @router.get("", response_model=list[UserOut])
@@ -169,6 +192,8 @@ async def update_user(
         raise ForbiddenError("Cannot update user in another organization")
 
     updates = body.model_dump(exclude_unset=True)
+    updates.pop("role_id", None)
+
     if "password" in updates:
         updates["password_hash"] = hash_password(updates.pop("password"))
     if updates:
@@ -186,6 +211,35 @@ async def update_user(
         action_type="UPDATE",
         old_value=serialize_row(old),
         new_value=updates,
+    )
+    return await _user_out(db, user_id)
+
+
+@router.put("/{user_id}/role", response_model=UserOut)
+async def set_user_role(
+    user_id: int,
+    body: UserRoleAssign,
+    current: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    db: DbDep,
+) -> UserOut:
+    target = await db.fetch_one("SELECT id FROM AIVA_users WHERE id = :id", {"id": user_id})
+    if not target:
+        raise NotFoundError("User not found")
+    if user_id == current.id:
+        role_row = await db.fetch_one("SELECT name FROM AIVA_roles WHERE id = :id", {"id": body.role_id})
+        if not role_row or role_row.get("name") != ROLE_SUPER_ADMIN:
+            raise ForbiddenError("Cannot remove your own super admin role")
+
+    async with db.connection() as conn:
+        await _replace_user_role(db, user_id, body.role_id, conn=conn)
+
+    await write_audit_log(
+        db,
+        user_id=current.id,
+        entity_type="user",
+        entity_id=user_id,
+        action_type="UPDATE_ROLE",
+        new_value={"role_id": body.role_id},
     )
     return await _user_out(db, user_id)
 

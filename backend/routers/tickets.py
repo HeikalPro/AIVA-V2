@@ -4,10 +4,10 @@ from fastapi import APIRouter, BackgroundTasks, Depends, Query
 
 from backend.auth.deps import (
     ROLE_ACCOUNT_MANAGER,
-    ROLE_AGENT,
     ROLE_DEVELOPER,
     ROLE_ORG_ADMIN,
     ROLE_SUPER_ADMIN,
+    ROLE_SUPERVISOR,
     UserContext,
     require_account_access,
     require_roles,
@@ -15,12 +15,27 @@ from backend.auth.deps import (
 from backend.dependencies import DbDep
 from backend.exceptions import ForbiddenError, NotFoundError
 from backend.schemas.common import MessageResponse
-from backend.schemas.tickets import TicketCreate, TicketOut, TicketUpdate
+from backend.schemas.tickets import TicketCreate, TicketOpenCountOut, TicketOut, TicketUpdate
 from backend.services.audit import write_audit_log
 from backend.services.zoho_bridge import get_zoho_bridge
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/tickets", tags=["tickets"])
+
+
+@router.get("/open-count", response_model=TicketOpenCountOut)
+async def ticket_open_count(
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    db: DbDep,
+) -> TicketOpenCountOut:
+    row = await db.fetch_one(
+        """
+        SELECT COUNT(*) AS cnt FROM AIVA_tickets
+        WHERE status IN ('OPEN', 'IN_PROGRESS')
+        """
+    )
+    cnt = int(row["cnt"]) if row and row.get("cnt") is not None else 0
+    return TicketOpenCountOut(open_count=cnt)
 
 
 async def _maybe_sync_zoho(ticket_row: dict) -> None:
@@ -37,7 +52,7 @@ async def list_tickets(
                 ROLE_SUPER_ADMIN,
                 ROLE_ORG_ADMIN,
                 ROLE_ACCOUNT_MANAGER,
-                ROLE_AGENT,
+                ROLE_SUPERVISOR,
                 ROLE_DEVELOPER,
             )
         ),
@@ -66,10 +81,6 @@ async def list_tickets(
         clauses.append("status = :status")
         params["status"] = status
 
-    if user.has_role(ROLE_AGENT) and not user.is_org_admin and not user.is_super_admin:
-        clauses.append("created_by = :created_by")
-        params["created_by"] = user.id
-
     if user.has_role(ROLE_DEVELOPER) and not user.is_super_admin:
         clauses.append("(assigned_to = :assigned_to OR assigned_to IS NULL)")
         params["assigned_to"] = user.id
@@ -88,11 +99,11 @@ async def create_ticket(
     background: BackgroundTasks,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_AGENT)),
+        Depends(require_roles(ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR, ROLE_DEVELOPER)),
     ],
     db: DbDep,
 ) -> TicketOut:
-    if not user.is_super_admin and body.organization_id != user.organization_id:
+    if body.organization_id != user.organization_id:
         raise ForbiddenError("Cannot create ticket in another organization")
     if body.account_id:
         account = await db.fetch_one("SELECT organization_id FROM AIVA_accounts WHERE id = :id", {"id": body.account_id})
@@ -106,7 +117,7 @@ async def create_ticket(
             priority, status, subject, description
         ) VALUES (
             :organization_id, :account_id, :created_by, :ticket_type,
-            :priority, 'OPEN', :subject, :description
+            'MEDIUM', 'OPEN', :subject, :description
         )
         RETURNING id INTO :out_id
         """,
@@ -115,7 +126,6 @@ async def create_ticket(
             "account_id": body.account_id,
             "created_by": user.id,
             "ticket_type": body.ticket_type,
-            "priority": body.priority,
             "subject": body.subject,
             "description": body.description,
         },
@@ -138,7 +148,18 @@ async def create_ticket(
 @router.get("/{ticket_id}", response_model=TicketOut)
 async def get_ticket(
     ticket_id: int,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_AGENT, ROLE_DEVELOPER))],
+    user: Annotated[
+        UserContext,
+        Depends(
+            require_roles(
+                ROLE_SUPER_ADMIN,
+                ROLE_ORG_ADMIN,
+                ROLE_ACCOUNT_MANAGER,
+                ROLE_SUPERVISOR,
+                ROLE_DEVELOPER,
+            )
+        ),
+    ],
     db: DbDep,
 ) -> TicketOut:
     row = await db.fetch_one("SELECT * FROM AIVA_tickets WHERE id = :id", {"id": ticket_id})
@@ -155,7 +176,15 @@ async def update_ticket(
     body: TicketUpdate,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_DEVELOPER)),
+        Depends(
+            require_roles(
+                ROLE_SUPER_ADMIN,
+                ROLE_ORG_ADMIN,
+                ROLE_ACCOUNT_MANAGER,
+                ROLE_SUPERVISOR,
+                ROLE_DEVELOPER,
+            )
+        ),
     ],
     db: DbDep,
 ) -> TicketOut:
