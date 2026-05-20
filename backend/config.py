@@ -48,6 +48,13 @@ class Settings(BaseSettings):
     zoho_auto_register_organization_id: int | None = None
     zoho_auto_register_role: str = "AGENT"
 
+    notify_developers_enabled: bool = False
+    notify_skip_creator: bool = True
+    frontend_url: str = "http://localhost:5173"
+    zoho_mail_api_base: str = "https://mail.zoho.com/api"
+    zoho_mail_from_address: str = ""
+    zoho_mail_account_id: str | None = None
+
     bootstrap_superadmin_enabled: bool = True
     bootstrap_superadmin_email: str = "admin@aiva.local"
     bootstrap_superadmin_password: str = "Admin@12345"

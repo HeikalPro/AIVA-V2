@@ -20,6 +20,7 @@ from backend.schemas.ingestion import (
     INGESTION_STATUSES,
     IngestionPendingCountOut,
     IngestionRequestCreate,
+    IngestionRequestCreateOut,
     IngestionRequestOut,
     IngestionRequestUpdate,
     IngestionTrigger,
@@ -27,6 +28,7 @@ from backend.schemas.ingestion import (
 )
 from backend.services.audit import write_audit_log
 from backend.services.ingestion_requests import build_stored_description, parse_stored_description
+from backend.services.notifications import notify_developers_new_ingestion
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/ingestion", tags=["ingestion"])
@@ -79,7 +81,7 @@ def _row_to_out(row: dict) -> IngestionRequestOut:
     )
 
 
-@router.post("/requests", response_model=IngestionRequestOut, status_code=201)
+@router.post("/requests", response_model=IngestionRequestCreateOut, status_code=201)
 async def create_ingestion_request(
     body: IngestionRequestCreate,
     user: Annotated[
@@ -87,7 +89,7 @@ async def create_ingestion_request(
         Depends(require_roles(ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR)),
     ],
     db: DbDep,
-) -> IngestionRequestOut:
+) -> IngestionRequestCreateOut:
     account = await db.fetch_one("SELECT organization_id FROM AIVA_accounts WHERE id = :id", {"id": body.account_id})
     if not account:
         raise NotFoundError("Account not found")
@@ -130,7 +132,16 @@ async def create_ingestion_request(
         action_type="CREATE",
         new_value=body.model_dump(),
     )
-    return _row_to_out(row or {})
+    notify_result = await notify_developers_new_ingestion(
+        organization_id=int(account["organization_id"]),
+        request_id=int(req_id or 0),
+        request_type=body.request_type,
+        description=body.description.strip(),
+        account_name=row.get("account_name") if row else None,
+        created_by_user_id=user.id,
+    )
+    out = _row_to_out(row or {})
+    return IngestionRequestCreateOut(**out.model_dump(), developer_notify=notify_result)
 
 
 @router.get("/requests/pending-count", response_model=IngestionPendingCountOut)

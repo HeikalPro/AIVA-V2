@@ -15,8 +15,16 @@ from backend.auth.deps import (
 from backend.dependencies import DbDep
 from backend.exceptions import ForbiddenError, NotFoundError
 from backend.schemas.common import MessageResponse
-from backend.schemas.tickets import TicketCreate, TicketOpenCountOut, TicketOut, TicketUpdate
+from backend.schemas.notifications import DeveloperNotifyOut
+from backend.schemas.tickets import (
+    TicketCreate,
+    TicketCreateOut,
+    TicketOpenCountOut,
+    TicketOut,
+    TicketUpdate,
+)
 from backend.services.audit import write_audit_log
+from backend.services.notifications import notify_developers_new_ticket
 from backend.services.zoho_bridge import get_zoho_bridge
 from backend.utils import serialize_row
 
@@ -93,7 +101,7 @@ async def list_tickets(
     return [TicketOut(**serialize_row(r) or {}) for r in rows]
 
 
-@router.post("", response_model=TicketOut, status_code=201)
+@router.post("", response_model=TicketCreateOut, status_code=201)
 async def create_ticket(
     body: TicketCreate,
     background: BackgroundTasks,
@@ -102,7 +110,7 @@ async def create_ticket(
         Depends(require_roles(ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR, ROLE_DEVELOPER)),
     ],
     db: DbDep,
-) -> TicketOut:
+) -> TicketCreateOut:
     if body.organization_id != user.organization_id:
         raise ForbiddenError("Cannot create ticket in another organization")
     if body.account_id:
@@ -140,9 +148,22 @@ async def create_ticket(
         action_type="CREATE",
         new_value={"subject": body.subject, "ticket_type": body.ticket_type},
     )
+    notify_result = DeveloperNotifyOut(
+        status="failed",
+        message="Ticket was not created.",
+    )
     if row:
         background.add_task(_maybe_sync_zoho, row)
-    return TicketOut(**serialize_row(row) or {})
+        notify_result = await notify_developers_new_ticket(
+            organization_id=body.organization_id,
+            ticket_id=int(ticket_id or 0),
+            subject=body.subject,
+            description=body.description,
+            account_id=body.account_id,
+            created_by_user_id=user.id,
+        )
+    data = serialize_row(row) or {}
+    return TicketCreateOut(**data, developer_notify=notify_result)
 
 
 @router.get("/{ticket_id}", response_model=TicketOut)

@@ -2,6 +2,8 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 
+from backend.schemas.notifications import DeveloperNotifyOut
+
 
 class IngestionRequestCreate(BaseModel):
     account_id: int
@@ -36,6 +38,10 @@ class IngestionRequestOut(BaseModel):
     priority: str | None
     description: str | None
     created_at: str | None
+
+
+class IngestionRequestCreateOut(IngestionRequestOut):
+    developer_notify: DeveloperNotifyOut
 
 
 class IngestionTrigger(BaseModel):

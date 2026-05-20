@@ -171,6 +171,7 @@ async def zoho_callback(
         )
 
     session = await service.authenticate_code(code)
+    service.persist_session_for_mail(session)
     email = session.email
     if not email:
         return RedirectResponse(

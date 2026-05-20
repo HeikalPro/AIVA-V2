@@ -111,6 +111,28 @@ class ZohoAuthService:
         except (ZohoAuthError, ZohoTransportError) as exc:
             raise UnauthorizedError(f"Zoho login failed: {exc}") from exc
 
+    def persist_session_for_mail(self, session: ZohoUserSession) -> None:
+        """Save OAuth tokens for Zoho Mail API (developer notification emails)."""
+        if not session.refresh_token:
+            _log.warning("Zoho session has no refresh token; Mail API will not work until re-login")
+            return
+        try:
+            from zoho_auth.storage import StoredSession
+
+            container = self._get_container()
+            container.token_store.save(
+                StoredSession(
+                    refresh_token=session.refresh_token,
+                    access_token=session.access_token,
+                    expires_in=session.tokens.expires_in,
+                    token_type=session.tokens.token_type,
+                    user_info=dict(session.user_info),
+                )
+            )
+            _log.info("Zoho Mail session saved for %s", session.email)
+        except Exception as exc:
+            _log.warning("Could not persist Zoho session for Mail API: %s", exc)
+
     def format_frontend_redirect(
         self,
         tokens: dict[str, str],

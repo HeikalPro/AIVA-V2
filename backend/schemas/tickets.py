@@ -1,5 +1,7 @@
 from pydantic import BaseModel, Field
 
+from backend.schemas.notifications import DeveloperNotifyOut
+
 
 class TicketCreate(BaseModel):
     organization_id: int
@@ -33,3 +35,9 @@ class TicketOut(BaseModel):
     subject: str | None
     description: str | None
     created_at: str | None
+
+
+class TicketCreateOut(TicketOut):
+    """Create response includes developer email notification result."""
+
+    developer_notify: DeveloperNotifyOut
