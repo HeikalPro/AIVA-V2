@@ -13,11 +13,47 @@ from backend.auth.deps import (
 from backend.dependencies import DbDep
 from backend.exceptions import ForbiddenError, NotFoundError
 from backend.schemas.common import MessageResponse
-from backend.schemas.prompts import PromptCreate, PromptOut, PromptUpdate
+from backend.schemas.prompts import (
+    PromptCreate,
+    PromptOut,
+    PromptUpdate,
+    SystemPromptOut,
+    SystemPromptUpdate,
+)
 from backend.services.audit import write_audit_log
+from backend.services.system_prompt import get_system_prompt_text, set_system_prompt_text
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/prompts", tags=["prompts"])
+
+_PROMPT_READ_ROLES = (ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)
+
+
+@router.get("/system", response_model=SystemPromptOut)
+async def get_system_prompt(
+    user: Annotated[UserContext, Depends(require_roles(*_PROMPT_READ_ROLES))],
+    db: DbDep,
+) -> SystemPromptOut:
+    text = await get_system_prompt_text(db)
+    return SystemPromptOut(prompt_text=text, editable=user.is_super_admin)
+
+
+@router.patch("/system", response_model=SystemPromptOut)
+async def update_system_prompt(
+    body: SystemPromptUpdate,
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    db: DbDep,
+) -> SystemPromptOut:
+    await set_system_prompt_text(db, body.prompt_text, user_id=user.id)
+    await write_audit_log(
+        db,
+        user_id=user.id,
+        entity_type="system_prompt",
+        entity_id=1,
+        action_type="UPDATE",
+        new_value={"prompt_text_length": len(body.prompt_text)},
+    )
+    return SystemPromptOut(prompt_text=body.prompt_text, editable=True)
 
 
 @router.get("", response_model=list[PromptOut])

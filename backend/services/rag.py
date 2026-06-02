@@ -12,16 +12,10 @@ from llm_service.config.settings import LibrarySettings
 
 from backend.config import Settings, get_settings
 from backend.database import Database
+from backend.services.system_prompt import get_system_prompt_text
 from embedding_service.service import EmbeddingService
 
 _log = logging.getLogger(__name__)
-
-DEFAULT_SYSTEM_TEMPLATE = """You are AIVA, an AI assistant helping call center agents during live calls.
-Answer using ONLY the knowledge base context below. If the answer is not in the context, say you do not have that information and suggest escalating.
-
-Knowledge base context:
-{context}
-"""
 
 
 @dataclass
@@ -68,7 +62,7 @@ async def load_active_prompt(db: Database, account_id: int) -> tuple[str, str | 
     )
     if row:
         return str(row["prompt_text"]), row.get("prompt_type")
-    return DEFAULT_SYSTEM_TEMPLATE.replace("{context}", "{context}"), None
+    return await get_system_prompt_text(db), None
 
 
 async def load_llm_config(db: Database, account_id: int) -> dict[str, Any] | None:
