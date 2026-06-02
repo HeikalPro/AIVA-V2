@@ -16,6 +16,13 @@ class PromptUpdate(BaseModel):
     is_active: bool | None = None
 
 
+class DefaultPromptOut(BaseModel):
+    prompt_name: str
+    prompt_type: str
+    prompt_text: str
+    read_only: bool = True
+
+
 class PromptOut(BaseModel):
     id: int
     account_id: int

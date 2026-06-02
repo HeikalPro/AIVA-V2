@@ -12,16 +12,10 @@ from llm_service.config.settings import LibrarySettings
 
 from backend.config import Settings, get_settings
 from backend.database import Database
+from backend.services.prompt_defaults import DEFAULT_SYSTEM_TEMPLATE
 from embedding_service.service import EmbeddingService
 
 _log = logging.getLogger(__name__)
-
-DEFAULT_SYSTEM_TEMPLATE = """You are AIVA, an AI assistant helping call center agents during live calls.
-Answer using ONLY the knowledge base context below. If the answer is not in the context, say you do not have that information and suggest escalating.
-
-Knowledge base context:
-{context}
-"""
 
 
 @dataclass

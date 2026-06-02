@@ -13,11 +13,30 @@ from backend.auth.deps import (
 from backend.dependencies import DbDep
 from backend.exceptions import ForbiddenError, NotFoundError
 from backend.schemas.common import MessageResponse
-from backend.schemas.prompts import PromptCreate, PromptOut, PromptUpdate
+from backend.schemas.prompts import DefaultPromptOut, PromptCreate, PromptOut, PromptUpdate
 from backend.services.audit import write_audit_log
+from backend.services.prompt_defaults import (
+    DEFAULT_PROMPT_NAME,
+    DEFAULT_PROMPT_TYPE,
+    DEFAULT_SYSTEM_TEMPLATE,
+)
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/prompts", tags=["prompts"])
+
+
+@router.get("/default", response_model=DefaultPromptOut)
+async def get_default_prompt(
+    user: Annotated[
+        UserContext,
+        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+    ],
+) -> DefaultPromptOut:
+    return DefaultPromptOut(
+        prompt_name=DEFAULT_PROMPT_NAME,
+        prompt_type=DEFAULT_PROMPT_TYPE,
+        prompt_text=DEFAULT_SYSTEM_TEMPLATE,
+    )
 
 
 @router.get("", response_model=list[PromptOut])
