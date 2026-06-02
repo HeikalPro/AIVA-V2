@@ -16,15 +16,6 @@ class PromptUpdate(BaseModel):
     is_active: bool | None = None
 
 
-class SystemPromptOut(BaseModel):
-    prompt_text: str
-    editable: bool
-
-
-class SystemPromptUpdate(BaseModel):
-    prompt_text: str = Field(min_length=1)
-
-
 class PromptOut(BaseModel):
     id: int
     account_id: int
@@ -35,3 +26,12 @@ class PromptOut(BaseModel):
     is_active: bool
     created_by: int | None
     created_at: str | None
+
+
+class SystemPromptOut(BaseModel):
+    prompt_text: str
+    updated_at: str | None = None
+
+
+class SystemPromptUpdate(BaseModel):
+    prompt_text: str = Field(min_length=1)
