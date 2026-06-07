@@ -1,0 +1,124 @@
+from typing import Annotated
+
+from fastapi import APIRouter, Depends
+
+from backend.auth.deps import ROLE_SUPER_ADMIN, UserContext, require_roles
+from backend.dependencies import DbDep
+from backend.exceptions import NotFoundError
+from backend.schemas.common import MessageResponse
+from backend.schemas.llm_configs import LLMConfigCreate, LLMConfigOut, LLMConfigUpdate
+from backend.services.audit import write_audit_log
+from backend.utils import serialize_row
+
+router = APIRouter(prefix="/llm-configs", tags=["llm-configs"])
+
+
+@router.get("", response_model=list[LLMConfigOut])
+async def list_llm_configs(
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    db: DbDep,
+) -> list[LLMConfigOut]:
+    rows = await db.fetch_all("SELECT * FROM AIVA_llm_configs ORDER BY id")
+    return [
+        LLMConfigOut(**{**(serialize_row(r) or {}), "is_active": bool(r.get("is_active"))})
+        for r in rows
+    ]
+
+
+@router.post("", response_model=LLMConfigOut, status_code=201)
+async def create_llm_config(
+    body: LLMConfigCreate,
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    db: DbDep,
+) -> LLMConfigOut:
+    config_id = await db.execute(
+        """
+        INSERT INTO AIVA_llm_configs (
+            provider, model_name, api_base_url, temperature, max_tokens,
+            embedding_model, reranker_model, is_active
+        ) VALUES (
+            :provider, :model_name, :api_base_url, :temperature, :max_tokens,
+            :embedding_model, :reranker_model, :is_active
+        )
+        RETURNING id INTO :out_id
+        """,
+        {
+            **body.model_dump(),
+            "is_active": 1 if body.is_active else 0,
+        },
+        return_id=True,
+    )
+    row = await db.fetch_one("SELECT * FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
+    await write_audit_log(
+        db,
+        user_id=user.id,
+        entity_type="llm_config",
+        entity_id=int(config_id or 0),
+        action_type="CREATE",
+        new_value=body.model_dump(),
+    )
+    data = serialize_row(row) or {}
+    data["is_active"] = bool(data.get("is_active"))
+    return LLMConfigOut(**data)
+
+
+@router.get("/{config_id}", response_model=LLMConfigOut)
+async def get_llm_config(
+    config_id: int,
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    db: DbDep,
+) -> LLMConfigOut:
+    row = await db.fetch_one("SELECT * FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
+    if not row:
+        raise NotFoundError("LLM config not found")
+    data = serialize_row(row) or {}
+    data["is_active"] = bool(data.get("is_active"))
+    return LLMConfigOut(**data)
+
+
+@router.patch("/{config_id}", response_model=LLMConfigOut)
+async def update_llm_config(
+    config_id: int,
+    body: LLMConfigUpdate,
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    db: DbDep,
+) -> LLMConfigOut:
+    old = await db.fetch_one("SELECT * FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
+    if not old:
+        raise NotFoundError("LLM config not found")
+
+    updates = body.model_dump(exclude_unset=True)
+    if "is_active" in updates:
+        updates["is_active"] = 1 if updates["is_active"] else 0
+    if updates:
+        updates["id"] = config_id
+        set_parts = [f"{k} = :{k}" for k in updates if k != "id"]
+        await db.execute(
+            f"UPDATE AIVA_llm_configs SET {', '.join(set_parts)} WHERE id = :id",
+            updates,
+        )
+    row = await db.fetch_one("SELECT * FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
+    data = serialize_row(row) or {}
+    data["is_active"] = bool(data.get("is_active"))
+    return LLMConfigOut(**data)
+
+
+@router.delete("/{config_id}", response_model=MessageResponse)
+async def delete_llm_config(
+    config_id: int,
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    db: DbDep,
+) -> MessageResponse:
+    old = await db.fetch_one("SELECT * FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
+    if not old:
+        raise NotFoundError("LLM config not found")
+    await db.execute("DELETE FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
+    await write_audit_log(
+        db,
+        user_id=user.id,
+        entity_type="llm_config",
+        entity_id=config_id,
+        action_type="DELETE",
+        old_value=serialize_row(old),
+    )
+    return MessageResponse(message="LLM config deleted")
