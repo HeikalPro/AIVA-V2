@@ -112,6 +112,16 @@ async def delete_llm_config(
     old = await db.fetch_one("SELECT * FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
     if not old:
         raise NotFoundError("LLM config not found")
+    linked = await db.fetch_all(
+        "SELECT id, name FROM AIVA_accounts WHERE llm_config_id = :id",
+        {"id": config_id},
+    )
+    linked_rows = [dict(r) for r in linked]
+    if linked:
+        await db.execute(
+            "UPDATE AIVA_accounts SET llm_config_id = NULL WHERE llm_config_id = :id",
+            {"id": config_id},
+        )
     await db.execute("DELETE FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
     await write_audit_log(
         db,
@@ -121,4 +131,9 @@ async def delete_llm_config(
         action_type="DELETE",
         old_value=serialize_row(old),
     )
+    if linked:
+        names = ", ".join(str(r.get("name") or r.get("id")) for r in linked_rows)
+        return MessageResponse(
+            message=f"LLM config deleted. Unlinked from account(s): {names}."
+        )
     return MessageResponse(message="LLM config deleted")
