@@ -186,19 +186,20 @@ async def send_message(
                 """
                 INSERT INTO AIVA_ai_requests (
                     session_id, model_name, provider, input_tokens,
-                    output_tokens, response_time_ms, status
+                    output_tokens, response_time_ms, total_cost, status
                 ) VALUES (
                     :session_id, :model_name, :provider, :input_tokens,
-                    :output_tokens, :response_time_ms, 'SUCCESS'
+                    :output_tokens, :response_time_ms, :total_cost, 'SUCCESS'
                 )
                 """,
                 {
                     "session_id": session_id,
                     "model_name": final_result.model_name,
                     "provider": final_result.provider,
-                    "input_tokens": final_result.prompt_tokens,
-                    "output_tokens": final_result.completion_tokens,
+                    "input_tokens": final_result.prompt_tokens or 0,
+                    "output_tokens": final_result.completion_tokens or 0,
                     "response_time_ms": final_result.latency_ms,
+                    "total_cost": final_result.total_cost,
                 },
             )
             yield f"data: {json.dumps({'type': 'done', 'latency_ms': final_result.latency_ms})}\n\n"

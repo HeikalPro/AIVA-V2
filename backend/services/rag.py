@@ -12,6 +12,7 @@ from llm_service.config.settings import LibrarySettings
 
 from backend.config import Settings, get_settings
 from backend.database import Database
+from backend.services.llm_cost import estimate_llm_cost_usd
 from backend.services.system_prompt import get_system_prompt_text
 from embedding_service.service import EmbeddingService
 
@@ -23,6 +24,7 @@ class StreamResult:
     full_text: str = ""
     prompt_tokens: int | None = None
     completion_tokens: int | None = None
+    total_cost: float | None = None
     latency_ms: int = 0
     model_name: str = ""
     provider: str = ""
@@ -167,8 +169,10 @@ async def stream_rag_response(
         ):
             text = chunk.delta or ""
             if chunk.usage:
-                result.prompt_tokens = chunk.usage.prompt_tokens
-                result.completion_tokens = chunk.usage.completion_tokens
+                if chunk.usage.prompt_tokens:
+                    result.prompt_tokens = chunk.usage.prompt_tokens
+                if chunk.usage.completion_tokens:
+                    result.completion_tokens = chunk.usage.completion_tokens
             if text:
                 result.full_text += text
                 yield text, None
@@ -176,4 +180,10 @@ async def stream_rag_response(
         await client.provider.aclose()
 
     result.latency_ms = int((time.perf_counter() - start) * 1000)
+    result.total_cost = estimate_llm_cost_usd(
+        model_name=result.model_name,
+        input_tokens=result.prompt_tokens,
+        output_tokens=result.completion_tokens,
+        settings=settings,
+    )
     yield "", result

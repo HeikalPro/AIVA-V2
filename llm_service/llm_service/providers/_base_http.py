@@ -171,6 +171,7 @@ class BaseHTTPProvider(BaseLLMProviderConfigurable):
             "messages": [message_to_openai_dict(m) for m in request.messages],
             "temperature": request.temperature,
             "stream": True,
+            "stream_options": {"include_usage": True},
         }
         if request.max_tokens is not None:
             body["max_tokens"] = request.max_tokens
@@ -199,13 +200,28 @@ class BaseHTTPProvider(BaseLLMProviderConfigurable):
                         chunk = json.loads(data)
                     except json.JSONDecodeError:
                         continue
+                    usage_raw = chunk.get("usage")
+                    usage = None
+                    if usage_raw:
+                        usage = TokenUsage(
+                            prompt_tokens=int(usage_raw.get("prompt_tokens") or 0),
+                            completion_tokens=int(usage_raw.get("completion_tokens") or 0),
+                            total_tokens=int(usage_raw.get("total_tokens") or 0),
+                        )
                     choices = chunk.get("choices") or []
                     if not choices:
+                        if usage:
+                            yield StreamChunk(delta="", usage=usage, correlation_id=request.correlation_id)
                         continue
                     delta = choices[0].get("delta") or {}
                     text_delta = delta.get("content") or ""
                     fr = choices[0].get("finish_reason")
-                    yield StreamChunk(delta=text_delta, finish_reason=fr, correlation_id=request.correlation_id)
+                    yield StreamChunk(
+                        delta=text_delta,
+                        finish_reason=fr,
+                        usage=usage,
+                        correlation_id=request.correlation_id,
+                    )
         except ProviderError:
             raise
         except httpx.TimeoutException as e:

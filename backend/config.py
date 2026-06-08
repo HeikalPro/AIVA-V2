@@ -39,6 +39,8 @@ class Settings(BaseSettings):
 
     llm_default_provider: str = "openai"
     llm_default_model: str = "gpt-4.1-mini"
+    llm_default_input_usd_per_million_tokens: float | None = None
+    llm_default_output_usd_per_million_tokens: float | None = None
 
     search_default_top_k: int = 10
 

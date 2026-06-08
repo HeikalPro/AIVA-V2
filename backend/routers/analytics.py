@@ -36,17 +36,32 @@ async def dashboard_stats(
     row = await db.fetch_one(
         """
         SELECT
-            COUNT(DISTINCT cs.id) AS total_sessions,
-            COUNT(cm.id) AS total_messages,
-            COUNT(ar.id) AS total_ai_requests,
-            AVG(ar.response_time_ms) AS avg_response_time_ms,
-            NVL(SUM(ar.input_tokens), 0) AS total_input_tokens,
-            NVL(SUM(ar.output_tokens), 0) AS total_output_tokens,
-            SUM(ar.total_cost) AS total_cost
-        FROM AIVA_chat_sessions cs
-        LEFT JOIN AIVA_chat_messages cm ON cm.session_id = cs.id
-        LEFT JOIN AIVA_ai_requests ar ON ar.session_id = cs.id
-        WHERE cs.account_id = :account_id
+            (SELECT COUNT(*) FROM AIVA_chat_sessions WHERE account_id = :account_id) AS total_sessions,
+            (SELECT COUNT(*)
+             FROM AIVA_chat_messages cm
+             JOIN AIVA_chat_sessions cs ON cs.id = cm.session_id
+             WHERE cs.account_id = :account_id) AS total_messages,
+            (SELECT COUNT(*)
+             FROM AIVA_ai_requests ar
+             JOIN AIVA_chat_sessions cs ON cs.id = ar.session_id
+             WHERE cs.account_id = :account_id) AS total_ai_requests,
+            (SELECT AVG(ar.response_time_ms)
+             FROM AIVA_ai_requests ar
+             JOIN AIVA_chat_sessions cs ON cs.id = ar.session_id
+             WHERE cs.account_id = :account_id) AS avg_response_time_ms,
+            (SELECT NVL(SUM(ar.input_tokens), 0)
+             FROM AIVA_ai_requests ar
+             JOIN AIVA_chat_sessions cs ON cs.id = ar.session_id
+             WHERE cs.account_id = :account_id) AS total_input_tokens,
+            (SELECT NVL(SUM(ar.output_tokens), 0)
+             FROM AIVA_ai_requests ar
+             JOIN AIVA_chat_sessions cs ON cs.id = ar.session_id
+             WHERE cs.account_id = :account_id) AS total_output_tokens,
+            (SELECT SUM(ar.total_cost)
+             FROM AIVA_ai_requests ar
+             JOIN AIVA_chat_sessions cs ON cs.id = ar.session_id
+             WHERE cs.account_id = :account_id) AS total_cost
+        FROM DUAL
         """,
         {"account_id": account_id},
     )
