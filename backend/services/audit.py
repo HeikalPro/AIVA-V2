@@ -1,9 +1,19 @@
 from __future__ import annotations
 
 import json
+from datetime import date, datetime
 from typing import Any
 
 from backend.database import Database
+
+
+def _audit_json(value: Any) -> str:
+    def _default(obj: Any) -> str:
+        if isinstance(obj, (date, datetime)):
+            return obj.isoformat()
+        raise TypeError(f"Object of type {type(obj).__name__} is not JSON serializable")
+
+    return json.dumps(value, default=_default)
 
 
 async def write_audit_log(
@@ -32,8 +42,8 @@ async def write_audit_log(
             "entity_type": entity_type,
             "entity_id": str(entity_id),
             "action_type": action_type,
-            "old_value": json.dumps(old_value) if old_value is not None else None,
-            "new_value": json.dumps(new_value) if new_value is not None else None,
+            "old_value": _audit_json(old_value) if old_value is not None else None,
+            "new_value": _audit_json(new_value) if new_value is not None else None,
             "ip_address": ip_address,
         },
     )

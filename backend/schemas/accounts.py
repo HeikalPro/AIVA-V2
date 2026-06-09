@@ -1,3 +1,5 @@
+from datetime import date
+
 from pydantic import BaseModel, Field
 
 
@@ -16,6 +18,7 @@ class AccountUpdate(BaseModel):
     corpus_id: str | None = None
     llm_config_id: int | None = None
     status: str | None = None
+    api_key_renewal_date: date | None = None
 
 
 class AccountOut(BaseModel):
@@ -28,4 +31,5 @@ class AccountOut(BaseModel):
     description: str | None
     corpus_id: str | None
     status: str
+    api_key_renewal_date: str | None = None
     created_at: str | None = None
