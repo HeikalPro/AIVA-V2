@@ -1,0 +1,27 @@
+Vertical: CF | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Unable to request a CF limit (Halan)
+Question AR: عميل لا يستطيع طلب الحد الائتماني (Halan)
+
+Script:
+عميل لا يستطيع طلب الحد الائتماني:
+CF → Complaint → Technical → Unable to request a CF limit
+
+يتم التأكد من خلال Admin Tool.
+
+لو العميل مقدم علي حد ائتماني:
+بنوضح للعميل حضرتك بالفعل مقدم علي حد ائتماني.
+- Escalation: No
+
+لو العميل مش مقدم علي حد ائتماني:
+بنوضح للعميل يتأكد من:
+- الانترنت / GPS
+- تسجيل خروج ودخول
+- تحديث التطبيق
+
+لو المشكلة اتحلت:
+- Escalation: No
+
+لو المشكلة لسه موجودة:
+- Escalation: Yes
+- CRM: CF → Complaint → Technical → Unable to request a CF limit
