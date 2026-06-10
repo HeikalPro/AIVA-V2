@@ -1,0 +1,14 @@
+Vertical: Gold | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Customer wants to change contract signing from courier to branch
+Question AR: عميل يريد تغيير مضي العقد من المندوب للفرع
+
+Script:
+عميل يريد تغيير مضي العقد من المندوب للفرع:
+بتأكد من البورتال حاله الطلب (لم يفعل بعد / جاهز للتوصيل).
+بنسأل العميل عن سبب اتجاه للفرع و بنحاول نعدل العميل ان المندوب يروح ليه لامضاء العقد.
+لو العميل اصر: بتوضح للعميل عنوان اقرب فرع ومواعيد الفرع وايه بيقدر يتوجه ليه لامضاء العقد، والعميل بيوضح للمندوب انه هيتوجه للفرع للامضاء.
+
+ملحوظة: نبص علي منطقه العميل او المحافظه ينفع فيها فرع او مندوب ولا لأ قبل التأكيد علي العميل المعلومه.
+- Escalation: No
+- CRM: Request → Request a call from courier → Escalation Needed No

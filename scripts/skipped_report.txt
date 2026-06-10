@@ -1,0 +1,27 @@
+TOTAL SKIPPED CHUNKS: 13
+
+
+=== CF (1) ===
+  1581 | Inquiry | Request follow up – Confirmation (Halan)
+
+=== General (1) ===
+  1005 | Complain | Amount Deducted and Customer didn’t receive the Serial Number (One Card)
+
+=== Gomla (1) ===
+  862 | Complain | عميل بيشتكي من promocode كسبه من عجله الحظ complains about a promo code he won f
+
+=== Pay (1) ===
+  699 | Complain | installment didn’t deducted from salary (Salary Lending)
+
+=== Saving (5) ===
+  1083 | Inquiry | ايه هو اقل مبلغ ممكن اكسبه؟
+  525 | Inquiry | هل يمكن استخدام الرصيد في حساب حالا تحويش في دفع الأقساط او شراء منتجات ؟
+  546 | Complain | او انه مضى العقد والحساب ماتفعلش بناخد من العميل البيانات دى
+  550 | Inquiry | ازاي اقدر اعمل ايداع في حساب حالا تحويش؟
+  559 | Inquiry | ينفع احول مبلغ من محفظه حالا ل حالا تحويش ؟
+
+=== Tasaheel (4) ===
+  1258 | Inquiry | May offer winners announcement (تساهيل)
+  1259 | Inquiry | May offer winners announcement (تساهيل)
+  1637 | Complain | Complaint of pay installments and not reflected , Complaint of loan officer رشوي
+  491 | Complain | Delay receiving statement ( افادة)
