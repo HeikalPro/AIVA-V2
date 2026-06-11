@@ -36,6 +36,9 @@ class Settings(BaseSettings):
 
     rate_limit_default: str = "120/minute"
     rate_limit_login: str = "10/minute"
+    rate_limit_signup: str = "30/hour"
+    rate_limit_resend_otp: str = "20/hour"
+    rate_limit_forgot_password: str = "10/hour"
 
     llm_default_provider: str = "openai"
     llm_default_model: str = "gpt-4.1-mini"
@@ -46,6 +49,7 @@ class Settings(BaseSettings):
 
     zoho_desk_api_base: str = "https://desk.zoho.com/api/v1"
     zoho_ticket_sync_enabled: bool = False
+    zoho_login_enabled: bool = False
     zoho_frontend_redirect_url: str = "http://localhost:5173/auth/zoho-callback"
     zoho_auto_register_organization_id: int | None = None
     zoho_auto_register_role: str = "AGENT"
@@ -56,6 +60,32 @@ class Settings(BaseSettings):
     zoho_mail_api_base: str = "https://mail.zoho.com/api"
     zoho_mail_from_address: str = ""
     zoho_mail_account_id: str | None = None
+
+    smtp_host: str = ""
+    smtp_port: int = 465
+    smtp_username: str = ""
+    smtp_password: str = ""
+    smtp_from_email: str = ""
+    smtp_from_name: str = "GoAI247"
+    smtp_encryption: str = "ssl"
+
+    otp_expiry_minutes: int = 10
+    otp_length: int = 6
+    otp_max_attempts: int = 5
+    otp_resend_cooldown_seconds: int = 60
+    otp_max_resend_per_hour: int = 5
+
+    login_max_failed_attempts: int = 5
+    login_lock_minutes: int = 15
+
+    password_min_length: int = 8
+    password_require_complexity: bool = False
+
+    signup_default_organization_id: int | None = None
+    signup_default_role: str = "AGENT"
+
+    app_name: str = "AIVA"
+    app_url: str = "http://localhost:5175"
 
     bootstrap_superadmin_enabled: bool = True
     bootstrap_superadmin_email: str = "admin@aiva.local"

@@ -1,9 +1,40 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 
 class LoginRequest(BaseModel):
     email: str = Field(min_length=3)
     password: str = Field(min_length=1)
+
+
+class SignupRequest(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
+    name: str = Field(min_length=2, max_length=255)
+    email: EmailStr
+    password: str = Field(min_length=8)
+    confirm_password: str = Field(min_length=8, alias="confirmPassword")
+
+
+class VerifyEmailOtpRequest(BaseModel):
+    email: EmailStr
+    otp: str = Field(min_length=6, max_length=6)
+
+
+class ResendOtpRequest(BaseModel):
+    email: EmailStr
+
+
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+
+class ResetPasswordRequest(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
+    email: EmailStr
+    otp: str = Field(min_length=6, max_length=6)
+    password: str = Field(min_length=8)
+    confirm_password: str = Field(min_length=8, alias="confirmPassword")
 
 
 class ZohoLoginResponse(BaseModel):

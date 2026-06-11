@@ -22,6 +22,7 @@ from slowapi.middleware import SlowAPIMiddleware
 from backend.config import get_settings
 from backend.dependencies import _database_singleton
 from backend.services.account_schema import ensure_account_schema
+from backend.services.auth_schema import ensure_auth_schema
 from backend.services.bootstrap import ensure_bootstrap_superadmin
 from backend.services.system_prompt import ensure_system_prompt_storage
 from backend.limiter import limiter
@@ -39,6 +40,7 @@ async def lifespan(app: FastAPI):
     await db.init_pool()
     await ensure_bootstrap_superadmin(db, settings)
     await ensure_account_schema(db)
+    await ensure_auth_schema(db)
     await ensure_system_prompt_storage(db)
 
     embedding_svc = EmbeddingService()

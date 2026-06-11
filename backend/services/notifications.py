@@ -9,7 +9,7 @@ from backend.dependencies import get_db
 from backend.schemas.tickets import DeveloperNotifyOut
 from backend.schemas.notifications import DeveloperNotifyOut
 from backend.services.email.base import EmailMessage
-from backend.services.email.zoho_mail import get_zoho_mail_sender
+from backend.services.email import get_mail_sender
 
 _log = logging.getLogger(__name__)
 
@@ -138,7 +138,7 @@ async def notify_developers_new_ticket(
         html_body=html_body,
     )
     try:
-        ok = await get_zoho_mail_sender().send(msg)
+        ok = await get_mail_sender().send(msg)
     except Exception:
         _log.exception("Failed to notify developers about ticket #%s", ticket_id)
         ok = False
@@ -153,9 +153,8 @@ async def notify_developers_new_ticket(
     return DeveloperNotifyOut(
         status="failed",
         message=(
-            "Email was not sent. Configure ZOHO_MAIL_FROM_ADDRESS to a real Zoho mailbox, "
-            "then authorize the server once: cd AIVA-V2 && python -m zoho_auth --force-login "
-            "(accept Mail permissions). Web sign-in does not update the mail sender token."
+            "Email was not sent. Configure SMTP_HOST, SMTP_PASSWORD, and SMTP_FROM_EMAIL "
+            "in backend/.env (or use Zoho Mail as fallback)."
         ),
         recipients=recipients,
     )
@@ -229,7 +228,7 @@ async def notify_developers_new_ingestion(
         html_body=html_body,
     )
     try:
-        ok = await get_zoho_mail_sender().send(msg)
+        ok = await get_mail_sender().send(msg)
     except Exception:
         _log.exception("Failed to notify developers about ingestion #%s", request_id)
         ok = False
@@ -244,9 +243,8 @@ async def notify_developers_new_ingestion(
     return DeveloperNotifyOut(
         status="failed",
         message=(
-            "Email was not sent. Configure ZOHO_MAIL_FROM_ADDRESS to a real Zoho mailbox, "
-            "then authorize the server once: cd AIVA-V2 && python -m zoho_auth --force-login "
-            "(accept Mail permissions). Web sign-in does not update the mail sender token."
+            "Email was not sent. Configure SMTP_HOST, SMTP_PASSWORD, and SMTP_FROM_EMAIL "
+            "in backend/.env (or use Zoho Mail as fallback)."
         ),
         recipients=recipients,
     )
