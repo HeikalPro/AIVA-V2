@@ -27,7 +27,7 @@ router = APIRouter(prefix="/accounts", tags=["accounts"])
 
 _ACCOUNT_WITH_ORG_SELECT = """
 SELECT a.id, a.organization_id, a.llm_config_id, a.name, a.description, a.corpus_id, a.status,
-       a.api_key_renewal_date, a.created_at,
+       a.created_at,
        o.name AS organization_name, o.code AS organization_code
 FROM AIVA_accounts a
 JOIN AIVA_organizations o ON o.id = a.organization_id
@@ -36,9 +36,6 @@ JOIN AIVA_organizations o ON o.id = a.organization_id
 
 def _to_account_out(row: dict | None) -> AccountOut:
     data = serialize_row(row) or {}
-    renewal = data.get("api_key_renewal_date")
-    if renewal is not None:
-        data["api_key_renewal_date"] = str(renewal)[:10]
     return AccountOut(**data)
 
 
@@ -201,8 +198,6 @@ async def update_account(
     require_account_access(account_id, user, int(old["organization_id"]))
 
     updates = body.model_dump(exclude_unset=True)
-    if "api_key_renewal_date" in updates and not user.is_super_admin:
-        raise ForbiddenError("Only Super Admins can update the API key renewal date")
     if not updates:
         row = await _fetch_account_by_id(db, account_id)
         return _to_account_out(row)
