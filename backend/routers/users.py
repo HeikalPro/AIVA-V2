@@ -31,6 +31,7 @@ from backend.services.account_membership import (
     upsert_account_membership,
 )
 from backend.services.audit import write_audit_log
+from backend.services.organization_dependencies import delete_user_dependencies
 from backend.services.user_queries import build_user_out
 from backend.utils import serialize_row
 
@@ -250,11 +251,14 @@ async def delete_user(
     current: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
     db: DbDep,
 ) -> MessageResponse:
+    if user_id == current.id:
+        raise ForbiddenError("You cannot delete your own account")
     old = await db.fetch_one("SELECT * FROM AIVA_users WHERE id = :id", {"id": user_id})
     if not old:
         raise NotFoundError("User not found")
     if not current.is_super_admin and int(old["organization_id"]) != current.organization_id:
         raise ForbiddenError("Cannot delete user in another organization")
+    await delete_user_dependencies(db, user_id)
     await db.execute("DELETE FROM AIVA_users WHERE id = :id", {"id": user_id})
     await write_audit_log(
         db,

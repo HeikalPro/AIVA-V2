@@ -116,6 +116,34 @@ async def delete_user_dependencies(db: Database, user_id: int) -> None:
         "DELETE FROM AIVA_account_users WHERE user_id = :user_id",
         {"user_id": user_id},
     )
+    await db.execute(
+        "DELETE FROM AIVA_email_otps WHERE user_id = :user_id",
+        {"user_id": user_id},
+    )
+    await db.execute(
+        "DELETE FROM AIVA_auth_audit_logs WHERE user_id = :user_id",
+        {"user_id": user_id},
+    )
+    await db.execute(
+        "UPDATE AIVA_account_users SET assigned_by = NULL WHERE assigned_by = :user_id",
+        {"user_id": user_id},
+    )
+    await db.execute(
+        "UPDATE AIVA_tickets SET created_by = NULL WHERE created_by = :user_id",
+        {"user_id": user_id},
+    )
+    await db.execute(
+        "UPDATE AIVA_tickets SET assigned_to = NULL WHERE assigned_to = :user_id",
+        {"user_id": user_id},
+    )
+    await db.execute(
+        "UPDATE AIVA_prompts SET created_by = NULL WHERE created_by = :user_id",
+        {"user_id": user_id},
+    )
+    await db.execute(
+        "UPDATE AIVA_system_prompt SET updated_by = NULL WHERE updated_by = :user_id",
+        {"user_id": user_id},
+    )
 
 
 async def delete_organization_cascade(db: Database, org_id: int) -> dict[str, int]:
