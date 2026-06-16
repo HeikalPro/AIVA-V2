@@ -24,6 +24,7 @@ from backend.schemas.users import (
     UserUpdate,
 )
 from backend.services.account_membership import (
+    clear_account_access_outside_organization,
     get_user_and_account,
     grant_account_role_access,
     prepare_user_for_account_assignment,
@@ -195,8 +196,23 @@ async def update_user(
     updates = body.model_dump(exclude_unset=True)
     updates.pop("role_id", None)
 
+    new_org_id = updates.get("organization_id")
+    if new_org_id is not None:
+        if not current.is_super_admin:
+            raise ForbiddenError("Only super admin can change user organization")
+        org_row = await db.fetch_one(
+            "SELECT id FROM AIVA_organizations WHERE id = :id",
+            {"id": new_org_id},
+        )
+        if not org_row:
+            raise NotFoundError("Organization not found")
+        if int(new_org_id) != int(old["organization_id"]):
+            await clear_account_access_outside_organization(db, user_id, int(new_org_id))
+
     if "password" in updates:
         updates["password_hash"] = hash_password(updates.pop("password"))
+
+    audit_new_value = dict(updates)
     if updates:
         updates["id"] = user_id
         set_parts = [f"{k} = :{k}" for k in updates if k != "id"]
@@ -211,7 +227,7 @@ async def update_user(
         entity_id=user_id,
         action_type="UPDATE",
         old_value=serialize_row(old),
-        new_value=updates,
+        new_value=audit_new_value,
     )
     return await _user_out(db, user_id)
 

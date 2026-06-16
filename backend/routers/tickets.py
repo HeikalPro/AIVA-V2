@@ -119,7 +119,7 @@ async def create_ticket(
     ],
     db: DbDep,
 ) -> TicketCreateOut:
-    if body.organization_id != user.organization_id:
+    if not user.is_super_admin and body.organization_id != user.organization_id:
         raise ForbiddenError("Cannot create ticket in another organization")
     if body.account_id:
         account = await db.fetch_one("SELECT organization_id FROM AIVA_accounts WHERE id = :id", {"id": body.account_id})

@@ -8,6 +8,7 @@ from fastapi import APIRouter, Depends
 from backend.auth.deps import (
     ROLE_ACCOUNT_MANAGER,
     ROLE_DEVELOPER,
+    ROLE_ORG_ADMIN,
     ROLE_SUPER_ADMIN,
     ROLE_SUPERVISOR,
     UserContext,
@@ -86,7 +87,7 @@ async def create_ingestion_request(
     body: IngestionRequestCreate,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR)),
+        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR)),
     ],
     db: DbDep,
 ) -> IngestionRequestCreateOut:
@@ -163,7 +164,7 @@ async def ingestion_pending_count(
 async def list_ingestion_requests(
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR, ROLE_DEVELOPER)),
+        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR, ROLE_DEVELOPER)),
     ],
     db: DbDep,
 ) -> list[IngestionRequestOut]:
