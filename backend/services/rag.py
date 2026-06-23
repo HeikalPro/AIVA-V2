@@ -6,7 +6,10 @@ import logging
 import time
 from collections.abc import AsyncIterator
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any
+
+from pydantic import SecretStr
 
 from llm_service.client import LLMClient
 from llm_service.config.provider_config import (
@@ -23,6 +26,52 @@ from backend.services.system_prompt import get_system_prompt_text
 from embedding_service.service import EmbeddingService
 
 _log = logging.getLogger(__name__)
+
+_LLM_SERVICE_ENV = Path(__file__).resolve().parents[2] / "llm_service" / ".env"
+_ROOT_ENV = Path(__file__).resolve().parents[2] / ".env"
+_OFFICIAL_OPENAI_BASE = "https://api.openai.com/v1"
+_CHAT_KEY_ENV_NAMES = ("SOVEREIGNEG_API_KEY", "LLM_CHAT_API_KEY", "OPENAI_API_KEY")
+
+
+def _read_dotenv(path: Path, name: str) -> str:
+    if not path.is_file():
+        return ""
+    for line in path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#") or "=" not in stripped:
+            continue
+        key, _, value = stripped.partition("=")
+        if key.strip() != name:
+            continue
+        return value.strip().strip('"').strip("'")
+    return ""
+
+
+def _read_llm_service_env(name: str) -> str:
+    """Read one variable from llm_service/.env."""
+    return _read_dotenv(_LLM_SERVICE_ENV, name)
+
+
+def _read_root_env(name: str) -> str:
+    """Read one variable from AIVA-V2/.env (official OpenAI key for embeddings + default chat)."""
+    return _read_dotenv(_ROOT_ENV, name)
+
+
+def _chat_api_key_for_custom_endpoint() -> SecretStr | None:
+    for name in _CHAT_KEY_ENV_NAMES:
+        raw = _read_llm_service_env(name)
+        if raw:
+            return SecretStr(raw)
+    return None
+
+
+def _official_openai_provider_config() -> OpenAIProviderConfig:
+    """Official OpenAI — never use llm_service OPENAI_BASE_URL (e.g. SovereignEG)."""
+    kwargs: dict[str, Any] = {"base_url": _OFFICIAL_OPENAI_BASE}
+    raw = _read_root_env("OPENAI_API_KEY")
+    if raw:
+        kwargs["api_key"] = SecretStr(raw)
+    return OpenAIProviderConfig(**kwargs)
 
 
 @dataclass
@@ -72,19 +121,31 @@ def _format_context(chunks: list[dict[str, Any]]) -> str:
 
 
 def _provider_config(provider: str, llm_row: dict[str, Any] | None) -> Any | None:
-    if not llm_row:
-        return None
-    base_url = llm_row.get("api_base_url")
+    key = provider.lower()
+    base_url = (llm_row or {}).get("api_base_url")
+    if key == "openai":
+        if not base_url:
+            return _official_openai_provider_config()
+        url = str(base_url).rstrip("/")
+        chat_key = _chat_api_key_for_custom_endpoint()
+        kwargs: dict[str, Any] = {"base_url": url}
+        if chat_key is not None:
+            kwargs["api_key"] = chat_key
+        return OpenAIProviderConfig(**kwargs)
     if not base_url:
         return None
     url = str(base_url).rstrip("/")
-    key = provider.lower()
-    if key == "openai":
-        return OpenAIProviderConfig(base_url=url)
+    chat_key = _chat_api_key_for_custom_endpoint()
     if key == "vllm":
-        return VLLMProviderConfig(base_url=url)
+        kwargs = {"base_url": url}
+        if chat_key is not None:
+            kwargs["api_key"] = chat_key
+        return VLLMProviderConfig(**kwargs)
     if key == "openrouter":
-        return OpenRouterProviderConfig(base_url=url)
+        kwargs = {"base_url": url}
+        if chat_key is not None:
+            kwargs["api_key"] = chat_key
+        return OpenRouterProviderConfig(**kwargs)
     return None
 
 
@@ -96,6 +157,8 @@ def _build_llm_client(llm_row: dict[str, Any] | None, settings: Settings) -> LLM
         default_model=str(model),
     )
     provider_config = _provider_config(str(provider), llm_row)
+    if provider_config is None and str(provider).lower() == "openai":
+        provider_config = _official_openai_provider_config()
     return LLMClient(
         provider=str(provider),
         model=str(model),
