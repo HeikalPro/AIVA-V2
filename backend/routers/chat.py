@@ -17,7 +17,7 @@ from backend.schemas.chat import (
     SessionCreate,
     SessionOut,
 )
-from backend.services.rag import stream_rag_response
+from backend.services.rag import format_llm_error, stream_rag_response
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/chat", tags=["chat"])
@@ -300,21 +300,35 @@ async def send_message(
     async def event_stream():
         final_result = None
         assistant_message_id: int | None = None
-        async for chunk, result in stream_rag_response(
-            db,
-            embedding_svc,
-            account_id=int(session["account_id"]),
-            corpus_id=str(corpus_id),
-            session_id=session_id,
-            user_message=body.message_text,
-            top_k=body.top_k,
-        ):
-            if chunk:
-                yield f"data: {json.dumps({'type': 'token', 'text': chunk})}\n\n"
-            if result is not None:
-                final_result = result
+        try:
+            async for chunk, result in stream_rag_response(
+                db,
+                embedding_svc,
+                account_id=int(session["account_id"]),
+                corpus_id=str(corpus_id),
+                session_id=session_id,
+                user_message=body.message_text,
+                top_k=body.top_k,
+            ):
+                if chunk:
+                    yield f"data: {json.dumps({'type': 'token', 'text': chunk})}\n\n"
+                if result is not None:
+                    final_result = result
+        except Exception as exc:
+            yield f"data: {json.dumps({'type': 'error', 'message': format_llm_error(exc)})}\n\n"
+            yield f"data: {json.dumps({'type': 'done', 'user_message_id': user_message_id})}\n\n"
+            return
 
         if final_result:
+            if final_result.error:
+                yield f"data: {json.dumps({'type': 'error', 'message': final_result.error})}\n\n"
+            assistant_text = final_result.full_text
+            if final_result.error:
+                if assistant_text:
+                    assistant_text = f"{assistant_text}\n\nError: {final_result.error}"
+                else:
+                    assistant_text = f"Error: {final_result.error}"
+            request_status = "FAILED" if final_result.error else "SUCCESS"
             assistant_message_id = await db.execute(
                 """
                 INSERT INTO AIVA_chat_messages (
@@ -328,7 +342,7 @@ async def send_message(
                 """,
                 {
                     "session_id": session_id,
-                    "message_text": final_result.full_text,
+                    "message_text": assistant_text,
                     "prompt_tokens": final_result.prompt_tokens,
                     "completion_tokens": final_result.completion_tokens,
                     "latency_ms": final_result.latency_ms,
@@ -342,7 +356,7 @@ async def send_message(
                     output_tokens, response_time_ms, total_cost, status
                 ) VALUES (
                     :session_id, :model_name, :provider, :input_tokens,
-                    :output_tokens, :response_time_ms, :total_cost, 'SUCCESS'
+                    :output_tokens, :response_time_ms, :total_cost, :status
                 )
                 """,
                 {
@@ -353,6 +367,7 @@ async def send_message(
                     "output_tokens": final_result.completion_tokens or 0,
                     "response_time_ms": final_result.latency_ms,
                     "total_cost": final_result.total_cost,
+                    "status": request_status,
                 },
             )
             yield f"data: {json.dumps({'type': 'done', 'latency_ms': final_result.latency_ms, 'user_message_id': user_message_id, 'assistant_message_id': assistant_message_id})}\n\n"

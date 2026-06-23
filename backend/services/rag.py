@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
 import time
 from collections.abc import AsyncIterator
@@ -8,6 +9,11 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from llm_service.client import LLMClient
+from llm_service.config.provider_config import (
+    OpenAIProviderConfig,
+    OpenRouterProviderConfig,
+    VLLMProviderConfig,
+)
 from llm_service.config.settings import LibrarySettings
 
 from backend.config import Settings, get_settings
@@ -29,6 +35,30 @@ class StreamResult:
     model_name: str = ""
     provider: str = ""
     chunks_used: list[dict[str, Any]] = field(default_factory=list)
+    error: str | None = None
+
+
+def format_llm_error(exc: Exception) -> str:
+    """Turn provider/HTTP failures into a short user-facing message."""
+    raw = str(exc).strip()
+    if not raw:
+        return "The language model request failed."
+    try:
+        data = json.loads(raw)
+        if isinstance(data, dict):
+            err = data.get("error")
+            if isinstance(err, dict):
+                message = err.get("message")
+                if message:
+                    return str(message).strip()
+            message = data.get("message")
+            if message:
+                return str(message).strip()
+    except json.JSONDecodeError:
+        pass
+    if len(raw) > 500:
+        return raw[:500] + "…"
+    return raw
 
 
 def _format_context(chunks: list[dict[str, Any]]) -> str:
@@ -41,6 +71,23 @@ def _format_context(chunks: list[dict[str, Any]]) -> str:
     return "\n\n".join(parts)
 
 
+def _provider_config(provider: str, llm_row: dict[str, Any] | None) -> Any | None:
+    if not llm_row:
+        return None
+    base_url = llm_row.get("api_base_url")
+    if not base_url:
+        return None
+    url = str(base_url).rstrip("/")
+    key = provider.lower()
+    if key == "openai":
+        return OpenAIProviderConfig(base_url=url)
+    if key == "vllm":
+        return VLLMProviderConfig(base_url=url)
+    if key == "openrouter":
+        return OpenRouterProviderConfig(base_url=url)
+    return None
+
+
 def _build_llm_client(llm_row: dict[str, Any] | None, settings: Settings) -> LLMClient:
     provider = (llm_row or {}).get("provider") or settings.llm_default_provider
     model = (llm_row or {}).get("model_name") or settings.llm_default_model
@@ -48,7 +95,13 @@ def _build_llm_client(llm_row: dict[str, Any] | None, settings: Settings) -> LLM
         default_provider=str(provider),
         default_model=str(model),
     )
-    return LLMClient(provider=str(provider), model=str(model), settings=lib_settings)
+    provider_config = _provider_config(str(provider), llm_row)
+    return LLMClient(
+        provider=str(provider),
+        model=str(model),
+        settings=lib_settings,
+        config=provider_config,
+    )
 
 
 async def load_active_prompt(db: Database, account_id: int) -> tuple[str, str | None]:
@@ -176,6 +229,9 @@ async def stream_rag_response(
             if text:
                 result.full_text += text
                 yield text, None
+    except Exception as exc:
+        _log.exception("LLM stream failed for account %s", account_id)
+        result.error = format_llm_error(exc)
     finally:
         await client.provider.aclose()
 
