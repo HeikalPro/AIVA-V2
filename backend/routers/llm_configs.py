@@ -2,7 +2,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends
 
-from backend.auth.deps import ROLE_SUPER_ADMIN, UserContext, require_roles
+from backend.auth.deps import ROLE_DEVELOPER, ROLE_SUPER_ADMIN, UserContext, require_roles
 from backend.dependencies import DbDep
 from backend.exceptions import NotFoundError
 from backend.schemas.common import MessageResponse
@@ -15,7 +15,7 @@ router = APIRouter(prefix="/llm-configs", tags=["llm-configs"])
 
 @router.get("", response_model=list[LLMConfigOut])
 async def list_llm_configs(
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_DEVELOPER))],
     db: DbDep,
 ) -> list[LLMConfigOut]:
     rows = await db.fetch_all("SELECT * FROM AIVA_llm_configs ORDER BY id")
@@ -28,7 +28,7 @@ async def list_llm_configs(
 @router.post("", response_model=LLMConfigOut, status_code=201)
 async def create_llm_config(
     body: LLMConfigCreate,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_DEVELOPER))],
     db: DbDep,
 ) -> LLMConfigOut:
     config_id = await db.execute(
@@ -65,7 +65,7 @@ async def create_llm_config(
 @router.get("/{config_id}", response_model=LLMConfigOut)
 async def get_llm_config(
     config_id: int,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_DEVELOPER))],
     db: DbDep,
 ) -> LLMConfigOut:
     row = await db.fetch_one("SELECT * FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
@@ -80,7 +80,7 @@ async def get_llm_config(
 async def update_llm_config(
     config_id: int,
     body: LLMConfigUpdate,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_DEVELOPER))],
     db: DbDep,
 ) -> LLMConfigOut:
     old = await db.fetch_one("SELECT * FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
@@ -106,7 +106,7 @@ async def update_llm_config(
 @router.delete("/{config_id}", response_model=MessageResponse)
 async def delete_llm_config(
     config_id: int,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_DEVELOPER))],
     db: DbDep,
 ) -> MessageResponse:
     old = await db.fetch_one("SELECT * FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})

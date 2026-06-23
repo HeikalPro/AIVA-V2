@@ -188,7 +188,14 @@ async def update_account(
     body: AccountUpdate,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(
+            require_roles(
+                ROLE_SUPER_ADMIN,
+                ROLE_ORG_ADMIN,
+                ROLE_ACCOUNT_MANAGER,
+                ROLE_DEVELOPER,
+            )
+        ),
     ],
     db: DbDep,
 ) -> AccountOut:
