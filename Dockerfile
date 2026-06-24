@@ -11,7 +11,8 @@ COPY requirements.txt ./
 COPY backend/requirements.txt ./backend-requirements.txt
 COPY embedding_service/requirements.txt ./embedding-requirements.txt
 RUN pip install --upgrade pip \
-    && pip install -r requirements.txt -r backend-requirements.txt -r embedding-requirements.txt
+    && pip install -r backend-requirements.txt -r requirements.txt -r embedding-requirements.txt \
+    && pip install email-validator
 
 COPY llm_service/ ./llm_service/
 RUN pip install "./llm_service[openai]"

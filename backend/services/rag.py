@@ -34,9 +34,19 @@ _OFFICIAL_OPENAI_BASE = "https://api.openai.com/v1"
 _CHAT_KEY_ENV_NAMES = ("SOVEREIGNEG_API_KEY", "LLM_CHAT_API_KEY", "OPENAI_API_KEY")
 
 
+def _read_text_file(path: Path) -> str:
+    raw = path.read_bytes()
+    for encoding in ("utf-8", "utf-8-sig", "cp1252", "latin-1"):
+        try:
+            return raw.decode(encoding)
+        except UnicodeDecodeError:
+            continue
+    return raw.decode("utf-8", errors="replace")
+
+
 def _read_dotenv(path: Path, name: str) -> str:
     if path.is_file():
-        for line in path.read_text(encoding="utf-8").splitlines():
+        for line in _read_text_file(path).splitlines():
             stripped = line.strip()
             if not stripped or stripped.startswith("#") or "=" not in stripped:
                 continue
@@ -155,6 +165,7 @@ def _build_llm_client(llm_row: dict[str, Any] | None, settings: Settings) -> LLM
     lib_settings = LibrarySettings(
         default_provider=str(provider),
         default_model=str(model),
+        _env_file=None,
     )
     provider_config = _provider_config(str(provider), llm_row)
     if provider_config is None and str(provider).lower() == "openai":
