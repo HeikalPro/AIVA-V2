@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     backend_host: str = "0.0.0.0"
     backend_port: int = 8000
     backend_debug: bool = False
-    backend_cors_origins: str = "http://localhost:3000,http://localhost:5173"
+    backend_cors_origins: str = "http://localhost:3000,http://localhost:5173,http://localhost:5175,http://127.0.0.1:5173"
 
     oracle_dsn: str = "localhost:1521/FREEPDB1"
     oracle_user: str = "aiva_user"

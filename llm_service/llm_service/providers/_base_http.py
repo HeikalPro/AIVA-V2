@@ -214,7 +214,8 @@ class BaseHTTPProvider(BaseLLMProviderConfigurable):
                             yield StreamChunk(delta="", usage=usage, correlation_id=request.correlation_id)
                         continue
                     delta = choices[0].get("delta") or {}
-                    text_delta = delta.get("content") or delta.get("reasoning_content") or ""
+                    # Only stream user-facing content — never reasoning_content (internal chain-of-thought).
+                    text_delta = delta.get("content") or ""
                     if not text_delta:
                         message = choices[0].get("message") or {}
                         if isinstance(message, dict):
