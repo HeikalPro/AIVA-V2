@@ -23,6 +23,18 @@ from backend.utils import serialize_row
 router = APIRouter(prefix="/chat", tags=["chat"])
 
 
+def _assistant_text_for_db(full_text: str, error: str | None) -> str:
+    """Oracle treats empty VARCHAR2 as NULL; MESSAGE_TEXT is NOT NULL."""
+    text = (full_text or "").strip()
+    if text:
+        if error:
+            return f"{text}\n\nError: {error}"
+        return text
+    if error:
+        return f"Error: {error}"
+    return "(Empty reply from stream.)"
+
+
 def _message_out(row: dict) -> MessageOut:
     data = serialize_row(row) or {}
     rating_raw = data.get("agent_rating")
@@ -322,12 +334,11 @@ async def send_message(
         if final_result:
             if final_result.error:
                 yield f"data: {json.dumps({'type': 'error', 'message': final_result.error})}\n\n"
-            assistant_text = final_result.full_text
-            if final_result.error:
-                if assistant_text:
-                    assistant_text = f"{assistant_text}\n\nError: {final_result.error}"
-                else:
-                    assistant_text = f"Error: {final_result.error}"
+            elif not (final_result.full_text or "").strip():
+                empty_msg = "The model returned an empty response."
+                final_result.error = empty_msg
+                yield f"data: {json.dumps({'type': 'error', 'message': empty_msg})}\n\n"
+            assistant_text = _assistant_text_for_db(final_result.full_text, final_result.error)
             request_status = "FAILED" if final_result.error else "SUCCESS"
             assistant_message_id = await db.execute(
                 """
