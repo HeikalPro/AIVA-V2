@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+import os
 import time
 from collections.abc import AsyncIterator
 from dataclasses import dataclass, field
@@ -34,17 +35,16 @@ _CHAT_KEY_ENV_NAMES = ("SOVEREIGNEG_API_KEY", "LLM_CHAT_API_KEY", "OPENAI_API_KE
 
 
 def _read_dotenv(path: Path, name: str) -> str:
-    if not path.is_file():
-        return ""
-    for line in path.read_text(encoding="utf-8").splitlines():
-        stripped = line.strip()
-        if not stripped or stripped.startswith("#") or "=" not in stripped:
-            continue
-        key, _, value = stripped.partition("=")
-        if key.strip() != name:
-            continue
-        return value.strip().strip('"').strip("'")
-    return ""
+    if path.is_file():
+        for line in path.read_text(encoding="utf-8").splitlines():
+            stripped = line.strip()
+            if not stripped or stripped.startswith("#") or "=" not in stripped:
+                continue
+            key, _, value = stripped.partition("=")
+            if key.strip() != name:
+                continue
+            return value.strip().strip('"').strip("'")
+    return os.environ.get(name, "").strip()
 
 
 def _read_llm_service_env(name: str) -> str:
