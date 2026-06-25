@@ -46,6 +46,10 @@ class Settings(BaseSettings):
     llm_default_output_usd_per_million_tokens: float | None = None
 
     search_default_top_k: int = 10
+    # Base URL for KB article links shown on agent answers, e.g. http://192.168.1.13/halankb/index.php
+    kb_source_base_url: str = ""
+    # Max source links per answer (from top RAG hits; retrieval may use more chunks for context).
+    kb_source_max_count: int = 1
 
     zoho_desk_api_base: str = "https://desk.zoho.com/api/v1"
     zoho_ticket_sync_enabled: bool = False

@@ -94,7 +94,43 @@ class StreamResult:
     model_name: str = ""
     provider: str = ""
     chunks_used: list[dict[str, Any]] = field(default_factory=list)
+    sources: list[dict[str, str]] = field(default_factory=list)
     error: str | None = None
+
+
+def _normalize_parent_id(value: Any) -> str:
+    if value is None:
+        return ""
+    if hasattr(value, "read"):
+        value = value.read()
+    return str(value).strip()
+
+
+def build_kb_sources(
+    chunks: list[dict[str, Any]],
+    base_url: str,
+    *,
+    max_count: int = 1,
+) -> list[dict[str, str]]:
+    """Build KB article links from retrieved chunks (one per unique external_parent_id, best-first)."""
+    base = (base_url or "").strip().rstrip("/")
+    if not base or max_count < 1:
+        return []
+    seen: set[str] = set()
+    sources: list[dict[str, str]] = []
+    for ch in chunks:
+        parent_id = _normalize_parent_id(ch.get("parent_id"))
+        if not parent_id:
+            payload = ch.get("payload") or {}
+            if isinstance(payload, dict):
+                parent_id = _normalize_parent_id(payload.get("canonical_id") or payload.get("id"))
+        if not parent_id or parent_id in seen:
+            continue
+        seen.add(parent_id)
+        sources.append({"parent_id": parent_id, "url": f"{base}/{parent_id}"})
+        if len(sources) >= max_count:
+            break
+    return sources
 
 
 def format_llm_error(exc: Exception) -> str:
@@ -286,6 +322,11 @@ async def stream_rag_response(
         model_name=str((llm_row or {}).get("model_name") or settings.llm_default_model),
         provider=str((llm_row or {}).get("provider") or settings.llm_default_provider),
         chunks_used=chunks,
+        sources=build_kb_sources(
+            chunks,
+            settings.kb_source_base_url,
+            max_count=settings.kb_source_max_count,
+        ),
     )
 
     try:
