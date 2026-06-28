@@ -1,4 +1,11 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
+
+
+def _normalize_kb_source_base_url(value: object | None) -> str | None:
+    if value is None:
+        return None
+    text = str(value).strip().rstrip("/")
+    return text or None
 
 
 class AccountCreate(BaseModel):
@@ -8,6 +15,12 @@ class AccountCreate(BaseModel):
     corpus_id: str | None = None
     llm_config_id: int | None = None
     status: str = "ACTIVE"
+    kb_source_base_url: str | None = None
+
+    @field_validator("kb_source_base_url", mode="before")
+    @classmethod
+    def normalize_kb_url_create(cls, v: object | None) -> str | None:
+        return _normalize_kb_source_base_url(v)
 
 
 class AccountUpdate(BaseModel):
@@ -16,6 +29,12 @@ class AccountUpdate(BaseModel):
     corpus_id: str | None = None
     llm_config_id: int | None = None
     status: str | None = None
+    kb_source_base_url: str | None = None
+
+    @field_validator("kb_source_base_url", mode="before")
+    @classmethod
+    def normalize_kb_url_update(cls, v: object | None) -> str | None:
+        return _normalize_kb_source_base_url(v)
 
 
 class AccountOut(BaseModel):
@@ -28,4 +47,5 @@ class AccountOut(BaseModel):
     description: str | None
     corpus_id: str | None
     status: str
+    kb_source_base_url: str | None = None
     created_at: str | None = None

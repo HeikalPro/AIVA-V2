@@ -347,6 +347,7 @@ async def send_message(
                 session_id=session_id,
                 user_message=body.message_text,
                 top_k=body.top_k,
+                kb_source_base_url=account.get("kb_source_base_url"),
             ):
                 if chunk:
                     yield f"data: {json.dumps({'type': 'token', 'text': chunk})}\n\n"

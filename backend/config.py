@@ -46,8 +46,8 @@ class Settings(BaseSettings):
     llm_default_output_usd_per_million_tokens: float | None = None
 
     search_default_top_k: int = 10
-    # Base URL for KB article links shown on agent answers, e.g. http://192.168.1.13/halankb/index.php
-    kb_source_base_url: str = ""
+    # Default KB link base when account.kb_source_base_url is empty. Per-account URL is set in admin Accounts.
+    kb_source_base_url: str = "http://192.168.1.13/halankb/index.php"
     # Max source links per answer (from top RAG hits; retrieval may use more chunks for context).
     kb_source_max_count: int = 1
 

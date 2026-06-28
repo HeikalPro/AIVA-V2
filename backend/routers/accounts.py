@@ -27,7 +27,7 @@ router = APIRouter(prefix="/accounts", tags=["accounts"])
 
 _ACCOUNT_WITH_ORG_SELECT = """
 SELECT a.id, a.organization_id, a.llm_config_id, a.name, a.description, a.corpus_id, a.status,
-       a.created_at,
+       a.kb_source_base_url, a.created_at,
        o.name AS organization_name, o.code AS organization_code
 FROM AIVA_accounts a
 JOIN AIVA_organizations o ON o.id = a.organization_id
@@ -112,9 +112,9 @@ async def create_account(
     account_id = await db.execute(
         """
         INSERT INTO AIVA_accounts (
-            organization_id, llm_config_id, name, description, corpus_id, status
+            organization_id, llm_config_id, name, description, corpus_id, status, kb_source_base_url
         ) VALUES (
-            :organization_id, :llm_config_id, :name, :description, :corpus_id, :status
+            :organization_id, :llm_config_id, :name, :description, :corpus_id, :status, :kb_source_base_url
         )
         RETURNING id INTO :out_id
         """,

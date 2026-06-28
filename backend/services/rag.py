@@ -281,6 +281,14 @@ async def search_knowledge(
     )
 
 
+def resolve_kb_source_base_url(account_kb_url: str | None, settings: Settings) -> str:
+    """Per-account KB link base, falling back to global KB_SOURCE_BASE_URL."""
+    custom = (account_kb_url or "").strip().rstrip("/")
+    if custom:
+        return custom
+    return (settings.kb_source_base_url or "").strip().rstrip("/")
+
+
 async def stream_rag_response(
     db: Database,
     embedding_svc: EmbeddingService,
@@ -290,10 +298,12 @@ async def stream_rag_response(
     session_id: int,
     user_message: str,
     top_k: int | None = None,
+    kb_source_base_url: str | None = None,
 ) -> AsyncIterator[tuple[str, StreamResult | None]]:
     settings = get_settings()
     tk = top_k or settings.search_default_top_k
     start = time.perf_counter()
+    kb_base = resolve_kb_source_base_url(kb_source_base_url, settings)
 
     system_template, _ = await load_active_prompt(db, account_id)
     llm_row = await load_llm_config(db, account_id)
@@ -324,7 +334,7 @@ async def stream_rag_response(
         chunks_used=chunks,
         sources=build_kb_sources(
             chunks,
-            settings.kb_source_base_url,
+            kb_base,
             max_count=settings.kb_source_max_count,
         ),
     )
