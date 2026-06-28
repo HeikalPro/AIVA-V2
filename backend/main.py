@@ -26,9 +26,11 @@ from backend.services.account_updates_schema import ensure_account_updates_schem
 from backend.services.auth_schema import ensure_auth_schema
 from backend.services.bootstrap import ensure_bootstrap_superadmin
 from backend.services.chat_schema import ensure_chat_schema
+from backend.services.http_request_log_schema import ensure_http_request_log_schema
 from backend.services.system_prompt import ensure_system_prompt_storage
 from backend.limiter import limiter
 from backend.exceptions import HTTPException
+from backend.middleware import RequestLoggingMiddleware
 from backend.routers import build_api_router
 from embedding_service.service import EmbeddingService
 
@@ -45,6 +47,7 @@ async def lifespan(app: FastAPI):
     await ensure_account_updates_schema(db)
     await ensure_auth_schema(db)
     await ensure_chat_schema(db)
+    await ensure_http_request_log_schema(db)
     await ensure_system_prompt_storage(db)
 
     embedding_svc = EmbeddingService()
@@ -77,6 +80,7 @@ def create_app() -> FastAPI:
     app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
     app.add_middleware(SlowAPIMiddleware)
+    app.add_middleware(RequestLoggingMiddleware)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,

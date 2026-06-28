@@ -8,6 +8,7 @@ from backend.routers import (
     auth_flow,
     chat,
     corpora,
+    http_logs,
     ingestion,
     llm_configs,
     organizations,
@@ -31,5 +32,6 @@ def build_api_router() -> APIRouter:
     router.include_router(account_updates.router)
     router.include_router(ingestion.router)
     router.include_router(analytics.router)
+    router.include_router(http_logs.router)
     router.include_router(llm_configs.router)
     return router
