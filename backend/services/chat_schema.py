@@ -25,6 +25,7 @@ async def ensure_chat_schema(db: Database) -> None:
         ("agent_feedback", "CLOB"),
         ("rated_at", "TIMESTAMP"),
         ("rated_by_user_id", "NUMBER"),
+        ("kb_sources_json", "CLOB"),
     ]
     for col_name, col_type in columns:
         if not await _column_exists(db, "AIVA_CHAT_MESSAGES", col_name):

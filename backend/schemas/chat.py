@@ -25,6 +25,11 @@ class MessageCreate(BaseModel):
     top_k: int | None = Field(default=None, ge=1, le=50)
 
 
+class KbSourceOut(BaseModel):
+    parent_id: str
+    url: str
+
+
 class MessageOut(BaseModel):
     id: int
     session_id: int
@@ -37,6 +42,7 @@ class MessageOut(BaseModel):
     rating: Literal["up", "down"] | None = None
     feedback: str | None = None
     rated_at: str | None = None
+    sources: list[KbSourceOut] = Field(default_factory=list)
 
 
 class MessageRatingCreate(BaseModel):

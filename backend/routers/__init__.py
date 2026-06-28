@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 from backend.routers import (
+    account_updates,
     accounts,
     analytics,
     auth,
@@ -27,6 +28,7 @@ def build_api_router() -> APIRouter:
     router.include_router(chat.router)
     router.include_router(prompts.router)
     router.include_router(tickets.router)
+    router.include_router(account_updates.router)
     router.include_router(ingestion.router)
     router.include_router(analytics.router)
     router.include_router(llm_configs.router)

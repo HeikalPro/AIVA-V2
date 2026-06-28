@@ -10,6 +10,7 @@ from backend.auth.deps import ROLE_AGENT, ROLE_SUPER_ADMIN, ROLE_SUPERVISOR, Use
 from backend.dependencies import DbDep, EmbeddingServiceDep
 from backend.exceptions import BadRequestError, ForbiddenError, NotFoundError
 from backend.schemas.chat import (
+    KbSourceOut,
     MessageCreate,
     MessageOut,
     MessageRatingCreate,
@@ -17,10 +18,46 @@ from backend.schemas.chat import (
     SessionCreate,
     SessionOut,
 )
-from backend.services.rag import stream_rag_response
+from backend.services.rag import format_llm_error, stream_rag_response
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/chat", tags=["chat"])
+
+
+def _assistant_text_for_db(full_text: str, error: str | None) -> str:
+    """Oracle treats empty VARCHAR2 as NULL; MESSAGE_TEXT is NOT NULL."""
+    text = (full_text or "").strip()
+    if text:
+        if error:
+            return f"{text}\n\nError: {error}"
+        return text
+    if error:
+        return f"Error: {error}"
+    return "(Empty reply from stream.)"
+
+
+def _parse_kb_sources(raw: object | None) -> list[KbSourceOut]:
+    if raw is None:
+        return []
+    text = raw.read() if hasattr(raw, "read") else raw
+    if not text:
+        return []
+    try:
+        parsed = json.loads(text) if isinstance(text, str) else text
+    except (json.JSONDecodeError, TypeError):
+        return []
+    if not isinstance(parsed, list):
+        return []
+    out: list[KbSourceOut] = []
+    for item in parsed:
+        if not isinstance(item, dict):
+            continue
+        parent_id = item.get("parent_id")
+        url = item.get("url")
+        if parent_id is None or not url:
+            continue
+        out.append(KbSourceOut(parent_id=str(parent_id), url=str(url)))
+    return out
 
 
 def _message_out(row: dict) -> MessageOut:
@@ -39,6 +76,7 @@ def _message_out(row: dict) -> MessageOut:
         rating=rating if rating in ("up", "down") else None,
         feedback=data.get("agent_feedback"),
         rated_at=data.get("rated_at"),
+        sources=_parse_kb_sources(data.get("kb_sources_json")),
     )
 
 
@@ -300,38 +338,53 @@ async def send_message(
     async def event_stream():
         final_result = None
         assistant_message_id: int | None = None
-        async for chunk, result in stream_rag_response(
-            db,
-            embedding_svc,
-            account_id=int(session["account_id"]),
-            corpus_id=str(corpus_id),
-            session_id=session_id,
-            user_message=body.message_text,
-            top_k=body.top_k,
-        ):
-            if chunk:
-                yield f"data: {json.dumps({'type': 'token', 'text': chunk})}\n\n"
-            if result is not None:
-                final_result = result
+        try:
+            async for chunk, result in stream_rag_response(
+                db,
+                embedding_svc,
+                account_id=int(session["account_id"]),
+                corpus_id=str(corpus_id),
+                session_id=session_id,
+                user_message=body.message_text,
+                top_k=body.top_k,
+            ):
+                if chunk:
+                    yield f"data: {json.dumps({'type': 'token', 'text': chunk})}\n\n"
+                if result is not None:
+                    final_result = result
+        except Exception as exc:
+            yield f"data: {json.dumps({'type': 'error', 'message': format_llm_error(exc)})}\n\n"
+            yield f"data: {json.dumps({'type': 'done', 'user_message_id': user_message_id})}\n\n"
+            return
 
         if final_result:
+            if final_result.error:
+                yield f"data: {json.dumps({'type': 'error', 'message': final_result.error})}\n\n"
+            elif not (final_result.full_text or "").strip():
+                empty_msg = "The model returned an empty response."
+                final_result.error = empty_msg
+                yield f"data: {json.dumps({'type': 'error', 'message': empty_msg})}\n\n"
+            assistant_text = _assistant_text_for_db(final_result.full_text, final_result.error)
+            request_status = "FAILED" if final_result.error else "SUCCESS"
+            kb_sources_json = json.dumps(final_result.sources) if final_result.sources else None
             assistant_message_id = await db.execute(
                 """
                 INSERT INTO AIVA_chat_messages (
                     session_id, sender_type, message_text,
-                    prompt_tokens, completion_tokens, latency_ms
+                    prompt_tokens, completion_tokens, latency_ms, kb_sources_json
                 ) VALUES (
                     :session_id, 'AI', :message_text,
-                    :prompt_tokens, :completion_tokens, :latency_ms
+                    :prompt_tokens, :completion_tokens, :latency_ms, :kb_sources_json
                 )
                 RETURNING id INTO :out_id
                 """,
                 {
                     "session_id": session_id,
-                    "message_text": final_result.full_text,
+                    "message_text": assistant_text,
                     "prompt_tokens": final_result.prompt_tokens,
                     "completion_tokens": final_result.completion_tokens,
                     "latency_ms": final_result.latency_ms,
+                    "kb_sources_json": kb_sources_json,
                 },
                 return_id=True,
             )
@@ -342,7 +395,7 @@ async def send_message(
                     output_tokens, response_time_ms, total_cost, status
                 ) VALUES (
                     :session_id, :model_name, :provider, :input_tokens,
-                    :output_tokens, :response_time_ms, :total_cost, 'SUCCESS'
+                    :output_tokens, :response_time_ms, :total_cost, :status
                 )
                 """,
                 {
@@ -353,9 +406,10 @@ async def send_message(
                     "output_tokens": final_result.completion_tokens or 0,
                     "response_time_ms": final_result.latency_ms,
                     "total_cost": final_result.total_cost,
+                    "status": request_status,
                 },
             )
-            yield f"data: {json.dumps({'type': 'done', 'latency_ms': final_result.latency_ms, 'user_message_id': user_message_id, 'assistant_message_id': assistant_message_id})}\n\n"
+            yield f"data: {json.dumps({'type': 'done', 'latency_ms': final_result.latency_ms, 'user_message_id': user_message_id, 'assistant_message_id': assistant_message_id, 'sources': final_result.sources})}\n\n"
         else:
             yield f"data: {json.dumps({'type': 'done', 'user_message_id': user_message_id})}\n\n"
 

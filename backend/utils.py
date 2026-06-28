@@ -55,3 +55,21 @@ def serialize_row(row: dict[str, Any] | None) -> dict[str, Any] | None:
 
 def serialize_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [serialize_row(r) or {} for r in rows]
+
+
+ALLOWED_USER_EMAIL_DOMAIN = "gochat247.com"
+
+
+def normalize_allowed_email(email: str) -> str:
+    """Require @{ALLOWED_USER_EMAIL_DOMAIN}; allow local-part-only input."""
+    raw = (email or "").strip().lower()
+    if not raw:
+        raise ValueError("Email is required")
+    local, sep, domain = raw.partition("@")
+    if not local:
+        raise ValueError("Email is required")
+    if sep and domain != ALLOWED_USER_EMAIL_DOMAIN:
+        raise ValueError(f"Email must use @{ALLOWED_USER_EMAIL_DOMAIN}")
+    if not sep:
+        return f"{local}@{ALLOWED_USER_EMAIL_DOMAIN}"
+    return raw

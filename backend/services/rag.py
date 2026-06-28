@@ -1,13 +1,23 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
+import os
 import time
 from collections.abc import AsyncIterator
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any
 
+from pydantic import SecretStr
+
 from llm_service.client import LLMClient
+from llm_service.config.provider_config import (
+    OpenAIProviderConfig,
+    OpenRouterProviderConfig,
+    VLLMProviderConfig,
+)
 from llm_service.config.settings import LibrarySettings
 
 from backend.config import Settings, get_settings
@@ -17,6 +27,61 @@ from backend.services.system_prompt import get_system_prompt_text
 from embedding_service.service import EmbeddingService
 
 _log = logging.getLogger(__name__)
+
+_LLM_SERVICE_ENV = Path(__file__).resolve().parents[2] / "llm_service" / ".env"
+_ROOT_ENV = Path(__file__).resolve().parents[2] / ".env"
+_OFFICIAL_OPENAI_BASE = "https://api.openai.com/v1"
+_CHAT_KEY_ENV_NAMES = ("SOVEREIGNEG_API_KEY", "LLM_CHAT_API_KEY", "OPENAI_API_KEY")
+
+
+def _read_text_file(path: Path) -> str:
+    raw = path.read_bytes()
+    for encoding in ("utf-8", "utf-8-sig", "cp1252", "latin-1"):
+        try:
+            return raw.decode(encoding)
+        except UnicodeDecodeError:
+            continue
+    return raw.decode("utf-8", errors="replace")
+
+
+def _read_dotenv(path: Path, name: str) -> str:
+    if path.is_file():
+        for line in _read_text_file(path).splitlines():
+            stripped = line.strip()
+            if not stripped or stripped.startswith("#") or "=" not in stripped:
+                continue
+            key, _, value = stripped.partition("=")
+            if key.strip() != name:
+                continue
+            return value.strip().strip('"').strip("'")
+    return os.environ.get(name, "").strip()
+
+
+def _read_llm_service_env(name: str) -> str:
+    """Read one variable from llm_service/.env."""
+    return _read_dotenv(_LLM_SERVICE_ENV, name)
+
+
+def _read_root_env(name: str) -> str:
+    """Read one variable from AIVA-V2/.env (official OpenAI key for embeddings + default chat)."""
+    return _read_dotenv(_ROOT_ENV, name)
+
+
+def _chat_api_key_for_custom_endpoint() -> SecretStr | None:
+    for name in _CHAT_KEY_ENV_NAMES:
+        raw = _read_llm_service_env(name)
+        if raw:
+            return SecretStr(raw)
+    return None
+
+
+def _official_openai_provider_config() -> OpenAIProviderConfig:
+    """Official OpenAI — never use llm_service OPENAI_BASE_URL (e.g. SovereignEG)."""
+    kwargs: dict[str, Any] = {"base_url": _OFFICIAL_OPENAI_BASE}
+    raw = _read_root_env("OPENAI_API_KEY")
+    if raw:
+        kwargs["api_key"] = SecretStr(raw)
+    return OpenAIProviderConfig(**kwargs)
 
 
 @dataclass
@@ -29,6 +94,66 @@ class StreamResult:
     model_name: str = ""
     provider: str = ""
     chunks_used: list[dict[str, Any]] = field(default_factory=list)
+    sources: list[dict[str, str]] = field(default_factory=list)
+    error: str | None = None
+
+
+def _normalize_parent_id(value: Any) -> str:
+    if value is None:
+        return ""
+    if hasattr(value, "read"):
+        value = value.read()
+    return str(value).strip()
+
+
+def build_kb_sources(
+    chunks: list[dict[str, Any]],
+    base_url: str,
+    *,
+    max_count: int = 1,
+) -> list[dict[str, str]]:
+    """Build KB article links from retrieved chunks (one per unique external_parent_id, best-first)."""
+    base = (base_url or "").strip().rstrip("/")
+    if not base or max_count < 1:
+        return []
+    seen: set[str] = set()
+    sources: list[dict[str, str]] = []
+    for ch in chunks:
+        parent_id = _normalize_parent_id(ch.get("parent_id"))
+        if not parent_id:
+            payload = ch.get("payload") or {}
+            if isinstance(payload, dict):
+                parent_id = _normalize_parent_id(payload.get("canonical_id") or payload.get("id"))
+        if not parent_id or parent_id in seen:
+            continue
+        seen.add(parent_id)
+        sources.append({"parent_id": parent_id, "url": f"{base}/{parent_id}"})
+        if len(sources) >= max_count:
+            break
+    return sources
+
+
+def format_llm_error(exc: Exception) -> str:
+    """Turn provider/HTTP failures into a short user-facing message."""
+    raw = str(exc).strip()
+    if not raw:
+        return "The language model request failed."
+    try:
+        data = json.loads(raw)
+        if isinstance(data, dict):
+            err = data.get("error")
+            if isinstance(err, dict):
+                message = err.get("message")
+                if message:
+                    return str(message).strip()
+            message = data.get("message")
+            if message:
+                return str(message).strip()
+    except json.JSONDecodeError:
+        pass
+    if len(raw) > 500:
+        return raw[:500] + "…"
+    return raw
 
 
 def _format_context(chunks: list[dict[str, Any]]) -> str:
@@ -41,14 +166,52 @@ def _format_context(chunks: list[dict[str, Any]]) -> str:
     return "\n\n".join(parts)
 
 
+def _provider_config(provider: str, llm_row: dict[str, Any] | None) -> Any | None:
+    key = provider.lower()
+    base_url = (llm_row or {}).get("api_base_url")
+    if key == "openai":
+        if not base_url:
+            return _official_openai_provider_config()
+        url = str(base_url).rstrip("/")
+        chat_key = _chat_api_key_for_custom_endpoint()
+        kwargs: dict[str, Any] = {"base_url": url}
+        if chat_key is not None:
+            kwargs["api_key"] = chat_key
+        return OpenAIProviderConfig(**kwargs)
+    if not base_url:
+        return None
+    url = str(base_url).rstrip("/")
+    chat_key = _chat_api_key_for_custom_endpoint()
+    if key == "vllm":
+        kwargs = {"base_url": url}
+        if chat_key is not None:
+            kwargs["api_key"] = chat_key
+        return VLLMProviderConfig(**kwargs)
+    if key == "openrouter":
+        kwargs = {"base_url": url}
+        if chat_key is not None:
+            kwargs["api_key"] = chat_key
+        return OpenRouterProviderConfig(**kwargs)
+    return None
+
+
 def _build_llm_client(llm_row: dict[str, Any] | None, settings: Settings) -> LLMClient:
     provider = (llm_row or {}).get("provider") or settings.llm_default_provider
     model = (llm_row or {}).get("model_name") or settings.llm_default_model
     lib_settings = LibrarySettings(
         default_provider=str(provider),
         default_model=str(model),
+        _env_file=None,
     )
-    return LLMClient(provider=str(provider), model=str(model), settings=lib_settings)
+    provider_config = _provider_config(str(provider), llm_row)
+    if provider_config is None and str(provider).lower() == "openai":
+        provider_config = _official_openai_provider_config()
+    return LLMClient(
+        provider=str(provider),
+        model=str(model),
+        settings=lib_settings,
+        config=provider_config,
+    )
 
 
 async def load_active_prompt(db: Database, account_id: int) -> tuple[str, str | None]:
@@ -159,6 +322,11 @@ async def stream_rag_response(
         model_name=str((llm_row or {}).get("model_name") or settings.llm_default_model),
         provider=str((llm_row or {}).get("provider") or settings.llm_default_provider),
         chunks_used=chunks,
+        sources=build_kb_sources(
+            chunks,
+            settings.kb_source_base_url,
+            max_count=settings.kb_source_max_count,
+        ),
     )
 
     try:
@@ -176,6 +344,9 @@ async def stream_rag_response(
             if text:
                 result.full_text += text
                 yield text, None
+    except Exception as exc:
+        _log.exception("LLM stream failed for account %s", account_id)
+        result.error = format_llm_error(exc)
     finally:
         await client.provider.aclose()
 
