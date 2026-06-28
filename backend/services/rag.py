@@ -4,6 +4,7 @@ import asyncio
 import json
 import logging
 import os
+import re
 import time
 from collections.abc import AsyncIterator
 from dataclasses import dataclass, field
@@ -103,7 +104,36 @@ def _normalize_parent_id(value: Any) -> str:
         return ""
     if hasattr(value, "read"):
         value = value.read()
-    return str(value).strip()
+    return str(value).strip().lstrip("/")
+
+
+def _normalize_kb_url_template(template: str) -> str:
+    text = (template or "").strip()
+    return re.sub(r"=\s*/\s*$", "=", text)
+
+
+def sanitize_kb_source_url(url: str) -> str:
+    """Fix legacy links like …?id=/1495 → …?id=1495."""
+    cleaned = (url or "").strip()
+    if not cleaned:
+        return cleaned
+    return re.sub(r"(=)/+(?=[^/&\s])", r"\1", cleaned)
+
+
+def build_kb_source_url(template: str, parent_id: str) -> str:
+    """Build article URL from account/env template and external_parent_id.
+
+    Use `{id}` anywhere in the template, or put the ID at the end (e.g. …/view.php?id=).
+    """
+    base = _normalize_kb_url_template(template)
+    article_id = _normalize_parent_id(parent_id)
+    if not base or not article_id:
+        return ""
+    if "{id}" in base:
+        url = base.replace("{id}", article_id)
+    else:
+        url = f"{base}{article_id}"
+    return sanitize_kb_source_url(url)
 
 
 def build_kb_sources(
@@ -113,7 +143,7 @@ def build_kb_sources(
     max_count: int = 1,
 ) -> list[dict[str, str]]:
     """Build KB article links from retrieved chunks (one per unique external_parent_id, best-first)."""
-    base = (base_url or "").strip().rstrip("/")
+    base = _normalize_kb_url_template(base_url or "")
     if not base or max_count < 1:
         return []
     seen: set[str] = set()
@@ -127,7 +157,7 @@ def build_kb_sources(
         if not parent_id or parent_id in seen:
             continue
         seen.add(parent_id)
-        sources.append({"parent_id": parent_id, "url": f"{base}/{parent_id}"})
+        sources.append({"parent_id": parent_id, "url": build_kb_source_url(base, parent_id)})
         if len(sources) >= max_count:
             break
     return sources
@@ -282,11 +312,11 @@ async def search_knowledge(
 
 
 def resolve_kb_source_base_url(account_kb_url: str | None, settings: Settings) -> str:
-    """Per-account KB link base, falling back to global KB_SOURCE_BASE_URL."""
-    custom = (account_kb_url or "").strip().rstrip("/")
+    """Per-account KB link template, falling back to global KB_SOURCE_BASE_URL."""
+    custom = (account_kb_url or "").strip()
     if custom:
-        return custom
-    return (settings.kb_source_base_url or "").strip().rstrip("/")
+        return _normalize_kb_url_template(custom)
+    return _normalize_kb_url_template(settings.kb_source_base_url or "")
 
 
 async def stream_rag_response(

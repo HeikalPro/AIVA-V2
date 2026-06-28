@@ -46,8 +46,8 @@ class Settings(BaseSettings):
     llm_default_output_usd_per_million_tokens: float | None = None
 
     search_default_top_k: int = 10
-    # Default KB link base when account.kb_source_base_url is empty. Per-account URL is set in admin Accounts.
-    kb_source_base_url: str = "http://192.168.1.13/halankb/index.php"
+    # Default KB link template when account.kb_source_base_url is empty. Use {id} or suffix with =.
+    kb_source_base_url: str = "http://192.168.1.13/halankb/view.php?id="
     # Max source links per answer (from top RAG hits; retrieval may use more chunks for context).
     kb_source_max_count: int = 1
 

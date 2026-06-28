@@ -18,7 +18,7 @@ from backend.schemas.chat import (
     SessionCreate,
     SessionOut,
 )
-from backend.services.rag import format_llm_error, stream_rag_response
+from backend.services.rag import format_llm_error, sanitize_kb_source_url, stream_rag_response
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/chat", tags=["chat"])
@@ -56,7 +56,12 @@ def _parse_kb_sources(raw: object | None) -> list[KbSourceOut]:
         url = item.get("url")
         if parent_id is None or not url:
             continue
-        out.append(KbSourceOut(parent_id=str(parent_id), url=str(url)))
+        out.append(
+            KbSourceOut(
+                parent_id=str(parent_id).strip().lstrip("/"),
+                url=sanitize_kb_source_url(str(url)),
+            )
+        )
     return out
 
 
@@ -367,6 +372,15 @@ async def send_message(
                 yield f"data: {json.dumps({'type': 'error', 'message': empty_msg})}\n\n"
             assistant_text = _assistant_text_for_db(final_result.full_text, final_result.error)
             request_status = "FAILED" if final_result.error else "SUCCESS"
+            if final_result.sources:
+                final_result.sources = [
+                    {
+                        "parent_id": str(s.get("parent_id", "")).strip().lstrip("/"),
+                        "url": sanitize_kb_source_url(str(s.get("url", ""))),
+                    }
+                    for s in final_result.sources
+                    if s.get("parent_id") and s.get("url")
+                ]
             kb_sources_json = json.dumps(final_result.sources) if final_result.sources else None
             assistant_message_id = await db.execute(
                 """

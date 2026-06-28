@@ -1,11 +1,17 @@
+import re
+
 from pydantic import BaseModel, Field, field_validator
 
 
 def _normalize_kb_source_base_url(value: object | None) -> str | None:
     if value is None:
         return None
-    text = str(value).strip().rstrip("/")
-    return text or None
+    text = str(value).strip()
+    if not text:
+        return None
+    # Fix …?id=/ → …?id= (common misconfiguration)
+    text = re.sub(r"=\s*/\s*$", "=", text)
+    return text
 
 
 class AccountCreate(BaseModel):
