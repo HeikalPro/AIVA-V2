@@ -35,17 +35,17 @@ async def _column_exists(db: Database, table: str, column: str) -> bool:
 
 async def ensure_llm_config_schema(db: Database) -> None:
     """Add optional LLM config columns introduced after initial schema deploy."""
-    if not await _column_exists(db, "AIVA_LLM_CONFIGS", "COMMENT"):
-        await db.execute("ALTER TABLE AIVA_llm_configs ADD (comment VARCHAR2(512))")
-        _log.info("Added AIVA_llm_configs.comment")
+    if not await _column_exists(db, "AIVA_LLM_CONFIGS", "MODEL_COMMENT"):
+        await db.execute("ALTER TABLE AIVA_llm_configs ADD (model_comment VARCHAR2(512))")
+        _log.info("Added AIVA_llm_configs.model_comment")
 
     for model_name, comment in DEFAULT_MODEL_COMMENTS.items():
         await db.execute(
             """
             UPDATE AIVA_llm_configs
-            SET comment = :comment
+            SET model_comment = :comment
             WHERE LOWER(model_name) = LOWER(:model_name)
-              AND (comment IS NULL OR TRIM(comment) = '')
+              AND (model_comment IS NULL OR TRIM(model_comment) = '')
             """,
             {"model_name": model_name, "comment": comment},
         )

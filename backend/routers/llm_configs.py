@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends
 
@@ -13,16 +13,36 @@ from backend.utils import serialize_row
 router = APIRouter(prefix="/llm-configs", tags=["llm-configs"])
 
 
+def _row_to_out(row: dict[str, Any] | None) -> LLMConfigOut:
+    data = serialize_row(row) or {}
+    if "model_comment" in data:
+        data["comment"] = data.pop("model_comment")
+    data["is_active"] = bool(data.get("is_active"))
+    return LLMConfigOut(**data)
+
+
+def _create_params(body: LLMConfigCreate) -> dict[str, Any]:
+    params = body.model_dump()
+    params["model_comment"] = params.pop("comment", None)
+    params["is_active"] = 1 if body.is_active else 0
+    return params
+
+
+def _map_update_params(updates: dict[str, Any]) -> dict[str, Any]:
+    if "comment" in updates:
+        updates["model_comment"] = updates.pop("comment")
+    if "is_active" in updates:
+        updates["is_active"] = 1 if updates["is_active"] else 0
+    return updates
+
+
 @router.get("", response_model=list[LLMConfigOut])
 async def list_llm_configs(
     user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_DEVELOPER))],
     db: DbDep,
 ) -> list[LLMConfigOut]:
     rows = await db.fetch_all("SELECT * FROM AIVA_llm_configs ORDER BY id")
-    return [
-        LLMConfigOut(**{**(serialize_row(r) or {}), "is_active": bool(r.get("is_active"))})
-        for r in rows
-    ]
+    return [_row_to_out(r) for r in rows]
 
 
 @router.post("", response_model=LLMConfigOut, status_code=201)
@@ -34,18 +54,15 @@ async def create_llm_config(
     config_id = await db.execute(
         """
         INSERT INTO AIVA_llm_configs (
-            provider, model_name, comment, api_base_url, temperature, max_tokens,
+            provider, model_name, model_comment, api_base_url, temperature, max_tokens,
             embedding_model, reranker_model, is_active
         ) VALUES (
-            :provider, :model_name, :comment, :api_base_url, :temperature, :max_tokens,
+            :provider, :model_name, :model_comment, :api_base_url, :temperature, :max_tokens,
             :embedding_model, :reranker_model, :is_active
         )
         RETURNING id INTO :out_id
         """,
-        {
-            **body.model_dump(),
-            "is_active": 1 if body.is_active else 0,
-        },
+        _create_params(body),
         return_id=True,
     )
     row = await db.fetch_one("SELECT * FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
@@ -57,9 +74,7 @@ async def create_llm_config(
         action_type="CREATE",
         new_value=body.model_dump(),
     )
-    data = serialize_row(row) or {}
-    data["is_active"] = bool(data.get("is_active"))
-    return LLMConfigOut(**data)
+    return _row_to_out(row)
 
 
 @router.get("/{config_id}", response_model=LLMConfigOut)
@@ -71,9 +86,7 @@ async def get_llm_config(
     row = await db.fetch_one("SELECT * FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
     if not row:
         raise NotFoundError("LLM config not found")
-    data = serialize_row(row) or {}
-    data["is_active"] = bool(data.get("is_active"))
-    return LLMConfigOut(**data)
+    return _row_to_out(row)
 
 
 @router.patch("/{config_id}", response_model=LLMConfigOut)
@@ -87,9 +100,7 @@ async def update_llm_config(
     if not old:
         raise NotFoundError("LLM config not found")
 
-    updates = body.model_dump(exclude_unset=True)
-    if "is_active" in updates:
-        updates["is_active"] = 1 if updates["is_active"] else 0
+    updates = _map_update_params(body.model_dump(exclude_unset=True))
     if updates:
         updates["id"] = config_id
         set_parts = [f"{k} = :{k}" for k in updates if k != "id"]
@@ -98,9 +109,7 @@ async def update_llm_config(
             updates,
         )
     row = await db.fetch_one("SELECT * FROM AIVA_llm_configs WHERE id = :id", {"id": config_id})
-    data = serialize_row(row) or {}
-    data["is_active"] = bool(data.get("is_active"))
-    return LLMConfigOut(**data)
+    return _row_to_out(row)
 
 
 @router.delete("/{config_id}", response_model=MessageResponse)
