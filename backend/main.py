@@ -27,6 +27,7 @@ from backend.services.auth_schema import ensure_auth_schema
 from backend.services.bootstrap import ensure_bootstrap_superadmin
 from backend.services.chat_schema import ensure_chat_schema
 from backend.services.http_request_log_schema import ensure_http_request_log_schema
+from backend.services.llm_config_schema import ensure_llm_config_schema
 from backend.services.system_prompt import ensure_system_prompt_storage
 from backend.limiter import limiter
 from backend.exceptions import HTTPException
@@ -48,6 +49,7 @@ async def lifespan(app: FastAPI):
     await ensure_auth_schema(db)
     await ensure_chat_schema(db)
     await ensure_http_request_log_schema(db)
+    await ensure_llm_config_schema(db)
     await ensure_system_prompt_storage(db)
 
     embedding_svc = EmbeddingService()

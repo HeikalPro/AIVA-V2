@@ -34,10 +34,10 @@ async def create_llm_config(
     config_id = await db.execute(
         """
         INSERT INTO AIVA_llm_configs (
-            provider, model_name, api_base_url, temperature, max_tokens,
+            provider, model_name, comment, api_base_url, temperature, max_tokens,
             embedding_model, reranker_model, is_active
         ) VALUES (
-            :provider, :model_name, :api_base_url, :temperature, :max_tokens,
+            :provider, :model_name, :comment, :api_base_url, :temperature, :max_tokens,
             :embedding_model, :reranker_model, :is_active
         )
         RETURNING id INTO :out_id
