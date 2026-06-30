@@ -39,13 +39,13 @@ async def ensure_llm_config_schema(db: Database) -> None:
         await db.execute("ALTER TABLE AIVA_llm_configs ADD (model_comment VARCHAR2(512))")
         _log.info("Added AIVA_llm_configs.model_comment")
 
-    for model_name, comment in DEFAULT_MODEL_COMMENTS.items():
+    for model_name, note in DEFAULT_MODEL_COMMENTS.items():
         await db.execute(
             """
             UPDATE AIVA_llm_configs
-            SET model_comment = :comment
+            SET model_comment = :note_text
             WHERE LOWER(model_name) = LOWER(:model_name)
               AND (model_comment IS NULL OR TRIM(model_comment) = '')
             """,
-            {"model_name": model_name, "comment": comment},
+            {"model_name": model_name, "note_text": note},
         )
