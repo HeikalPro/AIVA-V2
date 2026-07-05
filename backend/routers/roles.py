@@ -1,6 +1,7 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
+from fastapi.responses import Response
 
 from backend.auth.deps import (
     ROLE_ACCOUNT_MANAGER,
@@ -17,6 +18,7 @@ from backend.services.role_nav_permissions import (
     list_roles_with_nav_permissions,
     set_role_nav_permissions,
 )
+from backend.services.role_report import build_role_report, build_role_report_pdf
 
 router = APIRouter(prefix="/roles", tags=["roles"])
 
@@ -38,6 +40,23 @@ async def list_roles(
 ) -> list[RoleOut]:
     rows = await list_roles_with_nav_permissions(db)
     return [RoleOut(**row) for row in rows]
+
+
+@router.get("/reports/pdf")
+async def download_role_report_pdf(
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    db: DbDep,
+    organization_id: int | None = Query(None),
+) -> Response:
+    report = await build_role_report(db, user, organization_id)
+    pdf_bytes = build_role_report_pdf(report)
+    stamp = report["generated_at"][:10]
+    filename = f"gochat247-role-report-{stamp}.pdf"
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
 
 
 @router.get("/{role_id}", response_model=RoleOut)
