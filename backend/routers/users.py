@@ -10,6 +10,7 @@ from backend.auth.deps import (
     UserContext,
     require_account_access,
     require_roles,
+    require_roles_or_nav_permission,
 )
 from backend.auth.hashing import hash_password
 from backend.database import Database
@@ -19,6 +20,7 @@ from backend.schemas.common import MessageResponse
 from backend.schemas.users import (
     AccountUserAssign,
     UserCreate,
+    UserNavPermissionsUpdate,
     UserOut,
     UserRoleAssign,
     UserUpdate,
@@ -34,6 +36,10 @@ from backend.services.account_membership import (
 from backend.services.audit import write_audit_log
 from backend.services.organization_dependencies import delete_user_dependencies
 from backend.services.user_queries import build_user_out
+from backend.services.role_nav_permissions import (
+    _resolve_role_nav_permissions,
+    set_user_extra_nav_permissions,
+)
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/users", tags=["users"])
@@ -69,7 +75,7 @@ async def _replace_user_role(
 async def list_users(
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(require_roles_or_nav_permission("users", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
     ],
     db: DbDep,
     organization_id: int | None = Query(default=None),
@@ -168,7 +174,7 @@ async def get_user(
     user_id: int,
     current: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(require_roles_or_nav_permission("users", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
     ],
     db: DbDep,
 ) -> UserOut:
@@ -261,6 +267,67 @@ async def set_user_role(
     return await _user_out(db, user_id)
 
 
+@router.put("/{user_id}/nav-permissions", response_model=UserOut)
+async def set_user_nav_permissions(
+    user_id: int,
+    body: UserNavPermissionsUpdate,
+    current: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    db: DbDep,
+) -> UserOut:
+    target = await db.fetch_one(
+        "SELECT id, organization_id FROM AIVA_users WHERE id = :id",
+        {"id": user_id},
+    )
+    if not target:
+        raise NotFoundError("User not found")
+    if not current.is_super_admin and int(target["organization_id"]) != current.organization_id:
+        raise ForbiddenError("Cannot change page access for users in another organization")
+    if ROLE_SUPER_ADMIN in {
+        str(r["name"])
+        for r in await db.fetch_all(
+            """
+            SELECT r.name FROM AIVA_user_roles ur
+            JOIN AIVA_roles r ON r.id = ur.role_id
+            WHERE ur.user_id = :user_id
+            """,
+            {"user_id": user_id},
+        )
+    }:
+        raise ForbiddenError("Super Admin page access cannot be customized")
+
+    role_rows = await db.fetch_all(
+        """
+        SELECT ur.role_id, r.name AS role_name
+        FROM AIVA_user_roles ur
+        JOIN AIVA_roles r ON r.id = ur.role_id
+        WHERE ur.user_id = :user_id
+        """,
+        {"user_id": user_id},
+    )
+    role_ids = list({int(r["role_id"]) for r in role_rows})
+    role_names = {str(r["role_name"]) for r in role_rows}
+    role_perms = set(
+        await _resolve_role_nav_permissions(db, role_ids=role_ids, role_names=role_names)
+    )
+    extra_only = [k for k in body.extra_nav_permissions if k not in role_perms]
+
+    saved = await set_user_extra_nav_permissions(
+        db,
+        user_id,
+        extra_only,
+        allow_restricted=current.is_super_admin,
+    )
+    await write_audit_log(
+        db,
+        user_id=current.id,
+        entity_type="user",
+        entity_id=user_id,
+        action_type="UPDATE_NAV_PERMISSIONS",
+        new_value={"extra_nav_permissions": saved},
+    )
+    return await _user_out(db, user_id)
+
+
 @router.delete("/{user_id}", response_model=MessageResponse)
 async def delete_user(
     user_id: int,
@@ -316,7 +383,7 @@ async def assign_account(
     body: AccountUserAssign,
     current: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(require_roles_or_nav_permission("users", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
     ],
     db: DbDep,
 ) -> UserOut:

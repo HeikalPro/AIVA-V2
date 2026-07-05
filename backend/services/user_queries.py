@@ -1,6 +1,7 @@
 from backend.database import Database
 from backend.exceptions import NotFoundError
 from backend.schemas.users import UserOut
+from backend.services.role_nav_permissions import get_user_extra_nav_permissions
 from backend.utils import serialize_row
 
 
@@ -35,4 +36,5 @@ async def build_user_out(db: Database, user_id: int) -> UserOut:
     data = serialize_row(row) or {}
     data["roles"] = [str(r["name"]) for r in roles]
     data["account_ids"] = [int(a["account_id"]) for a in accounts]
+    data["extra_nav_permissions"] = await get_user_extra_nav_permissions(db, user_id)
     return UserOut(**data)

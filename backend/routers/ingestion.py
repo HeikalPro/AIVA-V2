@@ -14,6 +14,7 @@ from backend.auth.deps import (
     UserContext,
     require_account_access,
     require_roles,
+    require_roles_or_nav_permission,
 )
 from backend.dependencies import DbDep, EmbeddingServiceDep
 from backend.exceptions import BadRequestError, ForbiddenError, NotFoundError
@@ -87,7 +88,15 @@ async def create_ingestion_request(
     body: IngestionRequestCreate,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR)),
+        Depends(
+            require_roles_or_nav_permission(
+                "ingestion",
+                ROLE_SUPER_ADMIN,
+                ROLE_ORG_ADMIN,
+                ROLE_ACCOUNT_MANAGER,
+                ROLE_SUPERVISOR,
+            )
+        ),
     ],
     db: DbDep,
 ) -> IngestionRequestCreateOut:
@@ -164,7 +173,16 @@ async def ingestion_pending_count(
 async def list_ingestion_requests(
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR, ROLE_DEVELOPER)),
+        Depends(
+            require_roles_or_nav_permission(
+                "ingestion",
+                ROLE_SUPER_ADMIN,
+                ROLE_ORG_ADMIN,
+                ROLE_ACCOUNT_MANAGER,
+                ROLE_SUPERVISOR,
+                ROLE_DEVELOPER,
+            )
+        ),
     ],
     db: DbDep,
 ) -> list[IngestionRequestOut]:
@@ -243,7 +261,10 @@ async def update_ingestion_request(
 @router.post("/trigger", response_model=JobOut)
 async def trigger_ingestion(
     body: IngestionTrigger,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR))],
+    user: Annotated[
+        UserContext,
+        Depends(require_roles_or_nav_permission("ingestion", ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR)),
+    ],
     embedding_svc: EmbeddingServiceDep,
 ) -> JobOut:
     if not body.lines and not body.records:
@@ -271,7 +292,7 @@ async def get_job_status(
     job_id: str,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR)),
+        Depends(require_roles_or_nav_permission("ingestion", ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR)),
     ],
     embedding_svc: EmbeddingServiceDep,
 ) -> JobOut:

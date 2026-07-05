@@ -12,6 +12,8 @@ from backend.auth.deps import (
     UserContext,
     require_account_access,
     require_roles,
+    require_roles_or_any_nav_permission,
+    require_roles_or_nav_permission,
 )
 from backend.dependencies import DbDep
 from backend.exceptions import ForbiddenError, NotFoundError
@@ -24,6 +26,25 @@ from backend.services.user_queries import build_user_out
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/accounts", tags=["accounts"])
+
+_ACCOUNT_LIST_ROLES = (
+    ROLE_SUPER_ADMIN,
+    ROLE_ORG_ADMIN,
+    ROLE_ACCOUNT_MANAGER,
+    ROLE_AGENT,
+    ROLE_SUPERVISOR,
+    ROLE_DEVELOPER,
+)
+_ACCOUNT_LIST_NAV = (
+    "accounts",
+    "prompts",
+    "account-updates",
+    "tickets",
+    "ingestion",
+    "dashboard",
+    "users",
+    "chat",
+)
 
 _ACCOUNT_WITH_ORG_SELECT = """
 SELECT a.id, a.organization_id, a.llm_config_id, a.name, a.description, a.corpus_id, a.status,
@@ -56,16 +77,7 @@ def _scoped_org_filter(user: UserContext, organization_id: int | None) -> int | 
 async def list_accounts(
     user: Annotated[
         UserContext,
-        Depends(
-            require_roles(
-                ROLE_SUPER_ADMIN,
-                ROLE_ORG_ADMIN,
-                ROLE_ACCOUNT_MANAGER,
-                ROLE_AGENT,
-                ROLE_SUPERVISOR,
-                ROLE_DEVELOPER,
-            )
-        ),
+        Depends(require_roles_or_any_nav_permission(_ACCOUNT_LIST_NAV, *_ACCOUNT_LIST_ROLES)),
     ],
     db: DbDep,
     organization_id: int | None = Query(default=None),
@@ -102,7 +114,7 @@ async def create_account(
     body: AccountCreate,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN)),
+        Depends(require_roles_or_nav_permission("accounts", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN)),
     ],
     db: DbDep,
 ) -> AccountOut:
@@ -138,15 +150,7 @@ async def get_account(
     account_id: int,
     user: Annotated[
         UserContext,
-        Depends(
-            require_roles(
-                ROLE_SUPER_ADMIN,
-                ROLE_ORG_ADMIN,
-                ROLE_ACCOUNT_MANAGER,
-                ROLE_SUPERVISOR,
-                ROLE_DEVELOPER,
-            )
-        ),
+        Depends(require_roles_or_nav_permission("accounts", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR, ROLE_DEVELOPER)),
     ],
     db: DbDep,
 ) -> AccountOut:
@@ -160,7 +164,7 @@ async def get_account(
 @router.get("/{account_id}/users", response_model=list[UserOut])
 async def list_account_users(
     account_id: int,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("users", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
     db: DbDep,
 ) -> list[UserOut]:
     row = await db.fetch_one("SELECT organization_id FROM AIVA_accounts WHERE id = :id", {"id": account_id})
@@ -189,7 +193,8 @@ async def update_account(
     user: Annotated[
         UserContext,
         Depends(
-            require_roles(
+            require_roles_or_nav_permission(
+                "accounts",
                 ROLE_SUPER_ADMIN,
                 ROLE_ORG_ADMIN,
                 ROLE_ACCOUNT_MANAGER,
@@ -231,7 +236,7 @@ async def update_account(
 @router.delete("/{account_id}", response_model=MessageResponse)
 async def delete_account(
     account_id: int,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("accounts", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
     db: DbDep,
 ) -> MessageResponse:
     old = await db.fetch_one("SELECT * FROM AIVA_accounts WHERE id = :id", {"id": account_id})

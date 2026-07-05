@@ -39,6 +39,10 @@ class UserUpdate(BaseModel):
         return normalize_allowed_email(v)
 
 
+class UserNavPermissionsUpdate(BaseModel):
+    extra_nav_permissions: list[str] = Field(default_factory=list)
+
+
 class UserRoleAssign(BaseModel):
     role_id: int
     account_id: int | None = None
@@ -60,4 +64,5 @@ class UserOut(BaseModel):
     status: str
     roles: list[str] = []
     account_ids: list[int] = []
+    extra_nav_permissions: list[str] = []
     created_at: str | None = None

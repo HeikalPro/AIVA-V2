@@ -11,6 +11,7 @@ from backend.auth.deps import (
     UserContext,
     require_account_access,
     require_roles,
+    require_roles_or_nav_permission,
 )
 from backend.dependencies import DbDep
 from backend.exceptions import ForbiddenError, NotFoundError
@@ -29,6 +30,14 @@ from backend.services.zoho_bridge import get_zoho_bridge
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/tickets", tags=["tickets"])
+
+_TICKET_ROLES = (
+    ROLE_SUPER_ADMIN,
+    ROLE_ORG_ADMIN,
+    ROLE_ACCOUNT_MANAGER,
+    ROLE_SUPERVISOR,
+    ROLE_DEVELOPER,
+)
 
 
 @router.get("/open-count", response_model=TicketOpenCountOut)
@@ -55,15 +64,7 @@ async def _maybe_sync_zoho(ticket_row: dict) -> None:
 async def list_tickets(
     user: Annotated[
         UserContext,
-        Depends(
-            require_roles(
-                ROLE_SUPER_ADMIN,
-                ROLE_ORG_ADMIN,
-                ROLE_ACCOUNT_MANAGER,
-                ROLE_SUPERVISOR,
-                ROLE_DEVELOPER,
-            )
-        ),
+        Depends(require_roles_or_nav_permission("tickets", *_TICKET_ROLES)),
     ],
     db: DbDep,
     organization_id: int | None = Query(default=None),
@@ -107,15 +108,7 @@ async def create_ticket(
     background: BackgroundTasks,
     user: Annotated[
         UserContext,
-        Depends(
-            require_roles(
-                ROLE_SUPER_ADMIN,
-                ROLE_ORG_ADMIN,
-                ROLE_ACCOUNT_MANAGER,
-                ROLE_SUPERVISOR,
-                ROLE_DEVELOPER,
-            )
-        ),
+        Depends(require_roles_or_nav_permission("tickets", *_TICKET_ROLES)),
     ],
     db: DbDep,
 ) -> TicketCreateOut:
@@ -179,15 +172,7 @@ async def get_ticket(
     ticket_id: int,
     user: Annotated[
         UserContext,
-        Depends(
-            require_roles(
-                ROLE_SUPER_ADMIN,
-                ROLE_ORG_ADMIN,
-                ROLE_ACCOUNT_MANAGER,
-                ROLE_SUPERVISOR,
-                ROLE_DEVELOPER,
-            )
-        ),
+        Depends(require_roles_or_nav_permission("tickets", *_TICKET_ROLES)),
     ],
     db: DbDep,
 ) -> TicketOut:
@@ -205,15 +190,7 @@ async def update_ticket(
     body: TicketUpdate,
     user: Annotated[
         UserContext,
-        Depends(
-            require_roles(
-                ROLE_SUPER_ADMIN,
-                ROLE_ORG_ADMIN,
-                ROLE_ACCOUNT_MANAGER,
-                ROLE_SUPERVISOR,
-                ROLE_DEVELOPER,
-            )
-        ),
+        Depends(require_roles_or_nav_permission("tickets", *_TICKET_ROLES)),
     ],
     db: DbDep,
 ) -> TicketOut:

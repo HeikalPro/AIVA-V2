@@ -3,7 +3,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends
 
-from backend.auth.deps import ROLE_SUPER_ADMIN, UserContext, require_roles
+from backend.auth.deps import ROLE_SUPER_ADMIN, UserContext, require_roles, require_roles_or_nav_permission
 from backend.dependencies import DbDep
 from backend.exceptions import ConflictError, NotFoundError
 from backend.schemas.organizations import (
@@ -48,7 +48,7 @@ def _to_organization_out(org_row: dict, account_names: list[str]) -> Organizatio
 
 @router.get("", response_model=list[OrganizationOut])
 async def list_organizations(
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("organizations", ROLE_SUPER_ADMIN))],
     db: DbDep,
 ) -> list[OrganizationOut]:
     org_rows = await db.fetch_all("SELECT * FROM AIVA_organizations ORDER BY id")
@@ -62,7 +62,7 @@ async def list_organizations(
 @router.post("", response_model=OrganizationOut, status_code=201)
 async def create_organization(
     body: OrganizationCreate,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("organizations", ROLE_SUPER_ADMIN))],
     db: DbDep,
 ) -> OrganizationOut:
     existing = await db.fetch_one(
@@ -96,7 +96,7 @@ async def create_organization(
 @router.get("/{org_id}/delete-preview", response_model=OrganizationDeleteSummary)
 async def preview_delete_organization(
     org_id: int,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("organizations", ROLE_SUPER_ADMIN))],
     db: DbDep,
 ) -> OrganizationDeleteSummary:
     summary = await organization_delete_summary(db, org_id)
@@ -108,7 +108,7 @@ async def preview_delete_organization(
 @router.get("/{org_id}", response_model=OrganizationOut)
 async def get_organization(
     org_id: int,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("organizations", ROLE_SUPER_ADMIN))],
     db: DbDep,
 ) -> OrganizationOut:
     row = await db.fetch_one("SELECT * FROM AIVA_organizations WHERE id = :id", {"id": org_id})
@@ -122,7 +122,7 @@ async def get_organization(
 async def update_organization(
     org_id: int,
     body: OrganizationUpdate,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("organizations", ROLE_SUPER_ADMIN))],
     db: DbDep,
 ) -> OrganizationOut:
     old = await db.fetch_one("SELECT * FROM AIVA_organizations WHERE id = :id", {"id": org_id})
@@ -155,7 +155,7 @@ async def update_organization(
 @router.delete("/{org_id}", response_model=OrganizationDeleteResult)
 async def delete_organization(
     org_id: int,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("organizations", ROLE_SUPER_ADMIN))],
     db: DbDep,
 ) -> OrganizationDeleteResult:
     old = await db.fetch_one("SELECT * FROM AIVA_organizations WHERE id = :id", {"id": org_id})

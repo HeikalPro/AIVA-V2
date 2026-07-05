@@ -7,7 +7,7 @@ from backend.auth.deps import (
     ROLE_ORG_ADMIN,
     ROLE_SUPER_ADMIN,
     UserContext,
-    require_roles,
+    require_roles_or_nav_permission,
 )
 from backend.dependencies import DbDep
 from backend.schemas.http_logs import HttpRequestLogListOut, HttpRequestLogOut
@@ -35,7 +35,7 @@ def _to_out(row: dict) -> HttpRequestLogOut:
 async def list_logs(
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_DEVELOPER)),
+        Depends(require_roles_or_nav_permission("http-logs", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_DEVELOPER)),
     ],
     db: DbDep,
     limit: int = Query(default=100, ge=1, le=500),

@@ -20,6 +20,7 @@ from backend.services.zoho_auth_service import (
     pop_oauth_state,
 )
 from backend.services.zoho_user_provisioning import provision_zoho_user
+from backend.services.role_nav_permissions import resolve_user_nav_permissions
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -284,7 +285,18 @@ async def logout(
 
 
 @router.get("/me", response_model=UserProfile)
-async def me(user: Annotated[UserContext, Depends(get_current_user)]) -> UserProfile:
+async def me(
+    user: Annotated[UserContext, Depends(get_current_user)],
+    db: DbDep,
+) -> UserProfile:
+    role_ids = list({r.role_id for r in user.roles})
+    permissions = await resolve_user_nav_permissions(
+        db,
+        user_id=user.id,
+        role_ids=role_ids,
+        role_names=user.role_names,
+        is_super_admin=user.is_super_admin,
+    )
     return UserProfile(
         id=user.id,
         email=user.email,
@@ -292,4 +304,5 @@ async def me(user: Annotated[UserContext, Depends(get_current_user)]) -> UserPro
         first_name=user.first_name,
         last_name=user.last_name,
         roles=sorted(user.role_names),
+        permissions=permissions,
     )

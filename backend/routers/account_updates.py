@@ -11,6 +11,7 @@ from backend.auth.deps import (
     UserContext,
     require_account_access,
     require_roles,
+    require_roles_or_nav_permission,
 )
 from backend.dependencies import DbDep
 from backend.exceptions import ForbiddenError, NotFoundError
@@ -104,7 +105,7 @@ async def list_active_account_updates(
 
 @router.get("", response_model=list[AccountUpdateOut])
 async def list_account_updates(
-    user: Annotated[UserContext, Depends(require_roles(*_MANAGE_ROLES))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("account-updates", *_MANAGE_ROLES))],
     db: DbDep,
     organization_id: int | None = Query(default=None),
     account_id: int | None = Query(default=None),
@@ -155,7 +156,7 @@ async def list_account_updates(
 @router.post("", response_model=AccountUpdateOut, status_code=201)
 async def create_account_update(
     body: AccountUpdateCreate,
-    user: Annotated[UserContext, Depends(require_roles(*_MANAGE_ROLES))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("account-updates", *_MANAGE_ROLES))],
     db: DbDep,
 ) -> AccountUpdateOut:
     account = await db.fetch_one(
@@ -200,7 +201,7 @@ async def create_account_update(
 async def update_account_update(
     update_id: int,
     body: AccountUpdateUpdate,
-    user: Annotated[UserContext, Depends(require_roles(*_MANAGE_ROLES))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("account-updates", *_MANAGE_ROLES))],
     db: DbDep,
 ) -> AccountUpdateOut:
     old = await _fetch_update(db, update_id)
@@ -237,7 +238,7 @@ async def update_account_update(
 @router.delete("/{update_id}", response_model=MessageResponse)
 async def delete_account_update(
     update_id: int,
-    user: Annotated[UserContext, Depends(require_roles(*_MANAGE_ROLES))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("account-updates", *_MANAGE_ROLES))],
     db: DbDep,
 ) -> MessageResponse:
     old = await _fetch_update(db, update_id)

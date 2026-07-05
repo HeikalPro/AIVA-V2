@@ -6,7 +6,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 
-from backend.auth.deps import ROLE_AGENT, ROLE_SUPER_ADMIN, ROLE_SUPERVISOR, UserContext, require_roles
+from backend.auth.deps import ROLE_AGENT, ROLE_SUPER_ADMIN, ROLE_SUPERVISOR, UserContext, require_roles, require_roles_or_nav_permission
 from backend.dependencies import DbDep, EmbeddingServiceDep
 from backend.exceptions import BadRequestError, ForbiddenError, NotFoundError
 from backend.schemas.chat import (
@@ -88,7 +88,7 @@ def _message_out(row: dict) -> MessageOut:
 @router.post("/sessions", response_model=SessionOut, status_code=201)
 async def create_session(
     body: SessionCreate,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_AGENT, ROLE_SUPERVISOR))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("chat", ROLE_AGENT, ROLE_SUPERVISOR))],
     db: DbDep,
 ) -> SessionOut:
     account = await db.fetch_one("SELECT * FROM AIVA_accounts WHERE id = :id", {"id": body.account_id})
@@ -124,7 +124,7 @@ async def create_session(
 @router.get("/sessions", response_model=list[SessionOut])
 async def list_sessions(
     account_id: int,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_AGENT, ROLE_SUPERVISOR))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("chat", ROLE_AGENT, ROLE_SUPERVISOR))],
     db: DbDep,
 ) -> list[SessionOut]:
     account = await db.fetch_one("SELECT * FROM AIVA_accounts WHERE id = :id", {"id": account_id})
@@ -160,7 +160,7 @@ async def list_sessions(
 @router.get("/sessions/{session_id}", response_model=list[MessageOut])
 async def get_session_messages(
     session_id: int,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_AGENT, ROLE_SUPERVISOR))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("chat", ROLE_AGENT, ROLE_SUPERVISOR))],
     db: DbDep,
 ) -> list[MessageOut]:
     session = await db.fetch_one("SELECT * FROM AIVA_chat_sessions WHERE id = :id", {"id": session_id})
@@ -253,7 +253,7 @@ async def list_message_ratings(
 async def rate_message(
     message_id: int,
     body: MessageRatingCreate,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_AGENT, ROLE_SUPERVISOR))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("chat", ROLE_AGENT, ROLE_SUPERVISOR))],
     db: DbDep,
 ) -> MessageOut:
     message = await db.fetch_one(
@@ -313,7 +313,7 @@ async def rate_message(
 async def send_message(
     session_id: int,
     body: MessageCreate,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_AGENT))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("chat", ROLE_AGENT, ROLE_SUPERVISOR))],
     db: DbDep,
     embedding_svc: EmbeddingServiceDep,
 ) -> StreamingResponse:

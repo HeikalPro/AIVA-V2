@@ -4,12 +4,13 @@ from fastapi import APIRouter, Depends, Query
 
 from backend.auth.deps import (
     ROLE_ACCOUNT_MANAGER,
+    ROLE_DEVELOPER,
     ROLE_ORG_ADMIN,
     ROLE_SUPER_ADMIN,
     ROLE_SUPERVISOR,
     UserContext,
     require_account_access,
-    require_roles,
+    require_roles_or_nav_permission,
 )
 from backend.dependencies import DbDep
 from backend.exceptions import NotFoundError
@@ -23,7 +24,16 @@ router = APIRouter(prefix="/analytics", tags=["analytics"])
 async def dashboard_stats(
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR)),
+        Depends(
+            require_roles_or_nav_permission(
+                "dashboard",
+                ROLE_SUPER_ADMIN,
+                ROLE_ORG_ADMIN,
+                ROLE_ACCOUNT_MANAGER,
+                ROLE_SUPERVISOR,
+                ROLE_DEVELOPER,
+            )
+        ),
     ],
     db: DbDep,
     account_id: int = Query(...),
@@ -81,7 +91,16 @@ async def dashboard_stats(
 async def agent_metrics(
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR)),
+        Depends(
+            require_roles_or_nav_permission(
+                "dashboard",
+                ROLE_SUPER_ADMIN,
+                ROLE_ORG_ADMIN,
+                ROLE_ACCOUNT_MANAGER,
+                ROLE_SUPERVISOR,
+                ROLE_DEVELOPER,
+            )
+        ),
     ],
     db: DbDep,
     account_id: int = Query(...),

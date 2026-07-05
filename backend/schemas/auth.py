@@ -58,3 +58,4 @@ class UserProfile(BaseModel):
     first_name: str | None
     last_name: str | None
     roles: list[str]
+    permissions: list[str] = Field(default_factory=list)
