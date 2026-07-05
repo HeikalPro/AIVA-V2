@@ -18,6 +18,7 @@ NAV_PERMISSION_CATALOG: list[dict[str, str]] = [
     {"key": "organizations", "label": "Organizations"},
     {"key": "accounts", "label": "Accounts"},
     {"key": "users", "label": "Users"},
+    {"key": "agents", "label": "Agents & trainees"},
     {"key": "roles", "label": "Roles & access"},
     {"key": "prompts", "label": "Prompts"},
     {"key": "llm-configs", "label": "LLM Configs"},
@@ -49,6 +50,7 @@ DEFAULT_ROLE_NAV_PERMISSIONS: dict[str, list[str]] = {
         "dashboard",
         "accounts",
         "users",
+        "agents",
         "prompts",
         "account-updates",
         "tickets",
@@ -58,12 +60,13 @@ DEFAULT_ROLE_NAV_PERMISSIONS: dict[str, list[str]] = {
         "dashboard",
         "accounts",
         "users",
+        "agents",
         "prompts",
         "account-updates",
         "tickets",
         "ingestion",
     ],
-    ROLE_SUPERVISOR: ["dashboard", "account-updates", "chat", "tickets", "ingestion"],
+    ROLE_SUPERVISOR: ["dashboard", "agents", "account-updates", "chat", "tickets", "ingestion"],
     ROLE_AGENT: ["chat"],
     ROLE_DEVELOPER: [
         "dashboard",
@@ -102,7 +105,32 @@ async def ensure_role_nav_permissions_schema(db: Database) -> None:
         )
 
     await _seed_default_role_nav_permissions(db)
+    await _ensure_agents_nav_permission(db)
+    await ensure_account_role_nav_permissions_schema(db)
     await ensure_user_nav_permissions_schema(db)
+
+
+async def ensure_account_role_nav_permissions_schema(db: Database) -> None:
+    if not await _table_exists(db, "AIVA_ACCOUNT_ROLE_NAV_PERMISSIONS"):
+        await db.execute(
+            """
+            CREATE TABLE AIVA_account_role_nav_permissions (
+                account_id NUMBER NOT NULL,
+                role_id    NUMBER NOT NULL,
+                nav_key    VARCHAR2(64) NOT NULL,
+                PRIMARY KEY (account_id, role_id, nav_key),
+                CONSTRAINT fk_aiva_acct_role_nav_account
+                    FOREIGN KEY (account_id) REFERENCES AIVA_accounts(id) ON DELETE CASCADE,
+                CONSTRAINT fk_aiva_acct_role_nav_role
+                    FOREIGN KEY (role_id) REFERENCES AIVA_roles(id) ON DELETE CASCADE
+            )
+            """
+        )
+        await db.execute(
+            "CREATE INDEX idx_aiva_acct_role_nav_account ON AIVA_account_role_nav_permissions (account_id)"
+        )
+
+    await _seed_account_role_nav_permissions_for_existing_accounts(db)
 
 
 async def ensure_user_nav_permissions_schema(db: Database) -> None:
@@ -145,6 +173,244 @@ async def _seed_default_role_nav_permissions(db: Database) -> None:
                 """,
                 {"role_id": role_id, "nav_key": nav_key},
             )
+
+
+_AGENTS_NAV_ROLES = frozenset(
+    {ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR}
+)
+
+
+async def _ensure_agents_nav_permission(db: Database) -> None:
+    """Grant the agents nav key to supervisor-facing roles when missing (existing DBs)."""
+    if "agents" not in ALL_NAV_KEYS:
+        return
+    role_rows = await db.fetch_all("SELECT id, name FROM AIVA_roles")
+    for row in role_rows:
+        role_name = str(row["name"])
+        if role_name not in _AGENTS_NAV_ROLES:
+            continue
+        role_id = int(row["id"])
+        existing = await db.fetch_one(
+            """
+            SELECT 1 FROM AIVA_role_nav_permissions
+            WHERE role_id = :role_id AND nav_key = 'agents'
+            """,
+            {"role_id": role_id},
+        )
+        if existing:
+            continue
+        await db.execute(
+            """
+            INSERT INTO AIVA_role_nav_permissions (role_id, nav_key)
+            VALUES (:role_id, 'agents')
+            """,
+            {"role_id": role_id},
+        )
+
+
+async def seed_account_role_nav_permissions(db: Database, account_id: int) -> None:
+    """Initialize per-account role page access from code defaults."""
+    existing = await db.fetch_one(
+        """
+        SELECT 1 FROM AIVA_account_role_nav_permissions
+        WHERE account_id = :account_id AND ROWNUM = 1
+        """,
+        {"account_id": account_id},
+    )
+    if existing:
+        return
+
+    role_rows = await db.fetch_all("SELECT id, name FROM AIVA_roles")
+    for row in role_rows:
+        role_id = int(row["id"])
+        role_name = str(row["name"])
+        keys = DEFAULT_ROLE_NAV_PERMISSIONS.get(role_name, [])
+        for nav_key in keys:
+            await db.execute(
+                """
+                INSERT INTO AIVA_account_role_nav_permissions (account_id, role_id, nav_key)
+                VALUES (:account_id, :role_id, :nav_key)
+                """,
+                {"account_id": account_id, "role_id": role_id, "nav_key": nav_key},
+            )
+
+
+async def _seed_account_role_nav_permissions_for_existing_accounts(db: Database) -> None:
+    accounts = await db.fetch_all("SELECT id FROM AIVA_accounts ORDER BY id")
+    for row in accounts:
+        await seed_account_role_nav_permissions(db, int(row["id"]))
+
+
+async def _account_role_nav_keys(
+    db: Database,
+    *,
+    account_id: int,
+    role_id: int,
+    role_name: str,
+) -> list[str]:
+    rows = await db.fetch_all(
+        """
+        SELECT nav_key FROM AIVA_account_role_nav_permissions
+        WHERE account_id = :account_id AND role_id = :role_id
+        ORDER BY nav_key
+        """,
+        {"account_id": account_id, "role_id": role_id},
+    )
+    if rows:
+        return _active_nav_keys([str(r["nav_key"]) for r in rows])
+    return _active_nav_keys(list(DEFAULT_ROLE_NAV_PERMISSIONS.get(role_name, [])))
+
+
+async def list_roles_with_nav_permissions_for_account(db: Database, account_id: int) -> list[dict]:
+    role_rows = await db.fetch_all("SELECT id, name FROM AIVA_roles ORDER BY id")
+    out: list[dict] = []
+    for row in role_rows:
+        role_id = int(row["id"])
+        role_name = str(row["name"])
+        nav_permissions = await _account_role_nav_keys(
+            db,
+            account_id=account_id,
+            role_id=role_id,
+            role_name=role_name,
+        )
+        out.append(
+            {
+                "id": role_id,
+                "name": role_name,
+                "nav_permissions": nav_permissions,
+            }
+        )
+    return out
+
+
+async def set_account_role_nav_permissions(
+    db: Database,
+    account_id: int,
+    role_id: int,
+    nav_keys: list[str],
+) -> list[str]:
+    role_row = await db.fetch_one(
+        "SELECT id, name FROM AIVA_roles WHERE id = :id",
+        {"id": role_id},
+    )
+    if not role_row:
+        raise ValueError(f"Role {role_id} not found")
+
+    role_name = str(role_row["name"])
+    if role_name == ROLE_SUPER_ADMIN:
+        nav_keys = sorted(ALL_NAV_KEYS)
+
+    valid = {k for k in nav_keys if k in ALL_NAV_KEYS}
+    async with db.connection() as conn:
+        await db.execute(
+            """
+            DELETE FROM AIVA_account_role_nav_permissions
+            WHERE account_id = :account_id AND role_id = :role_id
+            """,
+            {"account_id": account_id, "role_id": role_id},
+            conn=conn,
+        )
+        for nav_key in sorted(valid):
+            await db.execute(
+                """
+                INSERT INTO AIVA_account_role_nav_permissions (account_id, role_id, nav_key)
+                VALUES (:account_id, :role_id, :nav_key)
+                """,
+                {"account_id": account_id, "role_id": role_id, "nav_key": nav_key},
+                conn=conn,
+            )
+    return sorted(valid)
+
+
+async def _user_role_assignments(db: Database, user_id: int) -> list[dict]:
+    return await db.fetch_all(
+        """
+        SELECT ur.role_id, r.name AS role_name, ur.account_id
+        FROM AIVA_user_roles ur
+        JOIN AIVA_roles r ON r.id = ur.role_id
+        WHERE ur.user_id = :user_id
+        """,
+        {"user_id": user_id},
+    )
+
+
+async def _effective_account_ids_for_nav(
+    db: Database,
+    *,
+    user_id: int,
+    organization_id: int,
+    is_org_admin: bool,
+    membership_account_ids: set[int],
+) -> set[int]:
+    if is_org_admin:
+        rows = await db.fetch_all(
+            "SELECT id FROM AIVA_accounts WHERE organization_id = :org_id",
+            {"org_id": organization_id},
+        )
+        return {int(r["id"]) for r in rows}
+
+    account_ids = set(membership_account_ids)
+    role_rows = await _user_role_assignments(db, user_id)
+    for row in role_rows:
+        account_id = row.get("account_id")
+        if account_id is not None:
+            account_ids.add(int(account_id))
+    return account_ids
+
+
+async def _resolve_account_scoped_role_nav_permissions(
+    db: Database,
+    *,
+    user_id: int,
+    organization_id: int,
+    is_org_admin: bool,
+    membership_account_ids: set[int],
+    role_ids: list[int],
+    role_names: set[str],
+) -> list[str]:
+    account_ids = await _effective_account_ids_for_nav(
+        db,
+        user_id=user_id,
+        organization_id=organization_id,
+        is_org_admin=is_org_admin,
+        membership_account_ids=membership_account_ids,
+    )
+    if not account_ids:
+        return await _resolve_role_nav_permissions(
+            db,
+            role_ids=role_ids,
+            role_names=role_names,
+        )
+
+    role_rows = await _user_role_assignments(db, user_id)
+    merged: set[str] = set()
+    for account_id in account_ids:
+        applicable = [
+            row
+            for row in role_rows
+            if row.get("account_id") is None or int(row["account_id"]) == account_id
+        ]
+        if not applicable:
+            continue
+        for row in applicable:
+            role_id = int(row["role_id"])
+            role_name = str(row["role_name"])
+            merged.update(
+                await _account_role_nav_keys(
+                    db,
+                    account_id=account_id,
+                    role_id=role_id,
+                    role_name=role_name,
+                )
+            )
+    if merged:
+        return sorted(merged)
+
+    return await _resolve_role_nav_permissions(
+        db,
+        role_ids=role_ids,
+        role_names=role_names,
+    )
 
 
 async def list_roles_with_nav_permissions(db: Database) -> list[dict]:
@@ -311,13 +577,24 @@ async def resolve_user_nav_permissions(
     role_ids: list[int],
     role_names: set[str],
     is_super_admin: bool,
+    organization_id: int = 0,
+    membership_account_ids: set[int] | None = None,
+    is_org_admin: bool = False,
 ) -> list[str]:
     if is_super_admin:
         return _active_nav_keys(sorted(ALL_NAV_KEYS))
 
     role_perms = set(
         _active_nav_keys(
-            await _resolve_role_nav_permissions(db, role_ids=role_ids, role_names=role_names)
+            await _resolve_account_scoped_role_nav_permissions(
+                db,
+                user_id=user_id,
+                organization_id=organization_id,
+                is_org_admin=is_org_admin,
+                membership_account_ids=membership_account_ids or set(),
+                role_ids=role_ids,
+                role_names=role_names,
+            )
         )
     )
     extra_perms = set(_active_nav_keys(await get_user_extra_nav_permissions(db, user_id)))

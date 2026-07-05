@@ -170,7 +170,10 @@ async def _nav_permissions_for_user(db: Database, user: UserContext) -> set[str]
         user_id=user.id,
         role_ids=role_ids,
         role_names=user.role_names,
-        is_super_admin=False,
+        is_super_admin=user.is_super_admin,
+        organization_id=user.organization_id,
+        membership_account_ids=user.membership_account_ids,
+        is_org_admin=user.is_org_admin,
     )
     return set(perms)
 

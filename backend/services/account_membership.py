@@ -84,13 +84,13 @@ async def prepare_user_for_account_assignment(
     if user_org == account_org:
         return user, account
 
+    if await user_has_org_wide_role(db, user_id):
+        return user, account
+
     if allow_org_move:
         await align_user_organization(db, user_id, account_org)
         user["organization_id"] = account_org
         return user, account
-
-    if await user_has_org_wide_role(db, user_id):
-        raise ForbiddenError("Account must belong to the user's organization")
 
     raise ForbiddenError("User must belong to the same organization as the account")
 

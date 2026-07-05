@@ -20,6 +20,7 @@ from backend.services.role_nav_permissions import (
     DEPRECATED_NAV_KEYS,
     NAV_PERMISSION_CATALOG,
     list_roles_with_nav_permissions,
+    list_roles_with_nav_permissions_for_account,
 )
 
 _NAV_LABELS = {item["key"]: item["label"] for item in NAV_PERMISSION_CATALOG}
@@ -67,26 +68,67 @@ async def _org_name(db: Database, org_id: int | None) -> str:
     return str(row["name"]) if row else f"Organization #{org_id}"
 
 
-async def build_role_report(db: Database, user: UserContext, organization_id: int | None = None) -> dict:
-    org_id = _resolve_org_id(user, organization_id)
-    org_name = await _org_name(db, org_id)
-    roles = await list_roles_with_nav_permissions(db)
+async def build_role_report(
+    db: Database,
+    user: UserContext,
+    organization_id: int | None = None,
+    *,
+    account_id: int | None = None,
+) -> dict:
+    account_name: str | None = None
+    if account_id is not None:
+        account = await db.fetch_one(
+            "SELECT id, name, organization_id FROM AIVA_accounts WHERE id = :id",
+            {"id": account_id},
+        )
+        if not account:
+            raise ForbiddenError("Account not found")
+        org_id = int(account["organization_id"])
+        if not user.is_super_admin and org_id != user.organization_id:
+            raise ForbiddenError("Cannot view report for another organization")
+        org_name = await _org_name(db, org_id)
+        account_name = str(account["name"])
+        roles = await list_roles_with_nav_permissions_for_account(db, account_id)
+        account_params: dict[str, Any] = {"account_id": account_id}
+    else:
+        org_id = _resolve_org_id(user, organization_id)
+        org_name = await _org_name(db, org_id)
+        roles = await list_roles_with_nav_permissions(db)
+        account_params = {}
 
     u_filter, u_params = _org_sql_filter("u.organization_id", org_id)
     t_filter, t_params = _org_sql_filter("t.organization_id", org_id)
     user_on_org = f" AND u.organization_id = :org_id" if org_id is not None else ""
+    session_filter = " AND cs.account_id = :account_id" if account_id is not None else ""
+    stats_params = {**u_params, **account_params}
 
-    user_counts = await db.fetch_all(
-        f"""
-        SELECT r.name AS role_name, COUNT(DISTINCT u.id) AS user_count
-        FROM AIVA_roles r
-        LEFT JOIN AIVA_user_roles ur ON ur.role_id = r.id AND ur.account_id IS NULL
-        LEFT JOIN AIVA_users u ON u.id = ur.user_id AND u.status = 'ACTIVE'{user_on_org}
-        GROUP BY r.name
-        ORDER BY r.name
-        """,
-        u_params,
-    )
+    if account_id is not None:
+        user_counts = await db.fetch_all(
+            """
+            SELECT r.name AS role_name, COUNT(DISTINCT u.id) AS user_count
+            FROM AIVA_roles r
+            JOIN AIVA_user_roles ur ON ur.role_id = r.id
+            JOIN AIVA_users u ON u.id = ur.user_id AND u.status = 'ACTIVE'
+            JOIN AIVA_account_users au
+              ON au.user_id = u.id AND au.account_id = :account_id AND au.status = 'ACTIVE'
+            WHERE ur.account_id IS NULL OR ur.account_id = :account_id
+            GROUP BY r.name
+            ORDER BY r.name
+            """,
+            {"account_id": account_id},
+        )
+    else:
+        user_counts = await db.fetch_all(
+            f"""
+            SELECT r.name AS role_name, COUNT(DISTINCT u.id) AS user_count
+            FROM AIVA_roles r
+            LEFT JOIN AIVA_user_roles ur ON ur.role_id = r.id AND ur.account_id IS NULL
+            LEFT JOIN AIVA_users u ON u.id = ur.user_id AND u.status = 'ACTIVE'{user_on_org}
+            GROUP BY r.name
+            ORDER BY r.name
+            """,
+            u_params,
+        )
     user_count_by_role = {str(r["role_name"]): int(r["user_count"] or 0) for r in user_counts}
 
     chat_rows = await db.fetch_all(
@@ -96,10 +138,10 @@ async def build_role_report(db: Database, user: UserContext, organization_id: in
         JOIN AIVA_users u ON u.id = cs.user_id
         JOIN AIVA_user_roles ur ON ur.user_id = u.id AND ur.account_id IS NULL
         JOIN AIVA_roles r ON r.id = ur.role_id
-        WHERE 1=1 {u_filter}
+        WHERE 1=1 {u_filter}{session_filter}
         GROUP BY r.name
         """,
-        u_params,
+        stats_params,
     )
     chat_by_role = {str(r["role_name"]): int(r["cnt"] or 0) for r in chat_rows}
 
@@ -111,10 +153,10 @@ async def build_role_report(db: Database, user: UserContext, organization_id: in
         JOIN AIVA_users u ON u.id = cs.user_id
         JOIN AIVA_user_roles ur ON ur.user_id = u.id AND ur.account_id IS NULL
         JOIN AIVA_roles r ON r.id = ur.role_id
-        WHERE 1=1 {u_filter}
+        WHERE 1=1 {u_filter}{session_filter}
         GROUP BY r.name
         """,
-        u_params,
+        stats_params,
     )
     messages_by_role = {str(r["role_name"]): int(r["cnt"] or 0) for r in msg_rows}
 
@@ -126,10 +168,10 @@ async def build_role_report(db: Database, user: UserContext, organization_id: in
         JOIN AIVA_users u ON u.id = cs.user_id
         JOIN AIVA_user_roles ur ON ur.user_id = u.id AND ur.account_id IS NULL
         JOIN AIVA_roles r ON r.id = ur.role_id
-        WHERE 1=1 {u_filter}
+        WHERE 1=1 {u_filter}{session_filter}
         GROUP BY r.name
         """,
-        u_params,
+        stats_params,
     )
     ai_by_role = {str(r["role_name"]): int(r["cnt"] or 0) for r in ai_rows}
 
@@ -202,6 +244,8 @@ async def build_role_report(db: Database, user: UserContext, organization_id: in
         "generated_by": user.email,
         "organization_id": org_id,
         "organization_name": org_name,
+        "account_id": account_id,
+        "account_name": account_name,
         "roles": role_rows,
         "individual_extras": individual_extras,
     }

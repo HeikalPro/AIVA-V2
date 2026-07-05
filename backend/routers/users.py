@@ -37,7 +37,7 @@ from backend.services.audit import write_audit_log
 from backend.services.organization_dependencies import delete_user_dependencies
 from backend.services.user_queries import build_user_out
 from backend.services.role_nav_permissions import (
-    _resolve_role_nav_permissions,
+    _resolve_account_scoped_role_nav_permissions,
     set_user_extra_nav_permissions,
 )
 from backend.utils import serialize_row
@@ -306,8 +306,24 @@ async def set_user_nav_permissions(
     )
     role_ids = list({int(r["role_id"]) for r in role_rows})
     role_names = {str(r["role_name"]) for r in role_rows}
+    membership_rows = await db.fetch_all(
+        """
+        SELECT account_id FROM AIVA_account_users
+        WHERE user_id = :user_id AND status = 'ACTIVE'
+        """,
+        {"user_id": user_id},
+    )
+    membership_account_ids = {int(r["account_id"]) for r in membership_rows}
     role_perms = set(
-        await _resolve_role_nav_permissions(db, role_ids=role_ids, role_names=role_names)
+        await _resolve_account_scoped_role_nav_permissions(
+            db,
+            user_id=user_id,
+            organization_id=int(target["organization_id"]),
+            is_org_admin=ROLE_ORG_ADMIN in role_names,
+            membership_account_ids=membership_account_ids,
+            role_ids=role_ids,
+            role_names=role_names,
+        )
     )
     extra_only = [k for k in body.extra_nav_permissions if k not in role_perms]
 

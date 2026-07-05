@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from backend.routers import (
     account_updates,
     accounts,
+    agents,
     analytics,
     auth,
     auth_flow,
@@ -25,6 +26,7 @@ def build_api_router() -> APIRouter:
     router.include_router(auth_flow.router)
     router.include_router(organizations.router)
     router.include_router(accounts.router)
+    router.include_router(agents.router)
     router.include_router(corpora.router)
     router.include_router(users.router)
     router.include_router(roles.router)

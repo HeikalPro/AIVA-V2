@@ -22,6 +22,7 @@ from backend.schemas.common import MessageResponse
 from backend.schemas.users import UserOut
 from backend.services.account_dependencies import delete_account_dependencies
 from backend.services.audit import write_audit_log
+from backend.services.role_nav_permissions import seed_account_role_nav_permissions
 from backend.services.user_queries import build_user_out
 from backend.utils import serialize_row
 
@@ -43,6 +44,7 @@ _ACCOUNT_LIST_NAV = (
     "ingestion",
     "dashboard",
     "users",
+    "agents",
     "chat",
 )
 
@@ -134,6 +136,7 @@ async def create_account(
         return_id=True,
     )
     row = await _fetch_account_by_id(db, int(account_id or 0))
+    await seed_account_role_nav_permissions(db, int(account_id or 0))
     await write_audit_log(
         db,
         user_id=user.id,
