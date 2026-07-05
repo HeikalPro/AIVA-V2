@@ -164,7 +164,12 @@ async def create_user(
         entity_type="user",
         entity_id=int(user_id or 0),
         action_type="CREATE",
-        new_value={"email": body.email, "role_id": body.role_id},
+        new_value={
+            "email": body.email,
+            "role_id": body.role_id,
+            "organization_id": body.organization_id,
+            "account_id": body.account_id,
+        },
     )
     return await _user_out(db, int(user_id))
 
