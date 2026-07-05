@@ -16,6 +16,7 @@ from backend.auth.deps import UserContext
 from backend.database import Database
 from backend.exceptions import ForbiddenError
 from backend.services.role_nav_permissions import (
+    DEPRECATED_NAV_KEYS,
     NAV_PERMISSION_CATALOG,
     list_roles_with_nav_permissions,
 )
@@ -68,7 +69,6 @@ async def build_role_report(db: Database, user: UserContext, organization_id: in
 
     u_filter, u_params = _org_sql_filter("u.organization_id", org_id)
     t_filter, t_params = _org_sql_filter("t.organization_id", org_id)
-    h_filter, h_params = _org_sql_filter("h.org_id", org_id)
     user_on_org = f" AND u.organization_id = :org_id" if org_id is not None else ""
 
     user_counts = await db.fetch_all(
@@ -142,20 +142,6 @@ async def build_role_report(db: Database, user: UserContext, organization_id: in
     )
     tickets_by_role = {str(r["role_name"]): int(r["cnt"] or 0) for r in ticket_rows}
 
-    api_rows = await db.fetch_all(
-        f"""
-        SELECT r.name AS role_name, COUNT(h.id) AS cnt
-        FROM AIVA_http_request_logs h
-        JOIN AIVA_users u ON u.id = h.user_id
-        JOIN AIVA_user_roles ur ON ur.user_id = u.id AND ur.account_id IS NULL
-        JOIN AIVA_roles r ON r.id = ur.role_id
-        WHERE h.user_id IS NOT NULL {h_filter}
-        GROUP BY r.name
-        """,
-        h_params,
-    )
-    api_by_role = {str(r["role_name"]): int(r["cnt"] or 0) for r in api_rows}
-
     extra_rows = await db.fetch_all(
         f"""
         SELECT u.email, r.name AS role_name, unp.nav_key
@@ -170,8 +156,11 @@ async def build_role_report(db: Database, user: UserContext, organization_id: in
     )
     extras_by_user: dict[tuple[str, str], list[str]] = {}
     for row in extra_rows:
+        nav_key = str(row["nav_key"])
+        if nav_key in DEPRECATED_NAV_KEYS:
+            continue
         key = (str(row["email"]), str(row["role_name"]))
-        extras_by_user.setdefault(key, []).append(str(row["nav_key"]))
+        extras_by_user.setdefault(key, []).append(nav_key)
 
     role_rows = []
     for role in roles:
@@ -189,7 +178,6 @@ async def build_role_report(db: Database, user: UserContext, organization_id: in
                     "chat_messages": messages_by_role.get(name, 0),
                     "ai_requests": ai_by_role.get(name, 0),
                     "tickets_created": tickets_by_role.get(name, 0),
-                    "api_requests": api_by_role.get(name, 0),
                 },
             }
         )
@@ -280,7 +268,7 @@ def build_role_report_pdf(report: dict) -> bytes:
 
     story.append(Paragraph("2. Usage by role", heading_style))
     usage_data = [
-        ["Role", "Users", "Chat sessions", "Messages", "AI requests", "Tickets", "API calls"]
+        ["Role", "Users", "Chat sessions", "Messages", "AI requests", "Tickets"]
     ]
     for role in report["roles"]:
         u = role["usage"]
@@ -292,12 +280,11 @@ def build_role_report_pdf(report: dict) -> bytes:
                 str(u["chat_messages"]),
                 str(u["ai_requests"]),
                 str(u["tickets_created"]),
-                str(u["api_requests"]),
             ]
         )
     usage_table = Table(
         usage_data,
-        colWidths=[2.8 * cm, 1.3 * cm, 2.2 * cm, 2.0 * cm, 2.2 * cm, 1.8 * cm, 2.0 * cm],
+        colWidths=[3.2 * cm, 1.5 * cm, 2.5 * cm, 2.2 * cm, 2.5 * cm, 2.0 * cm],
     )
     usage_table.setStyle(
         TableStyle(

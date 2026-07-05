@@ -21,7 +21,6 @@ NAV_PERMISSION_CATALOG: list[dict[str, str]] = [
     {"key": "roles", "label": "Roles & access"},
     {"key": "prompts", "label": "Prompts"},
     {"key": "llm-configs", "label": "LLM Configs"},
-    {"key": "http-logs", "label": "API activity"},
     {"key": "message-ratings", "label": "Message feedback"},
     {"key": "account-updates", "label": "Updates"},
     {"key": "chat", "label": "Chat"},
@@ -30,6 +29,13 @@ NAV_PERMISSION_CATALOG: list[dict[str, str]] = [
 ]
 
 ALL_NAV_KEYS: frozenset[str] = frozenset(item["key"] for item in NAV_PERMISSION_CATALOG)
+
+# Retired nav keys kept out of UI/auth even if old DB rows still reference them.
+DEPRECATED_NAV_KEYS: frozenset[str] = frozenset({"http-logs"})
+
+
+def _active_nav_keys(keys: list[str]) -> list[str]:
+    return sorted(k for k in keys if k in ALL_NAV_KEYS and k not in DEPRECATED_NAV_KEYS)
 
 # Org admins may grant extra pages to individual users, but not these sensitive areas.
 ORG_ADMIN_RESTRICTED_NAV_KEYS: frozenset[str] = frozenset(
@@ -44,7 +50,6 @@ DEFAULT_ROLE_NAV_PERMISSIONS: dict[str, list[str]] = {
         "accounts",
         "users",
         "prompts",
-        "http-logs",
         "account-updates",
         "tickets",
         "ingestion",
@@ -64,7 +69,6 @@ DEFAULT_ROLE_NAV_PERMISSIONS: dict[str, list[str]] = {
         "dashboard",
         "prompts",
         "llm-configs",
-        "http-logs",
         "tickets",
         "ingestion",
     ],
@@ -164,7 +168,7 @@ async def list_roles_with_nav_permissions(db: Database) -> list[dict]:
             {
                 "id": role_id,
                 "name": role_name,
-                "nav_permissions": sorted(nav_permissions),
+                "nav_permissions": _active_nav_keys(nav_permissions),
             }
         )
     return out
@@ -187,8 +191,8 @@ async def get_role_nav_permissions(db: Database, role_id: int) -> list[str]:
         {"role_id": role_id},
     )
     if rows:
-        return [str(r["nav_key"]) for r in rows]
-    return list(DEFAULT_ROLE_NAV_PERMISSIONS.get(str(role_row["name"]), []))
+        return _active_nav_keys([str(r["nav_key"]) for r in rows])
+    return _active_nav_keys(list(DEFAULT_ROLE_NAV_PERMISSIONS.get(str(role_row["name"]), [])))
 
 
 async def set_role_nav_permissions(db: Database, role_id: int, nav_keys: list[str]) -> list[str]:
@@ -264,7 +268,7 @@ async def get_user_extra_nav_permissions(db: Database, user_id: int) -> list[str
         """,
         {"user_id": user_id},
     )
-    return [str(r["nav_key"]) for r in rows]
+    return _active_nav_keys([str(r["nav_key"]) for r in rows])
 
 
 def _filter_grantable_nav_keys(nav_keys: list[str], *, allow_restricted: bool) -> list[str]:
@@ -309,8 +313,12 @@ async def resolve_user_nav_permissions(
     is_super_admin: bool,
 ) -> list[str]:
     if is_super_admin:
-        return sorted(ALL_NAV_KEYS)
+        return _active_nav_keys(sorted(ALL_NAV_KEYS))
 
-    role_perms = set(await _resolve_role_nav_permissions(db, role_ids=role_ids, role_names=role_names))
-    extra_perms = set(await get_user_extra_nav_permissions(db, user_id))
+    role_perms = set(
+        _active_nav_keys(
+            await _resolve_role_nav_permissions(db, role_ids=role_ids, role_names=role_names)
+        )
+    )
+    extra_perms = set(_active_nav_keys(await get_user_extra_nav_permissions(db, user_id)))
     return sorted(role_perms | extra_perms)
