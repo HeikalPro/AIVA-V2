@@ -319,6 +319,31 @@ async def list_roles_with_nav_permissions_for_account(db: Database, account_id: 
     return out
 
 
+def default_role_nav_permissions(role_name: str) -> list[str]:
+    if role_name == ROLE_SUPER_ADMIN:
+        return sorted(ALL_NAV_KEYS)
+    return _active_nav_keys(list(DEFAULT_ROLE_NAV_PERMISSIONS.get(role_name, [])))
+
+
+async def reset_account_role_nav_permissions(
+    db: Database,
+    account_id: int,
+    role_id: int,
+) -> list[str]:
+    role_row = await db.fetch_one(
+        "SELECT id, name FROM AIVA_roles WHERE id = :id",
+        {"id": role_id},
+    )
+    if not role_row:
+        raise ValueError(f"Role {role_id} not found")
+    return await set_account_role_nav_permissions(
+        db,
+        account_id,
+        role_id,
+        default_role_nav_permissions(str(role_row["name"])),
+    )
+
+
 async def set_account_role_nav_permissions(
     db: Database,
     account_id: int,

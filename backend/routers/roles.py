@@ -17,6 +17,7 @@ from backend.schemas.roles import NavPermissionCatalogItem, RoleNavPermissionsUp
 from backend.services.role_nav_permissions import (
     NAV_PERMISSION_CATALOG,
     list_roles_with_nav_permissions_for_account,
+    reset_account_role_nav_permissions,
     set_account_role_nav_permissions,
 )
 from backend.services.role_report import build_role_report, build_role_report_pdf
@@ -100,6 +101,23 @@ async def get_role(
     if not match:
         raise NotFoundError("Role not found")
     return RoleOut(**match)
+
+
+@router.post("/{role_id}/nav-permissions/reset", response_model=RoleOut)
+async def reset_role_nav_permissions(
+    role_id: int,
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    db: DbDep,
+    account_id: int = Query(..., description="Account whose role page access to reset"),
+) -> RoleOut:
+    await _require_account_for_roles(db, user, account_id)
+    rows = await list_roles_with_nav_permissions_for_account(db, account_id)
+    role_name = next((r["name"] for r in rows if r["id"] == role_id), None)
+    if role_name is None:
+        raise NotFoundError("Role not found")
+
+    nav_permissions = await reset_account_role_nav_permissions(db, account_id, role_id)
+    return RoleOut(id=role_id, name=role_name, nav_permissions=nav_permissions)
 
 
 @router.put("/{role_id}/nav-permissions", response_model=RoleOut)

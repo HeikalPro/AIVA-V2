@@ -66,3 +66,4 @@ class UserOut(BaseModel):
     account_ids: list[int] = []
     extra_nav_permissions: list[str] = []
     created_at: str | None = None
+    is_trainee: bool = False

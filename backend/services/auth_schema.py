@@ -34,11 +34,28 @@ async def ensure_auth_schema(db: Database) -> None:
         ("locked_until", "TIMESTAMP"),
         ("otp_failed_attempts", "NUMBER DEFAULT 0 NOT NULL"),
         ("otp_locked_until", "TIMESTAMP"),
+        ("is_trainee", "NUMBER(1) DEFAULT 0 NOT NULL"),
     ]
     for col_name, col_type in user_columns:
         if not await _column_exists(db, "AIVA_USERS", col_name):
             await db.execute(f"ALTER TABLE AIVA_users ADD ({col_name} {col_type})")
             _log.info("Added AIVA_users.%s", col_name)
+
+    if await _column_exists(db, "AIVA_USERS", "is_trainee") and await _table_exists(db, "AIVA_AUDIT_LOGS"):
+        await db.execute(
+            """
+            UPDATE AIVA_users u
+            SET is_trainee = 1
+            WHERE NVL(u.is_trainee, 0) = 0
+              AND EXISTS (
+                SELECT 1
+                FROM AIVA_audit_logs al
+                WHERE al.entity_type = 'user'
+                  AND al.entity_id = TO_CHAR(u.id)
+                  AND al.action_type = 'CREATE_TRAINEE'
+              )
+            """
+        )
 
     if not await _table_exists(db, "AIVA_EMAIL_OTPS"):
         await db.execute(

@@ -52,6 +52,64 @@ async def _accessible_account_ids(db: DbDep, user: UserContext) -> set[int]:
     return set(user.account_ids)
 
 
+async def _require_promotable_trainee(
+    db: DbDep,
+    user: UserContext,
+    user_id: int,
+    account_id: int,
+) -> dict:
+    account = await db.fetch_one(
+        "SELECT id, organization_id FROM AIVA_accounts WHERE id = :id",
+        {"id": account_id},
+    )
+    if not account:
+        raise NotFoundError("Account not found")
+
+    account_org = int(account["organization_id"])
+    require_account_access(account_id, user, account_org)
+
+    row = await db.fetch_one(
+        """
+        SELECT u.id, u.email, u.organization_id, NVL(u.is_trainee, 0) AS is_trainee
+        FROM AIVA_users u
+        WHERE u.id = :id
+        """,
+        {"id": user_id},
+    )
+    if not row:
+        raise NotFoundError("User not found")
+    if int(row["is_trainee"]) != 1:
+        raise ConflictError("User is already a full agent")
+
+    if not user.is_super_admin and int(row["organization_id"]) != user.organization_id:
+        raise ForbiddenError("Cannot promote a user in another organization")
+
+    on_account = await db.fetch_one(
+        """
+        SELECT 1
+        FROM AIVA_account_users
+        WHERE account_id = :account_id AND user_id = :user_id AND status = 'ACTIVE'
+        """,
+        {"account_id": account_id, "user_id": user_id},
+    )
+    if not on_account:
+        raise NotFoundError("Trainee is not assigned to this account")
+
+    has_agent_role = await db.fetch_one(
+        """
+        SELECT 1
+        FROM AIVA_user_roles ur
+        JOIN AIVA_roles r ON r.id = ur.role_id
+        WHERE ur.user_id = :user_id AND r.name = :agent_role
+        """,
+        {"user_id": user_id, "agent_role": ROLE_AGENT},
+    )
+    if not has_agent_role:
+        raise NotFoundError("User is not an agent")
+
+    return row
+
+
 async def _list_agent_user_ids(db: DbDep, account_ids: set[int]) -> list[int]:
     if not account_ids:
         return []
@@ -129,9 +187,9 @@ async def create_trainee(
     user_id = await db.execute(
         """
         INSERT INTO AIVA_users (
-            organization_id, first_name, last_name, email, password_hash, status
+            organization_id, first_name, last_name, email, password_hash, status, is_trainee
         ) VALUES (
-            :organization_id, :first_name, :last_name, :email, :password_hash, :status
+            :organization_id, :first_name, :last_name, :email, :password_hash, :status, :is_trainee
         )
         RETURNING id INTO :out_id
         """,
@@ -142,6 +200,7 @@ async def create_trainee(
             "email": body.email,
             "password_hash": hash_password(body.password),
             "status": body.status,
+            "is_trainee": 1,
         },
         return_id=True,
     )
@@ -170,3 +229,28 @@ async def create_trainee(
         new_value={"email": body.email, "account_id": body.account_id, "role": ROLE_AGENT},
     )
     return await build_user_out(db, int(user_id))
+
+
+@router.post("/{user_id}/promote", response_model=UserOut)
+async def promote_trainee_to_agent(
+    user_id: int,
+    user: Annotated[UserContext, Depends(_AGENT_ACCESS)],
+    db: DbDep,
+    account_id: int = Query(..., description="Account context for the promotion"),
+) -> UserOut:
+    trainee = await _require_promotable_trainee(db, user, user_id, account_id)
+
+    await db.execute(
+        "UPDATE AIVA_users SET is_trainee = 0 WHERE id = :id",
+        {"id": user_id},
+    )
+    await write_audit_log(
+        db,
+        user_id=user.id,
+        entity_type="user",
+        entity_id=user_id,
+        action_type="PROMOTE_TRAINEE",
+        old_value={"is_trainee": True, "email": trainee["email"]},
+        new_value={"is_trainee": False, "account_id": account_id, "role": ROLE_AGENT},
+    )
+    return await build_user_out(db, user_id)

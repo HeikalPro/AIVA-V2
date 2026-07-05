@@ -9,6 +9,7 @@ async def build_user_out(db: Database, user_id: int) -> UserOut:
     row = await db.fetch_one(
         """
         SELECT u.id, u.organization_id, u.email, u.first_name, u.last_name, u.status, u.created_at,
+               NVL(u.is_trainee, 0) AS is_trainee,
                o.name AS organization_name, o.code AS organization_code
         FROM AIVA_users u
         JOIN AIVA_organizations o ON o.id = u.organization_id
@@ -37,4 +38,5 @@ async def build_user_out(db: Database, user_id: int) -> UserOut:
     data["roles"] = [str(r["name"]) for r in roles]
     data["account_ids"] = [int(a["account_id"]) for a in accounts]
     data["extra_nav_permissions"] = await get_user_extra_nav_permissions(db, user_id)
+    data["is_trainee"] = bool(int(data.get("is_trainee") or 0))
     return UserOut(**data)
