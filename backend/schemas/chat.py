@@ -5,6 +5,11 @@ from pydantic import BaseModel, Field, model_validator
 
 class SessionCreate(BaseModel):
     account_id: int
+    active_queues: list[str] | None = None
+
+
+class SessionQueuesUpdate(BaseModel):
+    active_queues: list[str] = Field(min_length=1)
 
 
 class SessionOut(BaseModel):
@@ -18,6 +23,7 @@ class SessionOut(BaseModel):
     started_at: str | None
     ended_at: str | None
     message_count: int | None = None
+    active_queues: list[str] = Field(default_factory=list)
 
 
 class MessageCreate(BaseModel):

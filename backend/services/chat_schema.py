@@ -31,3 +31,7 @@ async def ensure_chat_schema(db: Database) -> None:
         if not await _column_exists(db, "AIVA_CHAT_MESSAGES", col_name):
             await db.execute(f"ALTER TABLE AIVA_chat_messages ADD ({col_name} {col_type})")
             _log.info("Added AIVA_chat_messages.%s", col_name)
+
+    if not await _column_exists(db, "AIVA_CHAT_SESSIONS", "active_queues"):
+        await db.execute("ALTER TABLE AIVA_chat_sessions ADD (active_queues CLOB)")
+        _log.info("Added AIVA_chat_sessions.active_queues")

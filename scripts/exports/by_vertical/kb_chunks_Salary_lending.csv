@@ -1,0 +1,24 @@
+﻿corpus_name,external_parent_id,chunk_id,chunk_index,vertical,interaction_type,issue_type,escalation,answer_status,question_en,question_ar,has_embedding,chunk_text
+KB,1801,9035cf0181a0596aa5a74f69f08d6bc7,0,Salary lending,Inquiry,Non-Technical Issue,No,ok,Inquiry about Salary Lending Service on Halan card,عميل بيستفسر عن نزول خدمة الراتب المبكر على الكارت,yes,"Vertical: Salary lending | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Salary Lending Service on Halan card
+Question AR: عميل بيستفسر عن نزول خدمة الراتب المبكر على الكارت
+
+Script:
+دلوقتي حضرتك بتقدر تختار المكان اللي بينزل فيه خدمة الراتب المبكر من خلال الاستمارة اللي حضرتك بتعملها في شركتك حضرتك بتختار ان الخدمة تتفعل والمبلغ ينزل على كارت حالا.
+في حالة وجود مشكلة في خدمة الراتب المبكر او يريد التقديم عليه او الغاؤه، سنقوم بتحويل العميل الى خدمة عملاء حالا.
+- Escalation: No
+- CRM: Salary lending → Inquiry → Inquiry about Salary Lending Service on Halan card"
+KB,1838,bef831dfad7555aab50c1d7ab1cb51bf,0,Salary lending,Complain,Financial Issue,No,ok,Salary lending didn't transfer to Halan Card,عميل يشتكي انه استقبل رسالة الراتب المبكر ولم يتم تحويل المبلغ للكارت,yes,"Vertical: Salary lending | Type: Complain | Issue: Financial Issue | Escalation: No
+
+Question EN: Salary lending didn't transfer to Halan Card
+Question AR: عميل يشتكي انه استقبل رسالة الراتب المبكر ولم يتم تحويل المبلغ للكارت
+
+Script:
+اولا هيتم مراجعة البيانات العميل بنفسه الاسم بالكامل والرقم القومى ويكون متواصل من نفس الرقم.
+هنتأكد من وجود القرض على CRM وان المبلغ منزلش على الكارت.
+هسأل العميل اذا كان الطلب في نفس اليوم ولا مسبقا:
+- لو العميل قام بالطلب في نفس اليوم: بعتذر لحضرتك لكن المبلغ بينزل خلال 24 ساعة عمل.
+- لو عدى 24 ساعة عمل سيتم تحويله لحالا انبوند. (Escalation: No)
+- Escalation: No
+- CRM: Salary lending → Complain → Salary lending didn't transfer to Halan Card"

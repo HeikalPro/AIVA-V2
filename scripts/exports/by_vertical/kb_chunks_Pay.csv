@@ -1,0 +1,1813 @@
+﻿corpus_name,external_parent_id,chunk_id,chunk_index,vertical,interaction_type,issue_type,escalation,answer_status,question_en,question_ar,has_embedding,chunk_text
+KB,1091,cc316ed2a48856db89718be879a41951,0,Pay,Request,Non-Technical Issue,Yes,ok,Employee wants to activate lending salary service,موظف يريد تفعيل خدمة الراتب المبكر,yes,"Vertical: Pay | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Employee wants to activate lending salary service
+Question AR: موظف يريد تفعيل خدمة الراتب المبكر
+
+Script:
+*موظف يريد تفعيل خدمة الراتب المبكر:
+Pay -> Request -> Employee wants to activate lending salary service
+Escalation:Yes
+هيتم تقديم طلب للقسم المختص وهيتم التواصل مع حضرتك خلال 48 ساعة عمل . ناخد بيانات العميل الاسم والرقم و الرقم الوظيفي و اسم الشركة. لو مضي العقد هنوضحله ان التفعيل بيكون خلال 48 ساعة عمل ..
+في حالة العميل موظف في (حالا - مشروعي - تساهيل - طلبية) التقديم بيكون من خلال HR"
+KB,1142,713de3de66695cafbba539c17c8e48ae,0,Pay,Inquiry,Technical Issue,No,ok,Inquiry about Salary lending,عميل بيستفير عن الحد الاقصي للعمليات في نفس الشهر (كام سلفة يقدر يطلبها ف نفس الوقت),yes,"Vertical: Pay | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about Salary lending
+Question AR: عميل بيستفير عن الحد الاقصي للعمليات في نفس الشهر (كام سلفة يقدر يطلبها ف نفس الوقت)
+
+Script:
+* عميل بيستفير عن الحد الاقصى للعمليات في نفس الشهر (كام سلفة يقدر يطلبها ف نفس الوقت)؟
+Pay <- Inquiry <- Inquiry about Salary lending
+هنوضح للعميل انه يقدر يسحب لحد 30 عملية (سلفة) في نفس الوقت ولو هيحتاج عمليات تاني لازم يسدد من ال30 اللي ساحبهم الاول."
+KB,1157,ec3dc027f3c85107b87f8c929b8ed8e5,0,Pay,Request,Technical Issue,No,ok,Increase Salary Lending Amount,عميل يطلب زيادة قيمة الراتب المبكر,yes,"Vertical: Pay | Type: Request | Issue: Technical Issue | Escalation: No
+
+Question EN: Increase Salary Lending Amount
+Question AR: عميل يطلب زيادة قيمة الراتب المبكر
+
+Script:
+عميل يطلب زيادة قيمة الراتب المبكر:
+Pay -> Request -> Increase Salary Lending Amount
+Escalation: No
+فى حالة طلب العميل زيادة فى قيمة الراتب المبكر : بنوضح للعميل يرجع لقسم الموراد البشرية (HR) وبيتم ارسال طلب من خلالهم لموظف شركة حالا المسؤل عن شركته .. ما عدا (غبور) هيتم تقديم طلب للعميل Escalation: Yes
+بالنسبة لموظفين شركة العربي فقط هنقول : لو العميل مفعل الخدمه مع شركات تانيه لازم يقفل المديونية معاهم وبعدها بيقدم طلب زيادة الليمت من خلال ال HR"
+KB,1205,3f9c58ec29045617b7043ae2ab34d1db,0,Pay,Complain,Technical Issue,Yes,ok,OTP not received (Salary lending),لاتمام نزول السلفة OTP  شكوي عميل من عدم استقبال,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: OTP not received (Salary lending)
+Question AR: لاتمام نزول السلفة OTP  شكوي عميل من عدم استقبال
+
+Script:
+*شكوى عميل من عدم استقبال OTP لاتمام نزول السلفة:
+Pay -> complaint -> technical -> OTP not received
+Escalation:Yes
+.1
+لازم نتأكد مع العمیل ان في مساحة کفایة بالموبایل لاستقبال الرسالة
+2. لازم نتأكد ان رقم الموبايل المتعاقد به هو نفس الرقم اللي سيستقبل عليه الرسالة لازم نأكد ع العمیل انه بیکتب ال otp مش بيعمله (نسخ -Copy) و یکون بیکتبه بالانجليزي مش بالعربي. .3
+في بعض الأوقات بتوصل في قايمة Spam او block .4
+5. التأكد من ان العميل لم يقوم بعمل اكثر من 30 سلفة غير مسدده علي السيستم ثم التأكد من ان العميل يدخل الرقم باللغة الانجليزية كتابة وليس نسخ ولصق
+في حالة تأكيد العميل
+هيتم تقديم طلب لحضرتك وهيتم التواصل خلال 24 ساعة عمل , ناخد بيانات العميل الاسم والرقم و الرقم الوظيفي و اسم الشركة"
+KB,1209,78c1ee7514355e64b7eab282c6147c87,0,Pay,Complain,Financial Issue,No,ok,Installment deducted from salary but didn't appear on app,عميل يشكوا ان القسط اتخصم من المرتب و لم يتم السداد علي التطبيق,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: No
+
+Question EN: Installment deducted from salary but didn't appear on app
+Question AR: عميل يشكوا ان القسط اتخصم من المرتب و لم يتم السداد علي التطبيق
+
+Script:
+عميل يشكوا ان القسط اتخصم من المرتب و لم يتم السداد على التطبيق:
+بنوضح للعميل ان لم يتم التحويل من طرف شركتكم لتسوية المديونية و بمجرد استلام التسوية من شركتكم سيتم السداد علي التطبيق.
+ملحوظة هامه: مش بنقول للعميل يرجع للـ HR.
+- Escalation: No
+- CRM: Pay → Complaint → Financial → installment deducted from salary but didn't appear on app"
+KB,1275,da1d61352b2c5a17a8519ae539aba896,0,Pay,Request,Non-Technical Issue,Yes,ok,Employee wants to deactivate lending salary service,موظف يريد الغاء خدمة الراتب المبكر,yes,"Vertical: Pay | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Employee wants to deactivate lending salary service
+Question AR: موظف يريد الغاء خدمة الراتب المبكر
+
+Script:
+موظف يريد الغاء خدمة الراتب المبكر
+Pay <- Request <- Employee wants to deactivate lending salary service
+-Escalation:Yes
+ممكن اعرف هل في اى مشكلة بتقابل حضرتك؟ ( هيتم مساعدة العميل ). حضرتك مش محتاج تلغى الخدمة لانى الخدمة مجانا ولما تحتاج تستخدمها هتكون متاحة للاستخدام.
+لو العميل مصر علي الالغاء .. هنقدم للعميل طلب وبيتم الرد خلال 24 ساعة عمل .. مع كتابة الشركة الخاصة بالعميل في التكت
+لازم نكتب سبب الالغاء في التيكت"
+KB,1367,0a1ba21d0fd65c0b958b3d77df0f5917,0,Pay,Inquiry,Technical Issue,No,ok,Salary Advance limit not satisfying for customer,عميل يشكوا ان الليمت اللي نزله في الراتب المبكر اقل من اللي مضي عليه,yes,"Vertical: Pay | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Salary Advance limit not satisfying for customer
+Question AR: عميل يشكوا ان الليمت اللي نزله في الراتب المبكر اقل من اللي مضي عليه
+
+Script:
+عميل يشكوا ان الليمت اللى نزله فى الراتب المبكر اقل من اللى مضى عليه:
+Pay -> Inquiry -> Salary Advance limit not satisfying for customer
+بنوضح للعميل انه بيمضي علي اعلي ليميت ممكن يوصله وبناء علي رد ال HR بينزل الليمت للعميل.
+يعنى الليمت بيتحدد من الHR فقط بناء علي الاستقطاعات من مرتب العميل .. لو مرتب حضرتك يسمح باستقطاعات اعلي ممكن ترجع لل HR يطلب زيادة الليمت الخاص بالراتب المبكر."
+KB,1387,cb56fda1677059139f2768728e7cfa09,0,Pay,Complain,Non-Technical Issue,No,ok,Wrong recharge (Halan),عميل يشكوا من تحويل مبلغ علي محفظة بالخطأ (Halan),yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Wrong recharge (Halan)
+Question AR: عميل يشكوا من تحويل مبلغ علي محفظة بالخطأ (Halan)
+
+Script:
+عميل يشكوا من تحويل مبلغ على محفظة بالخطأ:
+CRM : Pay -complaint - financial - wrong charge Escalation No
+بنوضح للعميل طرق شحن المحفظة وتسديد الأقساط من خلالها .. وهنوضحله ان المبلغ يقدر يستخدمه علي التطبيق لشراء منتجات او تسديد اقساط وشحن فواتیر و رصيد او من خلال شبكة التجار, لا يمكن تحويله علي محفظة تانية."
+KB,1391,d6a6253ae65953c1aac482ce4559568c,0,Pay,Complain,Non-Technical Issue,No,ok,Card Early Settlement (wallet recharge) (Halan),عميل يريد السداد المبكر لمعاملة لحالا كارت لكن حول المبلغ علي محفظة حالا بالخطأ,yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Card Early Settlement (wallet recharge) (Halan)
+Question AR: عميل يريد السداد المبكر لمعاملة لحالا كارت لكن حول المبلغ علي محفظة حالا بالخطأ
+
+Script:
+عميل يريد السداد المبكر لمعاملة لحالا كارت لكن حول المبلغ على محفظة حالا بالخطأ:
+CRM: Pay -complaint - financial - Card Early Settlement (wallet recharge)
+Escalation No
+في حالة العميل قام بتحويل المبلغ علي المحفظة بدلا من ايداعه فی الکارت لسداد المبکر بمعامله الکارت ..
+بنوضح للعميل طريقة تسديد الأقساط من المحفظة .. وهنوضحله ان المبلغ يقدر يستخدمه علي التطبيق لشراء
+منتجات او تسدید اقساط وشحن فواتیر و رصيد او من خلال شبكة التجار, لا يمكن تحويله علي محفظة ثانية. وهنوضحله طرق الإيداع الصحيحة علي الكارت (Instpay- فوري عن طريق 46688 - من خلال ماكينات البنك العربي الافريقي)"
+KB,1557,622b7193f20b5fd2905bbadb377dfe2d,0,Pay,Complain,Technical Issue,Yes,ok,Salary lending offer issue,(Salary Lending) عميل يشكوا ان العرض مش شغال معاه,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Salary lending offer issue
+Question AR: (Salary Lending) عميل يشكوا ان العرض مش شغال معاه
+
+Script:
+عميل يشكوا ان العرض مش شغال معاه:
+Salary Advance -> complaint -> Salary lending offer issue
+بيتم تقديم طلب مع توضيح كل بيانات العميل و كل تفاصيل الشكوي ونوع العرض وسيتم الرد خلال يوم عمل"
+KB,1558,7064bceb369c55b1a82808ff852b4021,0,Pay,Complain,Non-Technical Issue,Yes,ok,"Delay of Halan card activation for Salary lending , Activate Halan card for Salary Lending","عميل يطلب تفعيل الكارت , يشكوا من عدم تفعيل الكارت بعد استلامه",yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Delay of Halan card activation for Salary lending , Activate Halan card for Salary Lending
+Question AR: عميل يطلب تفعيل الكارت , يشكوا من عدم تفعيل الكارت بعد استلامه
+
+Script:
+عميل يطلب تفعيل الكارت \ يشكوا من عدم تفعيل الكارت بعد استلامه:
+Salary Lending -> Complaint-> Non-tech -> Delay of Halan card activation for Salary lending salary Lending -> Request -> Activate Halan card for Salary Lending
+سواء العميل يشكوا من تأخير التفعيل او بيطلب تفعيل كارت حالا لاستخدام خدمة الراتب المبكر .. هنوضحله
+في حالة ان العميل عدي المهله بنقدم الطلب. تفعيل الكارت بيتم خلال 24 ساعة عمل من الاستلام اما لو العميل معداش المهله .. بنوضحله ان التفعيل بيكون خلال 48 ساعة عمل.
+Escalation: Yes
+Escalation: No"
+KB,1560,03f76f53f15f5b40ad8ca8e3ddac412a,0,Pay,Complain,Non-Technical Issue,Yes,ok,Salary lending service is blocked,عميل يشكوا ان خدمة الراتب المبكر محظورة,yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Salary lending service is blocked
+Question AR: عميل يشكوا ان خدمة الراتب المبكر محظورة
+
+Script:
+عميل يشكوا ان خدمة الراتب المبكر محظورة :
+Salary lending -> complaint -> non -> Salary lending service is blocked
+يتم التأكد من CRM الخدمة مفعله ولا لا (لو العميل Blocked مش بعميل معاه خطوات التنشيط
+بنوضوح للعميل سبب الحظر من خلال الشيت
+Escalation: No
+لو بيانات العميل مش موجودة علي الشيت .. هنفتح شكوي للعميل لمعرفة سبب الحظر والرد هيكون خلال 24 ساعة عمل
+Escalation: Yes"
+KB,1561,f035621f44cd57ffad0559beb1d94624,0,Pay,Complain,Non-Technical Issue,Yes,ok,salary lending service is disable,عميل يشكوا ان بعد التفعيل يظهرعلي التطبيق ان الخدمة موقوفة الان,yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: salary lending service is disable
+Question AR: عميل يشكوا ان بعد التفعيل يظهرعلي التطبيق ان الخدمة موقوفة الان
+
+Script:
+عميل يشكوا ان بعد التفعيل يظهر على التطبيق ان الخدمة موقوفة الآن :
+Salary Lending -> complaint ->Technical -> salary lending service is disable
+يتم التأكد من CRM ان الخدمة فعالة ( غير محظورة )
+ولو الخدمة فعالة ( غير محظورة ) بنعمل خطوات تنشيطية للتطبيق
+التأكد من تسجيل الدخول على التطبيق بنفس رقم الموبيل المقدم والمتعاقد بيه
+في حالة ظهور الخدمة مرة اخري
+Escalation: No
+في حالة وجود نفس المشكلة بعد الخطوات التنشيطية والتأكد من العميل
+هيتم تقديم طلب للقسم المختص وهيتم التواصل مع حضرتك خلال 24 ساعة عمل . ناخد بيانات العميل الاسم والرقم و الرقم الوظيفي و اسم الشركة
+Escalation: Yes"
+KB,1562,783b989d927b54eca6ef9246987d1718,0,Pay,Request,Technical Issue,Yes,ok,Company wants to activate lending salary service,لو شركة طلبت التعاقد مع حالا علي خدمة الراتب المبكر,yes,"Vertical: Pay | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Company wants to activate lending salary service
+Question AR: لو شركة طلبت التعاقد مع حالا علي خدمة الراتب المبكر
+
+Script:
+لو شركة طلبت التعاقد مع حالا على خدمة الراتب المبكر:
+Pay -> Request -> Company wants to activate lending salary service
+Escalation:Yes
+، ناخد بيانات العميل الاسم والرقم والرقم الوظيفي و اسم
+هيتم تقديم طلب للقسم المختص وهيتم التواصل مع حضرتك خلال 24 ساعة عمل الشركة و الوظيفة"
+KB,1563,12f8f33045c1521fb1122df040691234,0,Pay,Complain,Non-Technical Issue,Yes,ok,Delay of activate salary lending service,موظف يشكوا من تاخر تفعيل خدمة الراتب المبكر بعد الامضاء,yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Delay of activate salary lending service
+Question AR: موظف يشكوا من تاخر تفعيل خدمة الراتب المبكر بعد الامضاء
+
+Script:
+*موظف يشكوا من تاخر تفعيل خدمة الراتب المبكر بعد الامضاء:
+Pay -> complaint -> non -technical -> Delay of activate salary lending service
+خلال المهله (48 ساعة عمل) : هنوضح للعميل انه مازال خلال المهله المحددة.
+Escalation:No
+لو عدي المهله (48 ساعة عمل ) : هنعتذر للعميل وهنقدمله طلب وخلال 48 ساعة عمل هيتم الرد علي الطلب.
+Escalation:Yes"
+KB,1564,dd90099b4dd253dda515eba5b91ebee4,0,Pay,Request,Technical Issue,Yes,ok,salary lending change number request,عميل يريد تغيير الرقم الخاص بخدمة الراتب المبكر,yes,"Vertical: Pay | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: salary lending change number request
+Question AR: عميل يريد تغيير الرقم الخاص بخدمة الراتب المبكر
+
+Script:
+* عميل يريد تغيير الرقم الخاص بخدمة الراتب المبكر:
+Salary Lending -> request -> salary lending change number request
+هنقدم طلب للعميل لتغيير الرقم .. لازم ناخد الرقم القديم والجديد و رقم بطاقة العميل
+وسيتم التغيير خلال 24 ساعة عمل Escalation: Yes"
+KB,1566,b18da7123bd8578dad30bc541ed6466d,0,Pay,Inquiry,Technical Issue,No,ok,,ازاي العميل يقدر يعرف المصاريف الاداريه ؟,yes,"Vertical: Pay | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question AR: ازاي العميل يقدر يعرف المصاريف الاداريه ؟
+
+Script:
+ازاى العميل يقدر يعرف المصاريف الاداريه ؟
+بعد الدخول على icon اقبض بدرى يضغط على (اطلب جزء من راتبك) من ثم سوف تظهر له الصورة التى ارفقتها, يضغط عليها وسيظهر مبلغ المصاريف .ملحوظة: Icon اقبض بدرى لا تظهر للعميل الا بعد تفعيل الخدمه له. لازم ناخد من العميل البيانات التالية عند تقديم الطلب :
+1. اسم العميل ثلاثي
+2. اسم الشركه
+3. رقم البطاقه
+4. الموبايل
+5. رقم الوظيفي
+12:34
+>
+قبضني حالا
+الرصيد المتاح 45000.0 من 45000.0 جنيه
+ادخل المبلغ المطلوب وفترة السداد
+قيمة المبلغ
+٧
+فترة السداد
+المصاريف إدارية
+التفاصيل >
+التالي
+الرئيسية
+تمويل
+متجر
+حساباتي
+الإعدادات"
+KB,1568,d52fe3823d0a5aa087bc8af30d45f983,0,Pay,Inquiry,Technical Issue,No,ok,Inquiry about Salary lending,عميل يستفسر عن خدمة الراتب المبكر,yes,"Vertical: Pay | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about Salary lending
+Question AR: عميل يستفسر عن خدمة الراتب المبكر
+
+Script:
+* عميل يستفسر عن خدمة الراتب المبكر :
+Pay <- Inquiry <- Inquiry about Salary lending
+هي خدمه متاحه للشركات المتعاقده مع حالا بتوفر للموظفين في الشركات دي الحصول على راتب مبكر يصل الي 200% من اصل الراتب الشهري و يتم سداده على اقساط تبداء من شهر وتصل ال 10 أو 12 شهر بناء علي التعاقد .
+مع العلم انه لازم حضرتك يكون معاك Halan card وبيتم امضاء علي طلب الخدمة قبل التفعيل.
+شروط التعاقد :
+1- الشركة تكون متعاقده مع حالا
+2- الموظف اكمل 3 إلى 6 شهور علي الاقل في وظيفته
+3- بنقدم طلب للعميل وبيتم الرد خلال 48 ساعة عمل علي الطلب.
+طريق الحصول على المبلغ:
+يتوضح للعميل ان المبلغ بينزل علي كارت حالا وييتم التواصل مع حضرتك عند التقديم لاستكمال الإجراءات.
+ملحوظة:
+لا يمكن تفعيل الخدمة علي حساب يتكي او محفظة .. المتاح كارت حالا فقط
+فى حالة سؤال العميل ما هي مميزات كارت حالا ؟
+وينشرح للعميل مميزات الكارت (بيتم تحويل السلفة يتتحول في نفس الوقت جميع ايام الاسبوع وفي اي وقت ف اليوم) الكارت مجاني صالح لمدة 5 سنين.
+ممكن اسحب الفلوس من اي ماكينة سحب تابعة للبنك العربي الافريقي مجانا واي ماكينة ليتك اخر يتكون حسب الرسوم.
+الحد الاقصى للمبلغ
+بيصل الى 200% من المرتب الخاص بيك
+ويرجاء مراجعة الموارد البشريه الخاصة بشركتك لمعرفه الحد الأقصى للطلب.
+كيفيه السداد:
+اي طلب خلال الشهر بيكون تحصيل أول قسط من مرتب الشهر الذي يليه (مثال: إذا طلبت خلال مده من 1 الى 30 يناير يتم خصم اول قسط من مرتب شهر فبراير)
+نسب الفوائد بتكون قد ايه؟
+هى ليست فوائد ولكن هى مصاريف إدارية ثابتة شهريا. وهى مقسمه على هيئة شرائح لكل شريحة يدفع له مصاريف ادارية ثابتة شهرياً تدفع على حسب المبلغ المطلوب
+هل فيه رسوم على الخدمة فى حالة نزول المبلغ للعميل؟
+الرسوم بيتم تطبيقها فقط عند استخدام الخدمة (طلب سلقة)"
+KB,1569,42b7bbde57c057e3ba5f3a3567ca59b8,0,Pay,Request,Technical Issue,Yes,ok,Employee wants to activate lending salary service,موظف يريد تفعيل خدمة الراتب المبكر,yes,"Vertical: Pay | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Employee wants to activate lending salary service
+Question AR: موظف يريد تفعيل خدمة الراتب المبكر
+
+Script:
+*موظف يريد تفعيل خدمة الراتب المبكر:
+Salary Lending -> Request -> Employee wants to activate lending salary service
+Escalation:Yes
+هيتم تقديم طلب للقسم المختص وهيتم التواصل مع حضرتك خلال 48 ساعة عمل . ناخد بيانات العميل الاسم والرقم والرقم الوظيفي و اسم الشركة.
+لو مضي العقد هنوضحله ان التفعيل بيكون خلال 48 ساعة عمل ..
+في حالة العميل موظف في حالا - مشروعي - تساهيل - طلبية التقديم بيكون من خلال HR"
+KB,1588,87267aa8fed25aef917b10f43c0692e6,0,Pay,Request,Technical Issue,Yes,ok,Settlement after resignation (Salary lending),لو العميل ساب الشغل مين هيسدد الخدمة و هيسدد ازاي؟ (راتب مبكر),yes,"Vertical: Pay | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Settlement after resignation (Salary lending)
+Question AR: لو العميل ساب الشغل مين هيسدد الخدمة و هيسدد ازاي؟ (راتب مبكر)
+
+Script:
+لو العميل ساب الشغل مين هيسدد الخدمة وهيسدد ازاى؟
+Pay -> request -> Settlement after resignation
+Escalation: Yes
+هنقدم لحضرتك طلب وسيتم الرد ب اجمالي المديونية خلال 24 ساعة عمل .. العميل بيدفع اجمالي المديونية وبيتم ارسال ۔
+ايصال الدفع علي الواتساب وبيتم تسوية المديونية خلال 24 ساعة من دفع المديونية
+طرق السداد بعد الاستقالة: التحويل علي حساب بنك CIB رقم :
+. Account No: 100039748619
+. Iban : EG800010017400000100039748619
+حالا للمدفوعات الألكترونيه :Name •
+او من خلال فوري عن طريق الدفع على كود حالا 7160 و ادخال رقم الموبايل الخاص بالخدمة وارسال الايصال."
+KB,1589,cc279a6f4bd053b5a7ddb26f27a3e8d6,0,Pay,Request,Technical Issue,Yes,ok,Salary lending (Early settlement),عميل يطلب السداد المبكر للراتب المبكر,yes,"Vertical: Pay | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Salary lending (Early settlement)
+Question AR: عميل يطلب السداد المبكر للراتب المبكر
+
+Script:
+عمیل یطلب السداد المبکر للراتب المبکر:
+Pay-> Request -> Salary lending (Early settlement)
+Escalation: Yes
+بنوضح للعمل انه هيقم تقديم طلب وهيتم التواصل خلال 48 ساعة عمل لاستكمال الإجراءات وتوضيح المديونية .. يتم دفع 5% رسوم سداد معجل.
+ولازم يتم دفع المديونية قبل يوم 7 الشهر اللي القادم على حساب بنك cib.
+. Account No: 100039748619
+. Iban : EG800010017400000100039748619
+حالا للمدفوعات الألكترونيه :Name •"
+KB,1722,c9e28d1264bb503b8fa6dcc3a5849b29,0,Pay,Inquiry,Non-Technical Issue,No,ok,How to create account on Halan Cash wallet,عميل بيستفسر عن كيفية انشاء حساب - محفظة حالا كاش,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to create account on Halan Cash wallet
+Question AR: عميل بيستفسر عن كيفية انشاء حساب - محفظة حالا كاش
+
+Script:
+حالا كاش هي محفظة إلكترونية بالتعاون مع البنك الأهلي الكويتي مصر ABK تحت رقابة البنك المركزي ( في حالة سؤال العميل عن البنك التابع ليها )
+ومن شروط إنشاء حساب
+• رقم الهاتف مش مسجل به أي محفظة اخرى.
+• رقم الهاتف يكون مسجل باسم حضرتك.
+• رقم البطاقة غير مسجل به أكثر من ثلاثة محافظ.
+ولو حضرتك متوافق للشروط
+تقدر تتوجه لاقرب فرع تساهيل لانشاء المحفظة
+املأ الاستمارة وأرسل صورة بطاقة الرقم القومي
+سوف تتلقى رسالة برابط التطبيق ووصفه
+ادخل رمز التفعيل ورقمك السري المفضل في التطبيق و المحفظة هتكون اتفعلت
+ونوضح أقرب فرع للعميل ومواعيد عمله الرسمية
+ومواعيد فروع تساهيل من 9 صباحاً لل 5 مساءاً وجمعة وسبت اجازة
+ملحوظة : تفعيل المحافظ متوقف حالياً
+- Escalation: No
+- CRM: Pay → Inquiry → How to create account on Halan Cash wallet"
+KB,1723,ccca6820f8d45c5eb071206cbfd4e0a2,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about Halan Cash services,عميل بيستفسر عن خدمات حالا كاش,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Halan Cash services
+Question AR: عميل بيستفسر عن خدمات حالا كاش
+
+Script:
+حضرتك تقدر تعمل سحب وايداع من خلال ماكينات الصرف الآلي او من خلال بعض فروع تساهيل.
+تحويلات نقدية فورية من وإلى أي محفظة ذكية.
+حضرتك تقدر تدفع الكتروني للتجار في المحلات.
+- Escalation: No
+- CRM: Pay → Inquiry → Inquiry about Halan Cash services"
+KB,1724,3f70f4765bc8515799a6d821d87d0954,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about Halan Cash service fees,عميل بيستفسر عن مصاريف خدمة حالا كاش,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Halan Cash service fees
+Question AR: عميل بيستفسر عن مصاريف خدمة حالا كاش
+
+Script:
+لتحويل اموال (p2p) من محفظة حالا كاش لمحفظة حالا كاش هتكون مصاريف الخدمة 1 جنية في العملية.
+لتحويل اموال (p2p) من محفظة حالا كاش لمحفظة اخرى هتكون مصاريف الخدمة 0.5% بحد أقصي 10 جنيه في العملية وبيتم تحديدها بناءا على المبلغ اللي هيتم تحويله.
+للسحب من خلال ماكينة الصراف الآلي ATM / فروع تساهيل هتكون مصاريف / رسوم الخدمة 1% بدون حد أقصى.
+- Escalation: No
+- CRM: Pay → Inquiry → Inquiry about Halan Cash service fees"
+KB,1725,c38d5cb4d4a85cdb8e2bae2573f79a76,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about Daily & monthly limit for a deposit or withdrew amounts,عميل بيستفسر عن الحد المسموح للإيداع أو للسحب,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Daily & monthly limit for a deposit or withdrew amounts
+Question AR: عميل بيستفسر عن الحد المسموح للإيداع أو للسحب
+
+Script:
+هيتم المعرفة اذا كان العميل عنده محفظة ام لا
+اذا كان عنده محفظة هيتم اتباع هذه الخطوات
+• اولا بيتم مراجعة البيانات بالكامل من خلال بورتال كاش الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+ثم هيتم معرفة النظام الخاص بالعميل ليمت كامل ام محدود من خلال بورتال كاش
+وبعدها يتم توضيح الليمت الخاص بالعميل ) حضرتك الليمت الخاص بك هو ........
+
+| Limit Details | Limited Profile | Full Profile |
+|---|---|---|
+| مجموع الخارج من المحفظة يوميا Daily Total Debit | 30,000 | 60,000 |
+| مجموع الخارج من المحفظة شهريا Monthly Total Debit | 50,000 | 200,000 |
+| مجموع الداخل الى المحفظة يوميا Daily Total Credit | 30,000 | 60,000 |
+| مجموع الداخل الى المحفظة شهريا Monthly Total Credit | 50,000 | 200,000 |
+| Daily ATM Cash Out | 30,000 | 30,000 |
+| Monthly ATM Cash Out | 50,000 | 200,000 |
+| Wallet Balance | 50,000 | 200,000 |
+
+وحضرتك بيتم تجديد الحد المسموح للمعاملات يوم واحد من كل شهر
+• وفي حالة العميل علي الليمت المحدود : لابد ان نوضح له انه بيتم تحويل المحفظة على الليميت الكامل بعد 3 شهور من تاريخ الانشاء
+• وفي حالة العميل علي الليمت الكامل : لابد ان نوضح له ان الحد الأقصى شهريا للحساب الكامل لمجموع الخارج من المحفظة (Debit) (سحب) - تحويل إلى - مدفوعات - أقساط) هو 200 ألف وكذلك الحد الأقصى لمجموع الداخل الى المحفظة (Credit) (إيداع واستلام المبالغ ( شهريا للحساب الكامل 200 ألف.
+اذا كان لا يملك محفظة ولسه هيعملها
+• هيتم شرح الليمت المحدود للعميل والتوضيح ان بعد 3 شهور هيتم تحويل العميل لليمت الكامل
+- Escalation: No
+- CRM: Pay → Inquiry → Inquiry about Daily & monthly limit for a deposit or withdrew amounts"
+KB,1726,ee8e926e8d44598aa82317adf28616f5,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about the remaining limit,عميل بيستفسر عن المتبقي من الليميت,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about the remaining limit
+Question AR: عميل بيستفسر عن المتبقي من الليميت
+
+Script:
+هيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+هيتم التوضيح للعميل المتبقي من الليمت من خلال بورتال كاش
+- Escalation: No
+- CRM: Pay → Inquiry → Inquiry about the remaining limit"
+KB,1727,2f6eedbf7f7f555ba7b44e64e4e8a12f,0,Pay,Inquiry,Non-Technical Issue,No,ok,How to know the available amount in wallet,عميل بيستفسر عن كيفية معرفة المبلغ المتاح في المحفظة,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to know the available amount in wallet
+Question AR: عميل بيستفسر عن كيفية معرفة المبلغ المتاح في المحفظة
+
+Script:
+سيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+هيتم التوضيح للعميل الرصيد المتاح علي المحفظة
+وفيما بعد حضرتك تقدر تعرف رصيدك من خلال الدخول علي تطبيق حالا تختار خدماتي ثم حالا كاش ثم هتكتب الباسورد الخاص بالمحفظة وهيكون ظاهر لحضرتك الرصيد في الصفحة الريئسية
+- Escalation: No
+- CRM: Pay → Inquiry → How to know the available amount in wallet"
+KB,1728,38fc02f70f53579aa9c7e2a49026ee38,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about previous transaction,عميل بيستفسر عن عملية سابقة,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about previous transaction
+Question AR: عميل بيستفسر عن عملية سابقة
+
+Script:
+• هيتم مراجعة البيانات بالكامل الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+• و سيتم توضيح كافة التفاصيل الخاصة بسؤال العميل عن المعاملة
+وفي المره القادمة حضرتك بتدخل على تطبيق حالا وهتختار خدماتي ثم حالا كاش ثم هنكتب كلمه السر الخاصة بالمحفظة -> اضغط على مدفوعاتي السابقة من الصفحة الرئيسية -- اختار السجل التاريخي.
+ملحوظة في حالة توضيح العميل انه كان يقوم باستقبال أموال من فوري الى حالا كاش، سيتم التوضيح انه لا يمكن استقبال مبالغ على حالا كاش من فوري، ولكن يمكن ان تكون المبالغ وصلت الى محفظة أبلكيشن حالا وليس محفظة حالا كاش. وسيتم تحويل العميل الى حالا للتأكد من وجود المبلغ على محفظة أبلكيشن حالا).
+- Escalation: No
+- CRM: Pay → Inquiry → Inquiry about previous transaction"
+KB,1729,a14b8eff58db5ee3b6216650a2d673fc,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about wallet status,عميل بيستفسر عن حالة المحفظة,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about wallet status
+Question AR: عميل بيستفسر عن حالة المحفظة
+
+Script:
+اولا بيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم من خلال بورتال كاش
+ثم بيتم توضيح حالة المحفظة
+حضرتك حالة المحفظة هي ........
+- Escalation: No
+- CRM: Pay → Inquiry → Inquiry about wallet status"
+KB,1730,acaacd822b6f5d2f8291702a41642c73,0,Pay,Inquiry,Non-Technical Issue,No,ok,How to transfer amount,عميل بيستفسر كيفية تحويل مبلغ,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to transfer amount
+Question AR: عميل بيستفسر كيفية تحويل مبلغ
+
+Script:
+من خلال الدخول على التطبيق على ايقونة تحويل أموال.
+نكتب رقم الشخص المراد التحويل اليه
+ممكن نختار اختر من جهات الاتصال لديك ودي عشان نختار من الأسماء اللي مسجلة عندنا
+نختار سماح عشان نقدر بعدها نختار اسم الشخص والرقم
+نلاقي بعد اختيارنا للرقم انه ظهر عندنا فنضغط على استمرار
+نكتب المبلغ المراد ارساله وممكن نكتب رسالة توصل للشخص ودي بتكون اختيارية
+بعدها نضغط على الاستمرار في التحويل
+نكتب الرقم السري الخاص بالمحفظة ونضغط على تأكيد التحويل)
+ملحوظة لابد اخبار العميل بها في حالة اتمام التحويل، لا يمكن اعادة المبلغ او الغاء العملية.
+- Escalation: No
+- CRM: Pay → Inquiry → How to transfer amount"
+KB,1731,c6fb3a6d7c69562f921ecda026226fd7,0,Pay,Inquiry,Non-Technical Issue,No,ok,How to pay the bills or installment,عميل بيستفسر عن كيفية شحن فاتورة / تحويل رصيد او دفع القسط من خلال التطبيق,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to pay the bills or installment
+Question AR: عميل بيستفسر عن كيفية شحن فاتورة / تحويل رصيد او دفع القسط من خلال التطبيق
+
+Script:
+• حضرتك هتدخل على تطبيق ""حالا"" ومن الصفحة الرئيسية هنختار ""ادفع فواتيرك""
+بعدها هتختار الخدمة المراد شحنها او دفعها.
+بعدها هتختار طريقة الدفع.
+ملحوظة: غير متاح شحن رصيد فودافون باستخدام محفظة أبلكيشن حالا ولكن يمكن شحن رصيد فودافون بإستخدام كارت حالا او أي محفظة الكترونية.
+- Escalation: No
+- CRM: Pay → Inquiry → How to pay the bills or installment"
+KB,1732,6150143eeb715fbf9db15a61a8dd5e1b,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about Bill Payment,عميل بيستفسر عن شحن أو دفع الفواتير على تطبيق حالا,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Bill Payment
+Question AR: عميل بيستفسر عن شحن أو دفع الفواتير على تطبيق حالا
+
+Script:
+دلوقتي من خلال تطبيق حالا حضرتك تقدر تشحن رصيد لكل الشبكات وتدفع فواتير وأقساط زي
+دفع اقساط زي Valu و بريميم كارد و بي تيك""
+- تدفع فواتير الكهرباء - المياه - غاز
+- دفع مصاريف بعض المدارس والجامعات
+- حجز سفر زي جوباص ومصر للطيران و سويفل
+- خدمات طبية (فيزيتا)
+. ممكن كمان تتبرع لجمعيات خيرية كتير
+طرق دفع الفواتير:
+- Credit Card
+- Apple Pay
+- محفظة الكترونية
+- محفظة حالا (غير متاح شحن رصيد فودافون باستخدام محفظة أبلكيشن حالا ولكن متاح من خلال كارت حالا او اي محفظة الكترونية )
+- كارت حالا
+- كريديت حالا الخاص بحضرتك وأقل فاتورة تكون بقيمة 500 جنيه وعلى فترات تقسيط شهر - شهرين - 6 شهور فقط
+ملحوظة: لا يمكن شحن رصيد لشركات الاتصالات من خلال الكريديت.
+
+تفاصيل دفع الفاتورة على CRM:
+Bill Payment Details
+Date & Time: وقت المعاملة
+Bill Transaction ID
+User ID
+Beneficiary Number: رقم عميلة الشحن
+Bill Type: PRE
+Category: Mobile
+Service Name: Etisalat (الخدمة اللي تم دفع الفاتورة او شحن الرصيد لها)
+UPG Transaction ID
+User Phone Number: رقم العميل اللي دفع منه الفاتورة
+Bill Gateway: BEE
+Group Name: Telecom
+Payment Methods: طريقة الدفع
+
+معنى طرق الدفع على CRM:
+HALAN CARD -> كارت حالا
+HALAN_CONSUMER_FINANCE_PRICING -> حالا كريديت (بالتقسيط)
+R2P -> محفظة الكترونية
+CLOSED LOOP WALLET -> محفظة حالا (محفظة التطبيق)
+APPLE PAY -> APPLE PAY
+PAYFORT CREDIT CARD -> كريديت كارد
+PAYFORT_WITH_TOKENIZATION_V1 -> كريديت كارد
+
+معني حالات الفواتير على CRM:
+1. في الحالة دي الفاتورة الدفعت بنجاح:
+Payment State: SUCCESS
+Provider State: SUCCESS
+
+2. في الحالة دي متخصمش اي مبلغ من العميل .. العميل اكتفي بالاستعلام عن المبلغ المطلوب و لم يتم عملية الشحن او دفع الفاتورة يعني مش هقدم شكوى للعميل:
+Payment State: INITIATED
+Provider State: INITIATED
+
+4. في الحالة دي لم يتم الخصم ولم تكتمل عملية الدفع العميل مكملش الدفع .. يعني مش هقدم شكوي للعميل:
+Payment State: FAILED / PENDING
+Provider State: INITIATED / INITIATED"
+KB,1732,cf0c20223bc8591886305b4513213603,1,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about Bill Payment,عميل بيستفسر عن شحن أو دفع الفواتير على تطبيق حالا,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Bill Payment
+Question AR: عميل بيستفسر عن شحن أو دفع الفواتير على تطبيق حالا
+
+Script:
+TED
+Provider State: INITIATED
+
+4. في الحالة دي لم يتم الخصم ولم تكتمل عملية الدفع العميل مكملش الدفع .. يعني مش هقدم شكوي للعميل:
+Payment State: FAILED / PENDING
+Provider State: INITIATED / INITIATED
+
+5. في الحالة دي فعلا تم الخصم من العميل ولم يتم دفع الفاتورة.. هنقدم شكوى للعميل Bill payment not reflected:
+Payment State: SUCCESS
+Provider State: FAILED
+- Escalation: No
+- CRM: Pay → Inquiry → Inquiry about Bill Payment"
+KB,1733,6230e4d2d7e95743b6525febada28226,0,Pay,Inquiry,Non-Technical Issue,No,ok,How to pay for merchants through wallet,عميل بيستفسر عن كيفية دفع ثمن مشترياته للتاجر من خلال المحفظة,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to pay for merchants through wallet
+Question AR: عميل بيستفسر عن كيفية دفع ثمن مشترياته للتاجر من خلال المحفظة
+
+Script:
+حضرتك هتفتح تطبيق حالا هتختار حساباتي ثم حالا كاش
+أدخل رقمك السري"" بالأرقام الإنجليزية للدخول على المحفظة.
+اختر ""دفع لتاجر""
+صور QR للتاجر واضغط ""التالي""
+أدخل "" المبلغ المطلوب دفعه واضغط ادفع
+اضغط على ""الاستمرار في الدفع""
+أدخل رقمك السري"" بالأرقام الانجليزية مرة ثانية لتأكيد العملية
+[IMAGE: Screenshots from Halan app showing the process of scanning a QR code and reviewing transaction details for a merchant payment labeled 'Ikea - Mall of Arabia' for an amount of 1,000 EGP plus fees, totaling 1,120 EGP with an 'Continue Payment' button.]
+- Escalation: No
+- CRM: Pay → Inquiry → How to pay for merchants through wallet"
+KB,1734,6b420c1b661b5ca5822ac4f3c9dad1f7,0,Pay,Inquiry,Non-Technical Issue,No,ok,How to deposit or withdrew amounts,عميل بيستفسر عن كيفية عمل ايداع أو سحب,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to deposit or withdrew amounts
+Question AR: عميل بيستفسر عن كيفية عمل ايداع أو سحب
+
+Script:
+حضرتك تقدر تسحب او تعمل ايداع من خلال اي ماكينة ATM او من خلال بعض فروع تساهيل
+تحب اوضح لحضرتك ازاي تسحب او تعمل ايداع من ATM ؟
+السحب من خلال (ATM)
+• هنحتار خدمات بدون بطاقة من ATM
+• هنختار سحب وندخل على قائمة سحب
+• هنكتب المبلغ المراد سحبه ونضغط استمرار
+• ثم هنكتب الرقم السري المتغير OTP وده بنطلبه من خلال التطبيق فقط عن طريق ( الدخول على سحب أو ايداع - هيتم كتابة المبلغ -- هيتم كتابة كلمة السر سيتم إرسال إشعار بالرقم السري ثم هنكتبه علي ATM
+الإيداع من خلال ماكينة الصراف الالي
+• هنحتار خدمات بدون بطاقة من ATM
+• هنختار ايداع وندخل على قائمة ابداع
+• هنكتب المبلغ المراد سحبه ونضغط استمرار
+• ثم هنكتب الرقم السري المتغير OTP وده بنطلبه من خلال التطبيق فقط عن طريق ( الدخول على سحب أو ايداع - هيتم كتابة المبلغ - هيتم كتابة كلمة السر سيتم إرسال إشعار بالرقم السري ثم هنكتبه علي ATM
+خطوات الإيداع في ماكينة الصراف الآلي:
+1. على شاشة الصراف الالي اكثار الخدمات بدون کارت
+2. العام المحفظة الإلكترونية
+3. اختار إيداع
+4. انقل رقم الموبيل
+5. أدخل كلمة السر أكون رصيدي
+6. ادخل القيمة المراد إيداعها وقم بالتاكيد
+7. سيصلك يسلكة تأكيد بالعام العملية
+[IMAGE: Illustration of an ATM with numbered steps on the side describing deposit instructions without a card.]
+- Escalation: No
+- CRM: Pay → Inquiry → How to deposit or withdrew amounts"
+KB,1735,ff2f10b36e2852dea4fe56c88f552bd1,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about Halan Cash branches,عميل بيستفسر عن فروع شركة حالا كاش,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Halan Cash branches
+Question AR: عميل بيستفسر عن فروع شركة حالا كاش
+
+Script:
+هنوضح أقرب فرع تساهيل للعميل ومواعيد عمله الرسمية
+والمواعيد من الساعة 9 صباحاً الي 5 مساءاً جمعة وسبت اجازة
+- Escalation: No
+- CRM: Pay → Inquiry → Inquiry about Halan Cash branches"
+KB,1739,4ea793cee2775d8ab7599c1c67e1d201,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about compliance validation call,عميل يستفسر عن مكالمة استعلام امنى (Outbound Call),yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about compliance validation call
+Question AR: عميل يستفسر عن مكالمة استعلام امنى (Outbound Call)
+
+Script:
+دي مكالمة استعلام أمنى بيحتاجها البنك وبيكون فيها 3 اسئلة فقط:
+وظيفة العميل
+طبيعة العلاقة بين العميل وبين المحول له
+سبب التحويل
+
+وفي حالة ان العميل اتسأل اسئلة مختلفة او اسئلة أكثر من الثلاثة أسئلة السابقين. سنقوم بتقديم شكوى ( Fraud Case ) ونقوم بإتباع اجراءاتها .
+- Escalation: No
+- CRM: Pay → Inquiry → Inquiry about compliance validation call"
+KB,1741,e20f643f7de25e48aab16527dde8599f,0,Pay,Complain,Technical Issue,Yes,ok,Cst can't open the app,عميل لا يستطيع فتح التطبيق,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Cst can't open the app
+Question AR: عميل لا يستطيع فتح التطبيق
+
+Script:
+سيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+هيتم التأكد ان الرقم مسجل به محفظة حالا كاش
+هيتم التأكد من حالة المحفظة وان لا يوجد بها أي مشكلة
+لو مسجل به محفظة حالا كاش والمحفظة حالتها نشطة لا يوجد بها مشكلة
+استأذنك التأكد من ان
+خدمة خيارات المطور مغلقة وذلك عن طريق الدخول على اعدادات الموبايل ( Developer Mode )
+الدخول من تطبيق ""حالا"" وليس تطبيق حالا"" ""كاش"" ويكون تسجيل الدخول من التطبيق بنفس رقم المحفظة ثم الدخول على المحفظة.
+التأكد من ان الانترنت يعمل بشكل طبيعي.
+حضرتك ممكن تفتح التطبيق على هاتف اخر
+
+**السيناريو الأول (لو تم حل المشكلة):**
+- Escalation: No
+- CRM: Pay → Complaint → Technical Issue
+
+**السيناريو الثاني (لو المشكلة مازالت موجودة):**
+تم ارسال شكوى حضرتك للقسم المختص وسيتم حلها خلال 3 أيام عمل .
+مع وضع هذه البيانات في الشكوي الاسم بالكامل والرقم القومي وكتابة تفاصيل الشكوي
+- Escalation: Yes
+- CRM: Pay → Complaint → Technical Issue"
+KB,1742,5b58c20c27a75f4686931d7e411c2d77,0,Pay,Complain,Technical Issue,Yes,ok,Didn't receive the wallet activation code,عميل لم يستلم كود التفعيل الخاص بالمحفظة (OTP),yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Didn't receive the wallet activation code
+Question AR: عميل لم يستلم كود التفعيل الخاص بالمحفظة (OTP)
+
+Script:
+هوضح لحضرتك خطوات تنشطية تقدر تعملها والكود هيوصلك
+• استأذنك ممكن نطلب ال OTP مرة واحدة فقط وننتظر وصوله مع وجود حضرتك في مكان فيه شبكة .
+ولو لسه المشكلة متواجدة: استأذنك ممكن تضع الخط في هاتف اخر عشان لو المشكلة في الهاتف (سعة تخزين الرسائل).
+لو المشكلة مازالت متواجدة
+• هيتم مراجعة البيانات الاسم بالكامل والرقم القومي اولا قبل تقديم الشكوي
+بعتذر لحضرتك وانا من خلالي هقدم شكوى وسيتم حلها خلال 3 أيام عمل.
+مع وضع هذه البيانات في الشكوي الاسم بالكامل والرقم القومي وكتابة تفاصيل الشكوي
+- Escalation: Yes
+- CRM: Pay → Complaint → Technical Issue → Didn't receive the wallet activation code"
+KB,1743,b4f3ff9632f751679ced56446937cee7,0,Pay,Complain,Technical Issue,Yes,ok,Didn't receive ATM OTP code,عميل لم يستقبل الرقم السرى المؤقت الخاص بماكينة الصراف الالى,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Didn't receive ATM OTP code
+Question AR: عميل لم يستقبل الرقم السرى المؤقت الخاص بماكينة الصراف الالى
+
+Script:
+هل حضرتك استخدمت التطبيق ام ماكينة الصراف الآلى لاستقبال الرقم السري المؤقت ؟
+في حالة ان العميل استخدم الصراف الآلي:
+حضرتك ستستقبل كود التفعيل من خلال التطبيق فقط ( الدخول على سحب أو ايداع - هيتم كتابة المبلغ -- هيتم كتابة كلمة السر) سيتم إرسال إشعار بالرقم السري. وده اللي حضرتك هتكتبوا في ماكينة ATM
+في حالة ان العميل استخدام التطبيق:
+هوضح لحضرتك خطوات تنشطية تقدر تعملها والكود هيوصلك
+• استأذنك ممكن نطلب ال OTP مرة واحدة فقط وننتظر وصوله مع وجود حضرتك في مكان فيه شبكة .
+• مسح التطبيق وتنزيله مرة أخرى - الرقم السري المؤقت يظهر على التطبيق ولا يأتي في رسالة على الموبايل
+لو المشكلة مازالت متواجدة :
+• هيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم اولا قبل تقديم الشكوي
+• سيتم تسجيل شكوى بخصوص المشكلة وسيقوم القسم المختص بالرد عليها خلال 3 أيام عمل.
+مع وضع هذه البيانات في الشكوي الاسم بالكامل والرقم القومي وكتابة تفاصيل الشكوي
+- Escalation: Yes
+- CRM: Pay → Complaint → Technical Issue → Didn't receive ATM OTP code"
+KB,1744,83532c45b86350989a342c047ac82a49,0,Pay,Complain,Technical Issue,Yes,ok,customers profile still limited and didn't transfer to full profile,شكوى عميل ان لم يتم تحويل حسابة الى حساب كامل,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: customers profile still limited and didn't transfer to full profile
+Question AR: شكوى عميل ان لم يتم تحويل حسابة الى حساب كامل
+
+Script:
+سيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+سيتم التأكد من خلال السيستم من خلال تاريخ انشاء المحفظة في بورتال كاش ان بالفعل مر 3 شهور على انشاء محفظة العميل .
+
+**السيناريو الأول (لو مر 3 شهور على الإنشاء):**
+انا بعتذر لحضرتك سيتم ارسال الشكوى للقسم المختص وسيتم حلها خلال 3 أيام عمل
+مع وضع هذه البيانات في الشكوي الاسم بالكامل والرقم القومي وكتابة تفاصيل الشكوي
+- Escalation: Yes
+- CRM: Pay → Complaint → Technical Issue
+
+**السيناريو الثاني (لو لم يمر 3 شهور على الإنشاء):**
+انا بعتذر لحضرتك حتى الآن لم يمر 3 شهور لتحويل حسابك من حساب محدود الى حساب كامل .
+- Escalation: No
+- CRM: Pay → Complaint → Technical Issue"
+KB,1745,f69cfa25d25c5341aebd63d7ae16cf54,0,Pay,Complain,Technical Issue,Yes,ok,Complaint Customer can't pay a bill,عميل لا يستطيع شحن او دفع فاتورة على تطبيق حالا,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Complaint Customer can't pay a bill
+Question AR: عميل لا يستطيع شحن او دفع فاتورة على تطبيق حالا
+
+Script:
+• هيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+هسأل حضرتك بعض الخطوات عشان نقدر نتأكد ان حضرتك بتعمل الخطوات بشكل صحيح
+سيتم التأكيد على العميل من وجود رصيد كافي في طريقة الدفع المختارة من خلاله. لكن لو من خلال حالا كاش او محفظة حالا هنشوف من خلالنا علي السيستم بعد مراجعة البيانات
+نتأكد من الانترنت يعمل بكفاءة.
+نتأكد ان العميل بيختار الخدمة المرادة بصورة صحيحة (مثال: العميل يريد شحن رصيده ورقم موبايله 012 فيجب أن تكون جهة الشحن أورانج).
+نتأكد ان العميل لديه بالفعل فاتورة مستحقة.
+ملحوظات هامة لازم نتأكد منها فى المكالمة وقبل تقديم أي شكوي:
+غير متاح شحن رصيد فودافون باستخدام محفظة أبلكيشن حالا ولكن يمكن شحن رصيد فودافون باستخدام كارت حالا او أي محفظة الكترونية.
+في حالة ان العميل بيستخدم حالا كريديت، لابد أن تكون القيمة أكثر من 500 جنيه.
+لا يمكن دفع أقساط عن طريق Credit on Card
+لا يمكن شحن رصيد لشركات الاتصالات من خلال الكريديت.
+بعد التأكد من كل الخطوات سيتم تقديم شكوى للعميل والرد يكون خلال 48 ساعة عمل بها:
+بيانات العميل كاملة. الاسم بالكامل والرقم الرقم القومي
+طريقة الدفع.
+الفاتورة اللي بيتم دفعها.
+- Escalation: Yes
+- CRM: Pay → Complaint → Technical Issue → Customer can't pay a bill"
+KB,1746,7e5f35802a0b5dea9d7671b1e0c58778,0,Pay,Complain,Technical Issue,No,ok,Cst can't create account,عميل لا يستطيع انشاء حساب,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: Cst can't create account
+Question AR: عميل لا يستطيع انشاء حساب
+
+Script:
+شروط إنشاء حساب :
+رقم الهاتف مش مسجل به أي محفظة اخرى .
+رقم الهاتف يكون مسجل باسم حضرتك.
+رقم البطاقة غير مسجل به أكثر من ثلاثة محافظ.
+- Escalation: No
+- CRM: Pay → Complaint → Technical Issue → Cst can't create account"
+KB,1747,5ce97c5027905403a386b42abcb04a57,0,Pay,Complain,Technical Issue,No,ok,Aman service is inactive,شكوى عميل من ماكينة امان غير نشطة فعالة,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: Aman service is inactive
+Question AR: شكوى عميل من ماكينة امان غير نشطة فعالة
+
+Script:
+بنعتذر لحضرتك لكن السحب من ماكينات أمان غير متوفر حاليا، وحضرتك تقدر تسحب من ماكينات الصراف الالي ATM او بعض فروع تساهيل.
+- Escalation: No
+- CRM: Pay → Complaint → Technical Issue → Aman service is inactive"
+KB,1748,5cf788ecde14514488f6a2e081b9fd4e,0,Pay,Complain,Non-Technical Issue,No,ok,can't open the wallet due to suspension,عميل لا يستطيع فتح المحفظة (ايقاف) (Suspended),yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: can't open the wallet due to suspension
+Question AR: عميل لا يستطيع فتح المحفظة (ايقاف) (Suspended)
+
+Script:
+سيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+سيتم التأكد من خلال السيستم ان حالة المحفظة ""إيقاف"".
+انا بعتذر لحضرتك محتاجين اننا نفتح محفظة جديدة من خلال فروع تساهيل ولكن حاليا تسجيل المحافظ متوقف.
+ومن خلالنا هيتم التواصل بحضرتك فور اتاحة الخدمة وتوضيح أقرب فرع.
+- Escalation: No
+- CRM: Pay → Complaint → Non-Technical Issue → can't open the wallet due to suspension"
+KB,1749,a3a05b1493ed5d799428c8a42df979b9,0,Pay,Complain,Non-Technical Issue,No,ok,can't open the wallet due to Dormant,عميل لا يستطيع فتح المحفظة (غير نشط) (Dormant),yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: can't open the wallet due to Dormant
+Question AR: عميل لا يستطيع فتح المحفظة (غير نشط) (Dormant)
+
+Script:
+سيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+سيتم التأكد من خلال السيستم ان حالة المحفظة ""غير نشطة"".
+انا بعتذر لحضرتك محتاجين اننا نعمل استمارة تحديث بيانات جديدة من خلال فروع تساهيل ولكن حاليا الخدمة متوقفة.
+ومن خلالنا هيتم التواصل بحضرتك فور اتاحة الخدمة وتوضيح أقرب فرع.
+- Escalation: No
+- CRM: Pay → Complaint → Non-Technical Issue → can't open the wallet due to Dormant"
+KB,1750,c46956dc16f958a19879817b93b2909d,0,Pay,Complain,Non-Technical Issue,No,ok,can't open the wallet due to Unregistered,عميل لا يستطيع فتح المحفظة (غير مسجلة) (Unregistered),yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: can't open the wallet due to Unregistered
+Question AR: عميل لا يستطيع فتح المحفظة (غير مسجلة) (Unregistered)
+
+Script:
+سيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+سيتم التأكد من خلال السيستم أن حالة المحفظة ""غير مسجلة"".
+انا بعتذر لحضرتك هتحتاج تزور الفرع عشان تقدر تفتح محفظة جديدة، وهما يقدروا يوضحوا لحضرتك اكثر سبب ده
+ونوضح أقرب فرع للعميل ومواعيد عمله الرسمية
+ومواعيد فروع تساهيل من الساعة 9 صباحاً لل 5 مساءاً وجمعة وسبت اجازة
+- Escalation: No
+- CRM: Pay → Complaint → Non-Technical Issue → can't open the wallet due to Unregistered"
+KB,1751,dabe9143954f518193d20d73c898f794,0,Pay,Complain,Non-Technical Issue,No,ok,Complaint different data,عميل لديه مشكلة في المحفظة بسبب اختلاف البيانات,yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint different data
+Question AR: عميل لديه مشكلة في المحفظة بسبب اختلاف البيانات
+
+Script:
+عميل يشتكي من وجود مشكلة او عدم تفعيل المحفظة بسبب وجود اختلاف في البيانات بين البورتال والبطاقة وال KYC رقم قومي مختلف - رقم الموبايل)
+انا بعتذر لحضرتك محتاجين اننا نعمل استمارة تحديث بيانات جديدة من خلال فروع تساهيل ولكن حاليا الخدمة متوقفة.
+ومن خلالنا هيتم التواصل بحضرتك فور اتاحة الخدمة وتوضيح أقرب فرع.
+- Escalation: No
+- CRM: Pay → Complaint → Non-Technical Issue → Complaint different data"
+KB,1752,dd1a8bad07815d92ac32d8b7929bb0ca,0,Pay,Complain,Financial Issue,Yes,ok,Can't Transfer amounts,عميل لا يستطيع تحويل اموال,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Can't Transfer amounts
+Question AR: عميل لا يستطيع تحويل اموال
+
+Script:
+• سيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+• سيتم التأكد من نوع حساب العميل من خلال السيستم هل Limited profile or full profile ؟ لمعرفة الحد المسموح به للتحويلات.
+• سيتم رؤية المتبقي من ليمت العميل من خلال بورتال كاش ومقارنته بمبلغ العملية ومعرفة المعاملة اللي بيعملها بمبلغ كام
+علي سبيل المثال : العميل بيعمل معاملة بقيمة 1000 جنيه ووجدنا ان المتبقي من الليمت الخاص بالعميل 500 جنيه بالتالي العملية هتفشل لان العميل بيحول مبلغ أكبر من المتبقي من الليمت الخاص به
+• وسيتم التأكد من وجود رصيد كافي مع مصاريف الخدمة
+علي سبيل المثال :- لو العميل عنده علي المحفظة رصيد 500 جنيه فقط ويريد تحويل مبلغ 500 جنيه سوف تفشل العملية لان يوجد مصاريف خدمة فلابد ان نوضح للعميل ان يقلل المبلغ احتساباً لمصاريف الخدمة
+• في حالة وجود رصيد كافي مع مصاريف الخدمة ولا يوجد مشكلة بالليمت الخاص به ولم يتعدي الحد الاقصي للتحويلات هنوضح للعميل ان يجرب أن يحول لمحفظة اخري
+ملحوظة: سيتم فشل العملية في حالة أن الرقم الذي يحاول التحويل له غير مسجل عليه محفظة لذلك لابد ان نوضح للعميل ان يجرب التحويل المحفظة اخري
+ولو بعد كل هذه الخطوات المشكلة مازالت متواجده
+أنا بعتذر لحضرتك وسيتم تقديم شكوى وسيتم التواصل بحضرتك خلال 24 ساعة لمعرفة السبب.
+مع اضافة تفاصيل الشكوي والمعاملة في التيكت واسم العميل بالكامل والرقم القومي
+- Escalation: Yes
+- CRM: Pay → Complaint → Financial Issue → Can't Transfer amounts"
+KB,1753,4c6dd42776fe5399ae60adf98df8ca37,0,Pay,Complain,Financial Issue,Yes,ok,Can't receive amounts,عميل لا يستطيع استقبال اموال,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Can't receive amounts
+Question AR: عميل لا يستطيع استقبال اموال
+
+Script:
+• هيتم مراجعة البيانات الاسم بالكامل والرقم القومى ويكون متواصل من نفس الرقم
+• سيتم التأكد من نوع حساب العميل من خلال السيستم هل Limited profile or full profile ؟ لمعرفة الحد المسموح به لاستلام الأموال
+• سيتم المعرفة من العميل المبلغ اللي يريد استلامه من المحفظة الاخري كام ومقارنته بالمتبقي من الليمت في بورتال كاش
+علي سبيل المثال : لو المتبقي من لليمت الاستقبال في بورتال كاش ۷۰۰۰ جنيه والعميل وضح ان المعاملة اللي هيستقبلها بقيمة ۸۰۰۰ جنيه هيتم التوضيح ان العملية هتفشل لانه بيستقبل مبلغ أكبر من المتبقي من الليمت الخاص به
+• ولو لا يوجد مشكلة في الليمت الخاص بالعميل ولم يتجاوزه سيتم التوضيح ان يجرب استقبال أموال من محفظة اخري
+لو تم التأكد ان لا يوجد مشكلة في حساب العميل ويمكنه استقبال اموال بشكل طبيعي انا بعتذر جدا لحضرتك وانا من خلالي هقدم شكوى وسيتم حلها خلال 3 أيام عمل.
+مع اضافة تفاصيل الشكوي والاسم بالكامل والرقم القومي والعملية ان وجدت
+- Escalation: Yes
+- CRM: Pay → Complaint → Financial Issue → Can't receive amounts"
+KB,1754,270f33cd0b585a7d9ba98c92f374debe,0,Pay,Complain,Financial Issue,Yes,ok,withdrawal or deposit transaction is failed,فشل عملية الايداع او السحب ولا يمكن عملها,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: withdrawal or deposit transaction is failed
+Question AR: فشل عملية الايداع او السحب ولا يمكن عملها
+
+Script:
+• هيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+
+**في حالة فشل السحب:**
+• سيتم التأكد من المبلغ المتاح في محفظة العميل وانه بيسحب مبلغ كافي مع مصاريف الخدمة
+علي سبيل المثال : لو العميل في محفظته ۱۰۰۰۰ جنيه وبيحاول يسحب ۱۰۰۰۰ هيتم التوضيح انه يقلل المبلغ احتساباً لمصاريف الخدمة
+• نتأكد ان العميل متجاوزش الليميت الخاص بالمحفظة في السحب من خلال معرفة المتبقي من الليمت من البورتال والمبلغ اللي بيحاول يسحبه
+علي سبيل المثال : عميل المتبقي من الليمت الخاص به ۵۰۰ده وهو بيحاول يسحب ٦۰۰۰ سوف تفشل العملية
+• في حالة عدم وجود مشكلة في محفظة العميل : استأذنك ممكن تغير ماكينة الصراف الآلى ونجرب مرة اخرى
+- Escalation: No
+- CRM: Pay → Complaint → Financial Issue
+• في حالة وجود مشكله فى محفظة العميل بعد كل هذه الخطوات :
+انا بعتذر جدا لحضرتك سيتم ارسال الشكوى للقسم المختص وسيتم حلها خلال 3 أيام عمل.
+مع اضافة تفاصيل الشكوي والاسم بالكامل والرقم القومي والعملية ان وجدت
+- Escalation: Yes
+- CRM: Pay → Complaint → Financial Issue
+
+**في حالة فشل الايداع:**
+• سيتم التأكد من المبلغ المتاح في محفظة العميل وان العملية مسمعتش
+• نتأكد ان العميل متجاوزش الليميت الخاص بالمحفظة من خلال معرفة المتبقي من الليمت من البورتال والمبلغ اللي بيحاول يعمله ايداع
+علي سبيل المثال : عميل المتبقي من الليمت الخاص به في الاستقبال ۵۰۰۰ وهو بيحاول يعمل ايداع بقيمة ٦٠٠٠ سوف تفشل العملية
+• في حالة عدم وجود مشكلة في محفظة العميل : استأذنك ممكن تغير ماكينة الصراف الآلى ونجرب مرة اخرى
+- Escalation: No
+- CRM: Pay → Complaint → Financial Issue
+• في حالة وجود مشكله في محفظة العميل بعد كل هذه الخطوات :
+انا بعتذر جدا لحضرتك سيتم ارسال الشكوى للقسم المختص وسيتم حلها خلال 3 أيام عمل.
+مع اضافة تفاصيل الشكوي والاسم بالكامل والرقم القومي والعملية ان وجدت
+- Escalation: Yes
+- CRM: Pay → Complaint → Financial Issue"
+KB,1757,40978f03c56f535d85b376590ae99257,0,Pay,Complain,Financial Issue,Yes,ok,the amount deducted from the sender wallet and didn't transfer to receiver wallet,شكوى عميل انه قام بتحويل اموال وتم خصم المبلغ ولم يتم تحويلها الى الجهة الأخرى P2P,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: the amount deducted from the sender wallet and didn't transfer to receiver wallet
+Question AR: شكوى عميل انه قام بتحويل اموال وتم خصم المبلغ ولم يتم تحويلها الى الجهة الأخرى P2P
+
+Script:
+سيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+هنسأل العميل عن مبلغ وتاريخ العملية اللي بيشكو منها
+
+**السيناريو الأول (لو العملية ناجحة):**
+فأكيد المعاملة هتكون راحت للمحفظة المستقبلة ومش هنقدم شكوى
+ولو العميل مصمم على اثبات : هقوله ان المحفظة المستقبلة ممكن تعمل كاش حساب ولو مصمم اكثر ممكن اوضح للعميل كود المعاملة)
+- Escalation: No
+- CRM: Pay → Complaint → Financial Issue
+
+**السيناريو الثاني (لو تم خصم المبلغ والعملية فاشلة او جارى تنفيذ العملية او مش موجودة):**
+أنا بعتذر جدا لحضرتك سيتم ارسال شكوى حضرتك للقسم المختص وسيتم حلها خلال 3 أيام عمل
+مع ضرورة اضافة العملية وقيمة ال Hold Amount في التيكيت، وإذا لم يتوفر أيا منهم فيجب توضيح ذلك.
+- Escalation: Yes
+- CRM: Pay → Complaint → Financial Issue"
+KB,1759,2ee41edce1d7578d92d5fe377fd99b8e,0,Pay,Complain,Financial Issue,Yes,ok,Withdrawal was unsuccessful and the amount deducted from wallet (successful on system),شكوى عميل انه قام بسحب مبلغ من ATM والمبلغ لم يخرج او سحب من فوري Fawry او عملية P2M,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Withdrawal was unsuccessful and the amount deducted from wallet (successful on system)
+Question AR: شكوى عميل انه قام بسحب مبلغ من ATM والمبلغ لم يخرج او سحب من فوري Fawry او عملية P2M
+
+Script:
+هيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+التأكد من خصم المبلغ سواء من ATM او فوري أو أي ابلكيشن اخر
+ATM: انا بعتذر لحضرتك وأنا من خلالي ههقدم لحضرتك شكوى وسيتم حل المشكلة خلال 15 يوم عمل .
+P2M: انا بعتذر لحضرتك وأنا من خلالي ههقدم لحضرتك شكوى وسيتم حل المشكلة خلال 30 يوم عمل .
+ملحوظة يجب توضيحها مع العلم أنه يجب توافر 5 جنيه قيمة الطلب وفى حالة قبول الشكوى سيتم رد قيمة الطلب مرة اخرى.
+لا يتم تقديم الشكوى بدون وجود 5 جنيه رصيد في المحفظة)
+وسيكون شكل العملية على البورتال باسم (Manual Payment).
+مع ضرورة اضافة العملية وقيمة ال Hold Amount في التيكيت، وإذا لم يتوفر أيا منهم فيجب توضيج ذلك واضافة الاسم بالكامل والرقم القومي
+وتوضيح بيانات المعاملة كاملة (قيمة وتاريخ ووقت ورقم ال ATM واسم البنك .
+- Escalation: Yes
+- CRM: Pay → Complaint → Financial Issue"
+KB,1760,51c624ab15d15e17a1c7dc8addf69855,0,Pay,Complain,Financial Issue,Yes,ok,Deposit was unsuccessful and the amount not reflected,شكوى عميل انه قام بإيداع مبلغ من ATM والمبلغ لم يسمع,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Deposit was unsuccessful and the amount not reflected
+Question AR: شكوى عميل انه قام بإيداع مبلغ من ATM والمبلغ لم يسمع
+
+Script:
+هيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+بعد التأكد من عدم وجود مبلغ الايداع
+انا بعتذر لحضرتك وأنا من خلالي هقدم لحضرتك شكوى وسيتم حل المشكلة خلال 15 يوم عمل
+ملحوظة يجب توضيحها مع العلم أنه يجب توافر 5 جنيه قيمة الطلب وفى حالة قبول الشكوى سيتم رد قيمة الطلب مرة اخرى.
+لا يتم تقديم الشكوى بدون وجود 5 جنيه رصيد في المحفظة
+وسيكون شكل العملية على البورتال باسم (Manual Payment).
+مع ضرورة اضافة العملية وقيمة ال Hold Amount في التيكيت، وإذا لم يتوفر أيا منهم فيجب توضيج ذلك. واضافة الاسم بالكامل والرقم القومي
+وتوضيح بيانات المعاملة كاملة (قيمة وتاريخ ووقت ورقم ال ATM واسم البنك .
+ملحوظة: عند شكوى العميل انه قام بالإيداع من فوري الى محفظة حالا كاش، سيتم التوضيح للعميل أنه لا يمكن عمل ايداع المحفظة حالا كاش عن طريق فوري، ولابد من مراجعة محفظة تطبيق حالا وليس حالا كاش
+- Escalation: Yes
+- CRM: Pay → Complaint → Financial Issue"
+KB,1761,9ea7b192a9f159de9fadd7065b073aed,0,Pay,Complain,Financial Issue,Yes,ok,Complaint Bill Payment not Reflected,عميل يشتكي من خصم عملية شحن رصيد او دفع فاتورة فاشلة من تطبيق حالا بالمحفظة,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Complaint Bill Payment not Reflected
+Question AR: عميل يشتكي من خصم عملية شحن رصيد او دفع فاتورة فاشلة من تطبيق حالا بالمحفظة
+
+Script:
+هيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+بعد التأكد من شكوى العميل وخصم العمليات من البورتال) وفشلهم من (CRM)
+لابد من اضافة جميع العمليات في التيكيت
+لابد من اضافة جهة الشحن أو دفع الفاتورة في التيكيت.
+وفي حالة الدفع عن طريق حالا كاش)، سيكون شكل العملية على البورتال (Halan Bill) وسيتم كتابة الرقم المستفيد في التيكيت التيكيت.
+ستكون CRM إذا وجدنا المعاملة اللي عاملاها بممحفظة حالا كاش على Same Payment Method وسيتم حلها خلال يومين عمل. ولا نعرض عليه استرجاع المبلغ على محفظة التطبيق.
+ستكون CRM إذا لم يجد المعاملة اللي عاملاها بممحفظة حالا كاش على Deduction without Valid Reason وسيتم حلها خلال 3 أيام عمل. ولا نعرض عليه استرجاع المبلغ على محفظة التطبيق.
+
+نعرض علي العميل اننا ممكن نرجع المبلغ المخصوم على محفظة حالا خلال ساعتين عمل
+لو العميل وافق هنختار ف الفورم Customer Request to Refund on: Halan Wallet
+لو العميل رفض ومحتاج استرجاع المبلغ على نفس طريقة الدفع هنختار Same Payment ونوضح المدة حسب طريقة الدفع ما عداااااا لو العميل دافع برصيد التقسيط او كارت حالا او حالا کاش مش هنعرض عليه علشان لازم المبلغ يرجع على نفس الطريقة.
+
+مدة الرد على الشكوى حسب وسيلة الدفع (SLA):
+• كارت حالا -> يومين عمل
+• كارت حالا (Debit + Credit on Card) -> 3 أيام عمل
+• محفظة الكترونية -> يومين عمل
+• محفظة حالا -> ساعتين عمل
+• حالا كريديت (بالتقسيط) (CF) -> يومين عمل
+• Apple Pay / كريديت كارد -> ساعتين عمل للرد على الشكوي + 14 يوم عمل لاسترجاع المبلغ
+
+وفي حالة أن العميل قام بالدفع عن طريق وسيلتين مع بعض (مثال: محفظة حالا + كريديت كارد هنو ضحله المدة الأكبر. مع ضرورة اضافة العملية في التيكيت.
+- Escalation: Yes
+- CRM: Pay → Complaint → Financial Issue → Bill Payment not Reflected"
+KB,1762,d73a9a5a175d5a5ead07e9639c40f986,0,Pay,Complain,Financial Issue,Yes,ok,Deduction without valid reason,شكوى عميل بان تم خصم اموال من المحفظة بدون سبب,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Deduction without valid reason
+Question AR: شكوى عميل بان تم خصم اموال من المحفظة بدون سبب
+
+Script:
+سيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+هيتم مراجعة المعاملات والرصيد في حالة وجود خصم بدون سبب
+
+**السيناريو الأول (في حالة وجود خصم بدون سبب):**
+انا بعتذر لحضرتك سيتم ارسال الشكوى لمراجعة حساب حضرتك مرة اخرى وفى حالة وجود خصم بدون سبب سيتم حل المشكلة في خلال 3 أيام عمل
+مع ضرورة اضافة العملية وقيمة ال Hold Amount في التيكيت، وإذا لم يتوفر أيا منهم فيجب توضيج ذلك . واضافة الاسم بالكامل والرقم القومي
+- Escalation: Yes
+- CRM: Pay → Complaint → Financial Issue
+
+**السيناريو الثاني (في حالة عدم وجود خصم / وجود سبب للخصم):**
+سيتم التوضيح للعميل انه لا يوجد خصم أو ما سبب الخصم
+- Escalation: No
+- CRM: Pay → Complaint → Financial Issue
+
+**السيناريو الثالث (وفي حالة ان العميل يشحن رصيد او يدفع قسط او فاتورة من Bill Payment عن طريق حالا كاش والمعاملة مش موجودة على CRM):**
+شكل العملية على البورتال (Halan Bill)
+وفي حالة تم التأكد من خصم المبلغ : هيتم تقديم شكوي خلال 3 أيام عمل ولا نعرض عليه استرجاع المبلغ على محفظة التطبيق. وهنحتاج نضيف في التيكت هذه البيانات:
+• وسيتم كتابة الرقم المستفيد في التيكيت.
+• مع ضرورة اضافة العملية وقيمة ال Hold Amount في التيكيت، وإذا لم يتوفر أيا منهم فيجب توضيج ذلك. .
+• واضافة الاسم بالكامل والرقم القومي
+لكن لو المعاملة ظاهرة على CRM التيكت كون Complaint Bill Payment not Reflected
+- Escalation: Yes
+- CRM: Pay → Complaint → Financial Issue"
+KB,1763,008e80cde4975128982518471195d1b2,0,Pay,Request,Technical Issue,Yes,ok,Customer wants to reset the Pin code,عميل يريد اعادة ضبط لكلمة السر او ظهور تم حظر الرقم والمحفظة مفعلة,yes,"Vertical: Pay | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Customer wants to reset the Pin code
+Question AR: عميل يريد اعادة ضبط لكلمة السر او ظهور تم حظر الرقم والمحفظة مفعلة
+
+Script:
+سيتم مراجعة البيانات الاسم بالكامل والرقم القومى ويكون متواصل من نفس الرقم
+
+**السيناريو الأول (إعادة ضبط ناجحة):**
+بعتذر لحضرتك وأنا من خلالي هعمل اعادة ضبط لكلمة السر هستأذن حضرتك بعد انتهاء المكالمة ندخل على تطبيق حالا، هيطلب من حضرتك اعادة ضبط كلمة سر جديدة، الرقم السري لازم يكون مكون من 6 أرقام باللغة الانجليزية ويكونوا غير متتاليين أو متشابهين مع العلم لا يسمح باستخدام اخر رقمين سريين تم استخدامهم من قبل.
+- Escalation: No
+- CRM: Pay → Request → Customer wants to reset the Pin code
+
+**السيناريو الثاني (فشل العملية من خلال السيستم):**
+انا بعتذر لحضرتك لكن عملية الضبط فشلت من خلال السيستم وتم ارسال شكوى للقسم المختص وسيتم حلها في أقرب وقت. نوضح تفاصيل الشكوي والاسم بالكامل والرقم القرمي
+- Escalation: Yes
+- CRM: Pay → Request → Customer wants to reset the Pin code
+
+**السيناريو الثالث (في حالة حدوث Global issue):**
+بنعتذر لحضرتك لوجود بعض التحديثات على النظام القسم المختص يعمل على حل وانهاء التحديثات في أقرب وقت .
+- Escalation: No
+- CRM: Pay → Request → Customer wants to reset the Pin code
+
+ملحوظة في حالة افصاح العميل عن كلمة السر الخاصة به او كلمة السر التي يريد تعيينها لابد من مقاطعة العميل بطريقة احترافية اثناء الافصاح وابلاغه ضرورة عدم مشاركة كلمة السر مع أي شخص حتى ولو كان خدمة العملاء. ثم نقوم بإعادة ضبط كلمة السر الخاصة بالمحفظة وابلاغه بذلك."
+KB,1764,d5a1c0f289d05e558731b72c758718cd,0,Pay,Request,Non-Technical Issue,No,ok,Cst want to change his mobile number,عميل يريد تغيير رقم الهاتف المسجل بة المحفظة,yes,"Vertical: Pay | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Cst want to change his mobile number
+Question AR: عميل يريد تغيير رقم الهاتف المسجل بة المحفظة
+
+Script:
+بعتذر لحضرتك غير متاح تغيير الرقم لكن حضرتك تقدر تعمل محفظة جديدة برقم جديد
+ولو متاح اي مبلغ في المحفظة الحالية تقدر تسحبه ثم بعدها التوجه لاقرب فرع تساهيل لانشاء محفظة برقم جديد
+- Escalation: No
+- CRM: Pay → Request → Cst want to change his mobile number"
+KB,1765,41cf7af4dbed52c4863b1acd7cc0b836,0,Pay,Request,Non-Technical Issue,Yes,ok,Recycling,شكوى عميل انه لم يتم تحويل الاموال المتواجدة على المحفظة القديمة الى المحفظة الجديدة بعد تفعيلها,yes,"Vertical: Pay | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Recycling
+Question AR: شكوى عميل انه لم يتم تحويل الاموال المتواجدة على المحفظة القديمة الى المحفظة الجديدة بعد تفعيلها
+
+Script:
+سيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+سيتم التأكد من أن بيانات العميل في الرقمين متماثلتين بعد التأكد من البورتال والكشف عن الرقمين
+هيتم تقديم طلب لحضرتك للقسم المختص وهيتم تحويل الاموال في خلال 3 ايام عمل.
+وسيتم توضيح الرقم الجديد والقديم في التيكيت و نوضح تفاصيل الشكوي والاسم بالكامل والرقم القومي
+وسيكون شكل عملية اضافة الأموال على المحفظة الجديدة باسم Consumer Cash Out of us.
+- Escalation: Yes
+- CRM: Pay → Request → Recycling"
+KB,1766,505ee58785735a6c94044e1cacd0fd42,0,Pay,Request,Non-Technical Issue,No,ok,Cst wants to deactivate his wallet,عميل يريد ايقاف المحفظة,yes,"Vertical: Pay | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Cst wants to deactivate his wallet
+Question AR: عميل يريد ايقاف المحفظة
+
+Script:
+استأذنك ممكن اعرف اية السبب ؟ أحاول اساعد العميل وافهم مشكلته واشرح مميزات المحفظة
+في حالة العميل مصمم على طلبه حضرتك تقدر تدخل على موقع ميزة وتقوم بإلغاء المحفظة.
+وحضرتك ممكن تفعلها مرة اخرى عن طريق الذهاب الى فروع تساهيل
+- Escalation: No
+- CRM: Pay → Request → Cst wants to deactivate his wallet"
+KB,1768,d0e639034e9f5c7dad55209443ca36bc,0,Pay,Request,Non-Technical Issue,No,ok,CST wants to extract an account statement,عميل يريد استخراج كشف حساب,yes,"Vertical: Pay | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: CST wants to extract an account statement
+Question AR: عميل يريد استخراج كشف حساب
+
+Script:
+حضرتك تقدر تتوجه لفرع تساهيل لتقديم طلب استخراج كشف حساب.
+ونوضح أقرب فرع للعميل ومواعيد عمله الرسمية
+ومواعيد فروع تساهيل من الساعة 9 صباحاً الي ٥ مساءاً جمعة وسبت اجازة
+- Escalation: No
+- CRM: Pay → Request → CST wants to extract an account statement"
+KB,1769,9c39a83cec4b52548b4fde897363f585,0,Pay,Inquiry,Non-Technical Issue,No,ok,General Knowledge — Portal Cash Transaction Meanings,معلومات عامة — كيفية قراءة ترانزاکشن بورتال کاش,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: General Knowledge — Portal Cash Transaction Meanings
+Question AR: معلومات عامة — كيفية قراءة ترانزاکشن بورتال کاش
+
+Script:
+حالاً كاش: هي محفظة إلكترونية بالتعاون مع البنك الأهلي الكويتي مصر ABK تحت رقابة البنك المركزي
+
+كيفية قراءة ترانزاکشن بورتال کاش:
+| الاسم علي البورتال | الشرح التوضيحي |
+|---|---|
+| RECIEVE_P2P_OFF_US 002010502 CREDIT | عملية استقبال من محفظة اخري |
+| RECIEVE_P2P_ON_US 002010502 CREDIT | عملية استقبال من محفظة حالا كاش |
+| SEND_P2P_OFF_US 002010502 DEBIT | عملية تحويل من محفظة حالا كاش الي محفظة اخري |
+| SEND_P2P_ON_US 002010502 DEBIT | عملية تحويل من محفظة حالا كاش الي حالا كاش |
+| SEND_P2M_OFF_US 12345670 DEBIT Halan Bill | دفع فاتورة من تطبيق حالا |
+| SEND_P2M_OFF_US 12345670 DEBIT Tasaheel ...... | دفع قسط تساهيل |
+| SEND_P2M_OFF_US 12345670 DEBIT Halan cf | دفع قسط حالا |
+| SEND_P2M_OFF_US 12345670 DEBIT Mashroay | دفع قسط مشروعي |
+| SEND_P2M_OFF_US 12345670 DEBIT My fawry / or any app name | تحويل اموال من المحفظة الي فوري او اي ابلكيشن اخر حسب اسم الابلكيشن |
+| ATM_CASH_OUT DEBIT | سحب مبلغ من ATM |
+| ATM_CASH_IN CREDIT | ايداع مبلغ من ATM |
+| Manual Payment | شكل عملية سحب ٥ جنيه الخاصة بشكاوي السحب او الايداع من اي atm او من خلال فوري او اي ابلكيشن اخر |
+| (Consumer Cash Out of us) | شكل عملية اضافة الأموال على المحفظة الجديدة بعد تقديم recycling طلب |
+| Credit | مجموع الداخل المحفظة |
+| Debit | مجموع الخارج من المحفظة |
+- Escalation: No
+- CRM: Pay → Inquiry → General Knowledge"
+KB,1779,afa2487d859456cf8eebbc3bd6bc3aad,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about Receiving/Adding money from Instapay,عميل يستفسر عن كيفية الايداع او استقبال الاموال على الكارت عن طريق انستا باي,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Receiving/Adding money from Instapay
+Question AR: عميل يستفسر عن كيفية الايداع او استقبال الاموال على الكارت عن طريق انستا باي
+
+Script:
+[IMAGE: Screenshot of Instapay app interface showing options: Send Money To Mobile Number, Payment Address, Bank Account, Card. The Card section is active, requiring Card Number and Card Holder Name.]
+
+افتح تطبيق انستاباي واختار الكارت.
+اكتب رقم الكارت واسم العميل والمبلغ.
+ملحوظة: احنا مش بنحول من الكارت لجهة اخرى عن طريق انستاباي, لأننا مش بنربط الكارت ب انستاباي
+- Escalation: No
+- CRM: Pay → Inquiry → Inquiry about Receiving/Adding money from Instapay"
+KB,1780,28c1f6d50d4f5078a1add44d2eda8dc0,0,Pay,Inquiry,Non-Technical Issue,No,ok,How to deposit amounts on Halan Card,عميل بيستفسر عن طرق الايداع على كارت حالا,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to deposit amounts on Halan Card
+Question AR: عميل بيستفسر عن طرق الايداع على كارت حالا
+
+Script:
+[IMAGE: Screenshots of Top-up Methods inside Halan App, displaying options like Bank ATM, Fawry deposit code 46688, and Instapay transfer.]
+
+حضرتك تقدر تعمل ايداع من خلال:
+- ATM البنك العربي الافريقي وبتكون بدون رسوم
+- او من خلال انستاباي وقد يتم تطبيق مصاريف الخدمة
+- او من خلال كود فوري 46688 وقد يتم تطبيق مصاريف الخدمة
+وبيكون ظاهر لحضرتك علي تطبيق حالا طرق الايداع من خلال الدخول علي كارت حالا من التطبيق والضغط علي اضافة top up هيظهر ليك طرق الايداع علي الكارت
+
+ملحوظة: لابد من اغلاق ايقونة تفعيل الكريديت علي الكارت قبل اتمام اي عملية سحب كاش او ايداع علي الكارت حتي تتم العملية بنجاح والايقونة متواجدة في الصفحة الريئسية في تطبيق حالا
+
+في حالة سؤال العميل عن كيفية الايداع من انستابای او فوری هیتم توضيح هذه الخطوات:
+- إيداع عن طريق (Instapay): هنفتح تطبيق انستا باي من موبايلك و هنختار ""ارسال فلوس""، هنختار الطريقة ""كارت"" وهندخل رقم كارت حالا الخاص بحضرتك والاسم بالكامل والمبلغ اللي حضرتك عايز تودعه والتحويل هيتم في لحظتها. قد يتم تطبيق مصاريف خدمة
+- إيداع عن طريق (Fawry): هنتوجه لأقرب مكان يتوفر لديه خدمة فوري، اطلب منه تعمل ايداع في حساب كارت حالا الخاص بيك وكود الإيداع هو 46688، خلي الكارت معاك علشان الموظف هيسألك عنه لإتمام عملية الإيداع عن طريق ماكينة فوري (قد يتم تطبيق مصاريف خدمة)
+
+في حالة سؤال العميل عن امكانية الايداع من الفرع : هيتم التوضيح انه غير متاح
+- Escalation: No
+- CRM: Pay → Inquiry → How to deposit amounts on Halan Card"
+KB,1781,aac263fd51ab5711910b61bdf9f1dd2c,0,Pay,Inquiry,Non-Technical Issue,No,ok,How to withdraw amounts from Halan Card,عميل بيستفسر عن طرق السحب من كارت حالا,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to withdraw amounts from Halan Card
+Question AR: عميل بيستفسر عن طرق السحب من كارت حالا
+
+Script:
+[IMAGE: Screenshots of Cashout Methods in the Halan app showing ATM cashout options and Fawry cashout with code 46699.]
+
+حضرتك تقدر تعمل سحب من خلال:
+- اي ماكينة ATM بتكون 5 جنيه رسوم او من خلال ماكينة البنك العربي الافريقي بدون رسوم
+- او من خلال كود فوري 46699 وقد يتم تطبيق مصاريف الخدمة
+وبيكون ظاهر لحضرتك علي تطبيق حالا طرق السحب من خلال الدخول علي كارت حالا من التطبيق والضغط علي سحب (Withdraw) هيظهر ليك طرق السحب من علي الكارت
+
+ملحوظة: لابد من اغلاق ايقونة تفعيل الكريديت علي الكارت قبل اتمام اي عملية سحب كاش او ايداع علي الكارت حتى تتم العملية بنجاح والايقونة متواجدة في الصفحة الريئسية في تطبيق حالا
+
+في حالة سؤال العميل عن كيفية السحب من فورى هيتم توضيح هذه الخطوات:
+- سحب من خلال (Fawry): هنتوجه لأقرب مكان يتوفر لديه خدمة فوري، اطلب منه تعمل سحب من حساب كارت حالا الخاص بيك وكود السحب هو 46699، خلي الكارت معاك علشان الموظف هيسألك عنه لإتمام عملية السحب عن طريق ماكينة فوري (قد يتم تطبيق مصاريف خدمة)
+
+في حالة سؤال العميل عن امكانية السحب من الفرع : هيتم التوضيح انه غير متاح
+- Escalation: No
+- CRM: Pay → Inquiry → How to withdraw amounts from Halan Card"
+KB,1782,7c2a5565c0df593aaafe9261c96efdec,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about Withdrawing Fees,عميل يستعلم عن مصاريف السحب او الايداع او الاستعلام عن الرصيد على الكارت,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Withdrawing Fees
+Question AR: عميل يستعلم عن مصاريف السحب او الايداع او الاستعلام عن الرصيد على الكارت
+
+Script:
+مصاريف السحب من ماكينات الصراف الآلي 5 جنيه على كل سحبه يعملها من الماكينة ( ماعدا ماكينات البنك العربي الأفريقي بدون رسوم).
+او من فوري بكود 46699 قد يتم تطبيق مصاريف خدمة
+
+اما عمليات الايداع فهي تتم على ماكينات البنك العربي الافريقي بدون رسوم وايضا تظهر الماكينات التي يمكنك الإيداع من خلالها على التطبيق.
+او من فوري بكود 46688 قد يتم تطبيق مصاريف خدمة
+او من تطبيق Instapay قد يتم تطبيق مصاريف خدمة
+
+اما مصاريف الاستعلام على الرصيد من ATM فهي 1 جنيه من اي ماكينة ATM.
+- Escalation: No
+- CRM: Pay → Inquiry → Inquiry about Withdrawing Fees"
+KB,1820,7275a5978f4050c2a3c8db2fbc688e0e,0,Pay,Complain,Technical Issue,Yes,ok,Complaint Unable to deposit / Withdraw money from ATM,عميل يشكوا من عدم نجاح عمليات السحب او الايداع على ATM,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Complaint Unable to deposit / Withdraw money from ATM
+Question AR: عميل يشكوا من عدم نجاح عمليات السحب او الايداع على ATM
+
+Script:
+[IMAGE: App interface 'رصيد المشتريات' displaying dynamic details such as available balance e.g., 19,356.15 out of 20,000 EGP, alongside active installment status info and a 'Pay' button.]
+
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة على الكارت / رصيد الكارت الحالي )
+
+السيناريو الأول: في حالة عدم امكانية السحب :-
+- هتأكد من رصيد الكارت وان الرصيد اللي علي الكارت يقدر يسحبه كاش يعني يكون ( راتب مبكر / او قرض / او مبلغ هو اللي عامله ايداع / او كاشات وبيكون اسم الترانزاكشن على البورتال CF Loan ) وفي حالة شكوى العميل من عدم سحب الكريديت كاش نوضح أنه لا يمكن سحبه كاش، ولكن يوجد خدمة ""كاش إت"" وهي خدمة على أبلكيشن حالا، حضرتك بترفع فاتورة الشراء على التطبيق وبينزل لحضرتك مبلغ الفاتورة دي على الكارت تقدر تسحبه او تشتري بيه.
+- وبعد ما تأكدنا أن رصيده اللى على الكارت يقدر يسحبه كاش : ضرورة التأكيد على العميل بإدخال الرقم السري بشكل صحيح. وفي حالة الرصيد غير ظاهر ده معناه ان العميل بيكتب الباسورد غلط هيتم التوضيح ليه كيفية تعيين كلمة سر جديدة.
+- لازم نتأكد من غلق اختيار تفعيل الكريديت على الكارت علشان نقدر نسحب او نودع المبلغ من ال ATM.
+- هتأكد من رصيد الكارت وإذا كانت العملية نجحت بالفعل.
+- هتأكد من رصيد الكارت وان العميل بيسحب مبلغ مستوفي مع مصاريف الخدمة في حالة السحب من اي ماكينة غير البنك العربي الافريقي (مثال : عميل رصيده علي الكارت 5000 فقط وبيحاول يسحب 5000 فبالتالي العملية هتفشل لازم يقلل المبلغ تحسبا لمصاريف الخدمة).
+- هنسأل العميل عن الماكينة المستخدمة للاختيار في التيكت OFF US ام ON US.
+- لو مازالت المشكلة موجودة هستأذنه يجرب ماكينة اخرى مع العلم بإمكانية عدم توفر جميع فئات العملات داخل جميع الماكينات (5 - 10 - 20 - 50 - 100 - 200).
+- لو المشكلة لسة موجودة بعد مراجعة كل هذه الخطوات السابقة مع العميل : هقدم طلب للإدارة وهيتم حلها خلال 24 ساعة عمل وهستاذن حضرتك تبعتلنا صورة من العملية المرفوضة على رقم الواتس اب الخاص بحالا (20216303) مع كتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي والعملية ان وجدت. (Escalation: Yes)"
+KB,1820,c3f2fc857ef65f279bd29509f9314c5d,1,Pay,Complain,Technical Issue,Yes,ok,Complaint Unable to deposit / Withdraw money from ATM,عميل يشكوا من عدم نجاح عمليات السحب او الايداع على ATM,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Complaint Unable to deposit / Withdraw money from ATM
+Question AR: عميل يشكوا من عدم نجاح عمليات السحب او الايداع على ATM
+
+Script:
+م حلها خلال 24 ساعة عمل وهستاذن حضرتك تبعتلنا صورة من العملية المرفوضة على رقم الواتس اب الخاص بحالا (20216303) مع كتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي والعملية ان وجدت. (Escalation: Yes)
+
+السيناريو الثاني: في حالة عدم امكانية الايداع :-
+- هنأكد على العميل انه يكون بيعمل ايداع من البنك العربي الافريقي فقط وليس اي ماكينة تانية.
+- ضرورة التأكيد على العميل بإدخال الرقم السري بشكل صحيح. وفي حالة الرصيد غير ظاهر ده معناه ان العميل بيكتب الباسورد غلط هيتم التوضيح ليه كيفية تعيين كلمة سر جديدة.
+- لازم نتأكد من غلق اختيار تفعيل الكريديت على الكارت علشان نقدر نسحب او نودع المبلغ من ال ATM.
+- هتأكد من رصيد الكارت وإذا كانت العملية نجحت بالفعل.
+- لو مازالت المشكلة موجودة هستأذنه يجرب ماكينة اخرى وتكون بنك عربي افريقي فقط.
+- لو المشكلة لسة موجودة بعد مراجعة كل هذه الخطوات السابقة مع العميل: هقدم طلب للإدارة وهيتم حلها خلال 24 ساعة عمل وهستأذن حضرتك تبعتلنا صورة من العملية المرفوضة على رقم الواتس اب الخاص بحالا (+20216303) مع كتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي والعملية ان وجدت. (Escalation: Yes)
+- Escalation: Yes
+- CRM: Pay → Complain → Complaint Unable to deposit / Withdraw money from ATM"
+KB,1821,fc16b86d144c585dabafb4205c516a0e,0,Pay,Complain,Technical Issue,Yes,ok,Complaint Unable to purchase through POS/Website,عميل يشكوا من عدم نجاح عمليات الشراء عند التاجر او اونلاين (POS/Website),yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Complaint Unable to purchase through POS/Website
+Question AR: عميل يشكوا من عدم نجاح عمليات الشراء عند التاجر او اونلاين (POS/Website)
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي )
+
+السيناريو الأول: في حالة الشراء من خلال POS :
+- ضرورة التأكيد على العميل بإدخال الرقم السري بشكل صحيح. وفي حالة الرصيد غير ظاهر ده معناه ان العميل بيكتب الباسورد غلط هيتم التوضيح ليه كيفية تعيين كلمة سر جديدة.
+- هتأكد من رصيد الكارت وإذا كانت العملية نجحت بالفعل.
+- هنتأكد ان العميل مش بيستخدم ماكينات التجار المحظورين (Blacklisted Merchants (Card).xlsx)
+- هنتأكد ان العميل غير موجود بـ Suspected Outage - Google Sheets وفي حالة أنه موجود، سيتم سؤاله عن المعاملة إذا كان قد قام بها أم لا.
+  * في حالة أنه قام بها سيتم ابلاغ العميل بأنه سيتم الارسال للإدارة وفتح الكارت مرة اخرى على مدار اليوم.
+  * في حالة أنه لم يقم بها سنتبع اسكريبت (Fraud Case). وفي كل الأحوال سيتم الارسال الى التيم ليدر.
+- لازم نتأكد من فتح اختيار تفعيل الكريديت على الكارت في حالة الشراء بحالا كريديت او غلق اختيار تفعيل الكريديت على الكارت) في حالة عدم الشراء بحالا كريديت.
+- هنستأذن العميل يجرب عملية الشراء من ماكينة اخري في حالة (POS). وفي حالة عدم توافر ماكينة اخرى للتجربة سنقوم بتقديم الشكوى.
+- لو المشكلة لسة موجودة: هقدم طلب للإدارة وهيتم حلها خلال 24 ساعة عمل و هستأذن حضرتك تبعتلنا صورة من ايصال العملية المرفوضة على رقم الواتس اب الخاص بحالا (20216303) وهيتم كتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي والعميلة ان وجدت. (Escalation: Yes)"
+KB,1821,f6440f20faf55ac1828ebf91a2a87fc0,1,Pay,Complain,Technical Issue,Yes,ok,Complaint Unable to purchase through POS/Website,عميل يشكوا من عدم نجاح عمليات الشراء عند التاجر او اونلاين (POS/Website),yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Complaint Unable to purchase through POS/Website
+Question AR: عميل يشكوا من عدم نجاح عمليات الشراء عند التاجر او اونلاين (POS/Website)
+
+Script:
+ل 24 ساعة عمل و هستأذن حضرتك تبعتلنا صورة من ايصال العملية المرفوضة على رقم الواتس اب الخاص بحالا (20216303) وهيتم كتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي والعميلة ان وجدت. (Escalation: Yes)
+
+السيناريو الثاني: وفي حالة الشراء اونلاين:
+- هيتم التأكد انه بيتم الشراء من خلال موقع مصري.
+- هتأكد من رصيد الكارت وإذا كانت العملية نجحت بالفعل.
+- هنتأكد ان العميل غير موجود بـ Suspected Outage - Google Sheets وفي حالة أنه موجود، سيتم سؤاله عن المعاملة إذا كان قد قام بها أم لا.
+  * في حالة أنه قام بها سيتم ابلاغ العميل بأنه سيتم الارسال للإدارة وفتح الكارت مرة اخرى على مدار اليوم.
+  * في حالة أنه لم يقم بها سنتبع اسكريبت (Fraud Case). وفي كل الأحوال سيتم الارسال الى التيم ليدر.
+- لابد التأكد من ادخال ال OTP بصورة صحيحة ( بيوصل لحضرتك في رسالة نصية SMS على رقم الهاتف المسجل بيه كارت حالا)
+- لازم نتأكد من فتح اختيار تفعيل الكريديت على الكارت في حالة الشراء بحالا كريديت او غلق اختيار تفعيل الكريديت على الكارت) في حالة عدم الشراء بحالا كريديت.
+- ملحوظة : ( عند الشراء بكارت حالا علي تطبيق حالا بيطلب كتابة باسورد 6 ارقام الخاصة بالكارت على التطبيق وعند الشراء بكارت حالا من خلال اي موقع اونلاين داخل مصر الشراء بيتم عن طريق ارسال OTP للعميل لاتمام عملية الشراء اونلاين )
+- لو المشكلة لسة موجودة :- هقدم طلب للإدارة وهيتم حلها خلال 24 ساعة عمل وهستأذن حضرتك تبعتلنا صورة من العملية المرفوضة على رقم الواتس اب الخاص بحالا (20216303) وهيتم كتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي والعميلة ان وجدت.
+
+ملحوظة: الشراء اونلاين متاح في كل المواقع المصرية.
+- Escalation: Yes
+- CRM: Pay → Complain → Complaint Unable to purchase through POS/Website"
+KB,1828,4a5a7f3e53e7510d96e1ed8ddb5c0b3a,0,Pay,Complain,Financial Issue,Yes,ok,Complaint Didn't get money from ATM after withdrawing transaction (Successful on System),عميل يشتكي عن سحب مبلغ من على ال ATM ولم يحصل على الفلوس كلها او بعضها ؟ ( Cash out ),yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Complaint Didn't get money from ATM after withdrawing transaction (Successful on System)
+Question AR: عميل يشتكي عن سحب مبلغ من على ال ATM ولم يحصل على الفلوس كلها او بعضها ؟ ( Cash out )
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة على الكارت / رصيد الكارت الحالي)
+بعد التأكد من شكوى العميل وتحديد العملية بالتحديد القيمة واليوم:
+هنطلب من العميل ارسال الصورة الخاصة بالايصال على رقم الواتس اب الخاص بحالا (20216303)
+يتم تسجيل شكوى للعميل بالبيانات التالية:
+اسم العميل، رقم البطاقة، واخر 4 ارقام من اليمين ف الكارت، ورقم الماكينة واضافة العملية في التيكيت.
+
+| Transaction Type | ON US (البنك العربي الأفريقي) | OFF US (أي ماكينة اخرى) |
+| :--- | :--- | :--- |
+| ATM | 15 يوم عمل | 15 يوم عمل |
+
+بنعتذر لحضرتك عن الموقف دا والمبلغ هيرجع لحضرتك على الكارت بعد المراجعة.
+- Escalation: Yes
+- CRM: Pay → Complain → Complaint Didn't get money from ATM after withdrawing transaction (Successful on System)"
+KB,1829,440e546171bf58348f23343e7b0cb4db,0,Pay,Complain,Financial Issue,Yes,ok,Didn't get money after withdrawing transaction (POS/Online),عميل يشتكي عن سحب مبلغ من POS وقت الشراء من التاجر والمبلغ لم يصل للتاجر (نجحت على البورتال) او شراء أونلاين والعملية فشلت واتخصمت,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Didn't get money after withdrawing transaction (POS/Online)
+Question AR: عميل يشتكي عن سحب مبلغ من POS وقت الشراء من التاجر والمبلغ لم يصل للتاجر (نجحت على البورتال) او شراء أونلاين والعملية فشلت واتخصمت
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب على العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي)
+بعد التأكد من شكوى العميل وتحديد العملية بالتحديد القيمة واليوم:
+هنطلب من العميل ارسال الصورة الخاصة بالايصال (POS) او اسكرين شوت من المعاملة (Online) على رقم الواتس اب الخاص بحالا (20216303) مع كتابة الرقم المرسل منه الايصال في التيكيت...
+
+يتم تسجيل شكوى للعميل بالبيانات التالية:
+الاسم بالكامل والرقم القومي مع اضافة العملية في التيكيت وكتابة الرقم المرسل منه الايصال على الواتساب.
+
+| Transaction Type | SLA |
+| :--- | :--- |
+| Online / POS | في حالة ارسال حضرتك للإيصال خلال 24 ساعة عمل فسيتم حل المشكلة خلال 15 يوم عمل. وفي حالة عدم ارسال الايصال خلال 24 ساعة عمل فسيتم حل المشكلة خلال 35 يوم عمل. |
+
+واحنا هنحاول حل المشكلة في أسرع وقت وبمجرد ما ييجي الرد هنتواصل بحضرتك.
+
+في حالة ان العملية Credit on Card سيتم ابلاغ العميل:
+بمجرد رجوع المبلغ على الكارت سيتم تقديم طلب وسحب المبلغ من الكارت حتى يتم رجوع المبلغ على حالا كريديت الخاص بك وإلغاء القسط.
+
+ملحوظة في حالة ان العميل يستفسر عن دفع القسط أم لا، سيتم التوضيح بأنه يجب دفع الأقساط تجنبا لأي مشاكل تخص ال IScore الخاص بحضرتك. وبعد حل المشكلة سيتم التوضيح لحضرتك طريقة رجوع القسط المدفوع.
+- Escalation: Yes
+- CRM: Pay → Complain → Didn't get money after withdrawing transaction (POS/Online)"
+KB,1831,642fb60b26835200bbea99b5c49f4d2a,0,Pay,Complain,Financial Issue,Yes,ok,Complaint Amount not reflected on customer account after depositing money,عميل يشتكي من ال ATM او اثناء POS عملية الايداع قامت بأخذ المبلغ ولم تدخل في حساب الكارت ( Cash in ),yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Complaint Amount not reflected on customer account after depositing money
+Question AR: عميل يشتكي من ال ATM او اثناء POS عملية الايداع قامت بأخذ المبلغ ولم تدخل في حساب الكارت ( Cash in )
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة على الكارت / رصيد الكارت الحالي)
+بعد التأكد من شكوى العميل وتحديد العملية والقيمة والتاريخ:
+هنطلب من العميل ارسال الصورة الخاصة بالايصال (ضروري) على رقم الواتس اب الخاص بحالا (20216303)
+يتم تسجيل شكوى للعميل واضافة العملية وقيمتها وتوقيتها ورقم الماكينة (ضروري) في التيكيت والاسم بالكامل والرقم القومي.
+
+| Transaction Type | ON US (البنك العربي الافريقي) | OFF US (أي ماكينة اخرى) |
+| :--- | :--- | :--- |
+| ATM | 6 أيام عمل | للأسف ملهاش وقت محدد بسبب ان عملية الايداع تمت من ماكينة غير العربي الأفريقي، فإحنا بنبعت الشكوى وبننتظر الرد. |
+| POS | بعتذر لحضرتك وسيتم حلها في أقرب وقت واحنا هنحاول حل المشكلة في أسرع وقت وبمجرّد ما ييجي الرد هنتواصل بحضرتك. | - |
+- Escalation: Yes
+- CRM: Pay → Complain → Complaint Amount not reflected on customer account after depositing money"
+KB,1832,ba7f14e6cf6e56c288895c68e1eacc82,0,Pay,Complain,Financial Issue,No,ok,Complaint Amount not reflected on customer account after depositing money (POS Refund),عميل يشتكي من عدم ايداع المبلغ على الكارت من خلال التاجر وخروجه من عند التاجر اثناء استرجاع منتج عدم رجوع المبلغ من التاجر لكارت حالا وقت عملية ال Refund,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: No
+
+Question EN: Complaint Amount not reflected on customer account after depositing money (POS Refund)
+Question AR: عميل يشتكي من عدم ايداع المبلغ على الكارت من خلال التاجر وخروجه من عند التاجر اثناء استرجاع منتج عدم رجوع المبلغ من التاجر لكارت حالا وقت عملية ال Refund
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومى ويكون متواصل من نفس الرقم اما الاتي فيجب على العميل الاجابة على 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي)
+المعرفة من العميل قيمة المبلغ وتاريخ الاسترجاع المراجعة عمليات البورتال.
+
+السيناريو الأول: في حالة عدم رجوع المبلغ (قبل تخطي 15 يوم عمل):
+أنا بعتذر لحضرتك، ولكن حضرتك هتنتظر 15 يوم عمل ولو المبلغ مرجعش لحضرتك تقدر تكلمنا وسنقوم بعمل شكوى. ملحوظة لابد من اخبارها للعميل في حالة ان العملية كانت (Credit on Card) سيتم ابلاغ العميل بضرورة التواصل معنا بعد رجوع المبلغ لتقديم طلب لإلغاء القرض (Request to refund). (Escalation: No)
+
+السيناريو الثاني: في حالة تخطى ال 15 يوم عمل من وقت ال Refund من التاجر:
+بعد التأكد من شكوى العميل وأن المبلغ لم يدخل في حساب الكارت وقد تخطى 15 يوم عمل من تاريخ الـ Refund: نطلب من العميل ارسال الايصال (ضروري) حتى يتم عمل شكوى على رقم الواتس اب الخاص بحالا (20216303). يتم اضافة القيمة والوقت واضافة العملية في التيكيت (إن وجدت) ورقم الواتساب الخاص بالعميل الذي سيقوم بإرسال الايصال منه والاسم بالكامل والرقم القومي. أنا بعتذر لحضرتك، ولكن سيتم تقديم شكوى خلال ساعتين من الوقت اللي حضرتك هتبعت لنا الايصال فيه على الواتساب، وهيعيجي لحضرتك رسالة برقم الشكوى المقدمة. ومدة العمل على الشكوى 20 يوم عمل. (Escalation: No)
+
+| Transaction Type | SLA |
+| :--- | :--- |
+| POS | 20 يوم عمل وانا بعتذر لحضرتك لأن المدة دي محددة من جهة البنك المركزي، ولكن احنا هنحاول حل المشكلة في أسرع وقت وبموجرد ما ييجي الرد هنتواصل بحضرتك. |
+
+ملحوظة: في حالة ان العميل يستفسر عن دفع القسط أم لا، سيتم التوضيح بأنه يجب دفع الأقساط تجنبا لأي مشاكل تخص ال Score الخاص بحضرتك. وبعد حل المشكلة سيتم التوضيح لحضرتك طريقة رجوع القسط المدفوع.
+- Escalation: No
+- CRM: Pay → Complain → Complaint Amount not reflected on customer account after depositing money (POS Refund)"
+KB,1833,2db1e16195af5683adb30103e97ff82d,0,Pay,Complain,Financial Issue,Yes,ok,Complaint Amount not reflected on customer account after depositing money (InstaPay),عميل يشتكي من عدم ايداع المبلغ على الكارت من خلال Instapay وخصمه من حسابه البنكي,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Complaint Amount not reflected on customer account after depositing money (InstaPay)
+Question AR: عميل يشتكي من عدم ايداع المبلغ على الكارت من خلال Instapay وخصمه من حسابه البنكي
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة على الكارت / رصيد الكارت الحالي)
+بعد التأكد من شكوى العميل وأن المبلغ لم يدخل في حساب الكارت:
+هنطلب من العميل ارسال الصورة الخاصة بالتحويل من انستاباي على رقم الواتس اب الخاص بحالا (20216303)
+يتم تسجيل شكوى للعميل واضافة القيمة والوقت واضافة العملية في التيكيت (إن وجدت) والاسم بالكامل والرقم القومي.
+
+| Transaction Type | SLA |
+| :--- | :--- |
+| InstaPay | 6 أيام عمل وبمجرد ما ييجى الرد هنتواصل بحضرتك |
+- Escalation: Yes
+- CRM: Pay → Complain → Complaint Amount not reflected on customer account after depositing money (InstaPay)"
+KB,1834,35cf3bc6bb415df5b48a83e31aba259d,0,Pay,Complain,Financial Issue,Yes,ok,Complaint Money Deducted from Halan card Without Valid Reason,عميل يشتكي عن عمليه تم خصمها من الحساب بدون سبب,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Complaint Money Deducted from Halan card Without Valid Reason
+Question AR: عميل يشتكي عن عمليه تم خصمها من الحساب بدون سبب
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب على العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي)
+يتم مراجعة العمليات الموجودة على الحساب.
+تسجيل شكوى فيها اسم العميل، رقم البطاقة، اخر 4 ارقام من اليمين في الكارت المبلغ الخاص بالخصم. يتم تسجيل شكوى للعميل ويجب اضافة العملية في التيكيت.
+سيتم تقديم شكوى لحضرتك وحلها خلال 24 ساعة عمل.
+
+ملحوظة في حالة خصم حالا كريديت من التطبيق والكارت معا اثناء التحويل.. هنعتذر للعميل وسيتم حل المشكلة خلال 24 ساعة عمل.
+أيضا في حالة خصم حالا كريديت اثناء رجوعه من الكارت الى التطبيق معا اثناء التحويل... هنعتذر للعميل وسيتم حل المشكلة خلال 24 ساعة عمل مع اضافة العملية من البورتال في التيكيت.
+- Escalation: Yes
+- CRM: Pay → Complain → Complaint Money Deducted from Halan card Without Valid Reason"
+KB,1844,ae1a3ad1b0cd5958a70f160624d0cabe,0,Pay,Request,Financial Issue,No,ok,Request to refund an amount for product (Not CF),عميل يريد استرجاع مبلغ عملية قد قام بها عند التاجر من خلال كارت حالا من مبلغ غير حالا كريديت,yes,"Vertical: Pay | Type: Request | Issue: Financial Issue | Escalation: No
+
+Question EN: Request to refund an amount for product (Not CF)
+Question AR: عميل يريد استرجاع مبلغ عملية قد قام بها عند التاجر من خلال كارت حالا من مبلغ غير حالا كريديت
+
+Script:
+في حالة الشراء بدون حالا كريديت والعميل بيسأل عن اجراءات الاسترجاع:
+حضرتك تقدر ترجع المنتج وفقا لسياسة الاستبدال والاسترجاع والمبلغ هينزل لحضرتك على الكارت. و بتتوجه للتاجر علشان ترجعله المنتج، والتاجر بيرجع مبلغ المنتج لحضرتك على الكارت خلال 15 يوم عمل من خلال مكنة POS الخاصة به وبيسلم حضرتك وصل بإرجاع المبلغ على الكارت. (Escalation: No)
+
+في حالة ان العميل يقوم باسترجاع منتج والمبلغ خرج من عند التاجر لكن لم يصل للكارت سنقوم بتقديم شكوى: (Complaint Amount not reflected on customer account after depositing money (POS Refund)).
+- Escalation: No
+- CRM: Pay → Request → Request to refund an amount for product (Not CF)"
+KB,373,72fa089ee92b5cfea90e36b90d715346,0,Pay,Complain,Non-Technical Issue,No,ok,"Wallet issue , Fraud case","شكوى عميل بأنه تعرض لعملية نصب , استفسار عميل عن سبب ايقاف حسابه",yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Wallet issue , Fraud case
+Question AR: شكوى عميل بأنه تعرض لعملية نصب , استفسار عميل عن سبب ايقاف حسابه
+
+Script:
+* شكوى عميل بأنه تعرض لعملية نصب - استفسار عميل عن سبب ايقاف حسابه
+Pay <- Complaint <- Financial <- Wallet issue :Fraud case
+Escalation: No
+(Ctrl) -
+في حالة عميل استقبل مكالمة من شخص محتال /نصاب وطلب منه عمل ايداع لشركة حالا وبالفعل قام بعمل ايداع وأبلغه
+العميل بكود التفعيل الخاص به .
+انا بعتذر لحضرتك جدا على الموقف اللي حضرتك اتعرضتله بس حابب اوضح لحضرتك مشاركة كود التفعيل الخاص بك مع اى شخص اخرممكن تعرض حضرتك لعمليات نصب حيث يعتبر الكود سرى جدا وخاص بحضرتك فقط ولا يجب مشاركته مع اى حد.
+حضرتك ممكن من خلال التطبيق تعرف كل المعاملات المالية اللى تمت.
+لو المبلغ مازال موجود في محفظة العميل والعميل بيتواصل معنا من نفس الرقم: سيتم غلق الحساب وبعد فترة ممكن حضرتك تشرفنا بالاتصال مرة اخري لفتح الحساب حتى نتمكن من الحفاظ على مبلغ حضرتك وتقدر تستخدم المبلغ في أي خدمة دفع متاحة على التطبيق. ( لازم العميل بيكون بيكلمنا من نفس الرقم)."
+KB,374,548398f2000d5ccd8e714600d565269c,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about How to pay installment using credit or debit card,استفسار بخصوص تفاصيل وحالة أخر عملية دفع من خلال بطاقة الائتمان,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about How to pay installment using credit or debit card
+Question AR: استفسار بخصوص تفاصيل وحالة أخر عملية دفع من خلال بطاقة الائتمان
+
+Script:
+* استفسار بخصوص تفاصيل وحالة أخر عملية دفع من خلال بطاقة الائتمان:
+Pay <- Inquiry <- Inquiry about How to pay installment using credit or debit card
+يمكنك الدخول على المعاملات السابقة من خلال التطبيق
+وفي حالة اصرار العميل على معرفة المعاملة السابقة : سيتم توضيح التفاصيل. "" ولابد من تواصل العميل بنفس الرقم المسجل به ""
+نقوم ب اختيار بطاقة الائتمان من خلال ال Admin Tool مع نوع المعاملة CF بالتقسيط لمعرفة المعاملات التي قام بها المستخدم لدفع أقساطه باستخدام بطاقة الائتمان هي:"
+KB,375,ecb8909abc4453e4aff8eb92b410cb70,0,Pay,Complain,Non-Technical Issue,No,ok,Credit or Debit payment Failed,شكوى العميل بخصوص فشل عمليه دفع ببطاقة الائتمان,yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Credit or Debit payment Failed
+Question AR: شكوى العميل بخصوص فشل عمليه دفع ببطاقة الائتمان
+
+Script:
+شكوى العميل بخصوص فشل عملية دفع ببطاقة الائتمان
+Pay <- Complaint <- Technical <- Credit or Debit payment Failed
+يعتذر لحضرتك على المشكلة , هقوم بمراجعة الحساب الخاص بيك لمعرفة سبب المشكلة
+ولابد من تواصل العميل بنفس الرقم المسجل به
+نقوم ب اختيار بطاقة الائتمان من خلال ال Admin Tool مع نوع المعاملة CF بالتقسيط لمعرفة المعاملات التي قام بها المستخدم لدفع أقساطه باستخدام بطاقة الائتمان هي:
+فشل الدفع (Payment Failed): فشل الدفع ببطاقة الائتمان ولم يتم تسوية القسط
+- واضح من خلالى يا فندم أن للأسف عملية الدفع فشلت وبالتالى ما ظهرتش في الحساب الخاص بحضرتك ، برجاء إعادة المحاولة مرة أخري من خلال التطبيق""
+فشلت التسوية (Settlement Failed): نجحت عملية الدفع ببطاقة الائتمان، ولكن لم يتم إجراء التسوية
+-""واضح من خلالى يا فندم أن عملية الدفع بالبطاقة نجحت بس ما حصلش تسوية على الحساب هيتم عمل شكوي لحضرتك وحلها فى خلال 24 ساعه""
+نجحت التسوية (Settlement Success): نجحت عملية الدفع ببطاقة الائتمان وتم إجراء التسوية -""واضح من خلالى يا فندم أن عملية الدفع ببطاقة الائتمان نجحت وان عملية التسوية على الحساب تمت بشكل سليم»
+رد عملية الدفع ببطاقة الائتمان (Payment Refunded): تم الدفع بنجاح ثم تم ردها لبطاقة الائتمان بنجاح
+-""واضح من خلالى يا فندم أن عملية الدفع ببطاقة الائتمان نجحت وان رد المبلغ للبطاقة تم بشكل سليم""
+فشل استرداد المبلغ (Refund Failed): نجحت عملية الدفع ببطاقة الائتمان وتم ردها للبطاقة، ولكن حدث فشل في الاسترداد.
+-""واضح من خلالى يا فندم أن عملية الدفع ببطاقة الائتمان نجحت وان رد المبلغ للبطاقة للأسف فشل وبالتالي هقدم لحضرتك شكوى للقسم المختص وهيتم الرد بحلها فى خلال 24ساعه ""
+Action Log
+Transaction History
+GE
+Transaction Type* CF Installments
+Payment Method ""
+End Date"" 11/20/2023
+Transaction
+Payment Miershod
+Hobile Number
+Statur
+Amount
+Fees
+Amount
+Transaction Date
+Trermaction Refrence
+Start Date 11/01/2023
+Credit Card
+Transaction
+0-0 of 0
+Rows per page: 10w"
+KB,376,8bc8ede48b375a418282a1c596baf0b6,0,Pay,Complain,Non-Technical Issue,No,ok,failed transaction-cst side issue,استفسار عميل عن عدم إتمام أي من خدمات دفع حالا,yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: failed transaction-cst side issue
+Question AR: استفسار عميل عن عدم إتمام أي من خدمات دفع حالا
+
+Script:
+* استفسار عميل عن عدم إتمام أى من خدمات دفع حالا
+Pay <- Complaint <- Financial <- failed transaction-cst side issue Escalation: No
+• في حالة رصيد العميل لا يكفي لإتمام العملية: بعتذر جدا لحضرتك واضح قدامى رصيدك في المحفظة لا يكفي لإتمام العملية.
+• في حالة عميل يدخل البيانات المطلوبة بشكل خطأ: استأذنك تتدخل البيانات المطلوبة بشكل صحيح مثل رقم الاشتراك ورقم الموبايل ولا يتم التوضيح الرقم للعميل إلا إذا كان متصل من نفس الرقم.
+*الحد الشهرى والحد اليومى :
+لا يوجد حد شهري او یومي لدفع الفواتیر."
+KB,379,8059cc5f6162538693dd787672474815,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about previous Transaction,عميل يستفسر عن معاملة سابقة قام بها,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about previous Transaction
+Question AR: عميل يستفسر عن معاملة سابقة قام بها
+
+Script:
+*
+عميل يستفسر عن معاملة سابقة قام بها:
+Pay <- Inquiry <- How to check previous Transaction
+يمكنك الدخول على المعاملات السابقة من خلال التطبيق
+وفي حالة اصرار العميل على معرفة المعاملة السابقة :
+سيتم التوضيح له التفاصيل
+"" ولابد من تواصل العميل بنفس الرقم المسجل به ""
+= حالا
+0.0 *
+Radwan
+01063325515
+بيانات حسابي
+<
+٥ محفظتي
+٥٥ المعاملات السابقة <
+٧
+٣ طلباني السابقة
+<
+العناوين المسجلة
+الإعدادات
+8 تعديل بياناتي الشخصية <
+٢ الشروط والأحكام
+<
+لغة التطبيق
+<"
+KB,384,dc86cffe6a8a51089f043e12c47b7c0b,0,Pay,Complain,Non-Technical Issue,Yes,ok,Salary lending service is disable,شكوى أخصائي من ايقاف خدمة الراتب المبكر,yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Salary lending service is disable
+Question AR: شكوى أخصائي من ايقاف خدمة الراتب المبكر
+
+Script:
+شكوى أخصائى من ايقاف خدمة الراتب المبكر: *
+Pay <- Complaint <- Non-Technical <- Salary lending service is disable
+-Escalation:No
+حل المشكلة عن طريق الرجوع الي قسم الموارد البشريه الخاصه بشركته."
+KB,387,fee77a8df26051f5a465486e36c9c1e0,0,Pay,Inquiry,Non-Technical Issue,No,ok,How to pay a bill,أخصائي يستفسر عن كيفية دفع فاتورة,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to pay a bill
+Question AR: أخصائي يستفسر عن كيفية دفع فاتورة
+
+Script:
+* أخصائى يستفسر عن كيفية دفع فاتورة
+Pay <- Inquiry <- How to pay a bill
+فى حالة ان الأخصائى لم ينشئ حساب في حالا: استأذنك تنزل التطبيق وحضرتك تقدر تشحن فاتورة من خلاله
+شحن اتصالات
+٨
+٨
+موبايل وإنترنت
+٨
+ـحالا
+استخدم رقمي المسجل
+فيتذ إنترنت
+ارضوماك خدمات الدفع
+في 01112235540
+موبايل
+فتة مجال والكليات
+(٢) طاعات طبية
+المالات
+١٦ خط أرضى
+خدمات الدفع
+فاتورة اتصالات
+مشور ماد عروض من خالد
+عبى لكل؟
+شحن اتصالات
+البالى الضريبة
+طائلة فييتي الجميلة سعلت LE٥ مشتر
+4140 جيد الجسدية
+شحن الصالات ٨
+تفاصيل الفاتورة
+وراء درازعة التفاصيل التالية قبل الاستعراض
+شحن الحالات
+D
+رقم المجان
+سا جليه
+الشاعر الغراء القمة
+محفظة حاط
+طريقة المشي
+البيت العملية رقم: 503719529756 بواسريع في داخلي
+نظيف الخطة
+سط جنيه
+تمر الدفع من خلال
+طريقة الدفع
+محفظة ماط
+ثم
+ثم إضافة 5 قرعة على عمله الحياة صالحة لمدة ٥ أيام كلم
+تفاصيل الفاتورة
+لقاء مرجمة المستحيل التالية قبل السعدي
+31
+سكر ويحكت
+● رقم اخر
+الحالات"
+KB,388,8d490eebeeb0504d8361f7c7f5ff588f,0,Pay,Inquiry,Non-Technical Issue,No,ok,How to check the previous transactions,أخصائي يستفسر عن كيفية الدخول على المعاملات السابقة,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to check the previous transactions
+Question AR: أخصائي يستفسر عن كيفية الدخول على المعاملات السابقة
+
+Script:
+* أخصائى يستفسر عن كيفية الدخول على المعاملات السابقة
+Pay <- Inquiry <- How to check the previous transactions
+يمكنك الدخول على المعاملات السابقة من خلال
+= حالا
+0.0 *
+Radwan
+01063325515
+بيانات حسابي
+<
+٥ محفظتي
+50 المعاملات السابقة <
+٣ طلباني السابقة
+العناوين المسجلة
+<
+الإعدادات
+8 تعديل بياناتي الشخصية <
+® الشروط والأحكام
+<
+لغة التطبيق
+٧"
+KB,389,58636917368b556d8f2d56dae5e8baf7,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about the LO bill payment service process,أخصائي يستفسر عن خدمة شحن الفواتير من خلال برنامج الأخصائي,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about the LO bill payment service process
+Question AR: أخصائي يستفسر عن خدمة شحن الفواتير من خلال برنامج الأخصائي
+
+Script:
+* أخصائى يستفسر عن خدمة شحن الفواتير من خلال برنامج الأخصائي
+Pay <- Inquiry <- Inquiry about the LO bill payment service process
+* حضرتك بتحمل تطبيق حالاً وإنشاء حساب جديد. وحضرتك بتتدفع فاتورة أو بتشحن رصيد لتجربة الخدمة.
+حضرتك بتعرف المبلغ الذى تقوم بتسديده عندما تجد الرصيد اقل من ١٥٠٠ وهو ما يجب عليك تسديده بالكامل للصراف ويمكنك إستعمال الخدمة إلى أن يصل الحساب الى 0 أول ما يتم سداد المبلغ للصراف سيتم رجوع الرصيد إلى ١٥٠٠.
+* اذا لم يتم التسديد الفوري، سيتم خصم المبلغ بالكامل من مرتبك الشهر القادم + المصاريف الإدارية لذلك يجب عمل تسوية مع الصراف كل ٣ أيام عمل.
+؟ تستطيع حضرتك القيام بعدد لانهائي من عمليات الشحن طالما يقوم بالتسديد أول بأول.
+العمولة بتنزل يوم 5 من كل شهر عند تحقيق مستهدف 2000 جنيه. وبتنزل لحضرتك على التطبيق فيمكن الاستفادة منها لشحن أكترو العمولة تحتسب 20 % من تكاليف الخدمة. وهي متغيرة من خدمة لأخرى."
+KB,390,4ec7c3f52bd6523da605e6632defde26,0,Pay,Request,Non-Technical Issue,Yes,ok,Wants to Activate the LO bill payment service,أخصائي يريد تفعيل  تنشيط خدمة شحن الفواتير من خلال برنامج الأخصائي,yes,"Vertical: Pay | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Wants to Activate the LO bill payment service
+Question AR: أخصائي يريد تفعيل  تنشيط خدمة شحن الفواتير من خلال برنامج الأخصائي
+
+Script:
+* أخصائى يريد تفعيل / تنشيط خدمة شحن الفواتير من خلال برنامج الأخصائى
+Pay <- Request <- Wants to Activate the LO bill payment service
+Escalation:Yes
+تم تقديم طلب حضرتك وسيتم تفعيل الخدمة في أقرب وقت ممكن."
+KB,391,8b8a62f994ee582682a9fe5b5c960300,0,Pay,Request,Non-Technical Issue,No,ok,Wants to deactivate the LO bill payment service,أخصائي يريد إيقاف خدمة شحن الفواتير من خلال برنامج الأخصائي,yes,"Vertical: Pay | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Wants to deactivate the LO bill payment service
+Question AR: أخصائي يريد إيقاف خدمة شحن الفواتير من خلال برنامج الأخصائي
+
+Script:
+* أخصائى يريد إيقاف خدمة شحن الفواتير من خلال برنامج الأخصائى
+Pay <- Request <- Wants to deactivate the LO bill payment service
+-Escalation:No
+ممكن اعرف هل في أي مشكلة بتقابل حضرتك؟ (هيتم مساعدة العميل)
+حضرتك مش محتاج تلغى الخدمة لانى الخدمة مجانا ولما تحتاج تستخدمها هتكون متاحة للاستخدام."
+KB,393,be3a29f8c7a85389a9e943bd71a1a89c,0,Pay,Request,Non-Technical Issue,Yes,ok,Wants to Activate the LO bill payment service,صراف يريد تفعيل  تنشيط خدمة شحن الفواتير,yes,"Vertical: Pay | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Wants to Activate the LO bill payment service
+Question AR: صراف يريد تفعيل  تنشيط خدمة شحن الفواتير
+
+Script:
+* صراف يريد تفعيل / تنشيط خدمة شحن الفواتير
+Pay <- Request <- Wants to Activate the LO bill payment service
+Escalation:Yes
+تم تقديم طلب ولو في امكانية سيتم تفعيل - تنشيط الخدمة في خلال 48 ساعة عمل ."
+KB,394,1a4f8b1f98a25f74b58e5adb5d35dd12,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about the LO bill payment service process,صراف يستفسر عن خدمة شحن الفواتير من خلال برنامج الأخصائي,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about the LO bill payment service process
+Question AR: صراف يستفسر عن خدمة شحن الفواتير من خلال برنامج الأخصائي
+
+Script:
+* صراف يستفسر عن خدمة شحن الفواتير من خلال برنامج الأخصائى
+Pay <- Inquiry <- Inquiry about the LO bill payment service process
+* حضرتك بتحمل تطبيق حالاً وإنشاء حساب جديد.
+* ستجد خدمة تحويل الأموال إلى هتخليك تعرف تحول رصيد للأخصائيين إلى بيوردها في الفرع وتسليمها لك.
+* يجب أن تقوم بمتابعة الرصيد السالب للأخصائيين فى فرعك وحتهم على التسديد أول بأول والعمولة حضرتك بتحتسب مع التوريد المعتاد الخاص بتساهيل.
+* عليك التوجه إلى البنك لتوريد المبلغ كامل لحساب تساهيل وترسل صورة الإيصال المحاسبى شركة تساهيل زي ما بتورد فلوس تساهيل وتُخطر انها فلوس حالاً لان إذا لم يتم التسديد الفوري، سيتم خصم المبلغ بالكامل من مرتبك الشهر القادم + المصاريف الإدارية.
+*كيفية استخدام خدمة التحويل المالي:
+عند أول إستخدام للتحويل، سيتطلب خلق رقم سري، بعد ذلك سيستخدم هذا الرقم في أي تحويل
+سيدي
+تحويل مالي
+تحويل مالي
+الصر التحويق بنوكر
+تحويلمالى
+-----
+ـحاف الوسط اله
+اجمال كود الأمان لتنفيذ التحويق شطب المتر المصرية
+عم الواق السؤال
+ارسال السجال
+3
+العين وحق الأعلى
+تعيين وحض الأعلى
+تعيين رمز الأمان
+تأكيد رمز الأمان
+قرص من ٢ الكار المارة الملك
+ادخل الكود المرسل اليك بواجمال عبد الباده الحبيب الى كم بدايات الصدر
+ارسال الاموال
+000000
+1
+تويمن الباد عبد الحبة تحديد
+ايسل الحب
+٠٠
+خدمات الدفع
+عين رمز الأعان الخاص بك سوف يقع أبطال الود فى الى كر معاك السط الصا فى :٥٠
+P"
+KB,398,de127ba833965d378bdf1e8dd5b4f034,0,Pay,Inquiry,Non-Technical Issue,Yes,ok,How to check the previous transactions,أخصائي لا يستطيع الدخول على المعاملات السابقة,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: How to check the previous transactions
+Question AR: أخصائي لا يستطيع الدخول على المعاملات السابقة
+
+Script:
+* أخصائى لا يستطيع الدخول على المعاملات السابقة:
+Pay -> Inquiry -> How to check the previous transactions
+اخصائي لا يستطيع الدخول علي المعاملات السابقة
+- ممكن تسجل خروج من التطبيق وتسجل دخول مره تانية - ممكن تحدث التطبيق
+لو المشكلة اتحلت (NO)
+لو المشكلة لسه موجودة (Yes)"
+KB,399,db1629e16b685dfa821da62c539d5772,0,Pay,Complain,Financial Issue,Yes,ok,Specialist paid a bill and the bill hasnt paid,أخصائي قام بدفع الفاتورة ولم يتم دفع الفاتورة,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Specialist paid a bill and the bill hasnt paid
+Question AR: أخصائي قام بدفع الفاتورة ولم يتم دفع الفاتورة
+
+Script:
+*أخصائى قام بدفع الفاتورة ولم يتم دفع الفاتورة:
+Pay -> Complaint -> Financial -> Specialist paid a bill and the bill hasn't paid
+أخصائي قام بدفع الفاتورة ولم يتم دفعها
+Admin Tool
+لو العملية Failed بوضح للأخصائي يرجع للشركة علشان يتأكد أدفعت اولا
+لو العملية Success بوضح للأخصائي يرجع للشركة
+Pending يضغط عليها
+لو نجحت (NO)
+لو فشلت (Yes)
+لو بقت Success ببلغ العميل ان العملية تمت بنجاح
+لو مازالت Pending
+لو نجحت (NO)
+لو فشلت (Yes)
+(NO)
+(Yes)
+لو العملية مش ظهرالي علي Admin Tool بوضح للعميل يبعت اسكرين علي رقم الواتساب 01556003709 وبقدم طلب للعميل (Yes)"
+KB,401,9553d73b6fe45b25908eafe5be5926c7,0,Pay,Complain,Technical Issue,No,ok,Cant pay a bill,أخصائي لا يستطيع دفع فاتورة,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: Cant pay a bill
+Question AR: أخصائي لا يستطيع دفع فاتورة
+
+Script:
+* أخصائى لا يستطيع دفع فاتورة:
+Pay -> Complaint -> Technical -> Can't pay a bill
+أخصائي لا يستطيع دفع الفاتورة
+لو مشكلة خاصة بالعميل
+لو مشكلة عامة
+بتأكد ان المبلغ اللي في المحفظة مع العميل كافي لدفع الفاتورة
+Yes
+لو المبلغ کافي ومفیش مشكلة في فوري
+لو المبلغ غير كافي
+بوضح للعميل يجرب مرة تانية من مكان تاني
+بوضح للعميل ان المبلغ غير كافي
+NO
+NO"
+KB,403,469def15834050d884b712e0dad63838,0,Pay,Complain,Financial Issue,Yes,ok,Amount deducted from his wallet and didnt transfer to LO wallet,صراف يشكو ان تم خصم المبلغ من المحفظة ولم يتم تحويل المبلغ الى محفظة الأخصائي,yes,"Vertical: Pay | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Amount deducted from his wallet and didnt transfer to LO wallet
+Question AR: صراف يشكو ان تم خصم المبلغ من المحفظة ولم يتم تحويل المبلغ الى محفظة الأخصائي
+
+Script:
+* صراف يشكو ان تم خصم المبلغ من المحفظة ولم يتم تحويل المبلغ الى محفظة الأخصائى:
+Pay -> Complaint -> Financial -> Amount deducted from his wallet and didn't transfer to LO wallet
+صراف يشكوان تم خصم الاموال من محفظة ولم يتم تحويلها الي محفظة الأخصائي
+لو الفلوس اتحولت
+بوضح للصراف يرجع للأخصائي يتأكد الفلوس اتحولت او لا
+لو الفلوس متحولتش
+(NO)
+(Yes)
+لو العملية مش ظهرالي علي بقدم طلب Admin Tool للعميل
+(Yes)"
+KB,404,edffe85a9f74501aaafe49fc86fadae5,0,Pay,Complain,Technical Issue,No,ok,Transfer Money icon didnt appear,صراف يشكو ان ايقونة التحويل المالي لم تظهر على التطبيق,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: Transfer Money icon didnt appear
+Question AR: صراف يشكو ان ايقونة التحويل المالي لم تظهر على التطبيق
+
+Script:
+*صراف يشكو ان ايقونة التحويل المالي لم تظهر على التطبيق:
+Pay <- Complaint <- Technical <- Transfer Money icon didn't appear
+صراف يشكو ان ايقونه التحويل المالي لم تظهر علي التطبيق
+- حضرتك ممكن تشجل خروج وبعدين تسجل دخو مرة تانية - حضرتك ممكن تحدث التطبيق
+لو المشكلة اتحلت (NO)
+لو المشكلة لسه موجودة (Yes)"
+KB,405,5bfc3a7249bf5938b8b05a99051b7d95,0,Pay,Request,Technical Issue,No,ok,Wants to reset the pin code,صراف يريد إعادة تعيين رمز الامان,yes,"Vertical: Pay | Type: Request | Issue: Technical Issue | Escalation: No
+
+Question EN: Wants to reset the pin code
+Question AR: صراف يريد إعادة تعيين رمز الامان
+
+Script:
+صراف يريد إعادة تعيين رمز الامان :
+Pay -> Request -> Wants to reset the pin code
+Escalation :No
+حضرتك تستطيع عمل إعادة تعيين رمز الامان من خلال التطبيق عن طريق الدخول على:|
+ادخل الكود المرسل اليك تم إرسال كود إعادة التعيين الى رقم موبايلك المسخل في حالا 01287182366
+اكتب رمز الأمان لتنفيذ العملية اكتب رمز الأمان لمتابعة إرسال الأموال
+قيمة المبلغ
+رقم الموبايل
+● تأكد أن الرقم ده مسجل في تطبيق جالا
+متابعة
+ثم يصل اليك كود التعيين؟ العادة ارسال
+تأكيد الدفع (١٠,٠٠ جنيه)
+نسيت رمز الأمان
+-
+الدق عروض حالا للتقسيط بدون إجراءات بنكية
+تسوق الآن
+خدمات الدفع
+تساهيل
+ندويل مالي
+والى عباد
+موبايل وإتونه
+لعربات
+سكر ورفعت
+فافات الطبية
+خدمات الدفع
+■ محفظتي
+٠٫٠٠ جنيه
+عروض من حالاً
+عرض الخل >
+متابعة
+ارسال الاموال
+اشحن وأرسل الأموال الى محفظة عملاء حالا"
+KB,644,8dfe4b964c2253008aa3ad42dd29cc04,0,Pay,Complain,Technical Issue,Yes,ok,Customer paid a bill and the bill hasnt paid,عميل قام بدفع الفاتورة ولم يتم دفع الفاتورة,yes,"Vertical: Pay | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Customer paid a bill and the bill hasnt paid
+Question AR: عميل قام بدفع الفاتورة ولم يتم دفع الفاتورة
+
+Script:
+* عميل قام بدفع الفاتورة ولم يتم دفع الفاتورة:
+Pay -> Complaint -> Technical -> Customer paid a bill and the bill hasn't paid
+عميل قام بدفع الفاتورة ولم يتم دفعها
+Admin Tool
+لو العملية Failed يوضح للأخصائي يرجع للشركة علشان يتأكد أدفعت او لا
+لو العملية Success بوضح للأخصائي يرجع للشركة
+Pending بضغط عليها
+لو فشلت (Yes)
+لو نجحت (NO)
+لو بقت Success ببلغ العميل ان العملية تمت بنجاح
+لو مازالت Pending
+لو نجحت (NO)
+لو فشلت (Yes)
+(NO)
+(Yes)
+لو العملية مش ظهرالي علي Admin Tool بوضح للعميل يبعت اسكرين علي رقم الواتساب 01556003709 وبقدم طلب للعميل (Yes)"
+KB,672,47e5252497b75474a0a85cab25ec0a2b,0,Pay,Inquiry,Non-Technical Issue,No,ok,Inquiry about Salary lending,عميل بيستفسر امتي السلفة هتنزله بعد عملية السحب,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Salary lending
+Question AR: عميل بيستفسر امتي السلفة هتنزله بعد عملية السحب
+
+Script:
+*عميل بيستفسر امتى السلفة هتنزله بعد عملية السحب :
+Pay <- Inquiry <- Inquiry about Salary lending
+السلفة بتنزل للعميل خلال 24 ساعة عمل علي حسابه اللي تم الاتفاق عليه."
+KB,687,f2747c4420a2501c95bf05493ac86942,0,Pay,Inquiry,Non-Technical Issue,No,ok,Salary lending Inq,لو العميل بيقبض كاش هيستلم الفلوس ازاي؟,yes,"Vertical: Pay | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Salary lending Inq
+Question AR: لو العميل بيقبض كاش هيستلم الفلوس ازاي؟
+
+Script:
+لو العميل بيقبض كاش هيستلم الفلوس ازاي؟
+- ليس لدينا خدمة الكاش. يتم تحويل المبالغ على الكارت"
+KB,692,8cb61c60ad4956e19183e168ea04d848,0,Pay,Request,Non-Technical Issue,Yes,ok,Transfer salary to wallet or bank account,عميل يريد تغيير نزول المبلغ من المحفظة لحساب البنك او العكس,yes,"Vertical: Pay | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Transfer salary to wallet or bank account
+Question AR: عميل يريد تغيير نزول المبلغ من المحفظة لحساب البنك او العكس
+
+Script:
+* عميل يريد تغيير نزول المبلغ من المحفظة لحساب البنك او العكس:
+Pay -> request -> transfer salary to wallet or bank account
+Escalation:Yes
+هيتم تقديم طلب لحضرتك للحصول علي حالا كارت وهيتم التغيير خلال 24 ساعة عمل , ناخد بيانات العميل الاسم والرقم والرقم الوظيفي و اسم الشركة"
+KB,697,a84940c564aa509a92730eb102dcd371,0,Pay,Request,Non-Technical Issue,Yes,ok,Transfer Salary lending to Halan Card,عميل يستفسر عن امكانيه تحويل الراتب المبكر الي كارد حالا,yes,"Vertical: Pay | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Transfer Salary lending to Halan Card
+Question AR: عميل يستفسر عن امكانيه تحويل الراتب المبكر الي كارد حالا
+
+Script:
+عميل يستفسر عن امكانيه تحويل الراتب المبكر الى كارد حالا :
+Pay-> Request -> Transfer Salary lending to Halan Card
+Escalation : Yes
+دلوقتي ممكن حضرتك تحول الراتب المبكر علي كارد حالا من خلال تقديم طلب لحضرتك وهيتم الرد خلال 48 ساعة عمل وبناخد من العميل رقم البطاقة و اسم العميل رباعي"
+KB,699,582eaf49f0d857f0a775f56848c37767,0,Pay,Complain,installment didn't deducted from salary (Salary Lending),Yes,ok,installment didn't deducted from salary (Salary Lending),عميل يشكوا ان القسط متخصمش من المرتب الشهري (Salary Lending),yes,"Vertical: Pay | Type: Complain | Issue: installment didn't deducted from salary (Salary Lending) | Escalation: Yes
+
+Question EN: installment didn't deducted from salary (Salary Lending)
+Question AR: عميل يشكوا ان القسط متخصمش من المرتب الشهري (Salary Lending)
+
+Script:
+عميل يشكوا ان القسط متخصمش من المرتب الشهري:
+
+Pay → complaint → financial → installment didn't deducted from salary
+
+بنوضح للعميل اننا هنقدم طلب وهيتم الرد عليك خلال 24 ساعة، وناخد بياناته واسم الشركة، وابلغ التيم ليدر.
+
+CRM: Pay → Complaint → Financial → installment didn't deducted from salary | Escalation: Yes"
+KB,779,28f1c2abe16b5b888483d269d95b2aef,0,Pay,Inquiry,Technical Issue,No,ok,WE Salary Lending,موظف شركة WE بيستفسر عن تفعيل خدمة الراتب المبكر,yes,"Vertical: Pay | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: WE Salary Lending
+Question AR: موظف شركة WE بيستفسر عن تفعيل خدمة الراتب المبكر
+
+Script:
+موظف شركة WE بيستفسر عن تفعيل خدمة الراتب المبكر:
+الراتب المبكر يصل ل 200%
+1. حضرتك بترجع لإدارة الاجور في شركة حضرتك للامضاء علي استمارة نفعیل خدمة الراتب المبکر.
+2. بيتم تفعيل الخدمة خلال 48 ساعة من امضاء الاستمارة.
+3. المبلغ هينزل للعميل على كارت حالا.
+ملحوظة: عميل شركة we لو مشترك في خدمة الراتب المبكر وعنده حد ائتماني .. الفايدة في الشراء هتكون 34.17% بدل %38 .. بشرط يكون مشترك في خدمة الراتب المبكر (متاح الشراء بكارت حالا كمان)"
+KB,786,dcae36e0b8f15f849f4f705ba7682ff1,0,Pay,Complain,Non-Technical Issue,Yes,ok,The lending salary not transfer to bank-wallet-card,الموظف يشكوا من انه استقبل رسالة الراتب المبكر ولم يتم تحويل الراتب لحسابة البنكي,yes,"Vertical: Pay | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: The lending salary not transfer to bank-wallet-card
+Question AR: الموظف يشكوا من انه استقبل رسالة الراتب المبكر ولم يتم تحويل الراتب لحسابة البنكي
+
+Script:
+* الموظف يشكوا من انه استقبل رسالة الراتب المبكر ولم يتم تحويل الراتب لحسابة البنكى:
+Pay <- Complaint <- Non-Technical <- The lending salary not transfer to bank
+Pay <- Complaint <- Non-Technical <- The lending salary not transfer to Wallet
+Escalation: No
+فى حالة تحويل الراتب لمحفظته او الحساب البنكي :
+لازم نأكد علي العميل ان المبلغ بيتحول خلال 24 ساعة عمل.
+استأذنك مراجعة حساب حضرتك البنكي او المحفظة او الكارت.
+فى حالة لم يتم تحويل الراتب للمحفظة او الحساب البنكي : ۔
+- لازم تأكد علي العميل ان مشكلته هتتحل خلال 5 أيام عمل بعد استلام الرد من البنك الخاص به مع العلم أن المبلغ سيتم رده مرة أخري لليميت او سيتم ارساله علي الحساب او المحفظة.
+- لو المهلة (5 ايام عمل) عدت والمبلغ متحولش هنقدمله التيكت مع البيانات دي
+استأذنك ممكن توضح لى البيئات التالية لتقديم شكوى:
+1. الاسم الثلاثي.
+2. رقم الموبايل الخاص بحساب حالا
+الرقم القومي. .3
+كود الموظف. .4
+.5
+اسم الشركة التابع لها.
+سيتم مراجعة الشكوى وسيتم الرد خلال 5 أيام عمل
+Escalation: Yes
+لازم ناخد من العميل وقت طلب السلفة وقيمة السلفة كانت كام
+فى حالة لم يتم تحويل الراتب على كارت حالا:
+سيتم حل المشكلة خلال 24 ساعة عمل وسيتم رد المبلغ علي الليمت او علي كارت حالا"

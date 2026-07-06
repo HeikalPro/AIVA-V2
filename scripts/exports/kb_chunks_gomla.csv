@@ -1,0 +1,1185 @@
+﻿external_parent_id,chunk_id,chunk_index,queue_category,vertical,interaction_type,issue_type,escalation,answer_status,question_en,question_ar,has_embedding,chunk_text
+1115,d9a25b3a1b31534f899bf6d559d967e5,0,gomla,Gomla,Inquiry,Technical Issue,No,ok,What is the CF Limit,أية هو الحد الائتماني,yes,"Vertical: Gomla | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: What is the CF Limit
+Question AR: أية هو الحد الائتماني
+
+Script:
+• أية هو الحد الائتماني.
+شركة حالا بتمنح حضرتك حد شراء موافق عليه مقدما لاستخدامه في شراء منتجات متعددة زي الاجهزة الكهربائية، الأثاث والموبايلات ومنتجات اخرى موجودة على إبليكيشن حالا
+حد الشراء يصل إلى 500,000 بيتحدد بناء على الاستعلام الائتماني من الشركة وتقدر تستخدمه في عمليات شراء حسب احتياجاتك وتسدد بالتقسيط على فترة من 6 حتى36 شهر حسب اختيارك.
+• ولو الشراء هايكون من خلال حالا جمله هايكون على فترة التقسيط 6 شهور فقط
+• لو العميل عايز يعرف تفاصيل عن التقديم والاجراءات بنحول المكالمه لحالا للتقسيط والاجهزة"
+1122,dfacf9f4b68657488781d266f64f7eda,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Return Order – Money Not Return to Halan Card,شكوى عميل من عدم رد مبلغ أوردر مرتجع لكارت حالا,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Return Order – Money Not Return to Halan Card
+Question AR: شكوى عميل من عدم رد مبلغ أوردر مرتجع لكارت حالا
+
+Script:
+شكوى عميل من عدم رد مبلغ أوردر مرتجع لكارت حالا:
+Halan Gomla → Complaints related to Product
+انا بعتذر جدا لحضرتك استأذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه.
+هيتم التأكد من تفاصيل أوردر العميل.
+تم تقديم شكوى لحضرتك وهيتم حل المشكلة في 48 ساعة عمل.
+- Escalation: Yes
+"
+1143,a906f254bce75f8dac9da6ebf75c09c1,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Delivery Fess Dispute,شكوى عميل من فرق مصاريف التوصيل,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Delivery Fess Dispute
+Question AR: شكوى عميل من فرق مصاريف التوصيل
+
+Script:
+شكوى عميل من فرق مصاريف التوصيل Delivery Fess Dispute
+Halan Gomla - Complaints related to Product إستاذتك ممكن توضح لى الرقم اللى حضرتك طلبت بيه
+انا يعتذر جدا لحضرتك هايتم تقديم شكوى وهايتم الرد فى خلال ساعه
+بتقدر تستخدم المحفظة ف الطلب مرة أخري أو في شحن فاتورة موبايلك او إي رقم اخر او تدفع فواتير الكهرباء والمياه أو التبرعات او حجز سفر ورحلات (جوباص - بلوباص - مصر للطيران) أو خدمات طبية أو خدمات الدفع (تحصيل قرض لبنك الاسكندرية او قرض تساهيل)
+(Escalation needed: Yes)
+Halan Gomla -> Complaint -> financial -> Delivery Fess Dispute"
+1150,c1dc3a8e111952b8b5582e7afab9ef52,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Discount Issue,عميل عنده مشكله برومو كود,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Discount Issue
+Question AR: عميل عنده مشكله برومو كود
+
+Script:
+Discount Issue عميل عنده مشكله برومو كود Halan Gomla - Complaints related to Product استاذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه عميل اوردره إتلغى من خلال السيستم ولم يتم خصم المبغ من الكريديت كارد المندوب عمل الاوردر مرتجع بدون الرجوع لخدمه العملاء او للعميل ٠٠ العميل عنده مشكله فى بروموكود مش بيتفعل معاه وده بيكون لالى رومو غير عجله الحظ بوضح للعميل إرسال المشكله سكرين فيديو عند استخدام البرومو كود ع الواتس اب +20216303 ويتكتب فى التكت الرقم اللى هابيعت منه المشكله
+بتبلغ العميل إن هايتم رد قيمه البروموكود فى خلال ساعه
+Wallet ترد المبلغ عن طريق المحفظه ودي هتكون في خلال ساعه وتقدر حضرتك تستخدمهم في الطلب مره اخري أو في شحن فاتوره موبايلك او اي رقم ٠ اخر او تدفع فواتير الكهرباء والمياه او التبرعات أو حجز سفر ورحلات(جوباص - بلوياص - مصر الطيران) أو خدمات طيبه أو خدمات الدفع ( تحصيل قرض لبنك الإسكندرية او قرض تساهيل)
+Halan Gomla -> Complaint -> financial ->Discount Issue _(Escalation needed: Yes) ."
+1151,dda1952662c35f26aba70a8f51fbd2c1,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Return Order – Money Not Return to Wallet,شكوى عميل من عدم رد مبلغ أوردر مرتجع للمحفظة,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Return Order – Money Not Return to Wallet
+Question AR: شكوى عميل من عدم رد مبلغ أوردر مرتجع للمحفظة
+
+Script:
+شكوى عميل من عدم رد مبلغ أوردر مرتجع للمحفظة:
+Halan Gomla → Complaints related to Product
+
+انا بعتذر جدا لحضرتك استأذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه.
+بيتم مراجعة Transaction History على Admin Tool والبحث عن Balance Adjustment.
+
+لو موجودة:
+بنوضح للعميل بالتاريخ والحالة.
+- Escalation: No
+
+لو مش موجودة:
+بيتم التأكد من تفاصيل أوردر العميل وتقديم شكوى.
+تم تقديم شكوى لحضرتك وهيتم حل المشكلة في خلال ساعة.
+بتقدر تستخدم المحفظة في الطلب مرة أخري أو شحن فاتورة موبايلك أو اي رقم آخر أو تدفع فواتير الكهرباء والمياه أو التبرعات أو حجز سفر ورحلات (جوباص - بلو باص - مصر للطيران) أو خدمات طبية أو خدمات الدفع (تحصيل قرض لبنك الاسكندرية او قرض تساهيل).
+- Escalation: Yes"
+1152,0dd048dbe5615bc3bd07f1cebad72f08,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Cancelled Order – Money Not Return to Wallet,شكوى عميل من عدم رد مبلغ أوردر ملغى للمحفظة,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Cancelled Order – Money Not Return to Wallet
+Question AR: شكوى عميل من عدم رد مبلغ أوردر ملغى للمحفظة
+
+Script:
+شكوى عميل من عدم رد مبلغ أوردر ملغى للمحفظة:
+Halan Gomla → Complaints related to Product
+
+انا بعتذر جدا لحضرتك استأذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه.
+بيتم مراجعة Transaction History على Admin Tool والبحث عن Balance Adjustment في تاريخ الاوردر الملغي.
+
+لو موجودة:
+بنوضح للعميل.
+- Escalation: No
+
+لو مش موجودة:
+بيتم التأكد من تفاصيل أوردر العميل وتقديم شكوى.
+تم تقديم شكوى لحضرتك وهيتم حل المشكلة في خلال ساعة.
+بتقدر تستخدم المحفظة في الطلب مرة أخري أو شحن فاتورة موبايلك أو اي رقم آخر أو تدفع فواتير الكهرباء والمياه أو التبرعات أو حجز سفر ورحلات (جوباص - بلو باص - مصر للطيران) أو خدمات طبية أو خدمات الدفع (تحصيل قرض لبنك الاسكندرية او قرض تساهيل).
+- Escalation: Yes"
+1163,70cfd2e0c07e5a4da22656b250ba4718,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Different Price,فرق سعر منتج,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Different Price
+Question AR: فرق سعر منتج
+
+Script:
+Different Price
+Halan Gomla - Complaints related to Product . استانك ممكن توضح لى الرقم اللى حضرتك طلبت بيه سيتم كتابة تفاصيل الشكوى بالكامل (رقم الاوردر -نوع المنتج - الكمية - التفاصيل بالكامل)
+حضرتك تقدر تبعت الصور على رقم الواتس اب 20216303+ على مدار اليوم لمساعدتنا فى عدم تكرار المشكله هره أخرى أو حضرتك ميعتش الصور هيتم الغاء الشكوى فى نهاية اليوم
+انا يعتذر جدا لحضرتك هايتم تقديم شكوى وهايتم الرد فى خائل سلمه سواء العميل كاش يحفظه أو CF-Halan Card لو العميل كريديت عايز المبلغ ع الكريديت هايكون فى خلال 14 يوم عمل
+بتقدر تستخدم المحفظة ف الطلب مرة أخرى أو في شحن فاتورة موبايلك أو أى رقم اخر او تدفع فواتير الكهرباء والمياه أو التبرعات أو حجز سفر ورحلات (جوباص - بلوياص - مصر للطيران) أو خدمات طبية أو خدمات الدفع (تحصيل قرض البنك الاسكندرية أو قرض تساهيل)
+Halan Gomla -> Complaint -> financial -> Different Price _(Escalation needed: Yes) ."
+1164,942aefda943d5eb9bdb34b6076dd9c2c,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Canceled Order – Money Not Return to Credit Card,شكوى عميل من عدم رد مبلغ أوردر ملغي للبطاقة الائتمانية,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Canceled Order – Money Not Return to Credit Card
+Question AR: شكوى عميل من عدم رد مبلغ أوردر ملغي للبطاقة الائتمانية
+
+Script:
+شكوى عميل من عدم رد مبلغ أوردر ملغي للبطاقة الائتمانية:
+Halan Gomla → Complaints related to Product
+
+انا بعتذر جدا لحضرتك استأذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه.
+بنسأل العميل يفضل الرد على البطاقة الائتمانية ولا على محفظة حالا؟
+هيتم التأكد من تفاصيل أوردر العميل.
+
+لو العميل مصر على الرد على البطاقة الائتمانية:
+تم تقديم شكوى لحضرتك وهيتم حل المشكلة في خلال 14 يوم عمل.
+لو العميل يفضل المحفظة: هيتم الرد في خلال ساعة واحدة.
+
+بتقدر تستخدم المحفظة في الطلب مرة أخري أو شحن فاتورة موبايلك أو اي رقم آخر أو تدفع فواتير الكهرباء والمياه أو التبرعات أو حجز سفر ورحلات (جوباص - بلو باص - مصر للطيران) أو خدمات طبية أو خدمات الدفع (تحصيل قرض لبنك الاسكندرية او قرض تساهيل).
+
+- Escalation: Yes"
+1166,0dbb53db1cd75dd49688e440bcab8269,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Return Order – Money Not Return to Credit Card,شكوى عميل من عدم رد مبلغ أوردر مرتجع للبطاقة الائتمانية,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Return Order – Money Not Return to Credit Card
+Question AR: شكوى عميل من عدم رد مبلغ أوردر مرتجع للبطاقة الائتمانية
+
+Script:
+شكوى عميل من عدم رد مبلغ أوردر مرتجع للبطاقة الائتمانية:
+Halan Gomla → Complaints related to Product
+
+انا بعتذر جدا لحضرتك استأذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه.
+بنسأل العميل يفضل الرد على البطاقة الائتمانية ولا على محفظة حالا؟
+هيتم التأكد من تفاصيل أوردر العميل.
+
+لو العميل مصر على الرد على البطاقة الائتمانية:
+تم تقديم شكوى لحضرتك وهيتم حل المشكلة في خلال 14 يوم عمل.
+لو العميل يفضل المحفظة: هيتم الرد في خلال ساعة واحدة.
+
+بتقدر تستخدم المحفظة في الطلب مرة أخري أو شحن فاتورة موبايلك أو اي رقم آخر أو تدفع فواتير الكهرباء والمياه أو التبرعات أو حجز سفر ورحلات (جوباص - بلو باص - مصر للطيران) أو خدمات طبية أو خدمات الدفع (تحصيل قرض لبنك الاسكندرية او قرض تساهيل).
+
+- Escalation: Yes"
+1228,0124ef037b3b54d39eb6bcdc449c12cb,0,gomla,Gomla,Complain,Non-Technical Issue,Yes,ok,Complaint from Delivery Rep promised with specific delivery time,شكوى عميل من تاكيد ميعاد توصيل خطأ,yes,"Vertical: Gomla | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Complaint from Delivery Rep promised with specific delivery time
+Question AR: شكوى عميل من تاكيد ميعاد توصيل خطأ
+
+Script:
+Complaint from Delivery Rep promised with specific delivery time
+شكوى عميل من تاكيد ميعاد توصيل خطأ Halan Gomla - Complaints Related to Delivery Rep
+انا بعتذر لحضرتك جدا تم تقديم شكوى حضرتك للقسم المختص وسيتم التحقيق فى الشكوى فى خلال ساعة وهايتم اتخاذ الجزاء الإداري من قبل الإداره لانه غير مقبول تماما حدوث إي تجاوز من خلال المندوب
+سيتم كتابة تفاصيل الشكوى بالكامل (رقم الاوردر - تاريخ الاستلام - التفاصيل بالكامل - اسم المندوب)
+Escalation needed: Yes)"
+1229,f39ede998a2e5cf59e6b66e7324a5aaf,0,gomla,Gomla,Complain,Non-Technical Issue,Yes,ok,Complaint from Delivery Rep (Bad Attitude),شكوى عميل من سوء سلوك مندوب الديليفرى,yes,"Vertical: Gomla | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Complaint from Delivery Rep (Bad Attitude)
+Question AR: شكوى عميل من سوء سلوك مندوب الديليفرى
+
+Script:
+• شكوى عميل من سوء سلوك مندوب الديليفري
+Complaint from Delivery Rep (Bad Attitude) Halan Gomla - Complaints Related to Delivery Rep استأذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه
+انا يعتذر لحضرتك جدا تم تقديم شكوى حضرتك للقسم المختص وسيتم التحقيق فى الشكوى فى خلال ساعة وهايتم اتخاذ الجزاء الإداري من قبل الإداره لانه غير مقبول تماما حدوث إي تجاوز من خلال المندوب
+سيتم كتابة تفاصيل الشكوى بالكامل (رقم الإوربر - تاريخ الاستلام - التفاصيل بالكامل - اسم المندوب)
+(Escalation needed: Yes)"
+1230,d7bd817effd35f14a8e4a9bf6b153548,0,gomla,Gomla,Complain,Non-Technical Issue,Yes,ok,Complaint from Delivery (wrong cash transaction),شكوى عميل من مندوب حصل مبلغ قيمته اعلى من قيمه الاوردر,yes,"Vertical: Gomla | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Complaint from Delivery (wrong cash transaction)
+Question AR: شكوى عميل من مندوب حصل مبلغ قيمته اعلى من قيمه الاوردر
+
+Script:
+Complaint from Delivery (wrong cash transaction) شكوى عميل من مندوب حصل مبلغ قيمته اعلى من قيمه الاوردر
+Halan Gomla - Complaints Related to Delivery Rep
+استأذنك ممكن توضح لى الرقم اللي حضرتك طلبت بيه
+انا بعتذر لحضرتك جدا تم تقديم شكوى حضرتك القسم المختص وسيتم التحقيق فى الشكوى فى أقرب وقت وهايتم ابلاغك بمكالمه نتيجة التحقيق فى الشكوى
+سيتم كتابة تفاصيل الشكوى بالكامل (رقم الاوردر - تاريخ الاستلام - التفاصيل بالكامل - اسم المندوب)
+(Escalation needed: Yes)"
+1234,724123fb5cf35a019dfad7c07f970b9b,0,gomla,Gomla,Complain,Non-Technical Issue,Yes,ok,Complaint from Delivery (Appearance),شكوى عميل من مظهراو شكل ملابس المندوب,yes,"Vertical: Gomla | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Complaint from Delivery (Appearance)
+Question AR: شكوى عميل من مظهراو شكل ملابس المندوب
+
+Script:
+Complaint from Delivery (Appearance) شكوى عميل من مظهراو شكل ملابس المندوب
+Halan Gomla - Complaints Related to Delivery Rep استأذنك ممكن توضح لى الرقم اللي حضرتك طلبت بيه
+انا يعتذر لحضرتك جدا تم تقديم شكوى حضرتك للقسم المختص وسيتم التحقيق فى الشكوى فى أقرب وقت وهايتم اتخاذ الجزاء الإداري من قبل الإداره لإنه غير مقبول تماما حدوث إي تجاوز من خلال المندوب
+سيتم كتابة تفاصيل الشكوى بالكامل (رقم الاوردر - تاريخ الاستلام - التفاصيل بالكامل - اسم المندوب)
+(Escalation needed: Yes)"
+1235,2083e8acda385c308c4529f17381933f,0,gomla,Gomla,Complain,Non-Technical Issue,Yes,ok,Complaint from customer service,شكوى عميل من ممثل خدمة العملاء -  اكشن غلط - سوء سلوك - معلومات خطأ,yes,"Vertical: Gomla | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Complaint from customer service
+Question AR: شكوى عميل من ممثل خدمة العملاء -  اكشن غلط - سوء سلوك - معلومات خطأ
+
+Script:
+• شكوى عميل من ممثل خدمة العملاء - اكشن غلط - سوء سلوك - معلومات خطأ
+Complaint from customer service · استاذنك ممكن توضحلى الرقم اللى حضرتك طلبت بيه
+انا يعتذر لحضرتك جدا تم تقديم شكوى حضرتك للقسم المختص وسيتم التحقيق فى الشكوى وهايتم اتخاذ الجزاء الإداري من قبل الإداره لإنه غير مقبول تماما حدوث إي تجاوز من خلال خدمه العملاء
+سيتم كتابة تفاصيل الشكوى بالكامل (رقم الاوردر - تاريخ الاستلام - التفاصيل بالكامل - اسم ممثل خدمة العملاء)
+(Escalation needed: Yes)"
+1276,4b34d549cadc590c90cb7cad8c0e3a2d,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Covered Areas,مناطق التوصيل فى حالا جمله,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Covered Areas
+Question AR: مناطق التوصيل فى حالا جمله
+
+Script:
+Covered Areas
+استأذنك ممكن توضح لي الرقم اللي حضرتك بتطلب بيه
+ييتم التأكد من المحافظة والمنطقه الخاصه بالعميل ويتم البحث عنها فى شيت BC Regions updated للتأكد من المنطقه متاحه للتوصيل ام خارج نطاق التوصيل .
+Escalation Needed _( No)"
+1277,826fd42e2a7554b0931896079e5bd80e,0,gomla,Gomla,Request,Non-Technical Issue,Yes,ok,Request Tax Invoices,عميل يريد فاتورة ضريبية,yes,"Vertical: Gomla | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Request Tax Invoices
+Question AR: عميل يريد فاتورة ضريبية
+
+Script:
+عميل يريد فاتورة ضريبية - Request Tax Invoices
+استاذنك ممكن توضحلى الرقم اللى حضرتك طلبت بيه
+الاوردر لازم يكون تم الاستلام على السيستم لعمل إي طلب لااي فاتوره ضريبيه
+تم عمل طلب من خلالي لحضرتك وهيتم التواصل مع حضرتك من خلال فريق المتابعه في خلال ساعة
+هايتم ارسال الفاتوره PDF على الواتس اب الخاص بحضرتك من خلال فريق المتابعة ٠ ييتم سؤال العميل على رقم الواتس اب الخاص بيه وييتم كتابته فى التكت
+(Escalation needed: Yes)"
+1283,67ceafd1f7f65baa862bd857bab0fe74,0,gomla,Gomla,Complain,Non-Technical Issue,Yes,ok,App Issue,مشكله فى فتح التطبيق واستخدام حالا جمله,yes,"Vertical: Gomla | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: App Issue
+Question AR: مشكله فى فتح التطبيق واستخدام حالا جمله
+
+Script:
+مشكله فى فتح التطبيق واستخدام حالا جمله App Issue ° بنتاكد من السيستم العميل محظور ولالا
+٥ بنسال العميل على المحافظة والمنطقه للتأكد من المنطقه متاحه للتوصيل فى حالا جمله • لو مفيش اى سبب من الأسباب دي موجود بنعمل شكوى
+سيتم كتابة تفاصيل الشكوى بالكامل (نوع التليفون -- التفاصيل بالكامل- ارسال صورة من المشكلة على الواتس اب على 20216303+)
+بنطلب من العميل الرقم اللى هايبعت منه المشكله وبنكتبه فى التكت هيتم الرد ع الشكوى من خلال الدعم الفنى فى أقرب وقت ممكن •
+(Escalation needed: Yes)
+Halan Gomla -> Complaint -> Technical -> App Issue"
+1351,dbf6d7a00bc25885a8ca70f44484fcdf,0,gomla,Gomla,Complain,Non-Technical Issue,Yes,ok,Delay receiving product,شكوى من تأخر استلام المنتج وعدى ميعاد استلامه,yes,"Vertical: Gomla | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Delay receiving product
+Question AR: شكوى من تأخر استلام المنتج وعدى ميعاد استلامه
+
+Script:
+• شكوى من تأخر استلام المنتج وعدى ميعاد استلامه
+Delay receiving product Halan Gomla - Complaints Related to Delivery Rep
+ينبحث عن الاوردر على شيت Talabeyah Supply Chain علشان نعرف ايه سبب التاخير لو السبب راجع للمخزن بنعتذر لحضرتك جداً ع التأخير وف خلال ساعة هيتم التواصل معك من خلال فريق المتابعه لتأكيد هيتم الأستلام امتي مع إضافة البيانات في الفورع الخاص ب Logistic Team لمتابعة طلب العميل الفورم ٠ Escalation needed: Yes)
+لو العميل بيكلمنا فى نفس يوم الاستلام بعد تأجيل الاوردر ع السيستم ليوم اخر مع توضيح السبب للعميل ان المشكله لاى سبب موجود ع الشيت راجعه للمخزن بتكون وييتم الاعتذار للعميل وينوضحله ميعاد الاستلام الجديد
+(Escalation needed:No)
+لو السبب راجع للعميل نفسه بسبب عدم رده على المندوب ولا فريق المتابعة فايالتالى تم تأجيل الاورير
+بتوضيح للعميل التاريخ الجديد الموجود ع السيستم بس بعتذر لحضرتك هو الاوربر تم تأجيله وده بسبب عدم الرد ع فريق المتابعة والمندوب وهايخرج يوم محتاجين الرد على فريق المتابعة والمندوب لمساعدتنا فى توصيل الاوربر بشكل اسرع لحضرتك (Escalation needed:No)
+- لو العميل طلب يلغي الاوردر:
+· هستأذن حضرتك اتابع حالة الاورد لاستعجال التسليم لحضرتك ف حالة اصرار العميل Cancel Process
+(Escalation needed: No)"
+1377,94164fcca7465bd4aef8fd51e623cbf0,0,gomla,Gomla,Complain,Technical Issue,Yes,ok,Complaint from Delivery Rep. - Order was not delivered (Order Status Delivered OR Returned),شكوى عميل من اوردر مرتجع او اوردر تم التسليم ولم يستلمه,yes,"Vertical: Gomla | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Complaint from Delivery Rep. - Order was not delivered (Order Status Delivered OR Returned)
+Question AR: شكوى عميل من اوردر مرتجع او اوردر تم التسليم ولم يستلمه
+
+Script:
+Complaint from Delivery Rep. - Order was not delivered (Order Status Delivered OR
+Returned)
+Halan Gomla - Complaints Related to Delivery Rep
+لو حالة الطلب تم الاستلام - مرتجع تم تقديم شكوى حضرتك وسيتم التواصل معك فى اقرب وقت فور انتهاء التحقيق فى الشكوى سيتم كتابة تفاصيل الشكوى بالكامل (رقم الاورير - تاريخ الاستلام - التفاصيل بالكامل - اسم المندوب)
+(Escalation needed: Yes)
+(Complain- Against Staff- Delivery Rep- Order was not delivering (order status delivered تم الاستلام (Complain- Against Staff -- Delivery Rep -- Order was not delivering (order status Returned مرتجع"
+1397,528e4da4058751f7a5c004475cacfb6b,0,gomla,Gomla,Complain,Financial Issue,No,ok,Deficiency Compensation,شكوى عميل من وصول منتج ناقص مخصوم من الفاتوره,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: No
+
+Question EN: Deficiency Compensation
+Question AR: شكوى عميل من وصول منتج ناقص مخصوم من الفاتوره
+
+Script:
+Deficiency Compensation
+(Missing - Quantity)
+ف حاله الاوردر مدفوع كاش - closed wallet فقط
+بنعتذر على نقص المنتج من الطلب الخاص بحضرتك ويستأذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه
+لو لم يتم دفع ثمنه: ينعتذر لحضرتك جداً ده بيكون نتيجة خطا تحميل من المخزن وقت تحضير الأورير وتقدر تطلبه مرة تانية وقت ما يكون متوفر على التطبيق . (Escalation Needed: No)
+same day: بنختارها yes or no علي حسب العميل اي علي السيستم
+amount settled from invoice: بنختارها No دا بنختاره علي حسب المنتجات مخصومه من الفاتوره وممسوسه (مخصومه) ولا لا
+شباب المنظر داف حالا جمله عميل كاش المفروض ان العميل مدفعش تمن المنتجات ف بنوضح للعميل ان واضح من خلالنا ان حضرتك مدفعتش تمن المنتجات، حابين ناكد علي حضرتك بمراجعة الاوردر لو فيه اي مشكله فى إي منتج من حيث الكمية او الكواليتى بيتم خصم تمنه من إجمالى الفاتوره
+related to order > yes > call type> complaint > complaint type > financial"
+1437,13427accfa175263b2ade64834098690,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Cancelled Order – Money Not Return to Halan Credit,شكوى عميل من عدم رد مبلغ أوردر ملغي للحد الائتماني,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Cancelled Order – Money Not Return to Halan Credit
+Question AR: شكوى عميل من عدم رد مبلغ أوردر ملغي للحد الائتماني
+
+Script:
+شكوى عميل من عدم رد مبلغ أوردر ملغي للحد الائتماني:
+Halan Gomla → Complaints related to Product
+انا بعتذر جدا لحضرتك استأذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه.
+هيتم التأكد من تفاصيل أوردر العميل.
+تم تقديم شكوى لحضرتك وهيتم حل المشكلة في 48 ساعة عمل.
+- Escalation: Yes"
+1438,5e6526b601865a999d7ed66d1ded7c89,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Return Order – Money Not Return to Halan Credit,شكوى عميل من عدم رد مبلغ أوردر مرتجع للحد الائتماني,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Return Order – Money Not Return to Halan Credit
+Question AR: شكوى عميل من عدم رد مبلغ أوردر مرتجع للحد الائتماني
+
+Script:
+شكوى عميل من عدم رد مبلغ أوردر مرتجع للحد الائتماني:
+Halan Gomla → Complaints related to Product
+انا بعتذر جدا لحضرتك استأذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه.
+هيتم التأكد من تفاصيل أوردر العميل.
+تم تقديم شكوى لحضرتك وهيتم حل المشكلة في 48 ساعة عمل.
+- Escalation: Yes"
+1454,20df37a5958b5c41b3a3372dc5e0f45e,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Inquiry about halan gomla gift,عميل يستفسر عن الهديه,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about halan gomla gift
+Question AR: عميل يستفسر عن الهديه
+
+Script:
+• عميل يستفسر عن الهديه
+inquiry about halan gomla gift
+دا منتج هدىه لحضرتك تقدر تستفید یی.
+عديد لمتصبـ"
+1471,ca7ffa3b099d5d018daec995a457dfda,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Inquiry about installment,عميل يستفسر عن الاقساط,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about installment
+Question AR: عميل يستفسر عن الاقساط
+
+Script:
+• عميل يستفسر عن الاقساط
+Inquiry about installment
+1. استأذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه
+2. ممكن توضحلي الرقم القومي
+يندخل على ال CRM وبنشوف العميل بيستفسر عن اي اوردر تم طلبه من خلال حالا جمله .3
+4. وينوضح للعميل مده القسط اللى مختارها"
+1481,6599cf79cb4b5f7595dd292126414eca,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Quantity product,شكوى عميل من منتجات الكميه ناقصه,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Quantity product
+Question AR: شكوى عميل من منتجات الكميه ناقصه
+
+Script:
+شكوى عميل من منتجات الكميه ناقصه
+Quantity product Halan Gomla - Complaints related to Product
+· يتعتذر على نقص المنتج من الطلب الخاص بحضرتك ويستأذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه
+مراجعه السيستم لمعرفة طريقة الدفع للعميل (محفظة فقط - كريدت كارد - CF - كارت حالا - كاش - closed wallet)
+• يعتذر لحضرتك على عدم وصول المنتج ياريت توضيحطي لو تم دفع ثمن المنتج ولا لا.
+• لو تم دفع ثمنه: نعتذر لحضرتك جداً ده بيكون نتيجة خطا تحميل من المخزن وقت تحضير الأورير وهينزل لحضرتك ثمن المنتج ع المحفظة ( ....... ) ف خلال ساعة + مبلغ هدية اعتذار عن وصول المنتجات ناقصة لحضرتك (Escalation Needed: Yes)
+23
+• لو العميل عايز المبلغ ع الكريديت هايكون فى خلال 14 يوم عمل
+لو المنتج اقل من 100 جنيه بنعتذر لحضرتك جداً ده بيكون نتيجة خطا تحميل من المخزن وقت تحضير الأوردروهينزل :_ CF - Halan Card ف حالة ال . Escalation) لحضرتك ثمن المنتج ع المحفظة ( ........ ) ف خلال ساعة + مبلغ اعتذار + مبلغ بنسبه القايده ع المنتج عن وصول المنتجات ناقصة لحضرتك Needed: Yes)
+لو المنتج أزيد من 100 جنيه هتترد على الكارت لو العميل عامل ابداع او من الحد الائتمانى للكارت ف خلال 48 ساعه عمل
+. : وكانت قيمة المنتج تتجاوز 100 جنيه CF في حالة العميل
+المشكلة أكبر من 500 جنيه .يجب أن يكون المتبقي أو إجمالي الطلب بعد خصم مبلغ المشهد
+. .فى هذه الحالة، يتم إرجاع المبلغ للعميل على الحد الائتماني خلال 48 ساعة عمل
+. : أما إذا كان المتبقى أو إجمالي الطلب بعد خصم مبلغ المشكلة أقل من 500 جنيه
+.يتم إرجاع المبلغ للعميل على المحفظة خلال ساعة
+مثال لو توتال الاوردر ٧٠٠ جنيه والعميل عنده مشكله ف ٣٠٠ كده المبلغ هيرجع على المحفظه
+CF لو توتال الاوردر ١٠٠٠ والعميل عنده مشكله ب ٢٠٠ جنيه كده هترجع على ال
+تقدر تستخدم المحفظة ف الطلب مرة أخرى أو في شحن فاتورة موبايلك او إي رقم اخر او تدفع فواتير الكهرباء والمياه أو التبرعات او حجز سفر ورحلات (جوباص - بلوباص - مصر للطيران) أو خدمات طبية أو خدمات الدفع (تحصيل قرض لبنك الاسكندرية او قرض تساهيل)"
+1482,d8635e9d4d825b5e942afe47fca3b02a,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Quantity product,شكوى عميل من منتجات الكميه ناقصه,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Quantity product
+Question AR: شكوى عميل من منتجات الكميه ناقصه
+
+Script:
+الكاش لا لان المفروض العميل بيراجع الاوردر بتاتعه قبل ما يستلم وييخصم من الفاتوره تمن إمنتجات اللي موصلتش
+(Escalation needed: Yes]
+اي اوفر على ال CF أو Halan card خاص ب تريبل زيرو (0% فوائد , 0% مقدم , 0% مصاريف) لازم نتاكد اثناء المكالمة العميل مختار فعلا العرض دا ولا لا دا بنعرفه لما يندخل على إل CRM
+-بنفتح إل CRM
+- Customer Search بنختار
+- بنكتب الرقم القومي بتاع العميل ف إل National ID
+- ف ال customer systems هنختار CF
+تحت هنلاقي كلمه Loans هندوس عليها هيظهر لينا كل إل Loans العميل هنشوف انهي loans من principal اللي هي total orders amount بتاعت العميل اللي دفعها من عندنا ف بورتل جمله
+24
+بندوس علي installments علشان نتاكد العميل مختار فعلا العرض دا ولا لا (ب إننا نحسب توتال ال principal اللي هو ( portal gomla اللي موجود ف taotal amoount order
+لو العميل فعلا مختار العرض ده ف هناكد على العميل وبناء عليه
+مش هنضیف ای فایده تانی ل اي عميل عنده مشكله ف نواقص - كميه - کوالتی - رونج
+هنضيف مبلغ المنتج بس + مبلغ اعتذار
+دي طبعا للعملاء اللي اقل من 100 جنيه وهنضيف المبلغ على المحفظه للعميل
+حابين ناكد على حضرتك بمراجعه الاوردر في نفس يوم الاستلام او بحد اقصى فى خلال 48 ساعة من الاستلام وحضرتك وقت استلامك ای اوردر من حالا جمله من حقك إنك تراجع اوردرك ولو فيه اي مشكله فى أى منتج من حيث الكمية او الكواليتي بيتم خصم ثمنه من إجمالى الفاتوره ف حاله ( كاش فقط) وفى حاله رفض المندوب من حقك تتواصل معانا وقت استلامك للاوردر لحل المشكلة وده حق حضرتك طبعا
+(Escalation needed: Yes]
+ماتحالة هامة
+مراجعة وجود تكنف سابقة لتحميل على السيستم لنفس إستفسار أو طلب العميل:
+فى حالة وجودها:
+- التأكد من أن التكت خاصة بخدمة العملاء وليس أي قسم الحر مثل (قسم المنتلج ..... ). . إضافة تحديث (ملاحظات - تعليقات) بالتفاصيل. - فى حالة وجود أى تحديث (ملاحظات - تطبقات) سابق ضرورة التأكد من مرور 24 ساعة عمل (إن لم يمر 24 ساعة عمل صمم بطاقة أي تطبق وعمل تقت (Tickets [escalation needed: NO] - عمل submit لتحكت على نفس الحالة الموجودة وعدم تغيير الحالة لأي سـ . حمل تكت أخرى بتفاصيل الحالة (Ticket: (escalation needed: NO
+فى حالة عدم وجودها -Ticket: (escalation needed iyes)"
+1483,bc9c776c364459209baa1dcbdc336b76,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Missing product,شكوى عميل من منتجات مفقودة,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Missing product
+Question AR: شكوى عميل من منتجات مفقودة
+
+Script:
+• شكوى عميل من منتجات مفقودة
+Missing product
+Halan Gomla - Complaints related to Product
+• يتعتذر على نقص المنتج من الطلب الخاص بحضرتك ويستأذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه
+مراجعه السيستم لمعرفة طريقة الدفع للعميل (محفظة فقط - كريدت كارد - CF - كارت حالا - كاش - closed wallet)
+• يعتذر لحضرتك علي عدم وصول المنتج ياريت توضحلي لو تم دفع ثمن المنتج ولا لا. لو تم دفع ثمنه: نعتذر لحضرتك جداً ده بيكون نتيجة خطا تحميل من المخزن وقت تحضير الأوردروهينزل لحضرتك ثمن المنتج ع المحفظة ( ....... ) ف خلال ساعة + مبلغ هدية اعتذار عن وصول المنتجات ناقصة لحضرتك (Escalation Needed: Yes)
+• لو العميل عايز المبلغ ع الكريديت هايكون فى خلال 14 يوم عمل
+فى حالة ال CF - Halan Card لو المنتج اقل من 100 جنيه
+ينعتذر لحضرتك جداً ده بيكون نتيجة خطا تحميل من المخزن وقت تحضير الأوردروهينزل لحضرتك ثمن المنتج ع المحفظة ( .......... ) ف خلال ساعة + + مبلغ اعتذار + مبلغ بنسبه القابده ع المنتج عن وصول المنتجات ناقصة لحضرتك (Escalation Needed: Yes)_دا لو المنتج أقل من 100 جنيه
+لو المنتج أزيد من 100 جنيه هنترد على الكارت لو العميل عامل ابداع او من الحد الائتمانى للكارت ف خلال 48 ساعه عمل
+: وكانت قيمة المنتج تتجاوز 100 جنيه CF فى حالة العميل .يجب أن يكون المتبقي أو إجمالي الطلب بعد خصم مبلغ المشكلة أكبر من 500 جنيه
+.فى هذه الحالة، يتم إرجاع المبلغ للعميل على الحد الائتماني خلال 48 ساعة عمل
+: أما إذا كان المتبقى أو إجمالي الطلب بعد خصم مبلغ المشكلة أقل من 500 جنيه
+.يتم إرجاع المبلغ للعميل على المحفظة خلال ساعة
+مثال لو توتال الاوردر ٧٠٠ جنيه والعميل عنده مشكله ف ٣٠٠ كده المبلغ هيرجع على المحفظة
+CF لو توتال الاوردر ١٠٠٠ والعميل عنده مشكله ب ٢٠٠ جنيه كده هترجع على إل
+بتقدر تستخدم المحفظة ف الطلب مرة أخرى أو في شحن فاتورة بوبايلك او اي رقم اخر او تدفع فواتير الكهرباء والمياه أو التبرعات او حجز سفر ورحلات (جوباص - بلوباص - مصر للطيران) أو خدمات طبية أو خدمات الدفع (تحصيل قرض لبنك الاسكندرية او قرض تبياهيل)."
+1484,c981b44cc0565f89a6bafafcaab9b920,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Missing product,شكوى عميل من منتجات مفقودة,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Missing product
+Question AR: شكوى عميل من منتجات مفقودة
+
+Script:
+الكاش لا لان المفروض العميل بيراجع الأوردر بتاعه قبل ما يستلم وبيخصم من الفاتوره تمن المنتجات اللي ماوصلتش
+اي اوفر علي ال CF أو Halan card خاص ب تريبل زيرو (0% فوائد, 0% مقدم, 0% مصاريف) لازم نتاكد اثناء المكالمة العميل مختار فعلا العرض دا ولا لا دا بنعرفه لما بندخل على ال CRM
+-بنفتح ال CRM
+- Customer Search بنختار
+- بنكتب الرقم القومي بتاع العميل ف ال National ID
+- ف إل customer systems هنختار CF
+22
+- تحت هنلاقى كلمه Loans هندوس عليها هيظهر لينا كل إل Loans العميل هنشوف انهي loans من principal اللي هي total orders amount بتاعت العميل اللي دفعها من عندنا ف بورتل جمله
+بندوس علي installments علشان نتاكد العميل مختار فعلا العرض دا ولا لا (ب إننا نحسب توتال ال principal اللي هو ( portal gomla اللي موجود ف taotal amoount order
+لو العميل فعلا مختار العرض ده ف هناكد على العميل وبناء عليه
+مش هنضيف ای فايده تاني ل اي عميل عنده مشكله ف نواقص - كميه - كوالتي - رونج
+هنضيف مبلغ المنتج بس + مبلغ اعتذار
+دي طبعا للعملاء اللي اقل من 100 جنيه وهنضيف المبلغ على المحفظه للعميل
+حابین ناكد علی حضرتك بمراجعه الاوردر فی نفس یوم الاستلام او بحد اقصی فی خلال 48 ساعة من الاستلام وحضرتك وقت استلامك ای اوردر من حالا جمله من حقك إنك تراجع اوردرك ولو فيه اي مشكله فى اى منتج من حيث الكمية او الكواليتي بيتم خصم ثمنه من إجمالى الفاتوره ف حاله ( كاش فقط) وفى حالة رفض المندوب من حقك تتواصل معانا وقت استلامك للاوردر لحل المشكلة وده حق حضرتك طبعا
+[Escalation needed: Yes]
+ملاحظته هاماج
+· مراجعة وجود تكت سابقة لتحميل على السيستم لنفس إستفسار أو طلب العميل:
+فى حالة وجودها:
+- التأكد من أن التكك خاصة بخدمة العملاء وليس أي قسم آخر مثل (قسم النكتلح ..... ) - إضافة تحديث (ملاحظات - تعليقات) بالتفاصيل.
+- فى حالة وجود أى تحديث (ملاحظات - تعليقات) سابق ضرورة التأكد من مرور 24 ساعة عمل (إن لم يصر 24 ساعة عمل صمم إضافة أي تطبق وعمل كمك (Ticket: (escalation needed: ND) - صل submit للتكت على نفس الحالة الموجودة وعدم تغيير الحالة لأي سبب. . عمل تكت أخرى بتفاصيل الحالة (Ticket: (escalation needed: ND
+فى حالة عدم وجودها -Ticketi (escalation needed 'ves)"
+1498,dadd83634eb05ea0aa240b876abbe387,0,gomla,Gomla,Request,Non-Technical Issue,No,ok,Asking for an earlier delivery date,عميل يريد تقديم معاد استلام الاوردر,yes,"Vertical: Gomla | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Asking for an earlier delivery date
+Question AR: عميل يريد تقديم معاد استلام الاوردر
+
+Script:
+عميل يريد تقديم معاد استلام الاوسيد Asking for an earlier delivery date
+- استأذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه
+- يتراجع السيستم إذا كان في امكانيه بتقديم معاد استلام الاوردر ولا لا لو في امكانيه ينوضح للعميل ان تم تقديم معاد استلام الاوردر ( ینوضح اليوم اللي عدلنا لي)
+- لو مفيش امكانيه بنعتذر للعميل ان للاسف مفيش امكانيه من خلالنا وبناكد علیه معاد الاستلام اللي واضح من خلالنا
+Escalation needed: No
+حابین ناکد علی حضرتك بمراجعه الاوردر فی نفس یوم الاستلام او بحد اقصى فى خلال 48 ساعة من الاستلام وحضرتك وقت استلامك إي اوردر من حالا جمله من حقك إنك تراجع اوردرے ولو فيه اي مشكله فى اي منتج من حيث الكمية او الكوالیتی بيتم خصم تمنه من إجمالى الفاتوره ف حاله (كاش فقط) وفى حاله رفض المندوب من حقك تتواصل معانا وقت استلامك للإوردر لحل المشكلة وده حق حضرتك طبعا"
+1499,e25c1849d1aa5e468cdebb0e41a5e59e,0,gomla,Gomla,Request,Non-Technical Issue,No,ok,Asking to postpone request,عميل يريد تأجيل طلب الشراء,yes,"Vertical: Gomla | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Asking to postpone request
+Question AR: عميل يريد تأجيل طلب الشراء
+
+Script:
+عميل بريد تأجيل طلب الشراء Asking to postpone request
+ممكن توضح لى الرقم اللى حضرتك بتطلب منه من خلال حالا جمله
+لو العميل cash - Closed wallet بيتم تأجيل لمدة 24 ساعة (ف حاله الاوردر خارج للتوصيل)
+لو العميل CF - credit card - wallet بيتم التأجيل لمدة 24 ساعه أو ل 48 ساعه (ق حاله الاوردر خارج للتوصيل )
+و بيتم التأجيل من خلال السيستم مع اختيار السبب وتبعت رقم الاوردر لتيم الاوت على جروب الوتساب (فـ حاله الاوردر خارج للتوصيل )
+• لو العميل Wallet - Cash - CF - Credit card وحاله الاوردر تم التحضير او تم التكيد بتشوف ايام التوصيل المتاحه من على السيستم ويتوضحها للعميل وبيتم تغير اليوم والتأكد ان تم تغيروا وبعد ذلك بيتم التوضيح للعميل ان تم تغير معاد استلام الاوردر لي من على السيستم
+باسم اللعب
+ست الشام
+ـاود السول
+علاء الدين
+الوز الدعاء
+الوز الم
+الشعبي ٠ ٢٠٠٨٠٢
+X
+تأجيل ميعاد الإستلام
+تأجيل الطلب إلى :
+نفس اليوم
+اليوم الفاتي
+ـط بكره
+سبب تأجيل الطلب
+سبب تأجيل الطلب
+تاريخ التوصيل للآن الخميس،٢٠٢٥/١١/٢٧ ٢٠٠٠:٠٠ ص
+تاريخ الإسلام
+٥ الخميس:٢٠٢٥/٠١/٢٧ -٢٦٠٩ ص
+Escalation needed: No
+بغير الحاد
+ملف العميل
+- رقم الطلب
+عفى العلم
+OHMILE
+غير مععدد
+بر مسم
+بعد الطلب
+حابين تاكد على حضرتك بمراجعه الاوردر في نفس يوم الاستلام او بحد اقصى فى خلال 48 ساعة من الاستلام وحضرتك وقت استلامك اي اوردر من حالا جملة من حقك إنك تراجع أوردرك ولو فيه أي مشكله في اي منتج من حيث الكمية او الكواليني بيتم خصم ثمنه من اجمالى الفاتوره فى حالة (كاش فقط) وفي حالة رفض المندوب من حقك تتواصل معانا وقت استلامك للأوردر لحل المشكلة وده حق حضرتك طبعا"
+1502,13fb3925853c5a30a346bf660f366f2a,0,gomla,Gomla,Request,Non-Technical Issue,No,ok,Asking to edit the quantity order and removing adding,عميل يريد إضافة او إزالة منتج,yes,"Vertical: Gomla | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Asking to edit the quantity order and removing adding
+Question AR: عميل يريد إضافة او إزالة منتج
+
+Script:
+عميل يريد إضافة أو إزالة منتج Asking to edit the quantity order and removing adding استأذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه
+مراجعه السيستم لمعرفة طريقة دفع العميل
+لو طريقة الدفع Cash - wallet - Closed wallet
+قبل مرحلة التحضير ( حاله الطلب: قيد الانتظار او تم التأكيد) متاح التعديل من خلالنا بيتم التعديل علي الاوردر بناء على طلب العميل مع توضيح المبلغ الجديد للاوردر للعميل (ف حاله الاضافه )
+مفيش إمكانيه ب إزاله منتاجات من الاوردر Wallet - Closed Wallet لو طريقه الدفع
+CF - Halan Card - Credit Card لو طريقه الدفع
+غير متاح التعديل على الاوردر بالإضافة او ازاله منتاجات من الاوردر
+٠
+# مدين العامية
+-
+-
+-
+----
+٠
+٠٠
+Escalation needed: No
+حابین ناكد على حضرتك بمراجعه الاوردر فی نفس یوم الاستلام او بحد اقصی فی خلال 48 ساعة من الاستلام وحضرتك وقت استلامك ای اوردر من حالا جمله من حقك إنك تراجع اوردرك ولو فيه إى مشكله فى أى منتج من حيث الكمية او الكواليتى بيتم خصم تمنه من إجمالى الفاتوره ف حاله (كاش فقط) وفى حاله رفض المندوب من حقك تتواصل معانا وقت استلامك للاوردر لحل المشكلة وده حق حضرتك طبعا"
+1528,2e966e0050875278827eb485652955b4,0,gomla,Gomla,Complain,Non-Technical Issue,Yes,ok,Missing Gift,شكوى عميل من نقص تى شيرت كوكاكولا,yes,"Vertical: Gomla | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Missing Gift
+Question AR: شكوى عميل من نقص تى شيرت كوكاكولا
+
+Script:
+شكوى عميل من نقص تى شيرت Missing Gift Halan Gomla - Complaints related to Product · استاذنك ممكن توضح لى الرقم إللى حضرتك طلبت بيه
+سيتم كتابة تفاصيل الشكوى بالكامل (رقم الاوردر -نوع المنتج - التفاصيل بالكامل)هايتم ارسال مندوب فى خلال 48 ساعة عمل لتسليم العميل المنتج
+(Escalation needed: Yes)
+Halan Gomla -> Complaint -> financial ->Missing Gift"
+1540,8938575655245229a53cd78faeef9974,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Product availability,عميل يستفسر عن المنتجات المتاحه,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Product availability
+Question AR: عميل يستفسر عن المنتجات المتاحه
+
+Script:
+عميل يستفسر عن المنتجات المتاحه Product availability
+حضرتك يتقدر تدخل على التطبيق وتختار المنتاجات اللي متاحه بالكميات المتاحه من خلال التطبيق واللي تناسبك
+Escalation Needed
+No"
+1541,584bfb4b808f59299c29cd74304768d6,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,How to request order,ازاي اقدر اشتري؟؟,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to request order
+Question AR: ازاي اقدر اشتري؟؟
+
+Script:
+• ازاي اقدر اشتري ؟؟
+How to request order
+من خلال الإيليكيتين تقدر تدخل على قسم حالا جمله وتتبع الخطوات
+• تفتح الإبليكشن
+تختار قسم حالا جمله
+تضيف المنتاجات الي عربة التسوق
+تضغط على كلمه شراء القاهـ
+الظاهرة في أسفل الصفحة
+تختار طريقة الدفع (كاش - محفظه حالا - credit card - كارت حالا - الاحد الائتماني - محفظه حالا + كاش - الاحد الائتماني + كاش او ·
+محفظه حالا - كارت حالا + كاش او محفظه حالا - credit card + كاش او محفظه حالا
+مراجعة البيانات ( العنوان - الاسم بالكامل - رقم التوصيل )
+تختار يوم الاستلام
+تأكيد الشراء
+- يجب التأكد من الحد الأقصى الذي يمكن اضافته لمنتج فى حالة شكوى العميل من عدم امكانيه زيادة عدد المنتج (خاصة فى حالة المنتجات اللى عليها خصومات، بيبقى فى دايما حد أقصى للعدد المطلوب من قبل العميل)
+Escalation Needed
+No"
+1573,5177c7e7b0ad5b8b8d299e7ccd4fe50c,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,customer inquiry about deposit,عميل يستفسر عن الديبوزت,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: customer inquiry about deposit
+Question AR: عميل يستفسر عن الديبوزت
+
+Script:
+عميل يستفسر عن الديبوزن
+customer inquiry about deposit
+- استأذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه
+- العميل بيوضح ان في حد كلمه طلب منه دييوزن والاورير اللي طالبه فوق ال 30 الف جنيه بتوضح للعميل ان بالفعل في ديبوزت 10% من توتل الاوردر بتحوله على الرقم اللي تم التوضيح لي من خلال ال outbound ودا بيتم لتأكيد الاوردر لحضرتك
+- اي اوردر فوق ال 5000 جنیه مش پنحتاج من العمیل اي دیبوزن و ییتم تاکید الاوردر لي
+Escalation Needed NO"
+1578,3ee5c47ce14458d08e06fb7cba2341b5,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Delivery Time,ايه مواعيد التوصيل المتاحه ؟؟,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Delivery Time
+Question AR: ايه مواعيد التوصيل المتاحه ؟؟
+
+Script:
+فرع أكتوبر ( سكند داي *مفيش تاجيل لنفس اليوم في *)
+: مناطق التوصيل اكتوبر - الشيخ زايد - ح. اكتوبر - ح. الاهرام - هرم - فيصل - منيب - عمرانية
+. دي المناطق اللي فرع اكتوبر بيخدمها
+وحاليا كل المناطق سكند
+محافظات
+اسكندريه
+Second day
+بيوصل ف خلال 24 ساعه او 48 ساعه على حسب اختيار العميل للمعاد المناسب لي
+Escalation Needed ( No)"
+1579,192c0c10ae58543cb3463b9e03cafbc1,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Where is my order,استفسار عميل لماذا لم يستلم طلب الاوردر,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Where is my order
+Question AR: استفسار عميل لماذا لم يستلم طلب الاوردر
+
+Script:
+استفسار عميل لماذا لم يستلم طلب الاوردر Where is my order
+ف حاله الاورير خارج للتوصيل
+1. استاذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه
+هيتم التأكد من ميعاد الاستلام من على السيستم بنسال العميل هل فريق المتابعة اتواصل مع حضرتك لتنسيق ميعاد الاستلام .2
+لو لا : ينعتذر للعميل ونعرفوا أن فريق المتابعة هايتواصل مع العميل خلال ساعة بحد أقصى لمتابعه وتنسيق استلام الاوردر وبيتم ارسال رقم الاوردر واسم المندوب لجروب الواتس اب وفريق المتابعه الخاص بالتوصيل هايتواصل مع المندوب لتنسيق ميعاد استلام حضرتك مع وهايتواصلوا مع حضرتك لتوضيح الميعاد
+لو نعم : ينوضيح للعميل ان المندوب فى طريقه لتوصيل الاوردر وده على حسب خط سيره طبعا
+مواعيد التوصيل فى كل المخازن يتكون من 10 صباحا ل 11 مساء
+(Escalation Needed : NO)
+حابین ناكد علی حضرتك بمراجعه الاوردر فی نفس یوم الاستلام او بحد اقصی فی خلال 48 ساعة من الاستلام وحضرتك وقت استلامك إی اوردر من حالا جمله من حقك إنك تراجع اوردرك ولو فيه إي مشکله فی اي منتج من حیث الکمیة او الکوالیتی بیتم خصم تمنه من اجمالى الفاتوره ف حاله (كاش فقط) وفی حاله رفض المندوب من حقك تتواصل معانا وقت استلامك للاوردر لحل المشكلة وده حق حضرتك طبعا"
+1580,e1bc5b9cd9765a91a4e5979789e92b6e,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Inquiry about order status,استفسار عميل لماذا لم يستلم طلب الاوردر,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about order status
+Question AR: استفسار عميل لماذا لم يستلم طلب الاوردر
+
+Script:
+استفسار عميل لماذا لم يستلم طلب الأورير Inquiry about order status
+ف حاله الاوردر تم التحضير - قيد التحضير - تم التأكيد
+1. استاذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه
+2. هيتم التأكد من ميعاد الاستلام من على السيستم
+ينوضح للعميل ان الاوردر لسه مخرجش من المخزن بمجرد تعين مندوب على الاوردر هيتم التواصل مع حضرتك لتنسيق معاد الاستلام ودا بيكون على حسب خط سير المندوب وبيتم ارسال رقم الاوردر لجروب التهاب المتابعه ومعرفة معدد خروج الاوردر من المخزن
+مواعيد التوصيل فى كل المخازن يتكون من 10 صباحا ل 11 مساء
+(Escalation Needed : NO)
+حابین ناكد على حضرتك بمراجعه الاوردر فی نفس یوم الاستلام او بحد اقصی فی خلال 48 ساعه من الاستلام وحضرتك وقت استلامك ای اوردر من حالا جمله من حقك انك تراجع اوردرك ولو فيه إي مشكله فى إي منتج من حيث الكمية او الكوالیتی بيتم خصم تمنه من إجمالى الفاتوره ف حاله (كاش فقط) وفى حاله رفض المندوب من حقك تتواصل معانا وقت استلامك للاوردر لحل المشكله وده حق حضرتك طبعا"
+1587,84a77cee2d6758c8849916d2a6a7e4d1,0,gomla,Gomla,Request,Non-Technical Issue,No,ok,Change Registered address,عميل يريد تغيير عنوان استلام الاوردر,yes,"Vertical: Gomla | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Change Registered address
+Question AR: عميل يريد تغيير عنوان استلام الاوردر
+
+Script:
+عميل يريد تغيير عنوان استلام الاوردر
+Change Registered address
+- استأذنك ممكن توضح لي الرقم اللي حضرتك طلبت بيه
+-يعتذر جدا لحضرتك للإبيض مفيش امكانيه بتغير العنوان من خلالي
+Escalation needed: No"
+1657,331639d4b68a5d8385446709802a3881,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,CF Canceled by System,شكوى عميل من عدم إتمام الطلب بال CF,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: CF Canceled by System
+Question AR: شكوى عميل من عدم إتمام الطلب بال CF
+
+Script:
+• شكوى عميل من عدم إتمام الطلب بال CF
+CF Canceled by System
+>
+بنعتذر لحضرتك جدا ده بيكون بسبب connect مابين حساب حالا او ان كود خصم المبلغ دخلته متاخر او وصل متأخروده بيكون اكتر من سبب ممكن مشكله فنيه في الانترنت او الداتا اللي السيستم يستقبلها من الحساب بس للاسف مش واضح عندنا أن في خصم من حساب حضرتك (حاله الاوردر بيبيقي قيد الانتظار على السيستم وهيتم الغاء الاوردر تلقائي من السيستم )
+لو العميل اكد ان في خصم حصل: ممكن حضرتك ترسل رساله الخصم على رقم الوتساب +20216303 وهيتم رد المبلغ مره اخري على الحد الائتماني في خلال 48 ساعه عمل ( Amount Deducted - Escalation needed: Yes)
+لو المبلغ متخصمش بنعتذر للعميل ونخلي يطلب مره اخري من خلال التطبيق (Amount not Deducted - Escalation
+(needed: No"
+1658,acaf084d168552af8b8c56e722e7563e,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Halan Card Canceled by System,شكوى عميل من عدم إتمام الطلب بال Halan Card,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Halan Card Canceled by System
+Question AR: شكوى عميل من عدم إتمام الطلب بال Halan Card
+
+Script:
+• شكوى عميل من عدم إتمام الطلب بال Halan Card
+Halan Card Canceled by System
+بنعتذر لحضرتك جدا ده بيكون بسبب connect مابين حساب حالا او ان كود خصم المبلغ دخلته متاخر او وصل متأخروده بيكون اكتر من سبب ممكن مشكله فنيه في الانترنت او الداتا اللي السيستم بيستقبلها من الحساب بس للاسف مش واضح عندنا أن في خصم من حساب حضرتك (حاله الاوردر بيبيقي قيد الانتظار على السيستم وهيتم الغاء الاوردر تلقائي من السيستم
+لو العميل اكد ان في خصم حصل: ممكن حضرتك ترسل رسالة الخصم على رقم الواتساب +20216303 وهيتم رد المبلغ مره اخري
+بنسال العميل المبلغ اللى اتخصم كان ايداع فى الكارت ولا من الحد الائتمانى وينكتب اللى العميل وضحه فى التكت وهيتم رد المبلغ مره اخري على الحد الائتمانى الخاص بالكارت او ع الكارت نفسه لو هو ايداع وده بيكون فى خلال 48 ساعه عمل (Amount Deducted - Escalation needed: Yes)
+لو المبلغ متخصمش بنعتذر للعميل ونخلي يطلب مره اخري من خلال التطبيق (needed: No
+Amount not Deducted - Escalation)"
+1660,3d292f1657b756d7b8a5d4caa2f58bd7,0,gomla,Gomla,Request,Financial Issue,Yes,ok,Return product,طلب استرداد منتج (1),yes,"Vertical: Gomla | Type: Request | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Return product
+Question AR: طلب استرداد منتج (1)
+
+Script:
+● طلب استرداد منتج
+Return product
+بنعرف من العميل اية هو سبب الإرجاع وده بيكون لسبب راجع للعميل نفسه مش مشكله في المنتج -
+- لو العميل أصر ع إرجاع المنتج بتعمل تكت وبنكتب فيها كل التفاصيل
+لو المنتج أقل من 100 جنيه بلوضح للعميل ان يحتفظ ب المنتج وأن تمنه هينزل على المحفظه فى خلال ساعة وبذاكد للعميل أن يتأكد من المنتجات - قبل ما يطلبها
+لو العميل عايز المبلغ يرجع ع الكريديت بيكون فى خلال 14 يوم عمل
+Escalation Needed: Yes
+لو المنتج اكتر من 100 جنيه فيما فوق بلوضح للعميل ان يحتفظ ب المنتج ب نفس جوده التسليم وأن فى مندوب هيجي يستلم منه المنتج وميستلم (Escalation needed: Yes) __ المبلغ كاش فى خلال 48 ساعة عمل ده لو العميل كاش أو كريديت (معادا الجمعة والسبت والأجازات الرسمية )
+CF - Halan Card ۔
+أو أقل من 100 جنيه بنعتذر لحضرتك وهيثم رد المبلغ للمحفظة حضرتك فى خلال ساعة بقيمة المنتج على المحفظة وحضرتك تقدر تستفاد ب المنتج اللي وصل
+لو المنتج اكتر من 100 جنيه ل 300 فيما فوق جنيه نفس جوده التسليم وان في مندوب هيجي يستلم منه المنتج والمبلغ هيترد على الحد الائتماني ف خلال 48 ساعة . عمل ( معادا يوم الجمعة والسبت والاجازات الرسيميه )
+. ينسال العميل على رقم إضافي للتواصل ويتم توضيحه ف التكيت ولو مفيش رقم آخر بيتم التوضيح ف التكيت
+اي اوفر علي ال CF او Halan card خاص ب تريبل زيرو (0% فوائد , 0% مقدم, 0% مصاريف )
+لازم نتاكد اثناء المكالمة العميل مختار فعلا العرض د! ولا لا دا ینعرفه لما يندخل علي ال CRM
+-بنفتح ال CRM
+Customer Search بنختار
+- بنكتب الرقم القومي بتاع العميل ف ال National ID
+- ف ال customer systems هنختار CF"
+1661,79beaf572fbf5e2ca4326d5bd9be4367,0,gomla,Gomla,Request,Financial Issue,Yes,ok,Return product,طلب استرداد منتج (2),yes,"Vertical: Gomla | Type: Request | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Return product
+Question AR: طلب استرداد منتج (2)
+
+Script:
+-بنفتح ال CRM
+Customer Search بنختار
+- بنكتب الرقم القومي بتاع العميل ف ال National ID
+- ف ال customer systems هنختار CF
+- تحت هنلاقي كلمه Loans هندوس عليها هيظهر لينا كل ال Loans العميل هنشوف انهي loans من principal اللي هي total orders amount بتاعت العميل اللي دفعها من عندنا ف يورتل جمله
+- بندوس علي installments علشان نتاكد العميل مختار فعلا العرض دا ولا لا (ب اننا نحسب توتال ال principal اللي هو ( portal gomla اللي موجود ف taotal amoount order
+لو العميل فعلا مختار العرض ده ف هناكد على العميل وبناء عليه
+مش هنضيف ای فايده تاني ل اي عميل عنده مشكله ف نواقص - كميه - کوالتي - رونج
+هنضيف مبلغ المنتج بس + مبلغ اعتذار
+دي طبعا للعملاء اللي اقل من 100 جنيه وهنضيف المبلغ علي المحفظه للعميل
+- تقدر تستخدم المحفظة ف الطلب مرة أخري أو في شحن فاتورة موبايلك او إي رقم اخر او تدفع فواتير الكهرباء والمياه أو التبرعات او حجز سفر ورحلات (جوباص -بلوباص - مصر للطيران) أو خدمات طبية أو خدمات الدفع (تحصيل قرض لينك الاسكندرية او قرض تمباهيل)
+الطيف
+00311414
+نوع القضية
+رقم الطلب
+# كيز البناء (٢ تكبر الإستعم
+٣
+(عبد الكل - ماء - السنة)
+دل للطلب
+مندوب الشعر
+● الم الحالى
+الساول
+قتك السعر
+الوز الإسلام
+الأسماء ٥ راع ter
+غير المستخدم
+كلين الوفاء
+العميل
+مشحظى طاعات العداء
+قمة المضافة على طاف الشبكة طابع لل طعامسى
+الفاتكى السعيد
+العلوى من قبل
+فالف مدوب الفخر
+المندوب الشحن
+القاعدة طلبعت
+إجمالي قيمة الطلب
+Activate
+المنطقة عربة
+Go to utti ng
+طلب من طريق
+من طريق العميل
+مليك
+7379468"
+1662,c11b7d1b26e05c849f56fe298e8036b9,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Quality product,شكوى عميل من جودة المنتجات ( 1),yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Quality product
+Question AR: شكوى عميل من جودة المنتجات ( 1)
+
+Script:
+Quality product شكوى عميل من جودة المنتجات . Halan Gomla - Complaints related to Product
+استاذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه .
+سيتم كتابة تفاصيل الشكوى بالكامل (رقم الاوردر -نوع المنتج - الكمية - التفاصيل بالكامل)
+• لو تم دفع ثمنه لو كاش أو كريديت: يعتذر لحضرتك جداً هيثم رد ثمن المنتج لحضرتك ع المحفظة ف خلال ساعة ومعاه مبلغ ع المحفظة كاعتذار متنا
+• لو العميل عايز المبلغ ع الكريديت هايكون فى خلال 14 يوم عمل لو لم يتم دفع ثمنه: هينزل لحضرتك مبلغ اعتذار ع المحفظة ( ........ ) ف خلال ساعة
+في الحالة دفع تمنه: أستاذن حضرتك ممكن يتم ارسال صوره بالمتبكله الموجودة في المنتج تقدر تبعت الصور على رقم الواتس اب 20216303+ فى خلال ساعة لمساعدتنا في عدم تكرار المتكله مره اخري لو حضرتك ميعتش الصور هيتم الغاء التيكوي فى خلال ساعة من تقديم الشكوى
+ونسال العميل عن الرقم اللى هايبعت منه الصوره هايكون ايه ونضيف الرقم فى التكت
+أو العميل كاش أو كريديت المنتج أكثر من 100 جنيه ل 300 فيما فوق جنيه نفس جوده التسليم وان في مندوب هيجي يستلم منه المنتج والمبلغ هيترد كاش ف خلال • 48 ساعة عمل ( معادا يوم الجمعة والسبت والأجازات الرسمية )
+والمنتج ازيد من 100 جنيه هنترد علي الكارت أو العميل عامل ايداع ف خلال 48 ساعة عمل والعميل يحتفظ بنفس جوده التسليم وان CF - Halan Cardف حاله ال . في مندوب هيجي يستلم منه المنتج ف خلال 48 ساعة عمل ( معادا يوم الجمعة والسبت والأجازات الرسمية )
+• :و كانت قيمة المنتج تتجاوز 100 جنيه CF في حالة العميل
+. . يجب أن يكون المتبقي أو إجمالي الطلب بعد خصم مبلغ المشكلة أكبر من 500 جنيه
+. .في هذه الحالة، يتم إرجاع المبلغ للعميل على الحد الائتماني خلال 48 ساعة عمل
+. : اما إذا كان المتبقي أو إجمالي الطلب بعد خصم مبلغ المشكلة أقل من 500 جنيه
+. يتم إرجاع المبلغ للعميل على المحفظة خلال ساعة .
+مثال لو توتال الاوردر ٧٠٠ جنيه والعميل عنده مشكله ف ٣٠٠ كده المبلغ هيرجع على المحفظه .
+. CF لو توتال الاوردر ١٠٠٠ والعميل عنده مشکله ب ٢٠٠ جنيه کده هټرجع علي ال
+لو اقل من 100 جنيه CE - Halan Card هيترد للعميل على المحفظه ف خلال ساعة + مبلغ اعتذار + مبلغ بنسبه القايده ع المنتج ·
+(Escalation needed: Yes)"
+1663,2257d321f3325ba8aecb9b72687e1fbc,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Quality product,شكوى عميل من جودة المنتجات (2),yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Quality product
+Question AR: شكوى عميل من جودة المنتجات (2)
+
+Script:
+• حضرتك حايب المبلغ ينزل على المحفظه ولا على الكرديت كارد او كارت حالا شباب حالا جمله عميل credit card - cf عدى عليهم ال 48 ساعة ومعهلش شكوى ف خلال المدة المحددة يتقدم لي الشكوى نادي ويداكد على العميل ان هو بعد كده يكلمنا ف خلال 48 ساعة ل حل المشكلة أسرع ومساعدته
+الكاش لا لان المفروض العميل بيراجع الأوردر بتاعه قبل ما يستلم وبيخصم من الفاتورة ثمن المنتجات اللي موصلتش
+ينسال العميل على رقم إضافى للتواصل وييتم توضيحه ف التكيت ولو مفيش رقم آخر ييتم التوضيح ف التكيت
+.
+اي اوفر على ال CF او Halan card خاص ب تربيل زيرو (0% فوائد , 0% مقدم , 0% مصاريف )
+لازم نتاكد اثناء المكالمة العميل مختار فعلا العرض دا ولا لا دا ينعرفه لما يندخل على ال CRM
+-بنفتح ال CRM
+- Customer Search بنختار
+- ينكتب الرقم القومي بتاع العميل ف ال National ID
+- ف ال customer systems هنختار CF
+- تحت هنلاقي كلمه Loans هندوس عليها هيظهر لينا كل ال Loans العميل هنشوف انهي loans من principal اللي هي total orders amount بتاعيت العميل اللي دفعها من عندنا ف يورتل جمله
+- بندوس على installments علشان نتاكد العميل مختار فعلا العرض دا ولا لا (ب اننا نحسب توتال ال principal اللي هو [ portal gomla اللي موجود ف taotal amoount order
+لو العميل فعلا مختار العرض ده ف هناكد على العميل وبناء عليه
+مش هنضيف اي فايده تاني ل اي عميل عنده مشكله ف نواقص - كميه - كوالتى - رونج
+هنضيف مبلغ المنتج بس + مبلغ اعتذار
+دي طبعا للعملاء اللي اقل من 100 جنيه وهنضيف المبلغ على المحفظه للعميل
+حابين تاكد على حضرتك بمراجعه الاوردر في نفس يوم الاستلام او بحد اقصى فى خلال 48 ساعة من الاستلام وحضرتك وقت استلامك ای اوردر من حالا جمله من حقك إنك تراجع اوردرك ولو فيه اى مشكله فى أى منتج من حيث الكمية او الكوالیتی بيتم خصم تمنه من اجمالى الفاتوره ف حاله (كاش فقط) وفى حالة رفض المندوب من حقك تتواصل معانا وقت استلامك للأوردر لحل المشكلة وده حق حضرتك طبعا
+(Escalation needed: Yes)"
+1664,cc52857e43ba5b06a6a3a52d92932f8a,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Wrong product,شكوي عميل من وصول منتج زياده,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Wrong product
+Question AR: شكوي عميل من وصول منتج زياده
+
+Script:
+شكوى عميل من وصول منتج زياده .
+Wrong product Halan Gomla - Complaints related to Product
+- أستأذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه
+- شكرا جدا على تواصل حضرتك هيتم عمل شكوى لحضرتك وتقدر تحتفظ ب نفس جوده التسليم وان في مندوب هيجي يستلم المنتج فخلال 48 ساعه عمل (د!
+لو المنتج ازيد من 100 جنيه
+لو المنتج اقل من 100 جنيه هنوضح للعميل ان دي هديه من الشركه يقدر يحتفظ بيها
+حابین ناكد علی حضرتك بمراجعه الاوردر في نفس يوم الاستلام او بحد اقصى فى خلال 48 ساعة من الاستلام وحضرتك وقت استلامك إي اوردر ۔ من حالا جمله من حقك إنك تراجع اوردرك ولو فيه إي مشكله فى إي منتج من حيث الكمية او الكوالیتی بيتم خصم تمنه من إجمالى الفاتوره ف حاله (كاش فقط) وفى حاله رفض المندوب من حقك تتواصل معانا وقت استلامك للإوردر لحل المشكلة وده حق حضرتك طبعا
+سيتم كتابة تفاصيل الشكوى بالكامل (رقم الاوردر - نوع المنتج اللى وصل بالخطأ -نوع المنتج المقصود - التفاصيل بالكامل) -
+بنسال العميل على رقم إضافي للتواصل وبيتم توضيحه ف التكيت ولو مفيش رقم آخر بيتم التوضيح ف التكيت
+(Escalation needed: Yes)"
+1668,f22cfafe049d5e1a842f31f25896cda9,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Wrong product,شكوى عميل من وصول منتج خطا (1),yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Wrong product
+Question AR: شكوى عميل من وصول منتج خطا (1)
+
+Script:
+استأذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه- نفس المنتج بس الكمية أو الحجم مختلف (أقل) - منتج مختلف عن المطلوب
+منتج مختلف عن المطلوب: حضرتك تقدر تحتفظ ب المنتج اللي وصل ل حضرتك بالخطا دا هديه من الشركه وهيتم نزول تمن المنتج على المحفظه ف خلال ساعه ( ( دا لو منتج سعره اقل من 100 جنيه ) لو العميل عايز المبلغ ع الكريديت هايكون فى خلال 14 يوم عمل .
+منتج مختلف عن المطلوب: حضرتك تقدر تحتفظ ب نفس جوده التسليم وأن فى مندوب هيجي يستلم منه المنتج وهيستلم المبلغ كاش لو كاش • او کریدیت ( دا لو منتج سعره اکبر من 100 جنيه ل 300 جنيه او فيما فوق) وده بيكون فى خلال 48 ساعه عمل ( معادا يوم الجمعة والسبت
+( والاجازات الرسمية .
+نفس المنتج بس الكمية أو الحجم مختلف (أقل ) : حضرتك تقدر تحتفظ ب المنتج اللي وصل ل حضرتك بالخطا دا هديه من الشركه • وهيتم نزول تمن فرق المنتج علي المحفظه ف خلال ساعة
+وينطلب من العميل انه بيعت صوره المنتج الخطاع الواتس اب الخاص بالشركه 20216303+ لو حضرتك مبعتش الصور هيتم الغاء الشكوى فى خلال ساعه من تقديم الشكوى ونسال العميل عن الرقم اللى هاببعت منه الصوره هايكون ايه ونضيف الرقم فى التكت
+CF - Halan Card
+• لو اقل من 100 جنيه بنعتذر لحضرتك وهيثم رد المبلغ للمحفظة حضرتك في خلال ساعة بقيمة المنتج على المحفظة ولو أكتر من 100 جنيه وحضرتك تقدر تستفاد ب المنتج اللي وصل خطا
+لو المنتج أزيد من 100 جنيه هتترد على الكارت لو العميل عامل ايداع او من الحد الائتمانى للكارت ف خلال 24 ساعة عمل .
+:وكانت تمن المنتج تتجاوز 100 جنيه CF في حالة العميل •
+. ا یجب أن یکون المتبقي أو إجمالي الطلب بعد خصم مبلغ المشكلة آکبر من 500 جنیه
+. .في هذه الحالة، يتم إرجاع المبلغ للعميل على الحد الائتماني خلال 48 ساعة عمل
+:أما إذا كان المتبقي أو إجمالي الطلب بعد خصم مبلغ المشكلة أقل من 500 جنيه .
+. .يتم إرجاع المبلغ للعميل على المحفظة خلال ساعة
+مثال لو توتال الاوردر ٧٠٠ جنيه والعميل عنده مشكله ف ٣٠٠ كده المبلغ هيرجع على المحفظه .
+CF لو توتال الاوردر ١٠٠٠ والعميل عنده مشكله ب ٢٠٠ جنيه كده هترجع علي ال •"
+1669,8c91412cd2de528bacb85d1fb11f74f1,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Wrong product,شكوى عميل من وصول منتج خطا (2),yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Wrong product
+Question AR: شكوى عميل من وصول منتج خطا (2)
+
+Script:
+عميل حالا جمله طالب أوردر ومكتوب كرديت كارد يتمأل العميل حضرتك دافع من الكرديت كارد ولا من كارت حالا قال كارت حالا طب دا من ال cf ولا حضرتك اللي عملت إبداع للفلوس ويتكتب داف التكيت ولو cf يتمشي زي ال cf اكتر من 100 هيرجع على الاحد الائتماني لو اقل من 100 هيرجع على المحفظة لو العميل هو اللي عمل إبداع للفلوس يتهتدل العميل المبلغ ينزل على المحفظة
+حضرتك حايب المبلغ ينزل على المحفظه ولا على الكرديت كارد او كارت حالا
+شباب حالا جمله عميل credit card - of عدي عليهم ال 48 ساعه ومعملش شكوى ف خلال المدة المحددة بنقدم لي الشكوى عادي و بناكد على العميل ان هو بعد كده يكلمنا ف خلال 48 ساعه ل حل المشكله أسرع ومساعدته
+الكاش لا لان المفروض العميل بيراجع الاوردر بتاعه قبل ما يستلم وييخصم من الفاتوره تمن المنتاجات اللي موصلتشر
+بنسال العميل على رقم إضافي للتواصل وبيتم توضيحه ف التكيت ولو مفيش رقم آخر بيتم التوضيح ف التكيت •
+اي اوفر علي ال CF او Halan card خاص ب تريبل زيرو (0% فوائد, 0% مقدم , 0% مصاريف )
+لازم نتاكد اثناء المكالمة العميل مختار فعلا العرض دا ولا لا دا ينعرفه لما يندخل علي ال CRM
+-بنفتح ال CRM
+Customer Search بنختار
+- بنكتب الرقم القومي بتاع العميل ف ال National ID
+. ف ال customer systems هنختار CF
+- تحت هنلاقي كلمه Loans هندوس عليها هيظهر لينا كل ال Loans العميل هنشوف انهي loans من principal اللي هي total orders amount بتاعت العميل اللي دفعها من عندنا ف يورتل جمله
+- بندوس علي installments علشان نتاكد العميل مختار فعلا العرض د! ولا لا (ب اننا نحسب توتال ال principal اللي هو ( portal gomla اللي موجود ف taotal amoount order
+لو العميل فعلا مختار العرض ده ف هناكد على العميل وبناء عليه
+مش هنضيف اي فايده تاني ل اي عميل عنده مشكله ف نواقص - كميه - کوالتي - رونج
+هنضيف مبلغ المنتج بس + مبلغ اعتذار
+دي طبعا للعملاء اللي اقل من 100 جنيه وهنضيف المبلغ على المحفظه للعميل"
+1670,c6d40455fefd592488d4068f5742a18d,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Credit Card Canceled by System,شكوى عميل من عدم إتمام الطلب بالكريديت كارد,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Credit Card Canceled by System
+Question AR: شكوى عميل من عدم إتمام الطلب بالكريديت كارد
+
+Script:
+• شكوى عميل من عدم إتمام الطلب بالكريديت كارد
+Credit Card Canceled by System
+بنعتذر لحضرتك جدا ده بيكون بسبب connect مابين حساب البنك وحساب حالا وده بيكون اكتر من سبب ممكن مشكله فنيه في الانترنت او الداتا اللي السيستم بيستقبلها من البنك بس للأسف مش واضح عندنا ان في خصم من حساب حضرتك (حاله الاوردر بيبيقي قيد الانتظار علي السيستم وهيتم الغاء الاوردر تلقائي من السيستم)
+لو العميل اكد ان في خصم حصل: ممكن حضرتك ترسل رساله الخصم على رقم الوتساب +20216303 وهيتم رد المبلغ مره اخري ( حضرتك حابب المبلغ يترد مره اخري على المحفظه ولا على الكرديت كارد)
+بنكتيب رقم العميل فى التكت اللى بيرسل منه الصوره
+المحفظة ف خلال ساعه ----- الكرديت كارد ف خلال 14 يوم عمل
+(بنهندل العميل علي المحفظه اول حاجه ان المبلغ يترد عليها مره اخري)
+(Amount Deducted - Escalation needed: Yes )
+لو المبلغ متخصمش بنعتذر للعميل ونخلي يطلب مره اخري من خلال التطبيق
+(Amount not Deducted - Escalation needed: No)
+يتقدر تستخدم المحفظة ف الطلب مرة أخري أو في شحن فاتورة موبايلك او إي رقم اخر او تدفع فواتير الكهرباء والمياه أو التبرعات او حجز سفر ورحلات (جوباص -بلوباص -مصر للطيران) أو خدمات طبية أو خدمات الدفع (تحصيل قرض لينك الاسكندرية او قرض تساهيل)"
+1672,77cb53b24220569e81bdbeacd0ace2e8,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Delivery fees,بتكون كام مصاريف التوصيل و بتتحسب ازاي؟؟,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Delivery fees
+Question AR: بتكون كام مصاريف التوصيل و بتتحسب ازاي؟؟
+
+Script:
+Delivery Fees
+• يتكون كام مصاريف التوصيل وبتتحسب ازاي ؟؟
+: رسوم التوصيل يتظهر على تطبيق حالا عند اتمام الاورير من خلال العميل - الرسوم بتكون 35جنيه على اي اوردر اقل من 500 جنيه
+-اي اوردر ب 500 جنيه فيما فوق رسوم التوصيل هتبقى ب 20 جنيه
+Escalation (No)"
+1674,045bf0120fff5e8098af45073c093166,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Minimum or maximum order Value,كام اقل قيمه للطلب؟؟,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Minimum or maximum order Value
+Question AR: كام اقل قيمه للطلب؟؟
+
+Script:
+• كام اقل قيمه للطلب؟؟
+Minimum or maximum order Value
+(محفظة حالا - كارت حالا - credit card - كاش ) اقل قيمه بتكون 200 جنيه -. (بيكون الحد الأدنى للطلب 1000جنيه وتقسيط 6 شهور) (CF) في حالة الدفع من خلال الحد الائتماني .
+Escalation Needed
+No"
+1675,3470388337195ad89a35e42bc05110c6,0,gomla,Gomla,Request,Financial Issue,Yes,ok,Asking to cancel request,عميل يريد الغاء طلب شراء (1),yes,"Vertical: Gomla | Type: Request | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Asking to cancel request
+Question AR: عميل يريد الغاء طلب شراء (1)
+
+Script:
+• عميل بريد الغاء طلب شراء Asking to cancel request سؤال العميل علي سيب الالغاء (لازم نعرض علي العميل الحلول المتاح لمساعدته)
+- في حالة إصرار العميل علي الإلغاء:
+مراجعه حاله الأوردر للألغاء
+قيد الانتظار
+تم التأكيد
+Cash: ييتم اللإلغاء من السيستم وينتختار سيب الالغاء الصح
+Wallet - Cf - Credit Card : Cancel Order -Merchants Return Order -Merchants
+Cancel Order -change address Return Order -change address Return Order - Unavailability To Edit Order Cancel Order - Unavailability To Edit Order Customer request to return order Customer request to cancel order Cancel order - earlier delivery date Return order - earlier delivery date Cancel Order - Customer is Unreachable Return Order - Customer is Unreachable Cancel Order - Wrong Address"
+1676,d719788915ad5ac4b9890bf1f54fd811,0,gomla,Gomla,Request,Financial Issue,Yes,ok,Asking to cancel request,عميل يريد الغاء طلب شراء (2),yes,"Vertical: Gomla | Type: Request | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Asking to cancel request
+Question AR: عميل يريد الغاء طلب شراء (2)
+
+Script:
+Cancel Order - Customer is Unreachable Return Order - Customer is Unreachable Cancel Order - Wrong Address Return Order - Wrong Address Cancel Order - postponed order Return Order - postponed order Cancel Order - Unavailability To Edit Order Return Order - Out of Coverage Area Cancel Order - Out of Coverage Area
+في طريقتين لرد المبلغ لحضرتك ودي يتكون في خلال 14 يوم عمل او تقدر ترد المبلغ عن طريق المحفظه ودي هتكون في خلال ساعه وتقدر Credit Card حضرتك تستخدمهم في الطلب مره اخري أو في شحن فاتوره موبايلك او اي رقم اخر او تدفع فواتير الكهرباء والمياه او التبرعات او حجز سفر ورحلات (جوباص - بلوياص - مصر الطيران) او خدمات طبيه او خدمات الدفع ( تحصيل قرض لينك الاسكندريه او قرض تساهيل
+Wallet ترد المبلغ عن طريق المحفظه ودي هتكون في خلال ساعه وتقدر حضرتك تستخدمهم في الطلب مره اخري او في شحن فاتوره موبايلك او اي رقم اخر او تدفع فواتير الكهرباء والمياه او التبرعات او حجز سفر ورحلات (جوباص - بلوباص - مصر الطيران) او خدمات طبيه او خدمات الدفع (تحصيل قرض لينك الإسكندرية او قرض تمباهيل)
+Cf - Halan Card بيتم عمل طلب للقسم المختص رد المبلغ لحضرتك في خلال 48 ساعة عمل ( من غير جمعه وسبت والاجازات الرسمية )
+قيد التحضير تم التحضير خارج للتوصيل قيد التحضير - تم التحضير يتبعت رقم الاوردر على جروب الوتباب ل تغير حاله الطلب ل تأكيد للإلغاء Escalation Needed: No
+خارج للتوصيل يتبعت رقم الاوردر على الجروب و الاوردر ببيقي مرتجع Escalation Needed: No"
+1680,fa4de1207b5a5c90aee8629ebce89277,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Delivery Time,ايه مواعيد التوصيل المتاحه,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Delivery Time
+Question AR: ايه مواعيد التوصيل المتاحه
+
+Script:
+Delivery Time
+ايه مواعيد التوصيل المتاحه ؟؟
+مواعيد التوصيل فى كل المخازن يتكون من 10 صباحا ل 11 مساء
+Second day بيوصل ف خلال 24 ساعه او 48 ساعه على حسب اختيار العميل للمعاد المناسب لي
+القاهره
+الجيزه
+Note: دي مناطق ال سكند داي ف كل مخزن
+مخزن مدينه نصر (سكند داي *مفيش تاجيل لنفس اليوم في *) وحاليا كل المناطق سكند
+الاميريه - البساتين - الخانكه - الدقي - الزاوية الحمراء - الشرابيه - الشروق - الظاهر - العبور - العجوزة حي العجوزة- العجوزه- المرج - المطرية- المنيل - النزهة- وراق العرب
+دار السلام- رمسيس- روض -جاردن سيتي- حدائق الزيتون - حدائق القيه- حدائق حلوان - حلمية الزيتون - حلوان - حمامات القيه- حي الدقي حي الدقي الفرج - سراي القبه - عابدين - عين شمس - كوبري القبه - مدينتي - مدينة السلام - مدينه قباء - مصر الجديده - مصر القديمه - الزمالك - وسط البلد
+• المعادي - المقطم - دار السلام - حلوان - 15 مايو - شبرا مصر - شبرا الخيمه - المهندسين - أرض اللواء- اميايه - بولاق الدكرور حي يولاق_ الدكرور - بولاق الدكرور زيين - بولاق الدكرور صفط اللبن - ارض اللواء حي أرض اللواء - بولاق الدكرور - الساحل- الوراق
+قرع اكتوبر ( سكند داي *مفيش تاجيل لنفس اليوم في *) وحاليا كل المناطق سكند - أكتوبر - الشيخ زايد - ح. اكتوبر - ح. الاهرام - هرم - فيصل - منيب - عمرانية دي المناطق اللي قرع اكتوبر بيخدمها
+اسكندريه
+محافظات
+Escalation Needed ( No)"
+1708,0745d675a6095d42b50ad7a88d3ef228,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,IVR,IVR,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: IVR
+Question AR: IVR
+
+Script:
+Selection
+لاعاده تعيين الرقم السري يضغط 1 ثم 1
+الاستفسارات يضغط 1 ثم 2
+الشكاوى يضغط 1 ثم 3
+لتقديم وتفعيل حالا كرديت يضغط 2 ثم 1
+التقديم على المشروعات الصغيرة 2 ثم 2
+Halan
+الشكاوى و الدعم يضغط 2 تم 3
+لاعادة تعيين الرقم السري يضغط 3 تم 1
+Cash
+الشكاوى و الدعم يضغط 3 تم 2
+استثمار يضغط 4 تم 1
+Elite
+جمعية يضغط 4 ثم 2
+دهب يضغط 4 تم 3
+Gomla
+يضغط 5
+لتقديم يضغط 6 ثم 1
+Salary lending
+الشكاوى و الدعم يضغط 6 ثم 2
+Queue Name
+Card"
+1709,eeb8ae4332bc52a884eb6a32b9dac9f3,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Inquiry about Spin & Win,عميل بيسال عن عجله الحظ,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Spin & Win
+Question AR: عميل بيسال عن عجله الحظ
+
+Script:
+عميل بيسال عن Spin & Win
+• ممكن توضح إلى الرقم اللى حضرتك بتطلب منه من خلال حالا جمله
+• دي عباره عن لعبه عجله الحظ حضرتك بتقدر تلعبها وبعد كده بيظهر لحضرتك نص رساله فيها الهديه عباره عن ( كاش باك - بروموكود)
+لازم العميل يطلب الاوردر بقيمه اللي بتظهر لي + مصاريف التوصيل علشان الکاش باك یقدر یستفیدبي ( مثال لو ظهر للعمیل انه یطلب اوردر بقیمه 500 جنیه و لی کاش باك ب 20 جنیه لازم العمیل پبقي توتال الاوردر 520 جنيه علشان الكاش باك ينزل لي)
+· الكاش باك بينزل لحضرتك بعد استلام الاوردر ب 24 ساعة عمل على المحفظه تقدر تستخدمه ف عمل اي اوردر من خلال حالا جمله أو في شحن فاتورة موبايلك او اي رقم اخر او تدفع فواتير الكهرباء والمياه أو التبرعات او حجز سفر ورحلات (جوباص -بلوباص - مصر للطيران) أو خدمات طبية أو خدمات الدفع (تحصيل قرض لبنك الاسكندرية او قرض تساهيل
+البروموكود حضرتك بتقدر تستخدمه أثناء عمل اوردر من حالا جمله بالشروط اللي بتظهر لحضرتك ف رساله الهديه
+(Escalation needed: No)"
+1710,2398929682f55787bad22d4d3d93eb48,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Spin & Win,عميل بيشتكي من عجله الحظ (1),yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Spin & Win
+Question AR: عميل بيشتكي من عجله الحظ (1)
+
+Script:
+عميل بيشتكي من Spin & Win
+• ممكن توضح إلى الرقم اللى حضرتك بتطلب منه من خلال حالا جمله
+• بيتم سؤال العميل عن نص الرسالة والتأكد من الهديه خاصة ب حالا جمله ولا متجر حالا (بيكون خاص بالمنتجات الكهربائية والمنزلية)
+• لو خاصة ب متجر حالا (بيكون خاص بالمنتجات الكهربائية والمنزلية) بنعتذرله وبنوضح لي لمعرفة تفاصيل اكتر ممكن احول حضرتك للخدمه الصوتيه للتواصل مع زمايلى فى حالا للتقسيط وشراء المنتجات الكهربائية والمنزليه (Escalation needed: No)
+• لازم العمیل یطلب الاوردر بقیمه اللي بتظهر لي + مصاریف التوصیل علشان الكاش باك بقدر يستفيد بي( مثال لو ظهر للعمیل انه یطلب اوردر پقیمہ 500 جنیه و لی کاش پاك ب 20 جنیه لازم العمیل پیقي توتال الاوردر 520 جنيه علشان الكاش باك ينزل لي)
+• لو خاصة ب حالا جمله بنعتذر للعميل وبيتم التوضيح لي ان الكاش باك بينزل ف خلال 24 ساعة عمل من استلامه للاوردر (Escalation needed: No)
+٥ ده شكل المبلغ لما يضاف من عجله الحظ هنا العميل استلم الاوردر يوم 7 اكتوبر ونزله المبلغ في خلال 24 ساعة عمل بداية يوم 8 من غير إي تدخل من إي شخص فإ ممكن قبل مانعمل اي تكت Escalation Yes نتاكد من ان العميل عدى عليه 24 ساعة عمل ولا لا
+٥ ونشوف الادمن توول المبلغ اضاف للعميل ولا لا, لان ممكن يكون استخدمه ولو العميل عمل الاوردر بس عنده نواقص مخزن او مرتجعات بنعمله الشكوى مفيش مشكله
+٥ نتاكد ان العميل عمل الاوردر بالقيمة اللي ظهرتله في عجله الحظ بعد جمع مبلغ النواقص."
+1711,dacd0b3c328a5a14ae20d0c725ec0baa,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Spin & Win,عميل بيشتكي من عجله الحظ (2),yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Spin & Win
+Question AR: عميل بيشتكي من عجله الحظ (2)
+
+Script:
+٥ لو الكاش باك منزلش للعميل بعد 24 ساعة عمل بيتم عمل لي شكوي وبيتم حلها ف خلال ساعه
+(Escalation needed: Yes)
+• العملاء اللي داخله بتوضح انها كسبت ف عجله الحظ والكود متفعلش ف بنوضح للعميل ان يبعت صوره اللي ""جاتله ب الكود وان الكود مش شغال"" على الوتساب + 20216303 وبيتم عمل شكوي للعميل وبيتم حلها ف خلال ساعه (Escalation needed: Yes)
+• شباب في كل الحالات لازم نطلب من العميل انه يرسل صوره الهديه ع الواتس اب +20216303 ونكتب رقم العميل اللي هايبعت منه في الشكوى من اللعبة نفسها مايدخلش يبعت سكرين من كل الجوايز اللي جات
+مبلغ الكاش باك - البروموكود بيضاف ع المحفظه فى خلال ساعه
+بتقدر تستخدم المحفظة ف الطلب مرة أخري أو في شحن فاتورة موبايلك او اى رقم اخر او تدفع فواتير الكهرباء والمياه أو التبرعات او حجز سفر ورحلات (جوباص -بلوباص - مصر للطيران) أو خدمات طبية أو خدمات الدفع (تحصيل قرض البنك الاسكندرية او قرض تساهيل) مش بنقدم اي شكوى للعميل بعد 48 ساعة عمل من بعد حصول العميل بالكاش باك
+Halan balance title دي يعني كاش باك
+دي كود بيدخله أثناء عمل الاوردر promocode gomla title"
+1712,b0aeb31ea4bd502d9569ee3b866dbfe4,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,Spin & Win,عميل بيشتكي من عجله الحظ (3),yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Spin & Win
+Question AR: عميل بيشتكي من عجله الحظ (3)
+
+Script:
+0 If you select phone number, search results will include Bill Payments Game Spin The Wheel, and Game Play And Win. If you select National ID, search results wil include CF, UTS, Mashroey, Gameya, SL, Halan Card, and Leads.
+Phone Number
+Game Spin The Wheel
+01080408894
+Search
+Clear
+Game Spin The Wheel Prizes for Phone: 01080408994
+Prize Date
+Title
+Phone Number
+Avenue
+Status
+Destination
+Amount
+Min Order Price
+Meqa Pria
+12/30/2025, 12:20:46 AM
+mouled_ halan_ updated_rewards_promocode_gomla_title |01080408994
+HALAN_GOMLA
+PENDING
+car
+70 EGP
+600
+NO
+12/26/2025 1:27:58 AM
+mouled_ halan_updated_rewards_promocode_gomla_title 01080408994
+HALAN GOMLA
+DILMERID
+car
+70 EGP
+600
+NO
+12/18/2025, 2:23:37 AM
+mouled_halan_ updated_rewards_halan_ balance_ title
+01080408994
+HALAN GOMLA
+DELIVERED
+wale
+25 EG
+249
+50000 EGP
+241.9CCP
+User Has 245.0 EGP In Is Waliet
+DEDUCT CREDIT
+ABO CREDIT
+Current Trip
+Trip Log
+Transaction History
+Action Log
+10/01/2024
+10/15/2024
+Walls
+AU
+Tammaccon Fyon
+2014-13-46 00 56
+hatescore
+islancand
+Halan Gomla -> Complaint -> financial -> Spin & Win Issue (Escalation needed: Yes)"
+1716,6edaaefedb2553409a3fc7b7cf84741f,0,gomla,Gomla,Complain,Non-Technical Issue,No,ok,Notes,ملاحظات مهمه قبل عمل اى تكت (1),yes,"Vertical: Gomla | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Notes
+Question AR: ملاحظات مهمه قبل عمل اى تكت (1)
+
+Script:
+ملاحظات مهمة قبل عمل اى تكت
+. لازم قبل اي شكوى تعمل Search برقم الاوردر علتيان لو فيه شكوى معموله
+( يتعمل التكيت عليها escalationNeeded ves ف حاله وجود تكيت) first inquiry التكيت بتتعمل على .
+لو اورير العميل CF- Credit Card - Halan Card : .
+والمبلغ اقل من 100 جنيه هنوضح للعميل ان الفلوس هتنزل على المحفظة على طول فى خلال ساعة .
+لو العميل CF والمبلغ اكثر من 100 جنيه هايتم رد المبلغ ع الحد الائتمانى فى خلال 48 ساعة عمل .
+لو العميل Credit Card لازم نسال العميل ده كارت حالا ولا بطاقة بنك . في حاله بطاقة بنك: هترجع في خلال 14 يوم عمل او المحفظة ف خلال ساعة ٥
+في حاله كارت حالا: هنيبال العميل ده عن طريق الحد الائتماني ولا فلوس تم الايداع لو حد ائتماني او فلوس تم ايداعها . هيرجع على الكارت في خلال 48 ساعة عمل
+بنكتبه فى التكت لو العميل National ID: CF - Halan Card .
+كل المناطق في كل المخازن بتكون Second Day
+السيستم على اي العميل حسب على yes or no بتختارها Same Day ٥
+حتى لو العميل مش عامل الطلب انه يستلم في نفس اليوم لو المنطقة فيها توصيل نفس اليوم بتختار المخزن انه Same Day 0 بنختارها على حسب المنتجات مخصومه من الفاتوره ولا لا yes or no: بتختارها Amount Settled from Invoice لو التكت Missing + Quantity ناخد بالنا من النقط دي ٥
+بنختار التكت تكون Missing
+٥ ٥ Missing + Quantity : تكتب Dispute Amount بنكتب اكواد المنتجات ومبلغ الإثنين بنختار التكت تكون Missing لو (Missing + Quality) بنكتب مبلغ النواقص فقط واكواد النواقص فقط ٥ بنختار التكت تكون Missing لو (Missing + Wrong ) بنكتب مبلغ النواقص فقط واكواد النواقص فقط ٥ بتختار التكت تكون Quantity أو (Quantity + Quality) بنكتب مبلغ النواقص فقط واكواد النواقص فقط ٥ بنختار التكت تكون Quantity لو (Quantity + Quality) بنكتب مبلغ النواقص فقط واكواد النواقص فقط ٥ بنختار التكت تكون Wrong + Quality) Quality) ينكتب مبلغ المنتجات واكواد التايب إيتو اللى هاتختاره فقط ٥
+إي أوريد اتعمل من السيلز فى خصم وهيتم الغاء الاوردر هيتم استرجاع مبلغ الخصم تلقائى على محفظه العميل وبمجرد عمل اي اوردر آخر هيتم خصم المبلغ دا تلقائى من السيستم اثناء تاكيد الأوردر"
+1717,ae1f2d4557d05c5f8b52065e837a2800,0,gomla,Gomla,Complain,Non-Technical Issue,No,ok,Notes,ملاحظات مهمه قبل عمل اى تكت (2),yes,"Vertical: Gomla | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Notes
+Question AR: ملاحظات مهمه قبل عمل اى تكت (2)
+
+Script:
+- Halan gomla team لو إي عميل كان عامل شكوى ومحتاج انه يعدل اي حاجه ف الشكوى اننا نبعت على جروب للباك أوفيس ب رقم التكيت ان حصل عليها تعد
+Halan gomla لو إي عميل بيعمل استعجال على إي تيكوي (رد مبلغ - استعجال مخزن) ينبعتها على الحروب - team
+Halan gomla team لو اي عميل بيسال على هيستلم الاوردر امتا ينبعتها على الحروب
+المندوب أخر دور لطلوع الاوردر على السلم الدور الرابع
+حساب بنكى - محفظة الإلكترونية) 01026105894
+سعودية المبلغ (جهبه بلنى
+رقم مستر هانى للحـ
+الاقساط لو العميل طلب اوردر قسط اوردر من يوم 1 ليوم 15 ف الشهر هيدفع القبيط يوم 1 من الشهر التالى لو العميل طلب اوردر قسط من بعد يوم 15 ف الشهر لأخر الشهر هيدفع القسط ف الشهر اللى بعد الجاى (مثال لو
+طلب اوردر من يوم 1 ليوم 15 مارس هيدفع القسط يوم 1 إبريل لو طلب اوردر من يوم 16 ليوم 31 مارس هيدفع القسط يوم 1 مايو )"
+1718,dcd730bbad2455c08f007e5e56e32791,0,gomla,Gomla,Request,Non-Technical Issue,Yes,ok,Blocked Customer,حظر حسابه,yes,"Vertical: Gomla | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Blocked Customer
+Question AR: حظر حسابه
+
+Script:
+حظر حسابه Blocked Customer
+استاذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه ٠٠
+بتعمل سيرش ع بورتال طلبيه بتأكد العميل تاجر ولا لا فى تاب عملاء طلبيه من اداره المستخدم
+لو اوردرات العميل ملغيه من اي شخص من حالا بتبلغ العميل الحساب القفل بسبب تكرار كود خصم .
+للأسف مفيش امكانيه لفك الحظر Escalation needed: NO
+لو مفيش اى سبب من الشروط دي ها يتم كتابة تفاصيل الشكوى بالكامل هيتم الرد على التكيت فخلال ساعه
+(Escalation needed: Yes)
+Halan Gomla -> Request -> Blocked Customer"
+46,4a4ff4757cda5eb082f7f0c0cde9c5c1,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Halan Gomla General Inquiry,ايه هو قسم حالا جمله,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Halan Gomla General Inquiry
+Question AR: ايه هو قسم حالا جمله
+
+Script:
+Halan Gomla General Inquiry
+• إيه هو قسم حالا جمله :
+هو قسم بيوفر ل حضرتك منتجات غذائية ومنزليه بسعر الجمله"
+58,607f453edd8e5828b648638253c7bc5b,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Promotions,عميل يستفسر عن العروض المتاحة,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Promotions
+Question AR: عميل يستفسر عن العروض المتاحة
+
+Script:
+Promotions
+حضرتك بتعرف العروض من خلال تطبيق حالا ."
+60,e6f653e1d63d59169dc40ff45665dccc,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Product out of stock,عميل يستفسر عن منتج غير متوافر,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Product out of stock
+Question AR: عميل يستفسر عن منتج غير متوافر
+
+Script:
+Product out of stock
+انا بعتذر لحضرتك المنتج غير متوافر في الوقت الحالي وبمجرد توافر المنتج سيكون موجود على التطبيق"
+80,1d5de14de00c5eb5994d19925b38650b,0,gomla,Gomla,Complain,Non-Technical Issue,Yes,ok,Escalation to manager,عميل يرغب في التواصل مع أحد المديرين,yes,"Vertical: Gomla | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Escalation to manager
+Question AR: عميل يرغب في التواصل مع أحد المديرين
+
+Script:
+Stakeholder : All
+Complaint -> Supervisor Call
+Escalation to manager
+- في حالة رغبة العميل التواصل مع مدير بيتم عمل تكت (مع ذكر كافة تفاصيل الشكوى) .. ""هيتم التواصل مع حضرتك من خلال مدير في خلال ساعة"" يجب عدم إصرار ممثل خدمة العملاء في التحدث مع العميل وخاصة في حالة تكرار طلب العميل التحدث لمدير لتجنب Critical Error
+Halan Form >> Main Issue Escalation to Manager >> Escalated Needed Yes
+Submit Escalation to manager form"
+824,54f934c37523519c9d79832c076bb877,0,gomla,Gomla,Inquiry,Non-Technical Issue,No,ok,Product Price,عميل يستفسر عن سعر منتج,yes,"Vertical: Gomla | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Product Price
+Question AR: عميل يستفسر عن سعر منتج
+
+Script:
+حضرتك تقدر تعرف سعر أى منتج من خلال تطبيق حالا
+Escalation Needed
+ON"
+862,9c4257de9dc55c0e862eb84ed4d2a816,0,gomla,Gomla,Complain,Spin & Win Issue,Yes,ok,عميل بيشتكي من promocode كسبه من عجله الحظ complains about a promo code he won from the Wheel of Fortune,عميل بيشتكي من promocode كسبه من عجله الحظ,yes,"Vertical: Gomla | Type: Complain | Issue: Spin & Win Issue | Escalation: Yes
+
+Question EN: عميل بيشتكي من promocode كسبه من عجله الحظ complains about a promo code he won from the Wheel of Fortune
+Question AR: عميل بيشتكي من promocode كسبه من عجله الحظ
+
+Script:
+عميل بيشتكي من promocode كسبه من عجله الحظ:
+
+نوع شكوى جديدة: العميل بيقول انه كسب جايزة في عجلة الحظ والكود مش شغال.
+
+- نطلب من العميل صورة للكود اللي وصله (عادة بيوصل على واتساب من الرقم +20216303).
+- نتأكد هل تم تفعيل الكود أو إضافة المبلغ لمحفظة العميل (مثال: لو استلم الطلب يوم 7 أكتوبر، المبلغ المفروض يتضاف خلال 24 ساعة يوم 8).
+- قبل ما نعمل Escalation: نتأكد من الأدمن هل تم إضافة المبلغ لمحفظة العميل، وهل العميل استخدم المبلغ، وهل فيه نواقص أو مرتجعات في الطلب تؤثر على الرصيد.
+- في كل الحالات لازم نطلب صورة إشعار الهدية من تطبيق واتساب نفسه، مش سكرين شوت من قائمة الجوائز داخل التطبيق.
+
+Halan Gomla → Complaint → financial → Spin & Win Issue | Escalation: Yes"
+926,b93276b59ad456bea6113a888afea823,0,gomla,Gomla,Complain,Financial Issue,Yes,ok,wrong cash collection,شكوى عميل من كميه منتجات ناقصه - منتجات ناقصه,yes,"Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: wrong cash collection
+Question AR: شكوى عميل من كميه منتجات ناقصه - منتجات ناقصه
+
+Script:
+wrong cash collection
+(Missing - Quantity) - (فقط cairo & Giza)
+ف حاله الاوردر مدفوع كاش - closed wallet فقط
+مخصوم من الفاتوره والعميل دفع تمنه
+ينعتذر على نقص المنتج من الطلب الخاص بحضرتك ويستأذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه
+يعتذر لحضرتك على عدم وصول المنتج ياريت توضحلي لو تم دفع ثمن المنتج ولا لا
+لو تم دفع ثمنه: بيعتذر لحضرتك جداً ده بيكون نتيجة خطا تحميل من المخزن وقت تحضير الأوردر وهينزل لحضرتك ثمن المنتج ع المحفظة ( ......... ) ف خلال ساعة + مبلغ هدية اعتذار عن وصول المنتجات ناقصة لحضرتك (Escalation Needed: Yes)
+يتقدر تستخدم المحفظة ف الطلب مرة أخري أو في شحن فاتورة موبايلك او اى رقم اخر او تدفع فواتير الكهرباء والمياه أو التبرعات أو حجز سفر ورحلات (جوباص - بلوباص -مصر للطيران) أي خدمات طبية أو خدمات الدفع (تحصيل فرض لبنك الاسكندرية او قرض تساجيل)
+same day: بتختارها yes or no علي حسب العميل اي علي السيستم
+amount settled from invoice: بتختارها yes or no دا بتختاره علي حسب المنتجات مخصومه من الفاتوره وممسوسه (مخصومه) ولا لا
+amount collected: total amount اللي عميل دافعه قد اي
+courier name: اسم المندوب اللي وصل الاوردر
+مرتجعات
+الوحدات
+سبب المبلغ
+وصف السيب
+تاريخ الإنشاء
+اسم العشر
+الهدى والنجمة جبال الوزيرة شارون عاده بي مع مر 35-42:26
+hoNeed
+مان جوقص أعداد منتج
+PM 10:39 24-09-2024
+الهلال والنجمة كرسى بان أطفال لبنى 35*36*53.8
+nofeed
+صحان نواقص أعداد ملح
+PM 12:39 24-09-2024
+الوادي والنجمة نسيت بالع ميكس صدور بهادى ١٥٠١١٠11
+hofeed
+محان حواقص أعداد منتج
+PM 10:36 24-09-2004
+نواقص المخزن
+لا يوجد نوافص المخزن
+شباب المنظر دا ف حالا جمله عميل كاش المفروض أن العميل مدفعش تمن المنتجات ف بتوضيح للعميل ان واضح من خلالتا أن حضرتك مدفعتش تمن المنتجات، والعميل وضح انه دفع حضرتك دفعت كام وتشوف الاجمالي اللي عندك بعد ما النواقص اتخصمت من الفاتوره ولو عكس اللي عندك ع السيستم بتوضيح تمام يا فندم هقدم ل حضرتك شكوى وتمن المنتجات مع مبلغ اعتذار هينزلوا ل حضرتك على المحفظة لو مدفعش هو مبلغ اعتذار فقط ويتوضح ف Reporter allegations
+العميل دفع ولا لا ولو دفع دفع كام ولو مدفعش بتكتب اته مدفعض وهنزل مبلغ اعتذار فقط"

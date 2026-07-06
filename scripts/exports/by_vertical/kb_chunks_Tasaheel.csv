@@ -1,0 +1,1318 @@
+﻿corpus_name,external_parent_id,chunk_id,chunk_index,vertical,interaction_type,issue_type,escalation,answer_status,question_en,question_ar,has_embedding,chunk_text
+KB,1189,d5fe34416ba75b239abed02a699ad7c6,0,Tasaheel,Inquiry,Technical Issue,Yes,ok,Inquiry about Tasaheel Branch working hours (Tasaheel),عميل يستفسر بخصوص مواعيد الفرع (Tasaheel),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Inquiry about Tasaheel Branch working hours (Tasaheel)
+Question AR: عميل يستفسر بخصوص مواعيد الفرع (Tasaheel)
+
+Script:
+عميل يستفسر بخصوص مواعيد الفرع :
+هنسأل العميل يعرف عنوان الفرع اولا ولا لا .. ولو ميعرفش هنوصح العنوان. هنقول للعميل علي مواعيد الفرع من 9 صباحا حتي 5 مساء في الايام العادية. O ايام الاجازات الرسمية المواعييد بيتم تحديدها وقت الاجازة.
+Escalated No
+CRM: Inquiry-> -- >Inquiry about Tasaheel Branch working hours"
+KB,1193,674de6186f0e5f79916cc6aff6dc8f02,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about loan request status (Tasaheel),عميل يستفسر عن حالة الطلب الخاصة به(اتقبل او اترفض)(Tasaheel),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about loan request status (Tasaheel)
+Question AR: عميل يستفسر عن حالة الطلب الخاصة به(اتقبل او اترفض)(Tasaheel)
+
+Script:
+عميل يستفسر عن حالة الطلب الخاصة به: (اتقبل او اترفض)
+بعتذر لحضرتك بيكون غير واضح من خلالي بتقدر تشرفنا في الفرع تستفسر من خلاله عن حالة الطلب. 0
+0 حضرتك الطلب کان مقدم في فرع ایه ؟
+Escalated No
+CRM: Inquiry-> -- >Inquiry about loan request status"
+KB,1255,f6e0979bb6b7506e98c14e95b5196e86,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about May offer coins campaign (Tasaheel),أنا قدمت قبل 15 مايو، هل هدخل السحب؟,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about May offer coins campaign (Tasaheel)
+Question AR: أنا قدمت قبل 15 مايو، هل هدخل السحب؟
+
+Script:
+·
+أنا قدمت قبل 15 مايو، هل هدخل السحب؟
+للأسف، العملاء المؤهلين للدخول في السحب لازم يكونوا قدموا وصرفوا التمويل خلال فترة المسابقة فقط
+المسابقة بتكون تحت إشراف وزارة التضامن الاجتماعي بترخيص رقم ٧٠ لسنة ٢٠٢٥
+Tasaheel -> Inquiry -> Inquiry about May offer coins campaign"
+KB,1256,524bbf8f08b45151b5eeeb361b98fc54,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,How I can participate (may offer),إزاي أشارك في المسابقة ؟,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How I can participate (may offer)
+Question AR: إزاي أشارك في المسابقة ؟
+
+Script:
+إزاي أشارك فى المسابقة ؟
+بمجرد ما حضرتك تقدم على التمويل من خلال الموقع الالكتروني او الابلكيشن وتصرفه خلال فترة المسابقة (من 15 مايو لـ 30يونيو) ، بيتم تسجيل اسمك تلقائيًا في السحب.
+المسابقة بتكون تحت إشراف وزارة التضامن الاجتماعي بترخيص رقم ٧٠ لسنة ٢٠٢٥
+Tasaheel -> Inquiry -> How I can participate"
+KB,1257,241191da1b705a4494d3e1e7836fba85,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,How I can participate (may offer),هل لازم أعمل حاجة معينة علشان أشارك,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How I can participate (may offer)
+Question AR: هل لازم أعمل حاجة معينة علشان أشارك
+
+Script:
+هل لازم أعمل حاجة معينة علشان أشارك ·
+لا، مجرد التقديم من خلال الموقع الالكتروني او الابلكشين والصرف خلال فترة المسابقة كافي جدًا، ومفيش أي خطوات إضافية.
+المسابقة بتكون تحت إشراف وزارة التضامن الاجتماعي بترخيص رقم ٧٠ لسنة ٢٠٢٥
+Tasaheel -> Inquiry -> How I can participate"
+KB,1258,abcc15b0347a510999d499dbad03f373,0,Tasaheel,Inquiry,Non-Technical Issue,No,skipped,May offer winners announcement (تساهيل),هتتواصلوا معايا إزاي لو كسبت؟,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: May offer winners announcement (تساهيل)
+Question AR: هتتواصلوا معايا إزاي لو كسبت؟
+
+Script: (missing — answer.status=skipped)"
+KB,1259,a59e239c629550109612dbea6f71175b,0,Tasaheel,Inquiry,Technical Issue,No,skipped,May offer winners announcement (تساهيل),إمتى هيتم السحب؟,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: May offer winners announcement (تساهيل)
+Question AR: إمتى هيتم السحب؟
+
+Script: (missing — answer.status=skipped)"
+KB,1260,56ef529af8a3595781e9c5b8d0063227,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,May offer terms and conditions,الشروط و الاحكام الخاصة بمسابقة تساهيل,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: May offer terms and conditions
+Question AR: الشروط و الاحكام الخاصة بمسابقة تساهيل
+
+Script:
+الشروط والاحكام:
+• يشترك في المسابقة كل متسابق يقوم بالتقديم على التمويل من خلال القنوات الالكترونية ( الموقع الالكتروني او الابليكشن) فقط وليس فروع الشركة ويتم صرف التمويل ويشترط صرف التمويل خلال فترة المسابقة من يوم 15 مايو الي 30 يونيو.
+يتم تسليم الجوائز للفائزين بموجب ايصال استلام يوضح به ( الاسم - العنوان - و رقم البطاقة سارية و صورة • منها).
+•
+بالنسبة للفائزين القصر يتم تسليم الجائزة لولي الأمر وترفق صورة شهادة الميلاد وبطاقة ولي الامر سارية.
+• يتم الامضاء علي ايصال بالموافقة بتصوير الفائزين و استخدام الصور / الفيديو للاعلان عن الفائزين.
+يحظر علي العاملين بالشركة او الاقارب.
+Tasaheel -> Inquiry -> May offer terms and conditions"
+KB,1274,93543a0414e5590f86a7c3aa25b243f3,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about May offer coins campaign (Tasaheel),ايه هي مسابقة تساهيل ؟,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about May offer coins campaign (Tasaheel)
+Question AR: ايه هي مسابقة تساهيل ؟
+
+Script:
+ايه هي المسابقة ؟
+حضرتك ده سحب لعملاء تساهیل ل 30 فائزعلي 30 عمله ذهبيه , المسابقه متاحه للعملاء اللي هتقدم من خلال الموقع الالكتروني او الابلكيشن فقط ويتم الصرف في خلال فتره المسابقه (من 15 مايو 30 يونيو)، فور التقدم بيتم تسجيل اسم حضرتك تلقائيًا في السحب.
+(مش من خلالنا) علما بأن لازم العميل يكون مقدم عن طريق الابليكشن او الموقع الالكتروني مش الفرع
+المسابقة تحت إشراف وزارة التضامن الاجتماعي (بترخيص رقم ٧٠ لسنة ٢٠٢٥)
+بإخطار من جهاز حماية المستهلك (رقم 166 لسنة 2025)
+Tasaheel -> Inquiry -> Inquiry about May offer coins campaign"
+KB,1331,f77b6de128195c5ab7468f29d13d0d59,0,Tasaheel,Inquiry,Technical Issue,No,ok,inquiry about personal loan (Tasaheel),استفسار عميل عن القرض الشخصي (Tasaheel),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: inquiry about personal loan (Tasaheel)
+Question AR: استفسار عميل عن القرض الشخصي (Tasaheel)
+
+Script:
+استفسار عميل عن القرض الشخصى
+Tasaheel -> Inquiry -> inquiry about personal loan
+غیر متاح ف الوقت الحالي تمویل شخصي لکن يمكن للعميل استخدام التمويل الاستهلاكي او تمويل المشروعات في حالة وجود نشاط او تجارة او حرفة نشرح للعميل تفاصیل التمويل المناسب له |( سواء استهلاکی او مشروعات)"
+KB,1333,6ee130985cd35645bf0f8e24332fcca9,0,Tasaheel,Complain,Non-Technical Issue,Yes,ok,Not Receiving Feedback from Tasaheel Branch (Tasaheel),في حالة توجه العميل للفرع و استكمل الاجراءات و لم يحصل علي رد بعدها (Tasaheel),yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Not Receiving Feedback from Tasaheel Branch (Tasaheel)
+Question AR: في حالة توجه العميل للفرع و استكمل الاجراءات و لم يحصل علي رد بعدها (Tasaheel)
+
+Script:
+في حالة توجه العميل للفرع واستكمل الاجراءات ولم يحصل علي رد بعدها:
+بنعتذر للعميل و بنقدمله طلب لاستعجال الرد علي الطلب
+CRM: Complaint->Non-Technical->Not Receiving Feedback from Tasaheel Branch Escalated : Yes"
+KB,1361,41689bcc93d9507ba9b53a8ea3b89a10,0,Tasaheel,Inquiry,Non-Technical Issue,Yes,ok,Inquiry about how to apply through Halan App (Tasaheel),عميل يستفسر عن كيفية التقديم عن طريق التطبيق؟ (Tasaheel),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Inquiry about how to apply through Halan App (Tasaheel)
+Question AR: عميل يستفسر عن كيفية التقديم عن طريق التطبيق؟ (Tasaheel)
+
+Script:
+عميل يستفسر عن كيفية التقديم عن طريق التطبيق؟
+اختار قدم علي تمویل , واكتب المبلغ التمويلي.
+يتم التحقق من بطاقة الرقم القومي , وكتابة البيانات الشخصية.
+اختيار نوع النشاط (خدمي , حرفي , تجاري)
+مراجعة بيانات التمويل , ثم يتم تأكيد الطلب. ·
+يتم التواصل من فريق المتابعة , لتأكيد البيانات وارسال الطلب للفرع لاستكمال الإجراءات خلال 24 ساعة عمل. ٥
+CRM: Inquiry-> -- >Inquiry about how to apply through Halan App // Escalated No
+9 47 0 244 8 19 41
+طلب تمويل
+٠ -
+تسوق منتجات العودة للمدارس بسعر الجملة
+2
+برجاء التأكد من ان البيانات التالية مطابقة لبيانات بطاقة الرقم القومي التي تم إدخالها في الخطوة السابقة
+أمل من ٣ ١لاف
+القسم بالاليل شوا أرمز وسن الدولي
+● اقل من ٦ اشهر
+الاسم بالكامل
+أكثر من ٥٠ ألف
+اشتري دهب بالتقسيط 21 0 2300 جنيه
+الرقم القومي
+الرقم القومي
+من ١١ إلى ٣٠ ألف
+٥ ٦ أشهر في سك
+من ٣ إلى ١١٠ ألف
+رقم الهاتف
+من ٢١ إلى ٥٠ ألف
+إزاي الطلب تحويل لمشروعك؟
+مينا السعر قطاع خاص
+جهة العمل
+قدم الآن على تحويل
+الوطني من شكال ملكك الكار تقدر على تمويل المشروعك بأسهل الإجراءات
+مشوى ملاك
+وفر فواتير
+العذاب ملك
+مالك ندويش
+السابق
+التالى
+التالي
+الندى
+التالي
+٥
+التالي
+n
+e المسافات
+بيانات النشاط ما نوع النشاط الخاص بك
+يافي بعلى الأسئلة البسيطة الخاصة بمشروعات لتأكيد قيمة القرض
+ما هو الهدف من التمويل بافي بعض الاسئلة البسيطة الخاصة بمشروعك تأكيد قيمة القرض
+مشاريع إنتاجية أمرفي
+٧٠
+عنا يندول كمن مواات القطاع الصناعي مثل:حباله السيلان او تصبر الكت ويا إلي ١٠ ك
+٥ -ابحث عن مالطاجه
+مبلغ التحويل
+أسوان - الدهو - أدرجبي
+من ١١ إلى ٣٠ ألف جنيه
+اسوان
+٧
+<
+الأساندية
+٧
+M
+ما ينطبق الكن فقالت القطاع الخدمي حتي: النشاطات الترفيهية أو ميالة الملابس وما إلى ذلك
+الأسماعيلية
+٧
+ها يندون شحن مجالات القطاع الراعي مثل : القابل حوالي أو أراضي باعية وما إلى ذلك
+تأكيد الطلب
+ھسابق
+السابق
+الثاني
+التالي
+السابق
+التالي
+ـحالا
+د
+ـه
+مدة النشاط
+< تأكيد البيانات الشخصية
+< تأكيد البيانات الشخصية
+أخبرنا بالمبلغ الذي تريده يمكنك الحصول على تمويل عن ذاك بيد، من ٣٠٠ جنيه
+ما هي مدة إنشاء النشاط؟ بافي بعض الأسئلة البسيطة الخاصة بمشروعك تأكيد قيمة القرص"
+KB,1361,91c47569b38e548296ffc213b311e5ca,1,Tasaheel,Inquiry,Non-Technical Issue,Yes,ok,Inquiry about how to apply through Halan App (Tasaheel),عميل يستفسر عن كيفية التقديم عن طريق التطبيق؟ (Tasaheel),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Inquiry about how to apply through Halan App (Tasaheel)
+Question AR: عميل يستفسر عن كيفية التقديم عن طريق التطبيق؟ (Tasaheel)
+
+Script:
+كيد البيانات الشخصية
+< تأكيد البيانات الشخصية
+أخبرنا بالمبلغ الذي تريده يمكنك الحصول على تمويل عن ذاك بيد، من ٣٠٠ جنيه
+ما هي مدة إنشاء النشاط؟ بافي بعض الأسئلة البسيطة الخاصة بمشروعك تأكيد قيمة القرص
+تأكيد بيانات الرقم القومي برجاء التأكد من أن البيانات التالية مطابقة لبيانات بطاقة الرقم القومي التي تم إدخالها في الخطوة السابقة
+عسر الهزء الالفى البقية
+تسوق معالا جملة
+سوف
+( هدف التمويل
+< عنوان النشاط
+< مراجعة عنوان النشاط
+<مراجعة بيانات التمويل
+مراجعة عنوان النشاط
+مراجعة بيانات التمويل
+قم بمراجعة المعلومات الخاصة بعنوان النشاط و إضغط التالي الإنعام طلب القرض
+برجاء مراجعة البيانات المغطاء والتأكد من مالها
+بيانات التمويل
+٥ توسيع النشاط
+عنوان البشدة
+مشاريع تجارية
+يندين كمن موالين القطاع التجاري مثل: عدي أدوات شبابية أو سيوم حابات وما إلى ذلك
+الرقم القومي
+مشاريع خدمية
+رقم العويات 01553990564
+فورة الوطنية
+مشارج لاميه
+السابع
+الثاني
+تأكيد بيانات الرقم القومي
+رقم الهاتف 01153990546
+الي أي محافظة ينتمي مشروعك بافي بعض الأسئلة البسيطة الخاصة بمشروعك لتأكيد قيمة الشرك
+السابق
+السابق"
+KB,1370,26dcd23ff4ed5a3d82c65f9bfd8ddcd7,0,Tasaheel,Inquiry,Technical Issue,No,ok,Inquiry about CF Limit (Tasaheel),في حالة عميل يريد شراء منتجات منزلية او سلع استهلاكية او الكترونيات (Tasaheel),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about CF Limit (Tasaheel)
+Question AR: في حالة عميل يريد شراء منتجات منزلية او سلع استهلاكية او الكترونيات (Tasaheel)
+
+Script:
+فى حالة عميل يريد شراء منتجات منزلية او سلع استهلاكية او الكترونيات :
+Tasaheel -> Inquiry -> inquiry about CF Limit
+بنوضح للعمیل ان في شراکة بین شرکة حالا و تساهیل و انه ممکن یقدم من خلال تطبیق حالا و لتفاصیل اکتر یکلم رقم 16303"
+KB,1389,b091609485eb5318bf5fe3c999120f46,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about Mudarba loan (Tasaheel),(Tasaheel) عميل يستفسر عن تمويل المضاربة,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Mudarba loan (Tasaheel)
+Question AR: (Tasaheel) عميل يستفسر عن تمويل المضاربة
+
+Script:
+عميل يستفسر عن تمويل المضاربة :
+تساهيل بتقدملك تمويل المضاربة المتوافق مع الشريعة الإسلامية , بیکونت شراکة بین تساهیل و حضرتك احنا بنساهم برأس المال وانت بتساهم بالمشروع وبخبرتك فى ادارة المشروع .. لازم يكون فى مشروع قائم او تجارة او حرفة , مبلغ التمويل بيتحدد من الفرع.
+الأوراق المبدئيه : صورة البطاقة الشخصية (سارية ) إيصال مرافق غاز، مياه او كهرباء , لمحل المشروع وايضا لسكن طالب التمويل.+ سجل تجارى وبطاقة ضريبية , الضمانات بتتحدد بناءا على شريحه مبلغ التمويل
+طريقة التقديم : تقدر تقدم عن طريق موقع تساهيل او اقرب فرع تساهیل بحضرتك (لو العميل سأل ممكن اقدم من التطبيق هنقوله ممكن عادي)
+لو العميل بيسأل عن نسبة الفايدة : مفيش اي فوايد لكن بيكون في هامش ربح متفق عليه مع الفرع.
+Tasaheel -> Inquiry -> Inquiry about Mudarba loan"
+KB,1394,9aa275c2f165525a9081dfafcb8859b5,0,Tasaheel,Inquiry,Technical Issue,No,ok,Inquiry about his loan installment and when to pay (Tasaheel),استعلام عن قيمة القسط او مواعيد القسط (تساهيل),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about his loan installment and when to pay (Tasaheel)
+Question AR: استعلام عن قيمة القسط او مواعيد القسط (تساهيل)
+
+Script:
+استعلام عن قيمة القسط او مواعيد القسط:
+هل رقم التواصل هو نفس الرقم الي حضرتك مقدم بيه:
+لو نعم بنطلب الرقم القومي ونوضحله قيمة القسط فقط من خلال CRM واي تفاصيل تانية بتكون مع الفرع لو مش نفس الرقم نطلب منه يكلمنا علي نفس الرقم لوضيح التفاصيل
+Escalated No
+CRM: Inquiry-> -- >Inquiry about his loan installment and when to pay"
+KB,1398,acb97db90c315c68ae0bfe3e35a54d23,0,Tasaheel,Inquiry,Technical Issue,No,ok,Toktok & Motorcycle Loan Details and SMS (Tasaheel),(Tasaheel) تمويل توكتوك –تروسيكل- موتوسيكل,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Toktok & Motorcycle Loan Details and SMS (Tasaheel)
+Question AR: (Tasaheel) تمويل توكتوك –تروسيكل- موتوسيكل
+
+Script:
+تمويل ""توكتوك -تروسيكل- موتوسيكل"" (استفسار عن الرسالة الخاصة بتمويل""توكتوك -تروسيكل- موتوسيكل"")
+Tasaheel -> Inquiry -> Toktok & Motorcycle Loan Details
+فى حالة استلام العمیل لرسالة التمویل .. هنوضح للعمیل انه فی حالة امتلاكه ( التوكتوك - التروسيكل - الموتوسيكل ) يقدر يحصل على التمويل التالى :
+إذا كنت تمتلك المعدة تقدر تحصل على تمويل قد يصل إلى 40 الف ( لعميل التوكتوك ) إذا كنت تمتلك المعدة تقدر تحصل على تمويل قد يصل إلى 20 الف ( لعميل التروسيكل ) إذا كنت تمتلك المعدة تقدر تحصل على تمويل قد يصل إلى 10 الف ( لعميل الموتوسيكل )
+عشان العميل يقدر يحصل علي التمويل .. يتم توجيه العميل لاقرب فرع تساهيل.
+ملحوظة : التمويل متاح فقط للعملاء اللى وصلها الرسالة"
+KB,1407,f29be76a8b41510cbc210768ad9e0f90,0,Tasaheel,Inquiry,Technical Issue,No,ok,CF turned to Cash SMS (Tasaheel),عميل يستفسر عن استقبال رسالة بتحويل الحد الائتماني الي مبلغ نقدي,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: CF turned to Cash SMS (Tasaheel)
+Question AR: عميل يستفسر عن استقبال رسالة بتحويل الحد الائتماني الي مبلغ نقدي
+
+Script:
+عميل يستفسر عن استقبال رسالة بتحويل الحد الائتمانى إلى مبلغ نقدى:
+Tasaheel -> Inquiry -> CF turned to Cash SMS
+سیتم الیوم ارسال رسائل للعملاء الغیر مستخدمین للحد الائتمانی وتنص على التالى :
+""عميلنا العزيز يمكنك الان تحویل حدك الائتمانی الی مبلغ نقدى لتمویل مشتریاتك .. اذهب الی اقرب فرع تساهیل ""
+و لو محتاج اي معلومات تانیه یشرفنا ف الفرع .. نوضح للعمیل اقرب فرع و مواعیده"
+KB,1411,fec8844427bd524caecd9e9db0e48f2c,0,Tasaheel,Complain,Non-Technical Issue,No,ok,Delay in receiving Employee resignation Documents (Tasaheel),شكوي تأخير استلام أوراق او مستحقات موظف سابق (Tasaheel),yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Delay in receiving Employee resignation Documents (Tasaheel)
+Question AR: شكوي تأخير استلام أوراق او مستحقات موظف سابق (Tasaheel)
+
+Script:
+شكوي تأخير استلام أوراق او مستحقات موظف سابق (مستحقات مالية او ورقية مثل مسوغات التعيين):
+دلوقتي حضرتك تقدر تتواصل مع خدمة عملاء الموارد البشرية عن طريق الارقام التالية : علما بأن مواعيد العمل الخاصة بهم من الساعة 10 ص حتي 7 م جمعة وسبت اجازة.
+Contact Information:
+Landlines: (02) 48812619 - (02) 23661712
+Escalated No
+CRM: Complaint->Non-Technical->Delay in receiving Employee resignation Documents"
+KB,1429,9b242c325c5657a7b92cd194bdcbe1c3,0,Tasaheel,Request,Technical Issue,No,ok,Confirmation on customer request (Tasaheel),يستفسر عن حالة الطلب الخاص بيه أو انه لم يتم التواصل معه (تساهيل),yes,"Vertical: Tasaheel | Type: Request | Issue: Technical Issue | Escalation: No
+
+Question EN: Confirmation on customer request (Tasaheel)
+Question AR: يستفسر عن حالة الطلب الخاص بيه أو انه لم يتم التواصل معه (تساهيل)
+Notes: : في حالة توجه العميل للفرع و استكمل الاجراءات و لم يحصل علي رد بعدها 
+بنعتذر للعميل و بنقدمله طلب لاستعجال الرد علي الطلب
+CRM: Complaint->Non-Technical->Not Receiving Feedback from Tasaheel Branch Escalated : Yes
+Body: : في حالة توجه العميل للفرع و استكمل الاجراءات و لم يحصل علي رد بعدها 
+بنعتذر للعميل و بنقدمله طلب لاستعجال الرد علي الطلب
+CRM: Complaint->Non-Technical->Not Receiving Feedback from Tasaheel Branch Escalated : Yes
+
+Script:
+يستفسر عن حالة الطلب الخاص بيه أو انه لم يتم التواصل معه ؟
+Jasaheel ->Request ->Confirmation on customer request (Tasaheel)
+Escalation : No
+تم التأكيد الطلب (Dispatched)
+العميل يشكوا انه لم يتم التواصل بعد تأكيد الطلب
+يتم مراجعه البیانات مع العمیل و تحویل حاله الطلب الي تاکید لازم نعمل
+تعدیل للبیانات اختيار للفرع اللي هنحول عليه الطلب بعد عرض الفرع المتوفرة في منطقة العميل.
+-لو عايز يلغي الطلب بتلغي من الادمن تول
+نعتذر للعميل ونوجهه للفرع اللي اتحول عليه لاستكمال الاجراءات (نبلغ العميل بمواعيد عمل الفرع) .
+لو محتاج يلغي الطلب هنوضحله ميتوجهش للفرع لتقديم الاوراق
+Complaint->Non-Technical->Not Receiving Feedback from Tasabeel Branch
+Escalated No
+MF
+محتاج أكد مع حضرتك بعض البيانات للتأكيد على الطلب، في حالة وجود أي بيانات خاطئة، يجب مراجعاتها مع العميل وتحديث البيانات قبل متابعة الطلب:
+1- الاسم رباعي.
+رقم التواصل هو الرقم اللي بکلم حضرتك علیه؟ -2
+3- ما هو عمرك الحالي؟ لو أقل من 21 سنه , سيتم رفض الطلب
+4- هل يوجد مشروع , نشاط , تجارة او حرفة ؟ لولاً , سيتم رفض الطلب
+5- ما هو الموقع الجغرافي للنشاط ؟ بناء عليه هيتم تحديد الفرع المناسب.
+6- توجيه العميل للفرع اللي تم اختياره لاستكمال الإجراءات
+Tasabeel -> Request ->> Confirmation on customer request (Tasabeel) Escalated No
+محتاج أكد مع حضرتك بعض البيانات للتأكيد على الطلب، فى حالة وجود أي بيانات خاطئة، يجب مراجعاتها مع العميل وتحديث البيانات قبل متابعة الطلب:
+SME
+1- ""الاسم الرباعي؟""
+""رقم التواصل هو الرقم اللي بكلم حضرتك علیە؟"" -2
+هل لديك شركة قائمه؟ -3
+4- هل لديك ميزانية بحجم أعمال الشركة للعامين السابقین؟
+شروط أخرى حسب تقدير الفرع : كشف حساب بنكي \ الموقف التأميني \ الموقف الضريبي \سجل تجاري \بطاقة ضريبية
+Tasabeel -> Request -> Confirmation on customer request (Tasaheel SME) Escalated NO
+في حالة توجه العميل للفرع واستكمل الإجراءات ولم يحصل على رد بعدها :
+بنعتذر للعميل وبنقدمله طلب لاستعجال الرد على الطلب
+CRM: Complaint->Non-Technical->Not Receiving Feedback from Tasabeel Branch Escalated : Yes
+يتم مراجعه حالة الطلب على الأدمن تول:
+لم يتم الرد \ قيد الانتظار (Pending \ Unreachable)"
+KB,1504,9e13797ea1a85bb582a8daf2ca11616b,0,Tasaheel,Complain,Technical Issue,No,ok,Complaint from rejected request from Branch (Tasaheel),(Tasaheel) عميل يشكو من رفض عن الطلب الخاص بيه,yes,"Vertical: Tasaheel | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: Complaint from rejected request from Branch (Tasaheel)
+Question AR: (Tasaheel) عميل يشكو من رفض عن الطلب الخاص بيه
+
+Script:
+عميل يشكو من رفض عن الطلب الخاص بيه؟
+يتم الاعتذار للعميل وتوضيح ان القرار الخاص بالرفض يعتمد بشكل أساسي علي السياسة الائتمانية المتبعة , لذلك تم رفض الطلب وابلاغ العميل بامکانیة الطلب مره اخرى بعد مرور 6 أشهر.
+CRM: Complaint->Non Technical->Complaint from rejected request from Branch // Escalated No
+لو العميل مصر يعرف اية سبب الرفض ينفدمله طلب والرد خلال 48 ساعة عمل .. لمعرفة سبب الرفض فقط
+CRM: Complaint->Non Technical->Complaint from rejected request from Branch // Escalated Yes"
+KB,1505,26179f9853d85f98ba239577fb0127d9,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about reason for blocking Halan Credit (Tasaheel),استفسار عن سبب حظر الحد الائتماني (Tasaheel),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about reason for blocking Halan Credit (Tasaheel)
+Question AR: استفسار عن سبب حظر الحد الائتماني (Tasaheel)
+
+Script:
+استفسار عن سبب حظر حالا كريديت:
+- ممكن توضحلي الرقم القومي.
+- بعتذر لحضرتك بيتم حظر حالا كريديت من جانب الادارة الائتمانية حضرتك تقدر تتابع مع الفرع لمعرفة كافة التفاصيل.
+- Escalation: No
+- CRM: Inquiry → CF Limit Block Reason → Escalated No"
+KB,1506,a20786af529653e1977db7d0f238f12c,0,Tasaheel,Request,Non-Technical Issue,No,ok,Cancelling CF Limit Request (Tasaheel),عميل يريد الغاء حالا كريديت الخاص به (Tasaheel),yes,"Vertical: Tasaheel | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Cancelling CF Limit Request (Tasaheel)
+Question AR: عميل يريد الغاء حالا كريديت الخاص به (Tasaheel)
+
+Script:
+عميل يريد الغاء حالا كريديت الخاص به:
+ممکن توضحلي سبب الالغاء؟ 0 لو في امکانیة لمساعدته لعدم الالغاء بنساعده و نحل المشكلة
+Escalated No
+٥ في حالة اصرار العميل: يتم التأكد من العمیل من عدم استخدام المبلغ او وجوده بالكامل من خلال الادمن تول وتسجيل طلب للعميل لإلغاء و يتم ابلاغه ان الطلب هيتنفذ في خلال 48 ساعة عمل.
+Escalated Yes
+CRM: Request-> -- >Cancelling CF Limit Request"
+KB,1507,161430487b115c75aa6edd04eb662859,0,Tasaheel,Complain,Non-Technical Issue,No,ok,Complaint of blocked CF Limit (Tasaheel ),شكوي عميل من حظر حالا كريديت (Tasaheel),yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint of blocked CF Limit (Tasaheel )
+Question AR: شكوي عميل من حظر حالا كريديت (Tasaheel)
+
+Script:
+شكوي عميل من حظر حالا كريديت :
+٥ استأذن حضرتك توضحلي الرقم القومي والاسم رباعي لتأكيد البيانات ° الفرع التابع ليه.
+بعتذر لحضرتك غير واضح من خلالنا السبب بتقدر تشرفنا في الفرع لمعرفة سبب الحظر.
+Escalated No
+CRM: Complaint->Non Technical->Complaint of blocked CF Limit (Tasaheel )"
+KB,1522,b4d784138ab550acbc2bf8209dcdff5a,0,Tasaheel,Request,Technical Issue,No,ok,Apply for SME (From 2M to 15M) Loan request,لو العميل محتاج تمويل من 3 مليون جنيه ل 15 مليون (Tasaheel),yes,"Vertical: Tasaheel | Type: Request | Issue: Technical Issue | Escalation: No
+
+Question EN: Apply for SME (From 2M to 15M) Loan request
+Question AR: لو العميل محتاج تمويل من 3 مليون جنيه ل 15 مليون (Tasaheel)
+
+Script:
+لو العميل محتاج تمويل من 3 مليون جنيه ل 15 مليون ؟
+فی حالة ان العمیل (مقدم طلب ع الادمن تول/ مش مقدم )و محتاج تمویل من 3 ملیون ل 15 مليون:
+> لو تنطبق عليه الشروط (الأوراق المطلوبة) ... بأكد معاه الطلب وبنعمل dispatch لاقرب فرع ليه من فروع الادمن تول, ولو مش مقدم طلب علي ادمن تول بنقدمله طلب من عندنا ونأكده علي اقرب فرع ليه (فروع التمويل المتوسط )
+, و > لو لا تنطبق عليه الشروط (الأوراق المطلوبة) ...... بأكد معاه الطلب وبنعمل dispatch لاقرب فرع ليه من فروع الادمن تول (500 الف جنيه لو مش مقدم طلب علي ادمن تول بنقدمله طلب من عندنا ونأكده علي اقرب فرع ليه.
+CRM: Request -> Apply for SME (From 2M to 15M) -> Loan request // Escalated: No"
+KB,1523,8fff852a27a053c2bef0a09748ab0d8e,0,Tasaheel,Request,Technical Issue,No,ok,Apply for SME (From 500K to 3M) Loan request,لو العميل محتاج تمويل من 500 الف جنيه ل 3 مليون ؟,yes,"Vertical: Tasaheel | Type: Request | Issue: Technical Issue | Escalation: No
+
+Question EN: Apply for SME (From 500K to 3M) Loan request
+Question AR: لو العميل محتاج تمويل من 500 الف جنيه ل 3 مليون ؟
+
+Script:
+لو العميل محتاج تمويل من 500 الف جنيه ل 3 مليون ؟
+فى حالة ان العميل (مقدم طلب ع الادمن تول / مش مقدم)ومحتاج تمويل من 500 الف جنيه ل 2 مليون:
+> لو تنطبق عليه الشروط (الأوراق المطلوبة) ... بأكد معاه الطلب وبنعمل dispatch لاقرب فرع ليه من فروع الادمن تول, ولو مش مقدم طلب علي ادمن تول بنقدمله طلب من عندنا ونأكده علي اقرب فرع ليه
+> لو لا تنطبق عليه الشروط (الأوراق المطلوبة) ...... بأكد معاه الطلب وبنعمل dispatch لاقرب فرع ليه من فروع الادمن تول (تحت 500 الف) , ولو مش مقدم طلب علي ادمن تول بنقدمله طلب من عندنا ونأكده علي اقرب فرع ليه.
+CRM: Request -> Apply for SME (From 500K to 2M) -> Loan request // Escalated: No"
+KB,1524,d7eefde0bb44584ab8728807a5cf5766,0,Tasaheel,Request,Technical Issue,No,ok,Tasaheel Loan request,(Tasaheel)في حالة اتصال العميل و طلب التقديم علي التمويل,yes,"Vertical: Tasaheel | Type: Request | Issue: Technical Issue | Escalation: No
+
+Question EN: Tasaheel Loan request
+Question AR: (Tasaheel)في حالة اتصال العميل و طلب التقديم علي التمويل
+
+Script:
+في حالة اتصال العميل وطلب التقديم علي التمويل :
+يتم شرح التفاصيل , والاوراق المبدئیه الخاصة بالتمویل و هاخد من حضرتك البيانات وارسلها للادارة من عندي :
+.1
+اسم العميل ثلاثي
+رقم الموبايل للتواصل .2
+المحافظة
+.3 المنطقة السكنية .4 رقم البطاقة : لسهولة متابعة طلب العميل مع الفرع. .5 المبلغ التمويلي و لازم نكتب المبلغ اللي العميل طلبه بالظبط .6
+الفرع المرشح للعميل -< يتم ايضاح الفروع الموجودة في منطقة مشروع العميل وبناءا علي اختياره يتم كتابة الفرع. .7 عرفت تساهيل عن طريق ايه؟ .8
+لو العميل مش حابب يقدم من خلالنا :
+· واقدر اوضح لحضرتك اقرب فرع , تقدر تقدم من خلاله.
+• ممكن حضرتك تنزل التطبيق وتعمل الطلب وحد من فريق المتابعة هيكلمك لاستكمال الإجراءات في خلال 24 ساعة عمل.
+CRM: Inquiry -- >Inquiry about Tasaheel Loan Details,
+CRM : Request -> Tasaheel Loan request Escalated No"
+KB,1636,9a7c8a5da08d5529abbc63cce31f6c9c,0,Tasaheel,Complain,Non-Technical Issue,Yes,ok,Delay in receiving Customers Documents after finishing his loan (Tasaheel),شكوي تأخير في استلام اوراق عميل بعد انهاء التمويل (Tasaheel),yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Delay in receiving Customers Documents after finishing his loan (Tasaheel)
+Question AR: شكوي تأخير في استلام اوراق عميل بعد انهاء التمويل (Tasaheel)
+
+Script:
+شكوي تأخير في استلام اوراق عميل بعد انهاء التمويل
+حضرتك دفعت آخر قسط امتي ؟ في حالة التأكد من اكتمال 45 يوم من وقت دفع آخر قسط O يتم ابلاغ العميل بإمكانية باستخراج مخالصة من 7 ل 10 ايام عمل, لحين تجهيز الأوراق الخاصة 0
+Escalated No
+٥ في حالة رفض العميل للمخالصه : يتم تقديم شكوى وتنتظر الرد في خلال 5 أيام عمل لتوضيح امتي تقدر تستلم الاوراق الخاصة بیك.
+● البيانات اللازمة للشكوى : اسم العميل رباعي + الفرع + الرقم القومي + بيانات الشكوى بالتفصيل
+Escalated Yes
+CRM: Complaint->Non Technical->Delay in receiving Customer's Documents after finishing his loan"
+KB,1637,d572632e346b53829075ba11fd70587d,0,Tasaheel,Complain,Financial Issue,Yes,ok,"Complaint of pay installments and not reflected , Complaint of loan officer رشوي ,مخالفات","شكوي مالية لرشاوي ,أقساط تم دفعها للأخصائي ولم تسدد-مخالفات",yes,"Vertical: Tasaheel | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Complaint of pay installments and not reflected , Complaint of loan officer رشوي ,مخالفات
+Question AR: شكوي مالية لرشاوي ,أقساط تم دفعها للأخصائي ولم تسدد-مخالفات
+
+Script:
+شكوي مالية (الرشاوي-أقساط تم دفعها للأخصائي ولم تسدد-مخالفات):
+
+**سيناريو 1 — أقساط تم دفعها للأخصائي ولم تسدد:**
+- يطلب من العميل رقم البطاقة والاسم الرباعي لتأكيد بياناته.
+- الفرع التابع له.
+- المبلغ اللي دفعه للأخصائي.
+- يخبر العميل ان هيتم تقديم شكوى للتحقيق هل تم سداد القسط او لا، وهيتم الرد خلال 3 الى 5 ايام عمل.
+- CRM: Complaint → Financial → Complaint of pay installments and not reflected | Escalation: Yes
+
+**سيناريو 2 — شكوى ضد موظف (رشاوي / مخالفات):**
+- معرفة تفاصيل الشكوى في حالة الرشاوي او المخالفات.
+- يسأل العميل هل معاه اثبات يقدر يبعته على واتساب على الرقم +20 105 057 3090.
+- يعتذر للعميل ويخبره ان هيتم تقديم الشكوى ومتابعتها، والرد خلال 3 الى 5 ايام عمل.
+- CRM: Complaint → Against Staff → Complaint of loan officer (رشوي / مخالفات) | Escalation: Yes
+
+**متابعة الشكوى:**
+في حالة مكالمة العميل لمتابعة الشكوى المقدمة: يوضح له ان الحد الأقصى للشكاوي المالية 15 يوم عمل."
+KB,1638,f681577be5d85fc99aa9d5fb64c53bd5,0,Tasaheel,Complain,Non-Technical Issue,Yes,ok,"Loan Officer , Branch Manager Bad Attitude (Tasaheel)",شكوي سوء معاملة:(مثال: تعدي موظف علي عميل),yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Loan Officer , Branch Manager Bad Attitude (Tasaheel)
+Question AR: شكوي سوء معاملة:(مثال: تعدي موظف علي عميل)
+
+Script:
+شكوي سوء معاملة: (مثال: تعدي موظف علي عميل)
+° بنعتذر جدا لحضرتك عن اللي تم اکید ده سلوك غير مقبول.
+استأذن حضرتك توضحلي الرقم القومي والاسم رباعي لتأكيد البیانات 0 ممكن توضحلي اسم الموظف الذي اساء التعامل وتابع لفرع ايه ؟ 0
+لازم نوضح ف التيكت ( وقت الشكوي - العميل معاه دليل ولا لا ""سكرين شوت - رسايل - صور للمشكلة"" ) و 0 نوضح دا ف التيكت.
+هيتم تقديم شكوي لحضرتك والتحقيق فيها لاتخاذ الاجراء وهيتم الرد خلال من 3 ل 5 ايام عمل عمل
+Escalated Yes
+CRM: Complaint->Against Staff->Loan Officer Bad Attitude
+CRM: Complaint->Against Staff->Branch Manager Bad Attitude"
+KB,1639,dd2e154d18e45e4c9475dae114463489,0,Tasaheel,Complain,Non-Technical Issue,Yes,ok,"Loan Officer , Branch Manager Bad Attitude (Tasaheel)",في حاله لدي العميل شكوي أخلاقية مثل التحرش:( (مكالمات مسجلة _ فيديوهات – رسائل),yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Loan Officer , Branch Manager Bad Attitude (Tasaheel)
+Question AR: في حاله لدي العميل شكوي أخلاقية مثل التحرش:( (مكالمات مسجلة _ فيديوهات – رسائل)
+
+Script:
+في حاله لدي العميل شكوي أخلاقية مثل التحرش: ( (مكالمات مسجلة _ فيديوهات - رسائل): O
+٥ استأذن حضرتك توضحلي الرقم القومي و الاسم رباعي لتأكيد البيانات.
+بنعتذر لحضرتك جدا عن اللي تم ده اكيد سلوك غير مقبول O
+لازم نوضح ف التيكت ( وقت الشكوي - العميل معاه دليل ولا لا ""سكرين شوت - رسايل - صور للمشكلة"" ) و نوضح دا ف التیکت. C
+استأذن حضرتك توضحلي الرقم القومي والاسم رباعي لتقديم الشكوي O
+هنوضح لحضرتك رقم واتساب خدمة العملاء (3090 057 105 20+) لارسال الاثباتات علیه ان وجدت. وهيتم تقديم شكوى لحضرتك والتحقيق فيها لاتخاذ الإجراء اللازم من الادارة .
+وهيتم الرد خلال من 3 ل 5 ايام عمل عمل O
+Escalated Yes
+CRM: Complaint->Against Staff->Branch Manager Bad Attitude"
+KB,1640,0f792c456d38558cb2a4734957ded955,0,Tasaheel,Complain,Non-Technical Issue,Yes,ok,Complaint about loan officer visit customer home asking for payment,شكوي عميل من توجه الموظفين حتي المنزل للمطالبة بالسداد,yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Complaint about loan officer visit customer home asking for payment
+Question AR: شكوي عميل من توجه الموظفين حتي المنزل للمطالبة بالسداد
+
+Script:
+شكوي عميل من توجه الموظفين حتي المنزل للمطالبة بالسداد:
+استأذن حضرتك توضحلي الرقم القومي والاسم رباعي لتأكيد البيانات وبعتذر لحضرتك لكن الموظفين بيتوجهوا لمنزل حضرتك في حالة التأخر عن السداد. حضرتك بتلتزم بمعاد القسط لتجنب توجه الموظفين لمنزل حضرتك او للضامن. فى حالة إصرار العميل على عدم التوجه للمنزل: هوضح لحضرتك رقم مشرف المنطقة تقدر توضحله يا فندم . Escalated No في حالة شکوی العمیل من تطاول الموظفین علیه او التعامل بأسلوب سئ بیتم تقدیم شکوی تحت بند سوء معاملة. هيتم تقديم شكوي لحضرتك والتحقيق فيها لاتخاذ الإجراء اللازم من الادارة . وهيتم الرد خلال من 3 ل 5 ايام عمل عمل
+Escalated Yes
+CRM: Complaint->Against Staff->Complaint about loan officer visit customer home asking for payment"
+KB,1641,f3f6cdb42b5f589db2bbae5a95181db6,0,Tasaheel,Complain,Non-Technical Issue,No,ok,Loan Rejection Dispute,شكوي بخصوص رفض التمويل (جديد او تجديد),yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Loan Rejection Dispute
+Question AR: شكوي بخصوص رفض التمويل (جديد او تجديد)
+
+Script:
+شکوي بخصوص رفض التمويل (جديد او تجديد):
+استأذن حضرتك في الاسم للترحيب. 0 الفرع الذي تم تقديم الطلب فهل الفرع وضح لحضرتك ايه سبب الرفض ؟ o
+بنعتذر لحضرتك يا فندم, للأسف الطلب غير مستوفي شروط الحصول على قرض
+Escalated No
+CRM: Complaint->Non Technical->Loan Rejection Dispute
+٥ في حالة ايضاح العميل وجود عملية نصب او مشكلة مع الفرع : يتم تسجيل شكوى للعميل. البيانات اللازمة للشكوى : اسم العميل رباعي + الفرع + الرقم القومي + بيانات الشكوى بالتفصيل 0 (وبناءا على الشكوى الموضحة بنختار ال type issue المناسب وبيتم تقديم شكوي وهيتم الرد خلال من 3 ل 5 ايام عمل عمل.
+Escalated Yes"
+KB,1642,f08bc5e1479c54a2bef52ef285a07998,0,Tasaheel,Complain,Non-Technical Issue,Yes,ok,Delay receiving Tawkeel Tasaloh,شكوي تأخير استخراج توكيل تصالح:( سواء الاتصال من خلال العميل او الضامن ام احد معارفه او المحامي),yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Delay receiving Tawkeel Tasaloh
+Question AR: شكوي تأخير استخراج توكيل تصالح:( سواء الاتصال من خلال العميل او الضامن ام احد معارفه او المحامي)
+
+Script:
+شكوي تأخير استخراج توكيل تصالح: ( سواء الاتصال من خلال العميل او الضامن ام احد معارفه او المحامي)
+استأذن حضرتك في الاسم للترحیب. 0 هل حضرتك سددت كافة الاقساط الخاصة بالقرض ؟
+● لا - يتم ابلاغ العميل بضرورة سداد كافة الاقساط.
+0 نعم ۔۔ من خلالي هقدم لحضرتك طلب وهيتم المتابعة في خلال 5 أيام عمل لازم نسأل العميل توكيل التصالح للعميل ام للضامن ..
+° لو توكيل تصالح خاص بالعميل - البيانات اللازمة للشكوى : اسم العميل رباعي + الفرع + الرقم القومي + بيانات الشكوى بالتفصيل.
+لو التوكيل خاص بالضمان : البيانات المطلوبة اسم الضامن رباعي ورقم البطاقة O
+Escalated Yes
+CRM: Complaint->Non Technical->Delay receiving Tawkeel Tasaloh"
+KB,1643,87ca721275a0576397093e32dc9776c3,0,Tasaheel,Complain,Technical Issue,Yes,ok,Delay receiving Clearance Documents (Tasaheel),(تساهيل) شكوي تأخير استلام المخالصة,yes,"Vertical: Tasaheel | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Delay receiving Clearance Documents (Tasaheel)
+Question AR: (تساهيل) شكوي تأخير استلام المخالصة
+
+Script:
+شكوي تأخير استلام المخالصة
+هل حضرتك تعديت المهلة المحددة (7 ل 10 أيام عمل )؟ لازم نسأل العميل المخلصة مقدمة (لمن يهمه الامر البنك ) ونوضح في الطلب. في حالة تأخير مدة استخراجها عن ال10 أيام عمل: بعتذر جدا لحضرتك عن اي تأخير سوف يتم التواصل مع القسم المختص بالمخالصات والتواصل معانا مرة اخري في خلال وهيتم الرد خلال من 3 ل 5 ايام عمل عمل
+البيانات اللازمة للشكوى : اسم العميل رباعى + الفرع + الرقم القومى + بيانات الشكوى بالتفصيل
+٥
+Escalated Yes
+في حالة لم يمر 10 أيام عمل (مش هنقدم الشكوي للعميل الا لما يعدي ال10 ايام المهلة)
+حابب اوضح لحضرتك انه حضرتك خلال المهلة المحددة ولازم ننتظر وتستلم بعد 7 الي 10 ايام عمل.
+Escalated No
+CRM: Complaint->Non-Technical->Delay receiving Clearance Documents"
+KB,1653,2712c9af134251f39d1dae5bcb199f9a,0,Tasaheel,Complain,Technical Issue,Yes,ok,Paid Tasaheel installment not reflected (Tasaheel),شكوي عميل من دفع القسط عن طريق فوري و لم يتم السداد (Tasaheel),yes,"Vertical: Tasaheel | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Paid Tasaheel installment not reflected (Tasaheel)
+Question AR: شكوي عميل من دفع القسط عن طريق فوري و لم يتم السداد (Tasaheel)
+
+Script:
+شكوي عميل من دفع القسط عن طريق فوري ولم يتم السداد:
+Tasaheel ->Complaint -> Tech -> Paid Tasaheel installment not reflected -Escalation: yes
+بيتم مراجعة CRM ووقت الدفع والتاريخ للتأكد ان القسط تم تسدیده او لا
+التأكد ان المبلغ مش موجود علي محفظة التطبيق (العميل استخدم كود شحن المحفظة بدل كود دفع الاقساط)
+لو لم يتم السداد .. بنعتذر للعمیل و بنقدم شکوي بخصوص المشکلة و توضبح انه سیتم الرد خلال 5 ایام عمل
+لازم نوضح الآتي في التيكت:
+سکرین بالدفع و بيتم ارسالها علي رقم 20216303+ .1
+الاسم رباعي و رقم الموبايل و رقم البطاقة . .2
+وقت وتاريخ عميلة الدفع .
+.3
+قيمة القسط . .4"
+KB,1681,e4e86ed573b253beba3eb22465e987a4,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about How to pay installment (Tasaheel),طرق دفع الاقساط,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about How to pay installment (Tasaheel)
+Question AR: طرق دفع الاقساط
+
+Script:
+طرق دفع الاقساط:
+استأذن حضرتك في الاسم للترحيب. ٥ او من خلال محفظة حالا كاش ( بتتوجه لاقرب فرع لتفعيل المحفظة) ٥ أو من خلال فوري عن طريق الكود 77985 متبوع برقم الموبايل او رقم البطاقة
+في حالة تمويل شركات SME بنوضح ان العميل يستطيع الدفع عن طريق فوري او عن طريق البنك (حسابات تساهيل في البنوك)
+أرقام الحسابات البنكية الخاصة بإيداعات أقساط S.M.E
+فوري بلس Fawry
+كود الخدمة : 74651
+اسم الفرع : محمد حافظ
+بنك مصر
+رقم الحساب : 3910001000007093
+رقم الايبان : EG740002039103910001000007093
+البنك التجاري الدولي
+رقم الحساب : 100046954585
+اسم الفرع : لبنان
+رقم الحساب : 002963990024
+بنك عودة
+رقم الايبان : EG430019000700000002963990024
+بنك قناة السويس
+رقم الحساب : 430147510100102
+اسم الفرع : المهندسين
+بنك القاهرة
+رقم الحساب : 06025010073723
+اسم الفرع : المهندسين
+بنك الكويت الوطني
+رقم الحساب : 4101426917110011
+اسم الفرع : المهندسين
+البنك العربي
+رقم الحساب : 449 - 810758 - 5004
+Escalated No CRM: Inquiry->->Inquiry about How to pay installment
+اسم الفرع : الغرفة الألمانية
+اسم الفرع : المهندسين"
+KB,1707,ac317804d0085b65aed14cc7514922d9,0,Tasaheel,Complain,Non-Technical Issue,Yes,ok,Wrong SMS Payment,شكوى عميل من استلام رسالة قسط خطا من تساهيل,yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Wrong SMS Payment
+Question AR: شكوى عميل من استلام رسالة قسط خطا من تساهيل
+
+Script:
+شكوى عميل من استلام رسالة قسط خطا من تساهيل :
+٥ استأذن حضرتك توضحلي الرقم القومي والاسم رباعي لتأكيد البيانات بيتم مراجعة CRM للتأكد ان القسط موجود ع السيستم او لا ٥
+٥ بعد التأكد من ان العميل غير مسجل بتساهيل او في حاله ان العميل وصلته رسالة بمبلغ خطا عن المبلغ الصحيح لازم نوضح الآتي في التيكت :
+الاسم رباعي ورقم الموبايل إللى تم استلام الرسالة عليه ورقم البطاقة. ٥ قيمة القسط الخطاء ٥
+هيتم تقديم شكوى لحضرتك والتحقيق فيها لاتخاذ الإجراء اللازم من الادارة. وهيتم الرد على الشكوى خلال يومين عمل. ٥
+فى حاله ان العميل بيوضح انه استلم رساله بالقسط وهو عميل غير مسجل فى تساهيل:
+CRM: Tasaheel ->Complaint -> Non Technical -> Wrong SMS - Not Registered Customer
+· فى حالة ان العميل بيوضح انه استلم رساله بالقسط ولكن الرساله بمبلغ خطا:
+CRM: Tasaheel ->Complaint -> Non-Technical -> Wrong SMS - Wrong Installment
+Escalated Yes"
+KB,1714,884d18bbaa895502ad6655b0e10438a5,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,IVR Tree,الخدمه الصوتيه ل 16303,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: IVR Tree
+Question AR: الخدمه الصوتيه ل 16303
+
+Script:
+IVR Tree
+Selection
+Queue Name
+لإعادة تعیین الرقم السري يضغط 1 ثم 1
+Card
+الاستفسارات يضغط 1 ثم 2
+الشکاوي يضغط 1 ثم 3
+للتقديم وتفعيل حالا كريديت يضغط 2 ثم 1
+Halan Inbound
+لإعادة تعییں الرقم السري یضغط 3 ثم 1
+Cash
+الشكاوي و الدعم يضغط 3 ثم 2
+استثمار يضغط 4 ثم 1
+Elite
+جمعية يضغط 4 ثم 2
+دهب يضغط 4 ثم 3
+يضغط 5
+Gomla
+للتقديم يضغط 6 ثم 1
+Salary lending الراتب المبكر
+الشكاوي و الدعم یضغط 6 ثم 2
+التقديم على المسروعات الصغيره 2 ثم 2 الشكاوي و الدعم يضغط 2 ثم 3"
+KB,1721,4c1268c5ff015a81bbac37b28423213b,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about Tasaheel Loan Details,عميل يستفسر عن التمويل؟,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Tasaheel Loan Details
+Question AR: عميل يستفسر عن التمويل؟
+
+Script:
+عميل يستفسر عن التمويل؟
+● هو تمويل حضرتك بمبلغ تقدر تحصل عليه إذا كنت تمتلك نشاط او تجاره او حرفه والمشروع يكون قائم. المبلغ التمويلي بيوميل ل 15 مليون جنيه وبيتم تحديده بناء على الاستعلام الائتماني وعلى حالة المشروع الخاص بيك وتقدر تسدد على فترة من 6 شهور ل 48 شهر .. يتغير تعرفها من الفرع والفائدة تتحدد بناها على مبلغ التمويل وفترة السداد. ٥ مع العلم انه عند التقديم على تمويل المشروعات، هينزل لحضرتك حالا كريليت + كارت حالا (المبلغ بتحدد حسب الاستعلام الائتماني لحفير
+حضرتك عندك مشروع او نشاط او حرفة ؟ إذ: يعتذر لحضرتك جدا من شروط التمويل ان يكون في مشروع او نشاط او حرفة. ٥ ف الوقت الحالي حضرتك تقدر تقدم على الحصول علي حالا كريديت عن طريق التطبيق.
+حالا كريديت: هو تمويل بينزل لحضرتك على التطبيق تقدر تستخدمه في شراء أي منتجات موجودة على تطبيق حالا أو من خلال شبكة التجار اللي بتظهر على الأبليكشن .. وتقدر تقدم على كارت حالا ومن خلاله. تقدر تشتري من أي مكان برصيد التقسيط بعد نزوله لحضرتك
+· أن: حضرتك محتاج تمويل بمبلغ كام ؟ ""هنود
+""هنوضح للعميل اننا هنقدم الطلب من خلالنا
+CRM: Inquiry->Inquiry about Tasaheel Loan Details // Escalated No
+مشاريع النانو -< أقل من 3000 جنيه وفترة السداد من شهرل 3 أشهر
+3001 ل 500.000 جنيه Micro
+فترة السداد من 6 ل 48 شهر.
+محركة قائمه.
+الأوراق المبدئية :صورة البطاقة الشخصية) سارية . ( إيصال مرافق غاز، مياه او كهرباء , المحل المشروع اتجاري (وايضا لسكن طالب التمويل , الضمانات بتتحدد بناءا على مريحة مبلغ التمويل.
+مشاريع متناهية الصغر
+من 500.001 ل 3 مليون Mini SME
+فترة السداد) تصل الى 48 شهر.( مركة قائمه.
+ميزانية حجم أعمال للعامين السابقين. شروط أخرى حسب تقدير الفرع : كشف حساب بنكى \ الموقف التأميني \ الموقف الضريبي \سجل تجري \بطاقة ضريبية
+مشاريع متناهية الصغر
+من 3 مليون ل 15 مليون SME
+فترة السداد ] تصل الي 48 شهر.( سركة قائمه.
+ميزانية حجم أعمال للعامين السابقين. شروط أخرى حسب تقدير الفرع :کشف حساب بنكي \ الموقف التأميني \ الموقف الضريبي \ سجل تجاري \بطاقة ضريبية
+مشاريع صغيرة أو متوسطة
+محتاج أوضح لحضرتك ان:
+جميع الشروط والأوراق تكون بشكل مبدئي وفي الفرع بيتم ابلاغك بكافة التفاصيل اللازمة لصرف التمويل. السن يكون من 21 سنه حتى 65 سنه ٠"
+KB,1721,7fb2003c6f985016ad1e101eab1d186f,1,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about Tasaheel Loan Details,عميل يستفسر عن التمويل؟,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Tasaheel Loan Details
+Question AR: عميل يستفسر عن التمويل؟
+
+Script:
+\ سجل تجاري \بطاقة ضريبية
+مشاريع صغيرة أو متوسطة
+محتاج أوضح لحضرتك ان:
+جميع الشروط والأوراق تكون بشكل مبدئي وفي الفرع بيتم ابلاغك بكافة التفاصيل اللازمة لصرف التمويل. السن يكون من 21 سنه حتى 65 سنه ٠
+بقدر احصل على البيانات وقدم لحضرتك طلب يتبعت للفرع , وحضرتك ممكن تشرفنا ف أي وقت في الفرع
+لاستكمال الإجراءات. وهو ضحلك ايضا اقرب فرع لتساهيل.
+وحضرتك تقدم ممكن تنزل تطبيق حالا وتقدم على الطلب وييتم التواصل من فريق المتابعة لإنهاء الإجراءات في خلال
+24 ساعة عمل.
+CRM: Inquiry->Inquiry about Tasaheel Loan Details // Escalated No"
+KB,176,1dff115af6e758cc8d1965056ce84e5b,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about Relation Between Halan & Tasaheel,عميل يستفسر عن علاقة حالا بتساهيل,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Relation Between Halan & Tasaheel
+Question AR: عميل يستفسر عن علاقة حالا بتساهيل
+
+Script:
+عميل يستفسر عن علاقة حالا بتساهيل؟ فى شراكة بين شركة حالا و تساهيل.
+CRM: Inquiry-> -- >Inquiry about Relation Between Halan & Jasaheel //
+Escalated No"
+KB,178,4fb571dd74805982ac6e12c2f2132257,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about Nearest Tasaheel Branch,عميل يستفسر عن أقرب فرع تساهيل؟,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Nearest Tasaheel Branch
+Question AR: عميل يستفسر عن أقرب فرع تساهيل؟
+
+Script:
+عميل يستفسر عن أقرب فرع تساهيل؟
+بستأذن العميل في الحصول علي اسم المنطقة والمحافظة الخاصة بيه.
+مراجعة الشيت الخاص بفروع تساهيل وابلاغ العميل بأقرب فرع.
+مواعيد الفروع 9 صباحا حتي ال 5 مساء أجازة جمعه و سبت.
+CRM: Inquiry-> -- >Inquiry about Nearest Tasaheel Branch // Escalated No"
+KB,1793,db45bf11a6e45506b914a4bb1427ee39,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about branch address,عميل يستفسر عن عنوان أقرب فرع,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about branch address
+Question AR: عميل يستفسر عن عنوان أقرب فرع
+
+Script:
+هنوضح للعميل أقرب فرع من فروع Circle K او المولات الموجود فيها مندوب حالا ومواعيد عملها (فروع الموافقة الفورية موجودة بالأسفل)
+او فروع تساهيل ومواعيد العمل من 9 صباحا حتى 5 مساءا ماعدا الجمعة والسبت (فروع متشطبة تساهيل .xlsx)
+- Escalation: No
+- CRM: Tasaheel → Inquiry → Inquiry about branch address"
+KB,1795,c93c7f7102c153b4aab2da33953c078a,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about the 10K loan,عميل بيستفسر عن اخذ قرض الكاش (في حالة سؤال العميل عنه فقط),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about the 10K loan
+Question AR: عميل بيستفسر عن اخذ قرض الكاش (في حالة سؤال العميل عنه فقط)
+
+Script:
+حضرتك بتقدر تعمل كارت حالا وبينزل عليه 10,000 بتقدر تسحبهم كاش.
+مدة القرض بتكون 24 او 18 او 12 شهر حضرتك بتدفع الأقساط الخاصة بالقرض خلالها.
+نسبة الفائدة 31.75% سنويا.
+حضرتك بتقدر تفعل الكارت من أقرب فرع تساهيل لحضرتك.
+الكارت بينزل عليه 10,000 فقط في اول عملية بتقدر تسحبهم كاش عادي، وتقدر بردو تحول باقي حالا كريديت على الكارت بس مش هيتسحب كاش
+الفايدة والاقساط بتتحسب على ال 10,000 وقت نزولهم على الكارت وليس وقت سحبهم او استخدامهم
+مصاريف استعلام بتكون 200 جنيه
+وحضرتك بتقدر تستلم الكارت خلال 48 ساعة عمل.
+
+ملحوظة: القسط المدفوع من القرض، بيرجع جزء منه على حالا كريديت مرة أخرى.
+وفي حالة استفسار العميل عن أن الفرع أوضح مبلغ أكبر بالنسبة لقرض الكاش حضرتك تقدر تتابعها من خلال الفرع.
+- Escalation: No
+- CRM: Tasaheel → Inquiry → Inquiry about the 10K loan"
+KB,1796,82f0d9c6f46b5f38a7e265b50c116d97,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about project finance,عميل يستفسر عن تمويل المشروعات أو شركة تساهيل,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about project finance
+Question AR: عميل يستفسر عن تمويل المشروعات أو شركة تساهيل
+
+Script:
+دلوقتي حالا بتقدم لحضرتك خدمة تمويل متناهية الصغر من خلال شركة تساهيل هدفها اتاحة تمويل لأصحاب المشاريع والنشاطات الصغيرة.
+يتم تمويل حضرتك بمبلغ تقدر تحصل عليه إذا كنت تمتلك نشاط او تجارة أو حرفة والمشروع يكون قائم.
+المبلغ التمويلي بيوصل ل 15 مليون وبيتم تحديده بناء على الاستعلام الائتماني والبرنامج اللي هيتم تحديده بناءا على المشروع الخاص بيك وتقدر تسدد على فترة من 6 شهور ل 48 شهر.
+حضرتك بتقدر تقديم من خلال ابلكيشن حالا وبيتم التواصل مع حضرتك خلال 24 ساعة عمل من تقديم الطلب.
+في حالة الاستفسار عن رقم خدمة عملاء شركة تساهيل : حضرتك تقدر تتواصل على 16134 لمساعدة حضرتك.
+بالنسبة لمواعيد الفروع، كل يوم من الساعة 9 صباحا حتى 5 مساءا ماعدا يوم الجمعة والسبت اجازة.
+- Escalation: No
+- CRM: Tasaheel → Inquiry → Inquiry about project finance"
+KB,1811,4d9f8a70381959cd85ffa5db75020093,0,Tasaheel,Complain,Non-Technical Issue,No,ok,Complaint about not reflecting the 10K on Halan Card,"عميل يشتكي من عدم نزول مبلغ القرض (10,000) على كارت حالا",yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint about not reflecting the 10K on Halan Card
+Question AR: عميل يشتكي من عدم نزول مبلغ القرض (10,000) على كارت حالا
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي )
+هتأكد ان الكارت اتفعل على البورتال وان المبلغ فعلا منزلش على كارت العميل.
+
+بعتذر لحضرتك يا فندم لكن حضرتك محتاج ترجع لموظف الفرع علشان ينزل المبلغ لحضرتك. في حالة ان الموظف مش عارف ينزل المبلغ، فهستأذنه يرجع لمدير الفرع.
+- Escalation: No
+- CRM: Tasaheel → Complain → Complaint about not reflecting the 10K on Halan Card"
+KB,1812,b16206c769d85c74b0e506764275b81e,0,Tasaheel,Complain,Non-Technical Issue,No,ok,Complaint about delay receiving the card from branch,عميل يشتكي من تأخر استلام الكارت من الفرع,yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint about delay receiving the card from branch
+Question AR: عميل يشتكي من تأخر استلام الكارت من الفرع
+
+Script:
+في حالة عدم تخطي 48 ساعة عمل: انا بعتذر جدا لكن حضرتك بتستلم الكارت بعد 48 ساعة عمل من تقديم الطلب في فرع. (Escalation: No)
+في حالة تخطي 48 ساعة عمل: انا بعتذر جدا لحضرتك وانا من خلالي هقدم شكوى لحضرتك علشان تستلم الكارت من الفرع خلال 48 ساعة عمل (تساهيل). (Escalation: Yes) لازم ناخد كل الداتا من العميل ويكون فيها اسم الفرع علشان اكتبها في التيكيت، ولابد من كتابة الاسم بالكامل والرقم القومي في التيكت.
+- Escalation: No
+- CRM: Tasaheel → Complain → Complaint about delay receiving the card from branch"
+KB,183,fea4f4e51d8f52fdb5e2619f95c1a553,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry About Group Loan Details,عميل بيستفسر عن القرض الجماعي,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry About Group Loan Details
+Question AR: عميل بيستفسر عن القرض الجماعي
+
+Script:
+عميل بيستفسر عن القرض الجماعي:
+القرض الجماعي بیکون خاص بالسيدات فقط , و بيكون من 3 - 7 افراد من الشروط : عدم وجود قرابة من الدرجة الاولى و بنوجهه لأقرب فرع مناسب.
+CRM: Inquiry-> -- >Inquiry About Group Loan Details // Escalated No"
+KB,184,0d1dd8e5a4de5303b913f560261c77fa,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry About Tasaheel Loans Interest Rate,لو عميل بيسأل علي الفائده ؟,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry About Tasaheel Loans Interest Rate
+Question AR: لو عميل بيسأل علي الفائده ؟
+
+Script:
+لو عميل بيسأل علي الفائده ؟ · بتقدر تعرفها من الفرع و الفائدة تتحدد بنائا على مبلغ التمويل وفترة السداد.
+CRM: Inquiry-> -- >Inquiry About Tasaheel Loans Interest Rate // Escalated No"
+KB,186,aebbba113f5657c4a50aa269bdda8a17,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry About Halan Company,عميل يستفسر عن شركة حالا؟,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry About Halan Company
+Question AR: عميل يستفسر عن شركة حالا؟
+
+Script:
+عميل يستفسر عن شركة حالا؟
+شركة حالا موجودة ف السوق من سنة 2017 , ومرخص للشركة بمزاولة اكتر من نشاط.
+والشركة عندها اكتر من نشاط قائم ف السوق وموجودين على التطبيق تقدر تشوف الخدمات المتوفرة.
+وتنزل التطبيق دلوقتي و تشوف الخدمات بنفسك وتستخدمها.
+· وممكن اوضحلك اقرب فرع لحضرتك . - لو العميل مش عايز الفرع نكتب اسم الفرع ""تطبيق"".
+CRM: Inquiry-> -- >Inquiry About Halan Company // Escalated No"
+KB,195,6174cb40871d5efba98bd354420559f8,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Transferring call to Tasaheel existing Customers queue,لتحويل المكالمات ؟,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Transferring call to Tasaheel existing Customers queue
+Question AR: لتحويل المكالمات ؟
+
+Script:
+لتحويل المكالمات ؟
+550000 دا الرقم اللي بنحول عليه مكالمات العملاء الحاليين اللي عندهم مشاكل O انا هحول حضرتك للدعم الفني للعملاء الحاليين علشان يقدروا يساعد حضرتك بشكل افضل ٥
+· في استفسار اخر قبل التحويل , شكرا لاتصالك وجاري تحويل المكالمة.
+CRM: Inquiry-> -- >Transferring call to Tasaheel existing Customers queue // Escalated No"
+KB,199,1b55b51ded465315a04fb1ebdcd37555,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about delivered documents after finishing installment,استعلام عميل عن الاوراق بعد انهاء الاقساط (ورقة سند الامر),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about delivered documents after finishing installment
+Question AR: استعلام عميل عن الاوراق بعد انهاء الاقساط (ورقة سند الامر)
+
+Script:
+O
+استعلام عميل عن الاوراق بعد انهاء الاقساط (ورقة سند الامر):
+٥ الرقم القومي كامل من الشمال ,ويتم تأكيد الاسم رباعي.
+0
+حضرتك تابع لفرع ايه
+٥ ممکن توضحلي اخر قسط حضرتك دفعته کان یوم کام "":
+-إذا لم يمر 45 يوم من وقت دفع اخر قسطمن حضرتك بتنتظر 45 يوم من تاريخ دفع اخر قسط حتي تستلم الاوراق.
+Escalated No
+CRM: Inquiry-> -- >Inquiry about delivered documents after finishing installment
+-في حالة اكتمال 45 يوم ولم يستطع اخذ الاوراق الخاصة بهم بعتذر جدا لحضرتك هيتم تقديم طلب والمتابعة مع حضرتك مرة اخري في خلال 48 ساعة عمل.
+Escalated Yes
+CRM: Complaint->Non Technical->Delay in receiving Customer's Documents after finishing his loan"
+KB,200,f47325ffd289596daee3748c46afe458,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about Early Settlement details,استعلام عن السداد المعجل(دفع ماتبقي من التمويل كاش),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Early Settlement details
+Question AR: استعلام عن السداد المعجل(دفع ماتبقي من التمويل كاش)
+
+Script:
+استعلام عن السداد المعجل (دفع ماتبقي من التمويل كاش):
+٥ استأذن حضرتك في الاسم للترحيب.
+حضرتك بتقدر تشرفنا في الفرع لمعرفة المديوينة كاملة. o
+° وبتقدر تقدم علي طلب سداد معجل من خلال الفرع.
+Escalated No
+CRM: Inquiry-> -- >Inquiry about Early Settlement details"
+KB,201,3439109d987654dba7b06cacbd937b22,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about change branch,استفسار عن تحويل من فرع  لفرع اخر (تحويل كود),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about change branch
+Question AR: استفسار عن تحويل من فرع  لفرع اخر (تحويل كود)
+
+Script:
+استفسار عن تحويل من فرع لفرع اخر (تحويل كود):
+٥ استأذن حضرتك في الاسم للترحيب.
+٥ حضرتك بتقدم طلب في الفرع اللي حابب تتحول عليه وبيقدم طلب تحويل للفرع التابع له بالفعل لانها بتكون عملية إداریة من خلال الفروع وبتنتظر الرد.
+Escalated No
+CRM: Inquiry-> -- >Inquiry about change branch"
+KB,203,cb21a724ac66544586cfaaa432fcb33f,0,Tasaheel,Inquiry,Non-Technical Issue,Yes,ok,Inquiry about corporate deal with Tasaheel,استفسار شركة عن التعاقد مع تساهيل,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Inquiry about corporate deal with Tasaheel
+Question AR: استفسار شركة عن التعاقد مع تساهيل
+
+Script:
+استفسار شركة عن التعاقد مع تساهيل :
+0 ممكن توضحلي اسم حضرتك للترحيب .
+اسم الشركة . 0 طبيعة عمل الشركة . اسم المتصل و الوظيفة هيتم ارسال التفاصيل اللي حضرتك وضحتها وفي حالة احتياج الشركة للتعاقد هيتم التواصل مع O حضرتك .
+Escalated Yes
+CRM: Inquiry-> -- >Inquiry about corporate deal with Tasaheel"
+KB,204,844b4a75c0215b92ac4957011d4b9762,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about Halan Cash,عميل بيستفسر عن كيفية انشاء حساب في محفظة حالا كاش,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Halan Cash
+Question AR: عميل بيستفسر عن كيفية انشاء حساب في محفظة حالا كاش
+
+Script:
+عميل بيستفسر عن كيفية انشاء حساب في محفظة حالا كاش: ° بتقدر تتواصل علي خدمة عملاء حالا 16303 يساعدوا حضرتك
+CRM: Inquiry-> -- >Inquiry about Halan Cash Escalated No
+· استعلام عميل عن صعوبة استخدام محفظة حالا كاش وحظرها:
+٥ بتقدر تتواصل علي 16303 خدمة عملاء حالا يساعدوا حضرتك
+CRM: Inquiry-> -- >Inquiry about Halan Cash Escalated No
+استفسار عميل عن الرصيد المتواجد علي محفظة حالا كاش .. O بتقدر تتواصل علي 16303 خدمة عملاء حالا بيساعدوا حضرتك O
+CRM: Inquiry-> -- >Inquiry about Halan Cash Escalated No
+عميل يريد إيقاف محفظة حالا كاش: O ٥ بتقدر تتواصل علي 16303 خدمة عملاء حالا بيساعدوا حضرتك
+CRM: Inquiry-> -- >Inquiry about Halan Cash
+Escalated No"
+KB,207,eb1b5344da095ffc915f13aecfbf63da,0,Tasaheel,Inquiry,Non-Technical Issue,Yes,ok,How to request Tawkeel Tasaloh,استعلام عن كيفية استخراج توكيل تصالح,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: How to request Tawkeel Tasaloh
+Question AR: استعلام عن كيفية استخراج توكيل تصالح
+
+Script:
+٥ استعلام عن كيفية استخراج توكيل تصالح (هو توكيل بيطلب من العميل في حالة ان الفرع رفع عليه قضية
+وتحويل اوراقه للشئون القانونية):
+٥ في حالة تحويل أوراق حضرتك للشئون القانونية بيتم استخراج توكيل تصالح .
+عن طريق :
+تقديم صورة من شهادة الجدول .
+0
+صورة من کارنیه المحامي .
+دفع الرسوم القضائية بتقدر تعرفها من خلال الفرع
+واستلام توكيل التصالح من خلال الفرع . 0
+عميل بيسأل عن مدة استلام التوكيل او أي تفاصيل اخري : بتقدر تتابع مع الفرع بیوضح لحضرتك.
+Escalated No
+CRM: Inquiry-> -- >How to request Tawkeel Tasaloh"
+KB,213,36f52b6e8d445b2da86aaa210ad515d8,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about Loan guarantors,استفسار عميل عن شروط الضمان في التمويل الخاص به,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Loan guarantors
+Question AR: استفسار عميل عن شروط الضمان في التمويل الخاص به
+
+Script:
+استفسار عميل عن شروط الضمان في التمويل الخاص به:
+٥ الفرع بيوضح لحضرتك التفاصيل والشروط الخاصة بالضمان بناءا علي الاستعلام الائتماني.
+Escalated No
+CRM: Inquiry-> -- >Inquiry about Loan guarantors"
+KB,214,3c9f5241a3c458f291767343f30f1cb1,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,"Inquiry about Tasaheel customer , not the loan owner",استفسار عن عميل في تساهيل لديه تمويل,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Tasaheel customer , not the loan owner
+Question AR: استفسار عن عميل في تساهيل لديه تمويل
+
+Script:
+استفسار عن عميل في تساهيل لديه تمويل:
+0 حضرتك صفتك ایه في القرض؟ لیس ضامن او عميل بعتذر لحضرتك يشترط ان يتواصل معانا العميل بنفسه O
+٥ في حالة الإصرار: بتقدر ترجع للفرع يافندم .
+Escalated No
+CRM: Inquiry-> -- >Inquiry about Tasaheel customer, not the loan owner"
+KB,217,b43fabad34ca5e0c88d7ef3cb740c55c,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about payment date for loan installment,استعلام عميل عن موعد اخر قسط قام بدفعه بعد انهاء القرض,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about payment date for loan installment
+Question AR: استعلام عميل عن موعد اخر قسط قام بدفعه بعد انهاء القرض
+
+Script:
+استعلام عميل عن موعد اخر قسط قام بدفعه بعد انهاء القرض :
+بتقدر يافندم تتأكد من إيصال السداد اللي حضرتك استلمته في الدفع بیکون موضح فيه التاریخ. ٥
+٥ في حالة إصرار العميل : بتقدر تشرفنا في الفرع لمعرفة اخر موعد سداد .
+Escalated No
+CRM: Inquiry-> -- >Inquiry about payment date for loan installment"
+KB,218,9947373082a6548cad61823b47973b8f,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about Loan disbursement date,استفسار عن موعد صرف التمويل,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Loan disbursement date
+Question AR: استفسار عن موعد صرف التمويل
+
+Script:
+استفسار عن موعد صرف التمويل:
+٥ بعتذر لحضرتك لكن مواعيد الصرف غير واضحة من خلالنا , بتقدر تتابعها من خلال الفرع. بنوضح أيضا لحضرتك رقم مدير الفرع لمتابعة ميعاد الصرف بتقدر تتواصل معه في مواعيد العمل.
+٥ في حالة عدم تعاون المدير بيتم توضيح رقم مشرف المنطقة.
+Escalated No
+""موعد صرف التمويل"" CRM: Inquiry-> -- >Inquiry about Loan disbursement date"
+KB,224,464d74c7c26f55cdb81f470ca0c48158,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Possibility to delay installment payment,استفسار عن إمكانية تأجيل سداد الأقساط او عمل جدولة,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Possibility to delay installment payment
+Question AR: استفسار عن إمكانية تأجيل سداد الأقساط او عمل جدولة
+
+Script:
+استفسار عن إمكانية تأجيل سداد الأقساط او عمل جدولة:
+٥ بعتذر لحضرتك لکن یشترط الالتزام بموعد السداد تجنبا لأي انذارات او غرامات.
+٥ بتقدر تتوجه للفرع أو التواصل مع مشرف المنطقة في مواعيد العمل وبيوضح لحضرتك لو في إمکانیة.
+Escalated No
+CRM: Inquiry-> -- >Possibility to delay installment payment"
+KB,225,fd9bdcc16cde5834b53aa42b12544880,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about buying Talabyah product using Tasaheel Loan,في حالة سؤال عميل طلبية عن طلب شراء بضاعة بالآجل,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about buying Talabyah product using Tasaheel Loan
+Question AR: في حالة سؤال عميل طلبية عن طلب شراء بضاعة بالآجل
+
+Script:
+في حالة سؤال عميل طلبية عن طلب شراء بضاعة بالآجل: O ٥ بتقدر تتواصل علي خدمة عملاء طلبية 16303 يساعدوا حضرتك
+Escalated No
+CRM: Inquiry-> -- >Inquiry about buying Talabyah product using Tasaheel Loan"
+KB,226,72ce3057b2995a9ab3da31b6b87a4e47,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Talabeyah Customers needs the signed contract after finishing his installment,استفسار عميل طلبية عن استلام صورة العقد بعد انتهاء الاجل,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Talabeyah Customers needs the signed contract after finishing his installment
+Question AR: استفسار عميل طلبية عن استلام صورة العقد بعد انتهاء الاجل
+
+Script:
+استفسار عميل طلبية عن استلام صورة العقد بعد انتهاء الأجل :. ٥ بتقدر تتواصل مع خدمة عملاء طلبية يساعدوا حضرتك علي 16303.
+Escalated No
+CRM: Inquiry-> -- >Talabeyah Customers needs the signed contract after finishing his installment"
+KB,228,3d18877020fc534ebdfb65ec5449b2d6,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about relation Between Halan & Tasaheel & Mashroey,في حالة سؤال العميل عن علاقة تساهيل بحالا او علاقة تساهيل بمشروعي,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about relation Between Halan & Tasaheel & Mashroey
+Question AR: في حالة سؤال العميل عن علاقة تساهيل بحالا او علاقة تساهيل بمشروعي
+
+Script:
+٥ في حالة سؤال العميل عن علاقة تساهيل بحالا او علاقة تساهيل بمشروعي:
+٥ في شراکة بین حالا وتساهيل.
+في شراکة بین تساهیل ومشروعي.
+Escalated No
+CRM: Inquiry-> -- >Inquiry about relation Between Halan & Tasaheel & Mashroey,"
+KB,229,e66dd879e97a5271963a51a39e169d8a,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry About Tasaheel Company Address,عميل بيستفسر عن عنوان الادارة او المقر الرئيسي لتساهيل,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry About Tasaheel Company Address
+Question AR: عميل بيستفسر عن عنوان الادارة او المقر الرئيسي لتساهيل
+
+Script:
+عميل بيستفسر عن عنوان الادارة او المقر الرئيسي لتساهيل:
+° ممكن توضحلي استفسارك بخصوص ایه من خلال المقر نقدر نساعد حضرتك (وبناءا عل الاستفسار او اذا کانت شکوي بناخد البيانات وبنختار ال type issue المناسب وبيتم تقديم شكوي )
+Escalated Yes
+في حالة إصرار العميل وعدم حل المشكلة معه بنوضح:
+٥ تمام يافندم مفيش مشكلة لكن يشترط وجود موعد مسبق بالفعل من خلالي هوضح لحضرتك رقم مشرف المنطقة بتقدر تتواصل معاه في مواعيد العمل وبيساعد حضرتك.
+Escalated No
+CRM: Inquiry-> -- >Inquiry About Tasaheel Company Address"
+KB,230,0ff0f606c8ae548cb24ab801db2c4511,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about Financial Details,عميل بيستفسر عن تفاصيل مالية,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Financial Details
+Question AR: عميل بيستفسر عن تفاصيل مالية
+
+Script:
+عميل بيستفسر عن تفاصيل مالية:
+٥ بعتذر لحضرتك غير واضحة من خلالنا بتكون من خلال الفرع.
+● هوضح لحضرتك رقم مدير الفرع تقدر تتواصل معاه في مواعيد العمل وهیساعد حضرتك.
+Escalated No
+CRM: Inquiry-> -- >Inquiry about Financial Details"
+KB,239,887a3fecff4a554892d37aae24d7b5a6,0,Tasaheel,Complain,Non-Technical Issue,Yes,ok,Delay in receiving Customer Documents,عميل يشكوا من تأخر استلام الاوراق بعد انتهاء التمويل,yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Delay in receiving Customer Documents
+Question AR: عميل يشكوا من تأخر استلام الاوراق بعد انتهاء التمويل
+
+Script:
+شكوي تأخير في استلام اوراق عميل بعد انهاء التمويل
+● حضرتك دفعت آخر قسط امتى ؟ في حالة التأكد من اكتمال 45 يوم من وقت دفع آخر قسط يتم ابلاغ العميل بإمكانية باستخراج مخالصة من 7 ل 10 أيام عمل , لحين تجهيز الأوراق الخاصة
+Escalated No
+٥ في حالة رفض العميل للمخالصه : يتم تقديم شكوى وتنتظر الرد في خلال 48 ساعة عمل لتوضيح امتي تقدر تستلم الاوراق الخاصة بیك.
+٥ البيانات اللازمة للشكوى : اسم العميل رباعي + الفرع + الرقم القومي + بيانات الشكوى بالتفصيل
+Escalated Yes
+CRM: Complaint->Non Technical->Delay in receiving Customer's Documents after finishing his loan"
+KB,241,3f86b92c09d6503fa0d71234885bc0c9,0,Tasaheel,Complain,Non-Technical Issue,Yes,ok,Guarantor complaint of being request to pay the loan,شكوي ضامن من مطالبة الفرع منه سداد الأقساط الخاصة بالعميل,yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Guarantor complaint of being request to pay the loan
+Question AR: شكوي ضامن من مطالبة الفرع منه سداد الأقساط الخاصة بالعميل
+
+Script:
+شكوي ضامن من مطالبة الفرع منه سداد الأقساط الخاصة بالعميل:
+٥ حضرتك ضامن متضامن في القرض , بالتالي في حالة تعثر العميل عن السداد الضامن بيسدد الأقساط بدلا منه.
+Escalated No
+CRM: Complaint->Non-Technical->Guarantor complaint of being request to pay the loan"
+KB,244,d2f8de1a25b65d4eb32e1e5b09d73c33,0,Tasaheel,Complain,Non-Technical Issue,Yes,ok,Delay or rejection in getting change branch code,شكوي تأخير او رفض تحويل الكود ( تحويل من فرع لفرع آخر),yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Delay or rejection in getting change branch code
+Question AR: شكوي تأخير او رفض تحويل الكود ( تحويل من فرع لفرع آخر)
+
+Script:
+شكوي تأخير او رفض تحويل الكود ( تحويل من فرع لفرع آخر):
+٥ استأذن حضرتك توضحلي الرقم القومي والاسم رباعي لتأكيد البيانات والفرع الحالي والمطلوب التحویل له.
+٥ بعتذر لحضرتك عن التأخير هيتم تقديم طلب شكوي لحضرتك بیتم الرد في خلال 48 ساعة عمل.
+Escalated Yes
+CRM: Complaint->Non Technical->Delay or rejection in getting change branch code"
+KB,254,a81723d780d956c9a3e9c784a170c99d,0,Tasaheel,Complain,Non-Technical Issue,Yes,ok,Contact with Tasaheel management,عميل يرغب في التواصل مع احد المسئولين,yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Contact with Tasaheel management
+Question AR: عميل يرغب في التواصل مع احد المسئولين
+
+Script:
+عميل يرغب في التواصل مع أحد المسئولين:
+٥ استأذن حضرتك توضحلي الرقم القومي و الاسم رباعي لتأکید البیانات
+٥ ممكن توضحلي شكوى حضرتك عشان أقدر اساعدك.
+في حالة تقديم شكوى بيتم اختيار ال type issueالصحيح للشكوي
+Escalated Yes
+فى حالة مساعدة المتصل في شكواه وإصراره على التواصل مع مسئول
+انا اکید بعتذر لحضرتك مرة تانیه. 0
+ممکن توضحلي الفرع التابع له.
+0
+من خلالي هوضح لحضرتك رقم مسؤول من الادارة وهو مشرف المنطقة للفروع .
+بتقدر تتواصل معاه في مواعيد العمل وهيساعد حضرتك.
+Escalated No
+CRM: Complaint->Non Technical->Contact with Tasaheel management"
+KB,255,e1b3acdb4dd65aaeb1da06830e2566bd,0,Tasaheel,Complain,Non-Technical Issue,No,ok,Complaint related to Talabeyah,شكوي عميل بخصوص طلبية,yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint related to Talabeyah
+Question AR: شكوي عميل بخصوص طلبية
+
+Script:
+شكوي عميل بخصوص طلبية: ● بتقدر تتواصل علي 16303 خدمة عملاء طلبية يساعدوا حضرتك.
+Escalated No
+CRM: Complaint->Non Technical->Complaint related to Talabeyah"
+KB,256,b94f2df3d3e35b4f89917677962a7455,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Customer asked about escalated complaint number,"متابعة شكوي ,استعلام عن رقم الشكوي",yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Customer asked about escalated complaint number
+Question AR: متابعة شكوي ,استعلام عن رقم الشكوي
+
+Script:
+متابعة شكوي:
+٥ استأذن حضرتك توضحلي الرقم القومي و الاسم رباعي لتأکید البیانات هل رقم التواصل نفس الرقم الذي تم تقدیم الشکوي من خلاله؟ اه البحث بالبیانات علی السیستم وتوضیح رد الشكوى 0
+٥ اذا لم يتم الرد علي الشكوى والتأكد من مرور المهلة : بعتذر لحضرتك سيتم عمل متابعة للشكوى والمتابعة مرة اخري في خلال 48 ساعة عمل.
+٥ في حالة لم تمر المهلة المحددة لرد الشكوى: بتعذر لحضرتك لكن لم يمر وقت المهلة للرد على الشكوى.
+Escalated No
+CRM: Same Type as customer's complaint.
+استعلام عن رقم الشكوي:
+٥ استأذن حضرتك توضحلي الرقم القومي و الاسم رباعي لتأكيد البيانات
+٥ في حالة طلب العميل رقم الشكوى يتم إعطاءه الرقم من تقرير الشكاوي من علي السيستم بتاريخ اليوم .
+Escalated No
+CRM: Inquiry-> -- >Customer asked about escalated complaint number"
+KB,263,0074d57bcc4e5048975d92dd55c78750,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about Receiving Call on his number from Tasaheel,استفسار عميل عن سبب اتصال الشركة به,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Receiving Call on his number from Tasaheel
+Question AR: استفسار عميل عن سبب اتصال الشركة به
+
+Script:
+استفسار عميل عن سبب اتصال الشركة به:
+٥ يرقم الموبايل أو الرقم القومي يتم مراجعة الادمن تول وفي حالة ان العميل مقدم على طلب:
+حضرتك كنت مقدم على طلب: 0
+٥ ده بيكون القسم المختص بيتواصل مع حضرتك لمتابعة الطلب .
+يتم استكمال البيانات وتحويل طلب العميل للفرع وابلاغة بانتظار اتصال من الفرع او زيارة الفرع لمتابعة الطلب.
+Escalated No
+CRM: Request-> Confirmation on his Request (Tasaheel)
+٥ في حالة استفسار العميل فقط ولم يتم استكمال الطلب.
+Escalated No
+CRM Inquiry-> -- > Inquiry about Receiving Call on his number from Tasaheel"
+KB,288,58c89d56bce25d17a6ed5b079c6ef6fe,0,Tasaheel,Complain,Technical Issue,Yes,ok,customer cant request a loan,عميل لا يستطيع طلب قرض,yes,"Vertical: Tasaheel | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: customer cant request a loan
+Question AR: عميل لا يستطيع طلب قرض
+
+Script:
+* عميل لا يستطيع طلب قرض:
+Tasaheel -> Complaint -> Technical -> customer can't request a loan
+عميل لا يستطيع طلب قرض
+لو العميل عنده طلب بتكون حالتة حاجة من دول
+Admin Tool
+لو العميل معندوش طلب
+- GPS/انترنت تحديث التطبيق تسجيل خروج ودخول
+Approved
+Submitted
+Rejected
+لو المشكلة لسه موجودة (Yes)
+لو المشكلة اتحلت (NO)
+الطلب اترفض والعميل يقدر يقدم مرة تانية بعد 6 شهور
+تمت الموافقة على الطلب وهقدم طلب للعميل وهيتم التواصل معاه خلال 24 ساعة عمل
+تمت الموافقة علي الطلب وهقدم طلب للعميل وهيتم التواصل معاه خلال 24 ساعة عمل
+Yes
+Yes
+NO"
+KB,329,2656a11a7d7159629999cc894ffe561f,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,"How to renew his loan , extend loan",استعلام العميل عن امكانية عمل طلب تجديد او استكمال,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to renew his loan , extend loan
+Question AR: استعلام العميل عن امكانية عمل طلب تجديد او استكمال
+
+Script:
+استعلام العميل عن امكانية عمل طلب تجديد او استكمال:
+° حضرتك بتقدر تتوجه للفرع والتقديم من خلاله وبيوضحوا لحضرتك هل في امکانیة للتجدید أم لا. هوضح لحضرتك أيضا رقم مشرف المنطقة بيوضح لحضرتك. O
+Escalated No
+CRM: Inquiry-> -- > How to renew his loan /extend loan"
+KB,486,52422094f0f255c8b05fc3ae3ea61736,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry About Tasaheel Company,عميل يستفسر عن شركة تساهيل؟,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry About Tasaheel Company
+Question AR: عميل يستفسر عن شركة تساهيل؟
+
+Script:
+عميل يستفسر عن شركة تساهيل؟
+هي شركة موجوده من 2015, لتمويل للمشروعات متناهية الصغر والصغيرة والمتوسطة , أنظمة سداد سهلة وبسيطة بتوصل ل 48 شهر , بدون اجراءات بنکیه.
+فروعنا موجودة في كل محافظات مصر عشان تقدر تحصل علي التمويل اللي انت محتاجة ب ابسط واسرع الإجراءات و في اسرع وقت ممكن , ایا کان مشروعك ايه هتلاقي برنامج تمويلي يناسبك.
+CRM: Inquiry-> -- >Inquiry About Tasaheel Company // Escalated No"
+KB,487,f11657eaf2e757e9ac8c9432776942a2,0,Tasaheel,Inquiry,Non-Technical Issue,Yes,ok,Inquiry about Vacancy @ Tasaheel Branch,لو العميل بيسأل عن وظائف بشركة تساهيل,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Inquiry about Vacancy @ Tasaheel Branch
+Question AR: لو العميل بيسأل عن وظائف بشركة تساهيل
+
+Script:
+لو العميل بيسأل عن وظائف بشركة تساهيل
+° ايه الوظيفة السابقة لحضرتك ؟. السن يجب ان يكون اعلي من 21 سنة. 0 المتوفر حاليا: ""عمل ميداني""وظيفة اخصائي تمويل في الفروع , لو مناسبة بالنسبة لحضرتك "" هیتم ارسال البيانات للفرع"" و هيتواصلوا مع حضرتك في أقرب فرصة.
+محتاجين ناخد من العميل البيانات دي : 0 الاسم رباعى .1 الرقم التليفون .2 المحافظة والمركز .3 المؤهل الدراسى .4
+لو مش هنبعت الداتا للفرع - Escalated No 0 لو هنبعت للفرع - Escalated Yes
+CRM: Inquiry-> -- >Inquiry about Vacancy @ Tasaheel Branch"
+KB,491,e9822a9c5d1e519eb8b8301030766aae,0,Tasaheel,Complain,Delay receiving statement (افادة),Yes,ok,Delay receiving statement ( افادة),(Tasaheel) شكوي عميل من تأخير استلام الإفادة,yes,"Vertical: Tasaheel | Type: Complain | Issue: Delay receiving statement (افادة) | Escalation: Yes
+
+Question EN: Delay receiving statement ( افادة)
+Question AR: (Tasaheel) شكوي عميل من تأخير استلام الإفادة
+
+Script:
+شكوي عميل من تأخير استلام الإفادة:
+
+- يطلب من العميل رقم البطاقة والاسم الرباعي لتأكيد بياناته.
+- يسأل العميل عمل طلب الافادة امتى.
+- يخبر العميل ان مدة استلام الافادة عادة بتكون خلال 10 ايام عمل.
+- لو في تأخير عن المدة المعتادة يعتذر للعميل ويخبره هيتم التواصل مع الإدارة المختصة لتحديد موعد الاستلام، ويطلب منه المتابعة مرة تانية خلال 48 ساعة عمل.
+
+CRM: Complaint → Non Technical → Delay receiving statement (افادة) | Escalation: Yes"
+KB,511,98af3b8968e8549ca2a97e72c5b05058,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,Inquiry about CF limit,في حالة العميل بيستفسر عن حد ائتماني فوري,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about CF limit
+Question AR: في حالة العميل بيستفسر عن حد ائتماني فوري
+
+Script:
+في حالة العميل بيستفسر عن حد ائتماني فوري
+CRM: Inquiry-> Inquiry about CF limit Escalated No
+بنوضح للعمیل انه یتواصل مع خدمة عملاء حالاً 16303 لمساعدته بشكل افضل"
+KB,643,c93ce7c100865e6c950172a14f7ac683,0,Tasaheel,Complain,Non-Technical Issue,No,ok,Contact with Tasaheel management,شكوي او طلب موظف حالي بالفرع مشروعي او تساهيل,yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Contact with Tasaheel management
+Question AR: شكوي او طلب موظف حالي بالفرع مشروعي او تساهيل
+
+Script:
+شكوي او طلب موظف حالي بالفرع ""مشروعي او تساهيل"" :
+هنوضح للعمیل انه يبعت علي اللينك دا ولازم يكون داخل الفرع ..
+ivoiceup.mnt.group/mnt
+Escalated No
+CRM: Complaint->Non-Technical->Contact with Tasaheel management"
+KB,767,165a74546f845f249a6b5088c9a7ce45,0,Tasaheel,Inquiry,Technical Issue,No,ok,"Inquiry about Halan App , and available services",عميل يستفسر عن كيفية تنزيل التطبيق و استخدام الخدمات(Tasaheel),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about Halan App , and available services
+Question AR: عميل يستفسر عن كيفية تنزيل التطبيق و استخدام الخدمات(Tasaheel)
+
+Script:
+عميل يستفسر عن كيفية تنزيل التطبيق و استخدام الخدمات:
+يتم سؤال العميل عن نوع الموبايل: ·
+٥ أيفون يستخدم المتجر الخاص ب ايفون ويبحث عن تطبيق حالا
+٥ أندرويد: يستخدم المتجر الخاص ب جوجل ويبحث عن تطبيق حالا.
+تسوق مثلجات العودة العدارى سعر الوحدة
+11A
+خدم على التحويل
+أصلما نوع ه
+التابع دف القسوة
+Shop and Pay with Installments
+القسط
+٨
+ايه الخدمات المتوفرة:
+تقدر تقدم على تمويل لمشروعك من حالا بالشراكة مع تساهيل. 0 تقدر تقدم على طلب الحصول على تمويل استهلاك , او تشتري منتجات من على التطبيق بأكثر من وسيلة دفع. تقدر تشحن المحفظة الخاصة بحالا وتدفع اشتراك الانترنت وتشحن موبايلك.
+في بعض الخدمات التانية زي حالا جملة تقدر تشتري طلبات البيت وبسعر الجملة.
+وخدمة حالا تحويش, تقدر تحوش فلوسك مع حالا وتحصل علي اعلي عائد يومي بيوصل ل 20% سنويا.
+٥ والعاب حالا يتقدر لوكسيت تحصل على فلوس على محفظة حالا.
+حالا معاك
+قدم على تمويل لمشروعك من حالدا
+تسوق خالد >
+إدفع إشتراك الانترنت واشحن موبايلك إدفع الآن >
+قدم حالا >
+٥
+halan
+halan
+إقبض حالا
+حالا جملة
+متجر حالاً
+دفع فواتير
+العاب حالا
+حالا تحويش
+4 4
++
+حمد ٩
+0 0000
+اشتري كل اللى نفسك فيه بالتقسيط
+٢ ٥١
+CRM: Inquiry->->Inquiry about Halan ARR and available services // Escalated No"
+KB,768,399142331c8f5c54a2f14ac12e0a836e,0,Tasaheel,Inquiry,Technical Issue,Yes,ok,Request to Receive the clearance from Cairo Site,(تساهيل) استعلام عن امكانية استلام المخالصة من الإدارة في القاهرة للاستعجال عليها في حالة الإصرار عليها فقط,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Request to Receive the clearance from Cairo Site
+Question AR: (تساهيل) استعلام عن امكانية استلام المخالصة من الإدارة في القاهرة للاستعجال عليها في حالة الإصرار عليها فقط
+
+Script:
+0
+استعلام عن امكانية استلام المخالصة من الإدارة في القاهرة للاستعجال عليها في حالة الإصرار عليها فقط:
+٥ ممكن توضح الاسم رباعي.
+الرقم القومي كامل. 0
+هنقدم لحضرتك طلب لقسم المخالصات وتقدر تتواصل معانا مره اخري في خلال 72 ساعة ونوضح لحضرتك 0 لو في إمكانية تستلمها من القاهرة.
+Escalated Yes
+CRM: Request->Non-Technical->Request to receive the clearance from Cairo Site"
+KB,769,d3087629470d528eb5736b83e2b2aaf9,0,Tasaheel,Complain,Non-Technical Issue,No,ok,Complaint about branch rejection of getting Clearance Documents,شكوي بخصوص رفض الفرع عمل مخالصة (تساهيل),yes,"Vertical: Tasaheel | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint about branch rejection of getting Clearance Documents
+Question AR: شكوي بخصوص رفض الفرع عمل مخالصة (تساهيل)
+
+Script:
+شكوي بخصوص رفض الفرع عمل مخالصة:
+هل حضرتك كنت ضامن في القرض ؟- الضامن ليس له مخالصة يستطيع يستخرج افادة
+لو المتصل العميل صاحب القرض -- > يتم استلامها في خلال 7 ل 10 ايام عمل.
+O
+في حالة وجود مشكله --> هوضح لحضرتك رقم مشرف المنطقة بتقدر تتواصل معاه في مواعيد العمل ويساعد حضرتك.
+Escalated No
+CRM: Complaint->Non Technical->Complaint about branch rejection of getting Clearance Documents"
+KB,785,9afae8bbc00c5ce69adee5b03ecd6e70,0,Tasaheel,Request,Non-Technical Issue,No,ok,Vendor Activation process (Tasaheel),(تاجر يريد الانضمام لدينا (تساهيل,yes,"Vertical: Tasaheel | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Vendor Activation process (Tasaheel)
+Question AR: (تاجر يريد الانضمام لدينا (تساهيل
+
+Script:
+تاجر يريد الانضمام لدينا *
+Tasaheel -> Request -> Vendor Activation process
+-Escalation: No
+استاذن حضرتك ممكن تبعت الأوراق على الايميل merchants@halan.com
+والاوراق هى :
+- مستخرج حديث من السجل التجاري
+- البطاقة الضريبية الإلكترونية
+- البطاقة الشخصية للمالك أو لمن له حق التوقيع في السجل التجاري
+- صورة التوكيل الرسمي (في حالة ان التاجر موكل شخص آخر).
+- رقم موبايل التاجر
+- صور للمعرض الخاص بالتاجر وعنوانه بالتفصيل
+وسيتم التواصل مع حضرتك في خلال 48 ساعة عمل من ارسال الورق"
+KB,842,b190c86bd3b257f980dd7342b9b164cb,0,Tasaheel,Inquiry,Technical Issue,No,ok,Death Case (Tasheel),(Tasaheel)في حالة وفاة العميل قبل تسديد الاقساط الخاصة بالتمويل,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Death Case (Tasheel)
+Question AR: (Tasaheel)في حالة وفاة العميل قبل تسديد الاقساط الخاصة بالتمويل
+
+Script:
+في حالة وفاة العميل قبل تسديد الاقساط الخاصة بالتمويل : •
+1. لو التمويل شركات (فوق ال 500 الف ) : لن يتم اغلاق المديونية في حالة الوفاة والشركة بتلتزم بالسداد.
+2. لو التمويل افراد (تحت ال500 الف) :
+لو المتصل محتاج يقفل الأقساط الخاصة بالعميل بعد الوفاة : يجب احضار شهادة صفراء من التأمين الصحي و تقديمها للفرع لاغلاق المديونية (اذا كانت حالة الوفاة طبيعية).
+في حالة الوفاة غير طبيعية بسبب حادثة مثلاً: بيتم احضار محضر النيابة و شهادة الوفاة و تقرير طبي وتقديمهم للفرع لاغلاق المديونية.
+ويفضل أن يكون المتصل من الضمان او اقارب العميل من الدرجة الأولي. ·
+CRM: Inquiry-> -- > Death Case Escalated No"
+KB,861,02e7c94244c55b8fa91e2030baf59474,0,Tasaheel,Inquiry,Non-Technical Issue,No,ok,"Inquiry about used,new car vehicle",(Tasaheel) في حالة سؤال العميل عن شراء سيارة مستعملة او جديدة أو  مركبة  أو  موتوسيكل ولا يمتلك مشروع,yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about used,new car vehicle
+Question AR: (Tasaheel) في حالة سؤال العميل عن شراء سيارة مستعملة او جديدة أو  مركبة  أو  موتوسيكل ولا يمتلك مشروع
+
+Script:
+في حالة سؤال العميل عن شراء سيارة مستعملة او جديدة أو اي مركبة (موتوسيكل) ولا يمتلك مشروع:
+بیتم الاعتذار من خلالنا انه يشترط وجود بالفعل مشروع قائم لتمويل حضرتك لكن بالنسبة للسيارات او الموتوسیکلات فأنه يوجد شراکة بین شركة تساهيل وشركة مشروعي ومن خلال مشروعي بیتم توفیر السیارات او الموتوسیکلات بتتقدر تتواصل معهم علي 16148 لمساعدة حضرتك في الشراء وتوضيح باقي التفاصيل
+CRM: Inquiry-> -- >Inquiry about used/new car/vehicle -- Escalated No"
+KB,880,e999df407eee52bf91cd7909adeb472b,0,Tasaheel,Inquiry,Technical Issue,No,ok,Inquiry about clearance details (Tasaheel),استعلام عن المخالصة (Tasaheel),yes,"Vertical: Tasaheel | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about clearance details (Tasaheel)
+Question AR: استعلام عن المخالصة (Tasaheel)
+
+Script:
+O
+استعلام عن المخالصة :
+1. ممكن توضح الاسم للترحيب
+2. الرقم القومي كامل من الشمال لليمين.
+3. هنوضح للعميل انه هيتم استخراج مخالصة خلال 7 ل 10 ايام عمل.
+4. توضيح ان كان العميل دفع ايصال المخالصه بالفرع ام لا و وتوضيح المخالصه المطلوبه ان كانت مخالصة تمويل مشروعات ام مخالصة حد ائتماني
+معلومة·
+برجاء العلم أن المخالصات الخاصة بالقروض فقط
+اصبحت مجانا بدون رسوم
+Escalated No
+CRM: Inquiry-> -- >Inquiry about clearance details"

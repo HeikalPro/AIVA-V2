@@ -1,0 +1,653 @@
+﻿corpus_name,external_parent_id,chunk_id,chunk_index,vertical,interaction_type,issue_type,escalation,answer_status,question_en,question_ar,has_embedding,chunk_text
+KB,1020,edd2287327d655c8a78a7521bf756277,0,Saving,Request,Non-Technical Issue,No,ok,Customer wants to change contract signing from branch to courier,عميل يريد تغير مضي العقد من الفرع للمندوب,yes,"Vertical: Saving | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Customer wants to change contract signing from branch to courier
+Question AR: عميل يريد تغير مضي العقد من الفرع للمندوب
+
+Script:
+عميل يريد تغير مضي العقد من الفرع للمندوب:
+بيتم التأكد من حالة الطلب على البورتال (لم يفعل بعد / متجه للفرع).
+في مرحلة التواصل مع العميل لتأكيد البيانات (validation) بيتم فتح تيكت.
+
+قبل التأكيد على العميل: نتأكد من منطقة العميل او المحافظة ينفع فيها فرع او مندوب ولا لا.
+بنسجل كل البيانات على الفورم: Validation&Logistics Escalations 2023 (microsoft.com).
+
+- Escalation: No
+- CRM: Request → Request a call from courier → Escalation Needed No"
+KB,1067,1ce291e521c9532ca829c59d8169c60c,0,Saving,Complain,Non-Technical Issue,No,ok,Contract status submitted/ready for printing/printed — send to Validation team,ولو العميل ع السيستم (متقدم - جاهز للطباعة - تم طباعة العقد) محتاجين نبعت البيانات دى لتيم ال Validation علشان نحدد معاه ميعاد التوصيل للعقد,yes,"Vertical: Saving | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Contract status submitted/ready for printing/printed — send to Validation team
+Question AR: ولو العميل ع السيستم (متقدم - جاهز للطباعة - تم طباعة العقد) محتاجين نبعت البيانات دى لتيم ال Validation علشان نحدد معاه ميعاد التوصيل للعقد
+
+Script:
+ولو العميل ع السيستم (متقدم - جاهز للطباعة - تم طباعة العقد) محتاجين نبعت البيانات دى لتيم ال Validation علشان نحدد معاه ميعاد التوصيل للعقد:
+
+البيانات المطلوبة:
+- الاسم بالكامل
+- رقم التليفون المسجل بحساب حالا تحويش
+- تفاصيل الشكوى
+
+بنسجل على الفورم: Validation&Logistics Escalations 2023 (microsoft.com).
+هيتم التواصل على مدار اليوم (ماعدا الجمعة).
+
+- Escalation: No
+- CRM: Complaint → Non-Technical → Delay Receiving the Contract → Escalation Needed No"
+KB,1080,31202192408e52198222323b6ed7e8e3,0,Saving,Inquiry,Non-Technical Issue,No,ok,The client asks about the profit that appears on the application,العميل بيسال علي اي الربح اللي بيظهر عنده علي الابلكيشن,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: The client asks about the profit that appears on the application
+Question AR: العميل بيسال علي اي الربح اللي بيظهر عنده علي الابلكيشن
+
+Script:
+العميل بيسال علي اي الريح اللي بيظهر عنده علي الابلكيشن The client asks about the profit that appears on the application
+شباب فى حالا تحويش
+يعنى ايه الربح اللى بيبقى ظاهر تحت المبلغ ده بيكون قيمه الربح اللى العميل درله ع المبلغ اللى اتعمله إيداع معادا من وقت وتاريخ الإبداع مثال انا عملت إيداع بقيمة 229 جنيه من شهرين لغاية دلوقتى نزلى عليهم ربح 8% بقيمه فلوس 18.17 جنيه من وقت ماعملت الإبداع وبقى توتال المبلغ 244.60 جنيه ولغايه ما اكمل السنه هاوصل للنسبه إلى هى 22% فالمبلغ يريد والعميل يقدر يتابع كل يوم الربح راد قد ايه ودزله مبلغ مقابل للريح ده قد ايه
+10:54 5
+حالا تحويش ٨
+حساب التحويش
+244.6 جنيه ® 2. الريح (8.02%) بقيمة 18.17 جنيه
+?
+حوش
+ـيع
+اراي لدوش؟
+0.60 جية <
+رصيدك
+معاملاتي السابقة
+عرض الكل >
+٣٠ مايو ٢٠٢٤ . الخميس
+29.57 ج.م ناجحة
+استثمار نقدي
+٣٠ مايو ٢٠٢٤ , الخميس
+29.57 ج.م
+بالتعاون مع azimut
+E
+١١:٤٣ ص"
+KB,1083,c17f67358b06577c83fb44dcd6ed32e1,0,Saving,Inquiry,Non-Technical Issue,No,ok,ايه هو اقل مبلغ ممكن اكسبه؟,ايه هو اقل مبلغ ممكن اكسبه؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: ايه هو اقل مبلغ ممكن اكسبه؟
+Question AR: ايه هو اقل مبلغ ممكن اكسبه؟
+
+Script:
+ايه هو اقل مبلغ ممكن اكسبه؟
+
+وصل صندوق الاستثمار الخاص بنا الى 21 %
+
+CRM: Inquiry → Non-Technical Issue | Escalation: No"
+KB,1130,f86def67f17156a08d7aba59bbe1cb6d,0,Saving,Request,Non-Technical Issue,No,ok,Customer signed contract with one number and wants to change to another,العميل مضى العقد برقم وعايز يغير ل رقم تانى,yes,"Vertical: Saving | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Customer signed contract with one number and wants to change to another
+Question AR: العميل مضى العقد برقم وعايز يغير ل رقم تانى
+
+Script:
+العميل مضى العقد برقم وعايز يغير ل رقم تانى:
+ممكن اعرف اي سبب لتغير الرقم؟
+
+لو السبب زي ان الرقم ضاع ومش قادر يسترجعه (الخط مش باسمه او خط شركات):
+بنعتذر جدا لحضرتك ونوضح انه لا يوجد امكانية لتغيير رقم الموبايل المسجل.
+
+- Escalation: No
+- CRM: Request → Change Mobile Number → Escalation Needed No"
+KB,1131,3dbe7dbc067a5a1291f91484b7f7bed4,0,Saving,Inquiry,Non-Technical Issue,No,ok,Difference between Tahweesh return and competitors,في حالة سؤال العميل عن الفرق بين العائد في حالا تحويش و اي منافس ؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Difference between Tahweesh return and competitors
+Question AR: في حالة سؤال العميل عن الفرق بين العائد في حالا تحويش و اي منافس ؟
+
+Script:
+في حالة سؤال العميل عن الفرق بين العائد في حالا تحويش و اي منافس؟
+في الوقت الحالي العائد بتاعنا وصل لـ 21% ع السنة و ده اعلى عائد يومي في مصر، وحضرتك تقدر تشوف العائد السنوي للتطبيقات التي تقدم نفس الخدمة وصل لكام في الوقت الحالي.
+
+- Escalation: No
+- CRM: Inquiry → Interest Rate → Escalation Needed No"
+KB,1190,690e8b4de03255acb369cd804734b58d,0,Saving,Inquiry,Non-Technical Issue,No,ok,How to save (Tahweesh)?,ازاى اقدر احوش؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to save (Tahweesh)?
+Question AR: ازاى اقدر احوش؟
+
+Script:
+ازاى اقدر احوش؟
+بعد ما العميل بيعمل ايداع بيتم تحويش المبلغ اللى تم ايداعه بالكامل وبيتم نزول الفائده تلقائي من تاني يوم على طول من غير الجمعة والسبت والاجازات الرسمية (معاذا يوم الجمعه والسبت بتنزل يوم الاحد بشكل تراكمى).
+- Escalation: No
+- CRM: Inquiry → General inquiry → Escalation Needed No"
+KB,1196,973a9059541358fa9e003a1268a7b451,0,Saving,Complain,Non-Technical Issue,No,ok,Customer on system heading to branch — not activated yet,ولو العميل ع السيستم متجه للفرع غير مفعل بعد,yes,"Vertical: Saving | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Customer on system heading to branch — not activated yet
+Question AR: ولو العميل ع السيستم متجه للفرع غير مفعل بعد
+
+Script:
+ولو العميل ع السيستم متجه للفرع غير مفعل بعد:
+بيتم التوضيح للعميل:
+بالفعل يافندم تم التواصل مع حضرتك للتوجه للفرع للإمضاء.
+بتقدر تتوجه لنفس الفرع اللي تم توضيحه من خلال مكالمة خدمة العملاء لإمضاء العقد.
+مع العلم ان مواعيد عمل الفروع من الساعة 9 ص حتى 5 م ماعدا الجمعة والسبت اجازه.
+- Escalation: No
+- CRM: Complaint → Non-Technical → Delay Receiving the Contract → Escalation Needed No"
+KB,1198,82d4c1a6f588581b8b0b3e9ea05bdec8,0,Saving,Inquiry,Non-Technical Issue,No,ok,How to find the nearest branch for Tahweesh form signing?,ازاي اقدر اعرف أيه اقرب فرع عشان امضي الاستماره الخاصة بحالا تحويش؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to find the nearest branch for Tahweesh form signing?
+Question AR: ازاي اقدر اعرف أيه اقرب فرع عشان امضي الاستماره الخاصة بحالا تحويش؟
+
+Script:
+ازاي اقدر اعرف أيه اقرب فرع عشان امضي الاستماره الخاصة بحالا تحويش؟
+
+لو العميل أنهي التسجيل في الخدمة:
+مراجعة الشيت الخاصة بفروع حالا تحويش وإبلاغ العميل بالفرع الأقرب بالنسبه ليه.
+
+لو العميل لسه بيسجل في الخدمة:
+بعد إتمام عملية التسجيل هتقدر تعرف اماكن الفروع عشان تتوجه على أقرب فرع وتوقع استماره حساب التحويش. في امكانيه اننا نقوم بتوصيل العقد لحضرتك في المنزل او العمل، وبيتم التواصل معاك لتحديد الميعاد (يتم ارسال ايميل بالتفاصيل ويتم التواصل مع العميل).
+في الفروع يوضح للعميل القريب لو العميل مش عارف و يبلغه بمواعيد العمل (من الاحد الي الخميس من 9 ص الي 5 مساءً).
+وبيتم تفعيل الخدمة بعد كده في خلال 24 ساعة عمل من غير الجمعه والسبت والاجازات الرسمية.
+بعد تفعيل الحساب هتقدر تبدأ تحويش فلوسك من التطبيق بالضغط على إيداع تحويش.
+
+خطوات من التطبيق:
+1. من تطبيق حالا اضغط على اماكن الفروع → اسمح للتطبيق بالوصول للموقع.
+2. هيظهرلك اسماء وعناوين اقرب فروع ليك.
+
+- Escalation: No
+- CRM: Inquiry → Nearest branch → Escalation Needed No"
+KB,1200,104245faf9c55c37a592d41204d1f9a8,0,Saving,Inquiry,Non-Technical Issue,No,ok,Is there a deposit fee,هل في رسوم ايداع؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Is there a deposit fee
+Question AR: هل في رسوم ايداع؟
+
+Script:
+هل في رسوم ايداع؟
+في رسوم على كل عملية ابداع من كل محفظه الكترونيه 0.5 %
+في رسوم على كل عملية ابداع من كل انستا بإى حد أدنى 50 قرش وحد أقصى 20 جنيه"
+KB,122,a0c36563e2a55aa9a0101aa3f74e82d8,0,Saving,Inquiry,Non-Technical Issue,No,ok,,,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+
+
+Script:
+هل يمكن استخدام الرصيد في حساب حالا تحويش في دفع الأقساط او شراء منتجات ؟
+للأسف لأ ,, يمكن استخدامها فقط ف شراء وحدات او سحب المبالغ واضافتها للمحفظه الألكترونية. Inquiry/ General inquiry /Escalation Needed No"
+KB,1252,e1695aaa0e9f5e2bbf2e23014153e883,0,Saving,Inquiry,Non-Technical Issue,No,ok,How can I apply for the service?,ازاي اقدر اقدم علي الخدمة؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How can I apply for the service?
+Question AR: ازاي اقدر اقدم علي الخدمة؟
+
+Script:
+ازاي اقدر اقدم علي الخدمة؟
+
+السيناريو الأول (استفسار عام عن التقديم):
+- العميل يقدر يقدم من خلال التطبيق باختيار خدمة حالا تحويش واستكمال بياناته، او يقدر يكمل الخطوات معاه اثناء المكالمة.
+- لو مفيش انترنت بناخد الطلب من العميل بعد انتهاء المكالمة.
+- بيتم التواصل مع العميل لارسال المندوب لتوقيع العقد، او يقدر يتوجه لاقرب فرع لتوقيع العقد وتفعيل الخدمة.
+- الفروع تشمل فروع تساهيل و Circle K والمولات. مواعيد العمل من الاحد للخميس من 9 ص الى 5 م (ماعدا الجمعة والسبت).
+- بيتم تفعيل الخدمة في خلال 24 ساعة عمل من غير الجمعة والسبت والاجازات الرسمية.
+- للعملاء المميزين: بيتم ارسال مندوب خلال 3 ايام عمل (ماعدا الجمعة) لتوقيع العقد في عنوان العميل بدون رسوم. مواعيد التوصيل من 10 ص الى 8 م يوميا ماعدا الجمعة.
+- القسم المختص هيتواصل مع العميل خلال 48 ساعة عمل لتأكيد الطلب وتوقيع العقد.
+- Escalation: No
+- CRM: Inquiry → General inquiry → Escalation Needed No
+
+السيناريو الثاني (تأخر تفعيل الحساب بعد 24 ساعة عمل):
+- لو عدى 24 ساعة عمل (من غير الجمعة والسبت والاجازات) والحساب لسه متفعلش، بيتم تقديم طلب لتفعيل الحساب في اقرب وقت.
+- لازم نسأل العميل: وقع في فرع ولا مع مندوب؟ اسم الفرع ايه؟ امتى وقع العقد؟ ونكتب البيانات دي في التيكت.
+- Escalation: Yes
+- CRM: Complaint → Non-Technical → Account is not activated → Escalation Needed Yes
+"
+KB,126,24984282dc3156b58859dfe2d0861262,0,Saving,Inquiry,Non-Technical Issue,No,ok,,,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Notes: o	لو العميل انهى التسجيل في الخدمة : مراجعة الشيت الخاصة بفروع حالا تحويش و ابلاغ العميل بالفرع الأقرب بالنسبه ليه
+o	لو العميل لسه مسجلش في الخدمة : بعد إتمام عملية التسجيل هتقدر تعرف اماكن الفروع عشان تتوجه على أقرب فرع وتوقع استمارة حساب التحويش.
+o	في امكانيه اننا نقوم بتوصيل العقد لحضرتك في المنزل او العمل , و بيتم التواصل معاك لتحديد الميعاد ( يتم ارسال ايميل بالتفاصيل و يتم التواصل مع العميل)
+o	بعد تفعيل الحساب هتقدر تبدأ تحويش فلوسك من التطبيق بالضغط على ابدء تحويش 
+o	Inquiry/ Nearest branch/Escalation Needed No
+Body: o	لو العميل انهى التسجيل في الخدمة : مراجعة الشيت الخاصة بفروع حالا تحويش و ابلاغ العميل بالفرع الأقرب بالنسبه ليه
+o	لو العميل لسه مسجلش في الخدمة : بعد إتمام عملية التسجيل هتقدر تعرف اماكن الفروع عشان تتوجه على أقرب فرع وتوقع استمارة حساب التحويش.
+o	في امكانيه اننا نقوم بتوصيل العقد لحضرتك في المنزل او العمل , و بيتم التواصل معاك لتحديد الميعاد ( يتم ارسال ايميل بالتفاصيل و يتم التواصل مع العميل)
+o	بعد تفعيل الحساب هتقدر تبدأ تحويش فلوسك من التطبيق بالضغط على ابدء تحويش 
+o	Inquiry/ Nearest branch/Escalation Needed No
+
+Script:
+1
+من تطبيق حالا
+لما تضغط علي اماكن الفروع
+هتضغط علي السماح للتطبيق بالوصول للموقع
+أمين الحيوي
+السماح للوصول للموقع
+فى ملتك شف عن السماح لهمول الموسم الحالي ص المصلى فى مدينة الطور
+سعر
+العودة إلى العمدة الرئيسية
+من تطبيق حالًا
+هيظهرلك أسماء وعناوين أقرب فروع ليك
+2
+كليب الصروى
+سيك حيائي
+-
+٠
+سبيال مالي
+م-
+٠
+العودة إلى الصفحة الرئيسية"
+KB,1297,425c641d482f5c3f9feb84a79fd57925,0,Saving,Request,Non-Technical Issue,Yes,ok,Customer wants to cancel Hala Tahweesh service,لو العميل طلب الالغاء لخدمه حالا تحويش,yes,"Vertical: Saving | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Customer wants to cancel Hala Tahweesh service
+Question AR: لو العميل طلب الالغاء لخدمه حالا تحويش
+
+Script:
+لو العميل طلب الالغاء لخدمه حالا تحويش:
+في البدايه محتاجين نسأل العميل عن السبب علشان نقدر نساعده ونكتب السبب في التيكت.
+
+السيناريو 1 (حالته: متقدم / جارى طباعه):
+بيلغى من خلالنا ع السيستم بنراجع معاه البيانات ويكلمنا من نفس الرقم الموبيل.
+- CRM: Request → Cancel the registration → Escalation Needed No
+
+السيناريو 2 (حالته: متجه للفرع او مندوب + بيانات غلط بالإنجليزي او عنوان غلط):
+بنوضح للعميل اننا هنلغى الطلب دا ويقدم مره تانيه وان يدخل جميع بياناته صح. بنلغى من خلالنا ع السيستم. (البيانات هتتبعت لليزا على الوتساب وهناخذ من العميل Extra Verification: العنوان - تاريخ انتهاء الرقم القومى - تاريخ الميلاد).
+- CRM: Request → Cancel the registration → Escalation Needed No
+
+السيناريو 3 (حالته: متجه للفرع او مندوب + الرقم القومى غلط او اي بيانات):
+بنعتذر للعميل و بنلغي الطلب دا و بنخليه يقدم مره تانيه من خلال الـ app.
+- CRM: Request → Cancel the registration → Escalation Needed No
+
+السيناريو 4 (جارى توصيل العقد والعميل عايز يلغى):
+بنراجع معاه البيانات ويكلمنا من نفس الرقم الموبيل.
+- CRM: Request → Cancel the registration → Escalation Needed No
+
+السيناريو 5 (الحساب اتفعل):
+للأسف مفيش اي امكانيه للالغاء. العميل يقدر مايعملش اي معاملات ماليه ع الحساب فقط.
+- CRM: Request → Cancel the registration → Escalation Needed No
+
+السيناريو 6 (الحساب اتفعل والعميل اصر على الالغاء):
+بنراجع معاه البيانات ويكلمنا من نفس الرقم الموبيل.
+- CRM: Request → Cancel the registration → Escalation Needed Yes"
+KB,1313,c0e2e69bb7f75531b431bae0da2ae7cf,0,Saving,Complain,Financial Issue,Yes,ok,Deposit or withdrawal not reflected in customer account,عميل عمل ايداع او سحب والعمليه لم تسمع فى حسابه؟,yes,"Vertical: Saving | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Deposit or withdrawal not reflected in customer account
+Question AR: عميل عمل ايداع او سحب والعمليه لم تسمع فى حسابه؟
+
+Script:
+عميل عمل ايداع او سحب والعمليه لم تسمع فى حسابه:
+
+لو العميل مش مكلمنا من نفس رقم الموبيل اللى مسجل بيه الخدمه بنوضح للعميل بشكل عام الخدمه بتسمع ف خلال 3 ايام عمل (لو حساب بنكي - تحويل بنكي) ف خلال 48 ساعه (لو محفظه الكترونيه). لو العميل سأل ف تفاصيل اكتر يتواصل معانا من نفس الرقم الموبيل اللى مسجل بيه الخدمه.
+
+المحفظه الإلكترونيه:
+بيتم تسميع العمليه فى خلال 48 ساعة عمل من غير الجمعة والسبت والإجازات الرسمية (لو ف حاله الإيداع فقط) - ف حاله السحب في خلال 48 ساعة.
+- CRM: Complaint → Financial → Amount is not reflected to customer Wallet → Escalation Needed No
+
+حساب التحويش:
+بيتم تسميع العمليه فى خلال 3 ايام عمل من غير الجمعة والسبت والإجازات الرسمية.
+- CRM: Complaint → Financial → Amount is not reflected to Saving → Escalation Needed No
+
+الحساب البنكي:
+بيتم تسميع العمليه ف خلال 3 ايام عمل على حساب البنكي الخاص بحضرتك من غير الجمعة والسبت والإجازات الرسمية.
+- CRM: Complaint → Financial → Amount is not reflected to bank account → Escalation Needed No
+
+كارت حالا:
+لو العميل عمل عمليه سحب علي كارت حالا و مسمعتش ف لحظتها بنعتذر للعميل بنوضح ليه دا بيحصل بسبب network issue وان العمليه بتبقى لحظيه و بيقدم شكوي و بيتم حلها ف اقرب وقت.
+- CRM: Complaint → Financial → Amount is not reflected to Halan Card → Escalation Needed Yes"
+KB,1314,aec5c548269754cdb63c2893140b7ac8,0,Saving,Inquiry,Non-Technical Issue,No,ok,Deposit steps via electronic wallet,خطوات الايداع من المحفظة الاليكترونيه,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Deposit steps via electronic wallet
+Question AR: خطوات الايداع من المحفظة الاليكترونيه
+
+Script:
+خطوات الايداع من المحفظة الاليكترونيه:
+- هيطلب من العميل يدخل رقم الموبايل المسجل على المحفظة الالكترونية، ويكتب مبلغ الايداع، ويضغط تأكيد المبلغ.
+- هيتم ارسال رسالة نصية فيها التعليمات او اشعار من التطبيق فيه OTP. العميل يضغط عليها علشان يدخل على تطبيق المحفظة الالكترونية، وهيوصله اشعار جوه المحفظة يأكد منه السحب والايداع في حساب التحويش.
+- بعد الموافقة في تطبيق المحفظة، العملية بتتسمع في خلال 48 ساعة عمل من غير الجمعة والسبت والاجازات الرسمية (في حالة الايداع). في حالة السحب برضه في خلال 48 ساعة.
+- بعد اتمام الايداع، الرصيد المتاح هيظهر في تفاصيل حساب التحويش والعميل يقدر يبدأ التحويش.
+- بعد الايداع لازم العميل يشتري وحدات. التحويش بيتم فعليا بعد شراء الوحدات، والفائدة بتبدأ تنزل بعد 24 ساعة عمل من اتمام عملية التحويش.
+- Escalation: No
+- CRM: Inquiry → How to deposits – Withdraw Money → Escalation Needed No
+"
+KB,1318,340eb3102b105c2c9fa66fc9921f125c,0,Saving,Inquiry,Non-Technical Issue,No,ok,What is Hala Tahweesh service and terms of application?,ما هي خدمة حالا تحويش و الشروط الخاصة بالتقديم؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: What is Hala Tahweesh service and terms of application?
+Question AR: ما هي خدمة حالا تحويش و الشروط الخاصة بالتقديم؟
+
+Script:
+ما هي خدمة حالا تحويش والشروط الخاصة بالتقديم؟
+كلمات ممنوعة: استثمار، بورصة، بنك.
+
+بنقدم لحضرتك فرصة أنك تحوش فلوسك، وتحصل على أعلى عائد يومي في مصر يصل الى 21% سنوي من غير مصاريف اداريه ولا حد ادني وتقدر تتابع أرباحك بشكل يومي. (الفائده متراكمه)
+
+- رقم الهاتف لازم يكون مسجل باسمك حضرتك علشان لو مش مسجل باسمك هيبقى في مشكله في تغيير الرقم بعد كدا.
+- تقدر تحول من حسابك البنكي او انستا باي لحساب حالا تحويش، او اي محفظة الكترونية تشحن منها حسابك وتشتري وحدات تحويش. في حالة حبيت تحصل على جزء من الأرباح الخاصة بيك تقدر كمان تسحب فلوسك في اي وقت تحبه.
+- طرق السحب: حالا كارت، انستا باي، محفظة الكترونيه، حساب بنكي.
+- يقدر يقدم من حد ادني سن 15 سنه لمضي العقد.
+- لو العميل طلب نسخه من العقد يقدر يبلغ الشخص اللي بيتواصل معاه لتأكيد البيانات (النسخه بتوصل للعميل غير ممضيه من الشركه).
+- يجب ان تكون جميع الحسابات البنكية والمحافظ الإلكترونية المستخدمة باسمك الشخصي.
+- كل ما حضرتك بتسيب فلوسك اكثر ف الصندوق (الاسهم - الوحدات) و تستثمر كل ما العائد بيزيد معاك بشكل يومي عكس لما الفلوس تفضل ف الحساب الجاري او تعمل بيع وشراء للوحدات يوميا.
+- مثال: العميل لو عمل ايداع ب 1000 جنيه → 1000×21% = 210 جنيه سنوي يعني 210/365 = 0.57 جنيه يومي → تاني يوم هيبقوا 1000.57 → تاني يوم العائد هينزل على ال 1000.57 مش ال 1000.
+- ملحوظه هامه: الفلوس لازم تدخل من حسابات باسمك وتطلع ع حسابات باسمك ومينفعش تبقي باسم حد تاني ده للأمان وموجود في العقد.
+
+- Escalation: No
+- CRM: Inquiry → General inquiry → Escalation Needed No"
+KB,1319,c6162f36cad15a81b049492f21bdaa5f,0,Saving,Inquiry,Non-Technical Issue,No,ok,What guarantees protect my money?,ايه الضمانات اللي اقدر احافظ بيها علي فلوسي؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: What guarantees protect my money?
+Question AR: ايه الضمانات اللي اقدر احافظ بيها علي فلوسي؟
+
+Script:
+ايه الضمانات اللي اقدر احافظ بيها علي فلوسي؟
+- منتج حالا تحويش مرخص ومراقب من هيئة الرقابة المالية.
+- بيتم تحويش فلوسك في صندوق ادخار بالشراكة مع شركة أزيموت، ""اسم الصندوق: AZ-Halan""، صندوق ذو عائد متغير، نسبه المخاطر قليله.
+- حضرتك بناءا علي كده بتضمن ليك الحصول على أعلى عائد يومي في مصر يصل الى 21% سنوي وفي الوقت الحالي الصندوق ده عامل ارباح ع السنة حوالي 21.8%.
+- Escalation: No
+- CRM: Inquiry → General inquiry → Escalation Needed No"
+KB,1321,b83de60462965d82884e485e4b90ef50,0,Saving,Inquiry,Non-Technical Issue,No,ok,Deposit steps via Instapay / Bank Transfer,خطوات الايداع من Instapay - تحويل بنكي,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Deposit steps via Instapay / Bank Transfer
+Question AR: خطوات الايداع من Instapay - تحويل بنكي
+
+Script:
+خطوات الايداع من Instapay - تحويل بنكي:
+فتح تطبيق Instapay → خدمات → تحويل ارسال الى → الحساب بنكي → اختار بنك مصر.
+- اسم المستفيد: MNT-Halan holding for financial investments
+- رقم حساب المستفيد: 1990010100008771
+- اكتب المبلغ المراد ايداعه وتأكد من البيانات وأكد بالرقم السري الخاص بحساب Instapay.
+- خذ لقطة شاشة (سكرين شوت) لتأكيد النجاح.
+- بعد كده افتح تطبيق حالا → حالا تحويش → ايداع → اختار طريقة الايداع → تأكيد → اكتب المبلغ → ارفع لقطة الشاشة → اكتب رقم الشحنة → تأكيد.
+- بيتم تسميع في خلال 3 أيام عمل.
+- بعد تمام عمليه الايداع يتم شراء الوحدات من خلال العميل. الفائدة بتنزل بعد 24 ساعه عمل من تمام عمليه التحويل.
+- الحد الاقصي للعمليه الواحدة ف Instapay: 70,000 جنيه وفي اليوم: 120,000 جنيه.
+
+بينفع اخد سكرين للمعامله؟
+التطبيق مبيسمحش باخذ لقطة شاشة بس تقدر تضغط على المعاملة وتنزل تحت خالص هتلاقى مكتوب ""مشاركة إيصال"" هتضغط عليها واعمل مشاركة للواتساب.
+- Escalation: No
+- CRM: Inquiry → How to deposits – Withdraw Money → Escalation Needed No"
+KB,1322,1124a84f9cba5fb195033851c29117ab,0,Saving,Inquiry,Non-Technical Issue,No,ok,Deposit steps via Bank deposit,خطوات الايداع من ايداع البنكي,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Deposit steps via Bank deposit
+Question AR: خطوات الايداع من ايداع البنكي
+
+Script:
+خطوات الايداع من ايداع البنكي:
+العميل بيقدر يتوجه لأي بنك يعمل ايداع للمبلغ (بنك مصر اي فرع قريب ليه يقدر يعمل الايداع او اي بنك تاني عادي هيبقي تحويل بنكي).
+- عنوان المستفيد: 2 شارع لبنان - العجوزه، الجيزه
+- اسم المستفيد: MNT tech Holding for Financial Investments
+- رقم حساب المستفيد: 1860001000009774
+- بعد تنفيذ الايداع: يفتح تطبيق حالا → حالا تحويش → حوش → اشحن رصيدك → ايداع → اختار طريقه الايداع → تأكيد → اكتب المبلغ → ارفع صوره العمليه → اكتب رقم التليفون المستخدم → تأكيد.
+- بيتم تسميعه في خلال 3 ايام عمل.
+- بعد اتمام عمليه الايداع بيتم شراء الوحدات من جانب العميل. الفائدة بتنزل بعد 24 ساعه عمل من اتمام عمليه التحويش.
+- العميل بيكتب المبلغ صافي من غير مبلغ رسوم مصرفيه - اداريه.
+- Escalation: No
+- CRM: Inquiry → How to deposits – Withdraw Money → Escalation Needed No
+"
+KB,1336,9922b24ea11d5017a59aadfc4d04c553,0,Saving,Complain,Technical Issue,Yes,ok,Customer deposited in Tahweesh but can't withdraw,عميل عمل ايداع لمبلغ في حساب التحويش ومش قادر يسحبها مره تاني,yes,"Vertical: Saving | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Customer deposited in Tahweesh but can't withdraw
+Question AR: عميل عمل ايداع لمبلغ في حساب التحويش ومش قادر يسحبها مره تاني
+
+Script:
+عميل عمل ايداع لمبلغ في حساب التحويش ومش قادر يسحبها مره تاني:
+
+لو لم تتعدى 48 ساعة عمل:
+في حالة العميل غير قادر بسحب المبلغ علي (Halan Card – Bank Account – Wallet) هنوضح للعميل انه مازال ف خلال المده 48 ساعه عمل لان المبلغ بيكون ف رصيد التحويش المحجوز.
+علي سحب الفلوس من الحساب الجاري قد يكون لديه قرض مضمون بالمبلغ المودع لذلك يتم التأكد من خلال البورتال من المبلغ المجمد.
+
+Halan Card:
+ف حاله ظهور العمليه فشله: بتوضح للعميل ان يحاول سحب الفلوس باي طريقه اخري زي (wallet - bank account) او انه يقدر يتابع علي مدار اليوم.
+ف حاله ظهور العمليه قيد التنفيذ: بنطلب من العميل يبعت سكرين علي الوتساب +20216303 بالمشكله و يتابع علي مدار اليوم.
+
+لم تتعدى 48 ساعة:
+- CRM: Complaint → Technical → Unable to transfer – Withdrew Money → Escalation Needed No
+
+تعدت 48 ساعة عمل من شراء الوحدات:
+- CRM: Complaint → Technical → Unable to transfer – Withdrew Money → Escalation Needed Yes"
+KB,1341,fb4a0ba1cc705cb1a2a734dfb1b11c64,0,Saving,Inquiry,Non-Technical Issue,No,ok,How to withdraw money,ازاي أقدر اسحب الفلوس,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to withdraw money
+Question AR: ازاي أقدر اسحب الفلوس
+
+Script:
+ازاي أقدر اسحب الفلوس:
+من الصفحة الرئيسية يتم الضغط على استثماره في اسفل الصفحة → الحساب الجاري → سحب → حدد طريقة السحب.
+
+المحفظة الإلكترونية:
+ادخل رقم الموبايل اللي عليه المحفظة → اضغط متابعة → اكتب المبلغ → تأكيد.
+بعد تأكيد الطلب فلوسك هتوصلك في خلال 48 ساعه على محفظتك الإلكترونية وتقدر تسحبها فأي وقت.
+
+الحساب البنكي:
+اكتب المبلغ → اختار الحساب البنكي → ادخل بياناتك (اسم البنك - الاسم رباعي - رقم الحساب - الفرع التابع له) → التالي → تأكيد السحب.
+سيتم تأكيد العمليه ف خلال 3 أيام عمل.
+
+حالا كارت:
+اكتب المبلغ → اختار كارت حالا → حد اقصي للسحب 30 الف ف اليوم → تأكيد المبلغ → ادخل الرقم السري الخاص بالكارت → تأكيد. المعاملة لحظيه بدون مصاريف.
+
+- Escalation: No
+- CRM: Halan → Inquiry → How to deposits and withdrew money → Escalation No"
+KB,1758,d93bf8fc25fe56279e57e43a94e0b7c7,0,Saving,Complain,Financial Issue,Yes,ok,the amount deducted from the sender wallet and didn't transfer to receiver wallet (Saving),شكوى عميل انه قام بتحويل اموال وتم خصم المبلغ ولم يتم تحويلها الى الجهة الأخرى (Saving او حالا تحويش),yes,"Vertical: Saving | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: the amount deducted from the sender wallet and didn't transfer to receiver wallet (Saving)
+Question AR: شكوى عميل انه قام بتحويل اموال وتم خصم المبلغ ولم يتم تحويلها الى الجهة الأخرى (Saving او حالا تحويش)
+
+Script:
+سيتم مراجعة البيانات الاسم بالكامل والرقم القومي ويكون متواصل من نفس الرقم
+التأكد من وجود ونجاح العملية وان تم خصمها من المحفظة
+أنا بعتذر جدا لحضرتك سيتم ارسال شكوى حضرتك للقسم المختص ويتم حلها في خلال 3 أيام عمل
+بس محتاج اعرف من حضرتك رقم حالا تحويش اللي حضرتك حولت له وهنوضحه في التيكيت)
+مع ضرورة اضافة العملية وقيمة ال Hold Amount في التيكيت، وإذا لم يتوفر أيا منهم فيجب توضيح ذلك.
+واضافة الاسم بالكامل والرقم القومي
+- Escalation: Yes
+- CRM: Saving → Complaint → Financial Issue"
+KB,517,b434b7fdd9425c49ba23e3f7cf37a5ec,0,Saving,Inquiry,Non-Technical Issue,No,ok,What does Hala do with the saved money?,الفلوس اللي بنحوشها دي انتوا بتشغلوها في ايه؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: What does Hala do with the saved money?
+Question AR: الفلوس اللي بنحوشها دي انتوا بتشغلوها في ايه؟
+
+Script:
+الفلوس اللي بنحوشها دي انتوا بتشغلوها في ايه؟
+بيتم تحويش فلوسك في صندوق ادخار بالشراكة مع شركة أزيموت، ""اسم الصندوق: AZ-Halan""، صندوق ذو عائد متغير، نسبه المخاطر قليله.
+الصناديق دي معظمها بتشتغل ف أذون الخزانة الحكومية.
+أذون الخزانة: هي نوع من أنواع السندات الحكومية.
+- Escalation: No
+- CRM: Inquiry → General inquiry → Escalation Needed No"
+KB,519,0e8e12f38df75f8f826718226e31c286,0,Saving,Inquiry,Non-Technical Issue,No,ok,What does Hala benefit from this service?,حالا بتستفيد ايه من الخدمة دي؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: What does Hala benefit from this service?
+Question AR: حالا بتستفيد ايه من الخدمة دي؟
+
+Script:
+حالا بتستفيد ايه من الخدمة دي؟
+حضرتك عارف ايه الخدمات اللي بتقدمها حالا؟
+حالا بتقدم لحضرتك اكتر من خدمة (مدفوعات، مشتريات، تمويلات) ودي خدمة اضافية حالا بتقدمها لعملائها بناءًا على رأيهم.
+- Escalation: No
+- CRM: Inquiry → General inquiry → Escalation Needed No"
+KB,523,2813d651178352b9966dbf4bc2b02f8f,0,Saving,Inquiry,Non-Technical Issue,No,ok,"Interest update on holidays, Fridays and Saturdays",في حالة سؤال العميل عن تحديث الفائده في ايام الاجازات و الجمعة و السبت؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Interest update on holidays, Fridays and Saturdays
+Question AR: في حالة سؤال العميل عن تحديث الفائده في ايام الاجازات و الجمعة و السبت؟
+
+Script:
+في حالة سؤال العميل عن تحديث الفائده في ايام الاجازات و الجمعة و السبت:
+بيتم اضافة الفائدة بصورة تراكمية في اول يوم عمل بعد الجمعة والسبت او الإجازات الرسمية.
+- Escalation: No
+- CRM: Inquiry → Interest Rate → Escalation Needed No"
+KB,525,9dead3d8de1a5e4baff124dcd793f394,0,Saving,Inquiry,Non-Technical Issue,No,skipped,هل يمكن استخدام الرصيد في حساب حالا تحويش في دفع الأقساط او شراء منتجات ؟,هل يمكن استخدام الرصيد في حساب حالا تحويش في دفع الأقساط او شراء منتجات ؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: هل يمكن استخدام الرصيد في حساب حالا تحويش في دفع الأقساط او شراء منتجات ؟
+Question AR: هل يمكن استخدام الرصيد في حساب حالا تحويش في دفع الأقساط او شراء منتجات ؟
+Notes: هل يمكن استخدام الرصيد في حساب حالا تحويش في دفع الأقساط او شراء منتجات ؟
+Body: هل يمكن استخدام الرصيد في حساب حالا تحويش في دفع الأقساط او شراء منتجات ؟
+
+Script: (missing — answer.status=skipped)"
+KB,529,daa324f846be556b92d2d94963fdcdc6,0,Saving,Complain,Non-Technical Issue,Yes,ok,Delay in receiving the contract (printing or delivery stage),في حاله تاخير استلام العقد وحالته ع السيستم جارى طباعه العقد او جارى تسليم العقد,yes,"Vertical: Saving | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Delay in receiving the contract (printing or delivery stage)
+Question AR: في حاله تاخير استلام العقد وحالته ع السيستم جارى طباعه العقد او جارى تسليم العقد
+
+Script:
+في حاله تاخير استلام العقد وحالته ع السيستم جارى طباعه العقد او جارى تسليم العقد:
+
+البيانات المطلوبة:
+- الاسم بالكامل
+- رقم التليفون المسجل بحساب حالا تحويش
+- تفاصيل الشكوى
+
+- Escalation: Yes
+- CRM: Complaint → Non-Technical → Delay Receiving the Contract → Escalation Needed Yes"
+KB,546,b12712c7ecd35a2aab4ec9979626e738,0,Saving,Complain,Account is not activated,Yes,ok,او انه مضى العقد والحساب ماتفعلش بناخد من العميل البيانات دى,او انه مضى العقد والحساب ماتفعلش بناخد من العميل البيانات دى,yes,"Vertical: Saving | Type: Complain | Issue: Account is not activated | Escalation: Yes
+
+Question EN: او انه مضى العقد والحساب ماتفعلش بناخد من العميل البيانات دى
+Question AR: او انه مضى العقد والحساب ماتفعلش بناخد من العميل البيانات دى
+
+Script:
+او انه مضى العقد والحساب ماتفعلش بناخد من العميل البيانات دى:
+
+يتم التأكد اولا من خلال البورتال ان تم الامضاء ومرور 24 ساعة عمل من امضاء العقد:
+
+- الاسم بالكامل
+- رقم البطاقة بالكامل
+- رقم التليفون المسجل بحساب حالا تمويل
+- ممكن تسأل العميل مضى ف الفرع ولا مندوب و يسأل اسم الفرع اللي مضى في و مضى امتا العقد من الفرع او من المندوب و يكتب ف التكيت.
+
+CRM: Complaint → Non-Technical / Account is not activated | Escalation: Yes"
+KB,550,5e7d73c139da589aa5f969f713b5a380,0,Saving,Inquiry,How to deposits – Withdrew Money,No,ok,ازاي اقدر اعمل ايداع في حساب حالا تحويش؟,ازاي اقدر اعمل ايداع في حساب حالا تحويش؟,yes,"Vertical: Saving | Type: Inquiry | Issue: How to deposits – Withdrew Money | Escalation: No
+
+Question EN: ازاي اقدر اعمل ايداع في حساب حالا تحويش؟
+Question AR: ازاي اقدر اعمل ايداع في حساب حالا تحويش؟
+
+Script:
+ازاي اقدر اعمل ايداع في حساب حالا تحويش؟
+
+- في اقل حد للسحب والايداع 10 ولا يوجد اقصى.
+- يختار ان يدفع من رصيد المحفظة الالكترونية أو من حساب بنكي أو InstaPay.
+- لابد ان يودع من حسابات في اسمه؛ رقم الموبايل والحساب اللي هيودع منه وكل بيانات الحساب اللي هيودع منه لازم تكون نفس بياناته لحمايته.
+
+خطوات الايداع:
+1. عند فتح صفحة الحساب هتظهر تفاصيل الحساب، يختار العملية اللي محتاجها (سحب أو ايداع).
+2. بعد اختيار ايداع هتظهر خيارات طريقة الدفع؛ يختار المحفظة الالكترونية.
+3. يدخل رقم الموبايل المسجل للمحفظة الالكترونية (حالا كاش، فودافون كاش، أو أي محفظة).
+4. بعد كتابة رقم المحفظة، يدخل المبلغ اللي عايز يودعه.
+
+CRM: Inquiry → How to deposits – Withdrew Money | Escalation: No"
+KB,559,e428afb1a2935ecd8d69babfed3fb59a,0,Saving,Inquiry,Non-Technical Issue,No,ok,ينفع احول مبلغ من محفظه حالا ل حالا تحويش ؟,ينفع احول مبلغ من محفظه حالا ل حالا تحويش ؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: ينفع احول مبلغ من محفظه حالا ل حالا تحويش ؟
+Question AR: ينفع احول مبلغ من محفظه حالا ل حالا تحويش ؟
+
+Script:
+ينفع احول مبلغ من محفظه حالا ل حالا تحويش:
+
+حضرتك تقدر تحول من اي محفظه الكترونيه او حساب بنكي لحالا تحويش، غير متاح في الوقت الحالي التحويل من محفظة حالا.
+
+CRM: Inquiry → Non-Technical Issue | Escalation: No"
+KB,581,a2bf8bc8d7bc5c73a911f90889eee30b,0,Saving,Request,Non-Technical Issue,Yes,ok,Customer wants to change contract delivery address,عميل يريد تغيير عنوان توصيل العقد,yes,"Vertical: Saving | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Customer wants to change contract delivery address
+Question AR: عميل يريد تغيير عنوان توصيل العقد
+
+Script:
+عميل يريد تغيير عنوان توصيل العقد:
+بيتم التأكد اولا من حالة العقد من خلال البورتال.
+هل تم التواصل مع حضرتك بعد التقديم؟
+تمام هيتم تقديم طلب لحضرتك لتغيير العنوان الذي سيصل عليه المندوب لتوقيع العقد.
+
+البيانات المطلوبة:
+- رقم التليفون المسجل بحساب حالا تحويش
+- رقم القومي للعميل
+- العنوان الذي تريد استلام العقد فيه
+
+- Escalation: Yes
+- CRM: Request → To change the address before receiving the contract → Escalation Needed Yes"
+KB,582,46517d303bd95e65af21a96c7338a667,0,Saving,Inquiry,Non-Technical Issue,No,ok,How to open Tahweesh account from the app,طريقة فتح الحساب من علي التطبيق؟,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to open Tahweesh account from the app
+Question AR: طريقة فتح الحساب من علي التطبيق؟
+
+Script:
+طريقة فتح الحساب من على التطبيق:
+من الصفحة الرئيسية للتطبيق → حالا تحويش → افتح حساب → ادخل بياناتك الاساسية (الإسم - الرقم القومى - العنوان).
+- لا توجد مصاريف اداريه او للخدمة. وعند شكوى العميل ان يوجد مصاريف بتوضح للعميل بارسال screen على Whatsapp +20216303.
+- بتوضح للعميل ان يقدم بخط شخصي مش بخط شركات.
+
+خطوات من التطبيق:
+1. من الصفحة الرئيسية هيظهر ليك ايقونة حالا تحويش.
+2. لما تضغط عليها هيظهرلك صفحة التعريف بالخدمة واللي هتقدر منها تطلب فتح الحساب.
+3. هيطلب منك التطبيق تدخل بياناتك الاساسية وتضغط إرسال الطلب.
+4. بعدها هيظهرلك ان طلبك اتقبل وان فاضل ليك اخر خطوة هي انك تتوجه لأقرب فرع عشان تمضي الإستمارة.
+
+- Escalation: No
+- CRM: Inquiry → How to open account → Escalation Needed No"
+KB,583,bb8c63135271515c85fc91dd8ea22e92,0,Saving,Request,Non-Technical Issue,Yes,ok,Customer wants courier to contact them,عميل يريد التواصل معه من خلال المندوب,yes,"Vertical: Saving | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Customer wants courier to contact them
+Question AR: عميل يريد التواصل معه من خلال المندوب
+
+Script:
+عميل يريد التواصل معه من خلال المندوب:
+يتم التأكد أولا من خلال البورتال من حالة العقد (العقد جاهز للاستلام).
+
+في حالة ان تم التواصل مع العميل ويريد اعادة التواصل معه مرة اخري:
+البيانات المطلوبة:
+- رقم التليفون المسجل بحساب حالا تحويش
+- رقم القومي للعميل
+- وتقديم الطلب مع توضيح سبب التواصل
+
+في حالة ان العميل يريد تغيير ميعاد او تأجيل ميعاد توقيع العقد مع المندوب:
+البيانات المطلوبة:
+- رقم التليفون المسجل بحساب حالا تحويش
+- رقم القومي للعميل
+- وتقديم الطلب مع التوضيح بسبب التواصل
+
+- Escalation: Yes
+- CRM: Request → Request a call from courier → Escalation Needed Yes"
+KB,584,48622707eb7d5d3d9d598ce32117856e,0,Saving,Complain,Non-Technical Issue,No,ok,Customer cancelled on system,ولو العميل ع السيستم ملغي,yes,"Vertical: Saving | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Customer cancelled on system
+Question AR: ولو العميل ع السيستم ملغي
+
+Script:
+ولو العميل ع السيستم ملغي:
+بيتم التوضيح للعميل: حضرتك تقدر تقدم من خلال التطبيق مرة اخري وسوف يتم التواصل مع حضرتك.
+- Escalation: No
+- CRM: Complaint → Non-Technical → Delay Receiving the Contract → Escalation Needed No"
+KB,920,1cea4ba1084350798faffafa71a7fd18,0,Saving,Inquiry,Non-Technical Issue,No,ok,Does interest apply to the amount I deposited?,هي الفائدة بتنزل علي المبلغ اللي عملتله إيداع,yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Does interest apply to the amount I deposited?
+Question AR: هي الفائدة بتنزل علي المبلغ اللي عملتله إيداع
+
+Script:
+هي الفائدة بتنزل علي المبلغ اللي عملتله إيداع:
+المبلغ اللي بيتم ايداعه بيتم تحويله تلقائي للعميل و بيتم شراء الوحدات تلقائي و ينزل عليها الفوائد.
+- Escalation: No
+- CRM: Inquiry → Interest Rate → Escalation Needed No"
+KB,979,98b4fb5a92de51bfb96c34b9dde1f161,0,Saving,Inquiry,Non-Technical Issue,No,ok,Customer balance details (General balance inquiry),تفاصيل رصيد العميل (للاستفسار بشكل عام عن الرصيد),yes,"Vertical: Saving | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Customer balance details (General balance inquiry)
+Question AR: تفاصيل رصيد العميل (للاستفسار بشكل عام عن الرصيد)
+
+Script:
+تفاصيل رصيد العميل (للاستفسار بشكل عام عن الرصيد):
+
+رصيد التعويض:
+- رصيد التعويض: دا المبلغ اللى العميل اشتري بيه ومستفادش منه.
+- رصيد التعويض المحجوز: دا ما بعد شراء الوحدات المبلغ بيكون موجود لمده 48 ساعه عمل.
+- عدد الوحدات: دي عدد الوحدات التي العميل اشتراها.
+
+رصيد المحفظة:
+- رصيد المحفظة: المبلغ اللى عميل عمل بيه ايداع و يقدر يحوش بعدها / العميل عمل بيع للوحدات و يقدر يسحب الفلوس.
+- رصيد المحفظة المحجوز: ما بعد اتمام عمليه السحب و الايداع ف خلال 3 ايام.
+- Escalation: No"
+KB,988,74cb3b876b8d573199218350e8fe711f,0,Saving,Complain,Technical Issue,No,ok,Unable to submit request on the app,العميل غير قادر على تقديم الطلب على التطبيق,yes,"Vertical: Saving | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: Unable to submit request on the app
+Question AR: العميل غير قادر على تقديم الطلب على التطبيق
+
+Script:
+العميل غير قادر على تقديم الطلب على التطبيق
+خطوات تنشطيه
+تحديث لل app ۔
+- يحاول يقدم مره تانيه من نفس الرقم القومى - الموبيل اللى قدم بى قبل كده (لو يقدم من قبل)
+يتم التأكد من حالة الطلب على البورتال :
+الطلب مقدم بالفعل والبيادات حاطئة ويريد الالجاء : يتم الإلغاء والتوضيح للعميل التقديم مرة اخرى ۔
+Complaint/Technical / Unable to submit request on the app /Escalation Needed No
+ف حاله وجود نفس المشكله
+الطلب ملهى : العميل بحاول التقديم من بيس رقم الموبيل والرقم القومى ولا يستطيع التقيدم مرة أخرى
+لو العميل مضبى العقد وكتب وكلميا بيوضحلها المشكله فا يتعمل (العام للطلب من عبيدا من السييتم لو متاح وييكتب فى ير ليجبين شتى المجمد الجني بيلونه علا وكلمبا بـ التكيت ان تم الغاء الطلب من جازلها ومحتاجين ان يهح بيادات العميل من ع السيسيتم علشان يقدر يقدم طلب لتفعيل حساب تجويش مره تانيه فاتبعت المشكله لإدارة وهايتم الرد عليها في اقرب وقت
+Complaint/Technical / Unable to submit request on the app /Escalation Needed Yes"
+KB,990,540568a81d1d5921a38bc2a70fcedc28,0,Saving,Complain,Non-Technical Issue,Yes,ok,Delay receiving contract — ready for delivery with shipment number,في حاله تاخير استلام العقد وحالته ع السيستم تم جاهز للتوصيل ويوجد رقم الشحنة؟,yes,"Vertical: Saving | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Delay receiving contract — ready for delivery with shipment number
+Question AR: في حاله تاخير استلام العقد وحالته ع السيستم تم جاهز للتوصيل ويوجد رقم الشحنة؟
+
+Script:
+في حاله تاخير استلام العقد وحالته ع السيستم تم جاهز للتوصيل ويوجد رقم الشحنة؟
+
+البيانات المطلوبة:
+- رقم التليفون المسجل بحساب حالا تحويش
+- تفاصيل الشكوى
+
+- Escalation: Yes
+- CRM: Complaint → Non-Technical → Delay Receiving the Contract → Escalation Needed Yes"

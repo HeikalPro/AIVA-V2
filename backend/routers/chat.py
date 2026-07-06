@@ -17,7 +17,18 @@ from backend.schemas.chat import (
     MessageRatingOut,
     SessionCreate,
     SessionOut,
+    SessionQueuesUpdate,
 )
+from backend.schemas.kb_queues import ChatQueueAccessOut, QueueGroupOut
+from backend.services.agent_queue_access import get_allowed_queue_keys
+from backend.services.chat_queues import (
+    default_active_queues_for_user,
+    load_account_corpus_config,
+    normalize_session_active_queues,
+    resolve_search_verticals_for_session,
+    session_out_from_row,
+)
+from backend.services.kb_queue_groups import dumps_active_queues_json, list_queue_catalog
 from backend.services.rag import format_llm_error, sanitize_kb_source_url, stream_rag_response
 from backend.utils import serialize_row
 
@@ -85,11 +96,38 @@ def _message_out(row: dict) -> MessageOut:
     )
 
 
+@router.get("/queue-access", response_model=ChatQueueAccessOut)
+async def get_chat_queue_access(
+    account_id: int,
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("chat", ROLE_AGENT, ROLE_SUPERVISOR))],
+    db: DbDep,
+    embedding_svc: EmbeddingServiceDep,
+) -> ChatQueueAccessOut:
+    account = await db.fetch_one("SELECT * FROM AIVA_accounts WHERE id = :id", {"id": account_id})
+    if not account:
+        raise NotFoundError("Account not found")
+    if not user.can_access_account(account_id, int(account["organization_id"])):
+        raise ForbiddenError("No access to this account")
+
+    _corpus_id, corpus_config = await load_account_corpus_config(db, embedding_svc, account_id)
+    catalog = list_queue_catalog(corpus_config)
+    allowed = await get_allowed_queue_keys(
+        db, user, account_id=account_id, corpus_config=corpus_config
+    )
+    return ChatQueueAccessOut(
+        account_id=account_id,
+        available_queues=[QueueGroupOut(**item) for item in catalog if item["key"] in allowed],
+        allowed_queues=allowed,
+        default_active_queues=default_active_queues_for_user(allowed),
+    )
+
+
 @router.post("/sessions", response_model=SessionOut, status_code=201)
 async def create_session(
     body: SessionCreate,
     user: Annotated[UserContext, Depends(require_roles_or_nav_permission("chat", ROLE_AGENT, ROLE_SUPERVISOR))],
     db: DbDep,
+    embedding_svc: EmbeddingServiceDep,
 ) -> SessionOut:
     account = await db.fetch_one("SELECT * FROM AIVA_accounts WHERE id = :id", {"id": body.account_id})
     if not account:
@@ -97,13 +135,27 @@ async def create_session(
     if not user.can_access_account(body.account_id, int(account["organization_id"])):
         raise ForbiddenError("No access to this account")
 
+    _corpus_id, corpus_config = await load_account_corpus_config(db, embedding_svc, body.account_id)
+    active_queues = await normalize_session_active_queues(
+        db,
+        user,
+        account_id=body.account_id,
+        corpus_config=corpus_config,
+        requested=body.active_queues,
+    )
+    active_queues_json = dumps_active_queues_json(active_queues)
+
     session_id = await db.execute(
         """
-        INSERT INTO AIVA_chat_sessions (account_id, user_id, session_status)
-        VALUES (:account_id, :user_id, 'ACTIVE')
+        INSERT INTO AIVA_chat_sessions (account_id, user_id, session_status, active_queues)
+        VALUES (:account_id, :user_id, 'ACTIVE', :active_queues)
         RETURNING id INTO :out_id
         """,
-        {"account_id": body.account_id, "user_id": user.id},
+        {
+            "account_id": body.account_id,
+            "user_id": user.id,
+            "active_queues": active_queues_json,
+        },
         return_id=True,
     )
     row = await db.fetch_one(
@@ -118,7 +170,57 @@ async def create_session(
         """,
         {"id": session_id},
     )
-    return SessionOut(**serialize_row(row) or {})
+    return session_out_from_row(row or {})
+
+
+@router.patch("/sessions/{session_id}/queues", response_model=SessionOut)
+async def update_session_queues(
+    session_id: int,
+    body: SessionQueuesUpdate,
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("chat", ROLE_AGENT, ROLE_SUPERVISOR))],
+    db: DbDep,
+    embedding_svc: EmbeddingServiceDep,
+) -> SessionOut:
+    session = await db.fetch_one("SELECT * FROM AIVA_chat_sessions WHERE id = :id", {"id": session_id})
+    if not session:
+        raise NotFoundError("Session not found")
+    if int(session["user_id"]) != user.id:
+        raise ForbiddenError("Cannot update another agent's session")
+
+    account_id = int(session["account_id"])
+    _corpus_id, corpus_config = await load_account_corpus_config(db, embedding_svc, account_id)
+    active_queues = await normalize_session_active_queues(
+        db,
+        user,
+        account_id=account_id,
+        corpus_config=corpus_config,
+        requested=body.active_queues,
+    )
+    if active_queues is None:
+        raise BadRequestError("At least one queue must be selected")
+
+    await db.execute(
+        """
+        UPDATE AIVA_chat_sessions
+        SET active_queues = :active_queues
+        WHERE id = :id
+        """,
+        {"id": session_id, "active_queues": dumps_active_queues_json(active_queues)},
+    )
+    row = await db.fetch_one(
+        """
+        SELECT cs.*,
+               u.first_name AS agent_first_name,
+               u.last_name AS agent_last_name,
+               u.email AS agent_email,
+               (SELECT COUNT(*) FROM AIVA_chat_messages cm WHERE cm.session_id = cs.id) AS message_count
+        FROM AIVA_chat_sessions cs
+        JOIN AIVA_users u ON u.id = cs.user_id
+        WHERE cs.id = :id
+        """,
+        {"id": session_id},
+    )
+    return session_out_from_row(row or {})
 
 
 @router.get("/sessions", response_model=list[SessionOut])
@@ -154,7 +256,7 @@ async def list_sessions(
         """,
         params,
     )
-    return [SessionOut(**serialize_row(r) or {}) for r in rows]
+    return [session_out_from_row(r) for r in rows]
 
 
 @router.get("/sessions/{session_id}", response_model=list[MessageOut])
@@ -330,6 +432,15 @@ async def send_message(
     if not corpus_id:
         raise BadRequestError("Account has no knowledge base (corpus_id) configured")
 
+    _cid, corpus_config = await load_account_corpus_config(db, embedding_svc, int(session["account_id"]))
+    search_verticals = await resolve_search_verticals_for_session(
+        db,
+        user,
+        account_id=int(session["account_id"]),
+        corpus_config=corpus_config,
+        session_row=session,
+    )
+
     user_message_id = await db.execute(
         """
         INSERT INTO AIVA_chat_messages (session_id, sender_type, message_text)
@@ -353,6 +464,7 @@ async def send_message(
                 user_message=body.message_text,
                 top_k=body.top_k,
                 kb_source_base_url=account.get("kb_source_base_url"),
+                verticals=search_verticals,
             ):
                 if chunk:
                     yield f"data: {json.dumps({'type': 'token', 'text': chunk})}\n\n"

@@ -384,6 +384,7 @@ def search_similar(
     top_k: int,
     metric: str,
     vertical: str | None,
+    verticals: Sequence[str] | None = None,
     interaction_type: str | None,
     issue_type: str | None,
     escalation: str | None,
@@ -397,11 +398,16 @@ def search_similar(
 
     filters = ["c.corpus_id = :cid", "c.embedding IS NOT NULL"]
     binds: dict[str, Any] = {"cid": corpus_id, "qjson": qjson, "k": top_k}
-    if vertical is not None:
+    vertical_list = [v for v in (verticals or []) if v]
+    if not vertical_list and vertical is not None:
+        vertical_list = [vertical]
+    if vertical_list:
+        placeholders = ", ".join(f":v{i}" for i in range(len(vertical_list)))
         filters.append(
-            "JSON_VALUE(c.payload_json, '$.vertical' RETURNING VARCHAR2(256)) = :vertical"
+            f"JSON_VALUE(c.payload_json, '$.vertical' RETURNING VARCHAR2(256)) IN ({placeholders})"
         )
-        binds["vertical"] = vertical
+        for i, v in enumerate(vertical_list):
+            binds[f"v{i}"] = v
     if interaction_type is not None:
         filters.append(
             "JSON_VALUE(c.payload_json, '$.interaction_type' RETURNING VARCHAR2(256)) = :itype"

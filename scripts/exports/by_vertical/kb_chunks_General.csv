@@ -1,0 +1,2262 @@
+﻿corpus_name,external_parent_id,chunk_id,chunk_index,vertical,interaction_type,issue_type,escalation,answer_status,question_en,question_ar,has_embedding,chunk_text
+KB,1002,e26b9c5884c15f2795b126996c12edaa,0,General,Inquiry,Technical Issue,No,ok,How to purchase one card,ازاي اقدر استفاد بالخدمة one card,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: How to purchase one card
+Question AR: ازاي اقدر استفاد بالخدمة one card
+
+Script:
+ازاي اقدر استفاد بالخدمة؟
+One Card -> inquiry -> How to purchase one card
+حضرتك بتقدر تشتري القسيمة عن طريق تطبيق حالا من الصفحة الرئيسية قسائم الالعاب (Gaming vouchers) وبتشتري القسيمة اللي حضرتك محتاجها ..
+بعد اتمام عملية الشراء بيظهر للعميل serial number الخاص بال voucher ولازم نأكد علي العميل اختيار اسم الدوله الصحيح التابع له جهاز الألعاب الخاص بيه (Server).
+ملحوظة مهمه:
+يعني لو العميل بيشغل الPlay station
+علي USA لازم يختار الVoucher علي USA
+X
+Playstation Store
+PlayStation Store
+KSA
+USA
+UAE"
+KB,1004,6484c62c89295ab28af26d8ba8375e0a,0,General,Complain,Technical Issue,Yes,ok,voucher not available (One Card),غير متاح voucher عميل يشكوا ان ال (One Card),yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: voucher not available (One Card)
+Question AR: غير متاح voucher عميل يشكوا ان ال (One Card)
+
+Script:
+عميل يشكوا ان ال voucher غير متاح:
+One Card -> complaint -> technical -> voucher not available
+Escalated: Yes
+هنعتذر للعميل وهنوضحله اننا هنقدمله شكوي وهيتم الرد خلال 48 ساعه عمل .. و لازم ناخد منه البيانات دي :
+Voucher name -1 Transaction ID -2
+Transaction date
+-3
+Screen shoot من المشكله -4"
+KB,1005,0c8c731ae92d521499bd31ca96130c5a,0,General,Complain,Amount Deducted and Customer didn't receive the Serial Number (One Card),Yes,ok,Amount Deducted and Customer didn't receive the Serial Number (One Card),voucherعميل يشكوا ان  الفلوس اتخصمت و لم يستقبل ال (One Card),yes,"Vertical: General | Type: Complain | Issue: Amount Deducted and Customer didn't receive the Serial Number (One Card) | Escalation: Yes
+
+Question EN: Amount Deducted and Customer didn't receive the Serial Number (One Card)
+Question AR: voucherعميل يشكوا ان  الفلوس اتخصمت و لم يستقبل ال (One Card)
+
+Script:
+عميل يشكوا ان الفلوس اتخصمت ولم يستقبل الـ voucher (One Card):
+
+One Card → complaint → technical → Amount Deducted and Customer didn't receive the Serial Number
+
+هنعتذر للعميل وهنوضحله اننا هنقدمله شكوي وهيتم الرد خلال 48 ساعة عمل، ولازم ناخد منه البيانات دي:
+1. Voucher name
+2. Transaction ID
+3. Transaction date
+4. Screenshot من المشكلة
+
+CRM: One Card → Complaint → Technical → Amount Deducted and Customer didn't receive the Serial Number | Escalation: Yes"
+KB,1006,8eca4ccc9c235b7facc1996572ab96d2,0,General,Complain,Technical Issue,Yes,ok,Voucher Serial Number is missing numbers (One Card),عميل يشكوا ان ارقام ال voucher مش كامله (One Card),yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Voucher Serial Number is missing numbers (One Card)
+Question AR: عميل يشكوا ان ارقام ال voucher مش كامله (One Card)
+
+Script:
+عميل يشكوا ان ارقام ال voucher مش كامله:
+One Card → complaint → technical → Voucher Serial Number is missing numbers
+
+لازم نتأكد مع العميل انه بيكتب الرقم يدوي مش copy-paste، ونتأكد مفيش مسافات قبل او بعد الرقم.
+
+لو العميل أكد انه عمل كده والمشكلة لسه موجودة:
+بنوضحله هيتم تقديم شكوى والرد في خلال 48 ساعة عمل.
+
+البيانات المطلوبة:
+- اسم الـ voucher
+- Transaction ID
+- تاريخ المعاملة
+- سكرين شوت من المشكلة
+
+- Escalation: Yes"
+KB,1008,23e79bc8682e52989fd7a0386b05502b,0,General,Complain,Technical Issue,Yes,ok,voucher not available (One Card),مش متوافق مع البلد اللي بيختارها Voucher عميل يشكوا ان ال (One Card),yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: voucher not available (One Card)
+Question AR: مش متوافق مع البلد اللي بيختارها Voucher عميل يشكوا ان ال (One Card)
+
+Script:
+عميل يشكوا ان ال Voucher مش متوافق مع البلد اللى بيختارها:
+One Card -> complaint -> technical -> voucher not available
+Escalated: No
+هنعتذر للعميل ان هو مسؤل عن الاختيار الvoucher ولازم نأكد علي اختيار اسم الدوله الصحيح التابع له جهاز الالعاب الخاص بيه (Server)
+- يعني لو العميل بيشغل الPlay station علي USA لازم يختار الVoucher علي USA.
+Google Play
+- لو العميل فعلا اختار البلد الصح هنقدم الشكوي هيتم الرد خلال 48 ساعة عمل
+Escalated: Yes
+Google Play
+UK US"
+KB,1113,73ea6b9a2feb55dab0c54e7c58babc53,0,General,Request,Technical Issue,Yes,ok,Customer paid the installment and need to unlock the phone (Nokia c12),عميل يطلب فتح الموبايل مرة اخري بعد دفع الاقساط (Nokia),yes,"Vertical: General | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Customer paid the installment and need to unlock the phone (Nokia c12)
+Question AR: عميل يطلب فتح الموبايل مرة اخري بعد دفع الاقساط (Nokia)
+
+Script:
+۔
+عميل يطلب فتح الموبايل مرة اخرى بعد دفع الأقساط
+في حالة العميل اشتري الموبايل من الفرع : هنوجه للفرع مرة اخري لايقاف الموبايل. في حالة شراء الموبايل من خلال التطبيق : هنتأكد من خلال CRM انه تم دفع الأقساط اولا ثم يتم فتح الموبايل للعميل من خلالنا مرة اخري.
+Nokia -Request-Customer paid the installment and need to unlock the phone
+Escalation: Yes"
+KB,1114,3c1c60e75c74519bb95874f7b9f7790b,0,General,Request,Technical Issue,Yes,ok,Customer finished all the installments and need to remove the Locking Software (Nokia),عميل يطلب فتح الموبايل نهائيا بعد الانتهاء من دفع الاقساط (Nokia),yes,"Vertical: General | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Customer finished all the installments and need to remove the Locking Software (Nokia)
+Question AR: عميل يطلب فتح الموبايل نهائيا بعد الانتهاء من دفع الاقساط (Nokia)
+
+Script:
+عميل يطلب فتح الموبايل نهائيا بعد الانتهاء من دفع الاقساط
+في حالة العميل اشتري الموبايل من الفرع : هنوجه للفرع مرة اخري لايقاف الموبايل. - في حالة شراء الموبايل من خلال التطبيق : بعد التأكد من دفع جميع الاقساط من خلال CRM بنفتح القفل من خلالنا للعميل
+Nokia -Request-Customer finished all the installments and need to remove the Locking Software
+Escalation: Yes"
+KB,1171,58851cf56eab5436a7a6cf4482178363,0,General,Inquiry,Technical Issue,No,ok,General Inquiry (Cash it),(Cash it) استفسار عميل عن امكانية كتابة جميع نوعيات المنتجات عند التقديم,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: General Inquiry (Cash it)
+Question AR: (Cash it) استفسار عميل عن امكانية كتابة جميع نوعيات المنتجات عند التقديم
+
+Script:
+استفسار عميل عن امكانية كتابة جميع نوعيات المنتجات عند التقديم:
+يتم اختيار منتج واحد في ال Category حتى في حالة وجود اكتر من نوعية منتج في الايصال. يتم كتابة قيمة الايصال بالكامل أو جزء منه بناءا على قيمة التمويل التي تريدها لا يشترط طلب تمويل بقيمة الايصال بالكامل.
+Cash It -> Inquiry -> General Inquiry"
+KB,1175,c850b7dfb927530395e69617f1c640d5,0,General,Inquiry,Technical Issue,No,ok,SLA for transferring money (Cash it),(Cash it) مدة تحويل التمويل,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: SLA for transferring money (Cash it)
+Question AR: (Cash it) مدة تحويل التمويل
+
+Script:
+مدة تحويل التمويل:
+يتم تحويل التمويل في خلال 3 ايام عمل بعد الموافقة على الطلب. A علي المحفظة الالكترونية او الحساب البنكي بناءا على اختيارك. يتم ارسال SMS بتحويل المبلغ.
+Cash It -> Inquiry -> SLA for transferring money"
+KB,1176,bfd6812c90fe59819d81a42e03046211,0,General,Inquiry,Technical Issue,No,ok,Asked about installment tenures (Cash it),(Cash it) استفسار العميل عن مدة التقسيط,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Asked about installment tenures (Cash it)
+Question AR: (Cash it) استفسار العميل عن مدة التقسيط
+
+Script:
+استفسار العميل عن مدة التقسيط:
+مدة التقسيط تبدأ من 6 شهور حتى 36 شهور يتم تحديدها من خلال التطبيق بناءا على المدة المناسبة معك.
+Cash It -> Inquiry -> Asked about installment tenures"
+KB,1177,8ecf25cf9e945a79a669bfd0fb28344a,0,General,Inquiry,Non-Technical Issue,No,ok,Asked about interest rate & Admin fees (Cash it),هل يوجد رسوم او فائدة على الخدمة (Cash It),yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Asked about interest rate & Admin fees (Cash it)
+Question AR: هل يوجد رسوم او فائدة على الخدمة (Cash It)
+
+Script:
+هل يوجد رسوم او فائدة على الخدمة:
+يوجد رسوم 5% يتم خصمها من قيمة التمويل ويتم ظهوره على التطبيق قبل تأكيد عملية السحب. متوسط نسبة فائدة 41% تقريبا على السنة وتختلف بناءا على مدة التقسيط المختارة من التطبيق. A
+Cash It -> Inquiry -> Asked about interest rate & Admin fees"
+KB,1178,33e105b71ddf5a8a9deb786650af356d,0,General,Inquiry,Non-Technical Issue,No,ok,Asked about rejection reason (Cash it),(Cash it) استفسار عميل عن سبب الرفض,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Asked about rejection reason (Cash it)
+Question AR: (Cash it) استفسار عميل عن سبب الرفض
+
+Script:
+استفسار عميل عن سبب الرفض:
+بعتذر لحضرتك في البداية عن رفض الطلب الخاص بك. A ومن خلالي ايضا هوضح لحضرتك سبب الرفض لكن اولا برجاء توضيح بعض البيانات (الرقم القومي - الاسم > بالكامل - التواصل من نفس الرقم المسجل به الخدمة)
+توضیح سبب الرفض من خلال ال Rejection Reason sheet
+Cash It -> Inquiry -> Asked about rejection reason"
+KB,1179,0d2e355d81ad52e5adca364436540eda,0,General,Inquiry,Technical Issue,No,ok,Asked about his request status (Cash it),(Cash it ) استفسار عميل عن حالة الطلب الخاصة به,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Asked about his request status (Cash it)
+Question AR: (Cash it ) استفسار عميل عن حالة الطلب الخاصة به
+
+Script:
+استفسار عميل عن حالة الطلب الخاصة به:
+من خلال التطبيق يمكن معرفة حالة الطلب الخاصة بيك (قيد الانتظار - تم الموافقة - تم الرفض)
+ملحوظة ليك: يمكن معرفة حالة الطلب في حالة الرفض من خلال (Rejection sheet) - يمكن معرفة حالة الطلب من خلال ال CRM في حالة الموافقة -> Loan Issued
+Cash It -> Inquiry -> Asked about his request status"
+KB,1180,f68a72fd03d155b3839fcf1c880e1dc6,0,General,Request,Non-Technical Issue,Yes,ok,Reschedule installment (Cash it),(Cash it ) عميل يريد تغيير الفترة الزمنية للتقسيط,yes,"Vertical: General | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Reschedule installment (Cash it)
+Question AR: (Cash it ) عميل يريد تغيير الفترة الزمنية للتقسيط
+
+Script:
+عميل يريد تغيير الفترة الزمنية للتقسيط:
+في حالة لم يأت ميعاد استحقاق اول قسط: فتأكد أن العميل مدفعش اي اقساط، تم تقديم طلب حضرتك وسيتم A التواصل مع حضرتك في خلال 3 ايام عمل (سيتم التسجيل في التكت: الفترة الزمنية السابقة - الفترة الزمنية الجديدة - الرقم القومي - الاسم بالكامل - رقم الموبيل المسجل بالخدمة) في تكت
+في حالة بعد ميعاد استحقاق اول قسط: غير متاح تغيير الفترة الزمنية للتقسيط بعد دفع القسط الأول . A ملحوظة مهمة : لازم نسأله سبب تغيير مدة القسط اية ونكتبها في التكت
+Cash It -> Request -> Reschedule installment Escalation : Yes"
+KB,1181,a542273584b35cbdb5290cecceeb5461,0,General,Request,Non-Technical Issue,Yes,ok,Early Full Settlement (Cash it),(Cash it ) عميل يريد عمل سداد مبكر,yes,"Vertical: General | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Early Full Settlement (Cash it)
+Question AR: (Cash it ) عميل يريد عمل سداد مبكر
+
+Script:
+""معلومة ليك""
+بمجرد قيام العميل بدفع القسط الرابع لأي معاملة .. يمكن للعميل تسوية جميع معاملاته بشكل طبيعي إذا طلب ذلك.
+بمعني انه عند تقديم الطلب يتم الرد على الطلب من الادارة المختصة بالتسويات بجميع معاملات العميل + مجموع المستحق لو العميل ارادا تسوية جميع معاملاته.
+مثال:
+1. في حالة رغبة العميل في تسوية المعاملة الأولى، يجب عليه دفع المبلغ الأول.
+2. وفي حالة رغبته في تسوية المعاملة الثانية فعليه دفع المبلغ الثاني.
+3. في حالة رغبته في تسوية جميع المبلغ المستحق، يجب عليه دفع المبلغ الإجمالي
+معلومة عامة: يتم إلغاء باقي الفوائد المحسوبة على المنتج حتى نهاية المدة وإضافة عمولة سداد مبكر 5% على أصل المبلغ المتبقي وذلك بعد سداد 4 اقساط على الاقل ..
+هل في مشكله واجهت حضرتك مع الشركة وسبب السداد المبكر؟
+في حالة ان العميل مصمم على طلبه: برجاء مراجعة بعض البيانات (الاسم بالكامل - الرقم القومي - التواصل بنفس الرقم المسجل به الخدمة) تم تقديم طلب حضرتك وسيتم التواصل مع حضرتك في خلال من 3 ايام عمل لو اقل من 30 معاملة و5 أيام عمل لو أكثر من 30 معاملة لاستكمال اجراءات السداد المبكر (حساب المبلغ المستحق سداده وطريقة السداد) يتم إلغاء باقي الفوائد المحسوبة على التمويل حتى نهاية المدة وإضافة عمولة سداد مبكر في حدود 5% على أصل المبلغ المتبقي وذلك بعد سداد 4 اقساط على الأقل.
+Cash It-> Request -> Early Full Settlement Escalation: Yes"
+KB,1182,9d1cb6df2eed5eddaa1ab34ccd49f1ee,0,General,Request,Non-Technical Issue,Yes,ok,Cancel loan request (Cash it),(Cash it) عميل يريد الغاء الطلب قبل استكماله,yes,"Vertical: General | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Cancel loan request (Cash it)
+Question AR: (Cash it) عميل يريد الغاء الطلب قبل استكماله
+
+Script:
+عميل يريد الغاء الطلب قبل استكماله:
+• نقدر نعرف ايه سبب الالغاء؟
+• في حالة ان تم اقناع العميل لا يتم تقديم طلب
+Cash It -> Request -> Cancel loan request Escalation: No
+• في حالة اصرار العميل: استأذنك هيتم مراجعة بعض البيانات (الرقم القومي - الاسم بالكامل - نفس الرقم المقدم بيه علي الخدمة)
+■ يتم التأكد اولا من خلال ال CRMمن ان لم یتم انشاء قرض للعميل وان لم يتم صرف التمويل بعد. من خلالي هقدم لحضرتك الطلب وهيتم الرد في أقرب وقت.
+ملحوظة في حالة ان تم صرف التمويل لا يمكن الغاء العملية ويتم عمل طلب سداد معجل فقط (شروط السداد المعجل).
+Cash It -> Request -> Cancel loan request Escalation: Yes"
+KB,1183,f19779d290a95e5c84b7ee7c547d5346,0,General,Complain,Technical Issue,No,ok,Complaint about rejection reason (Cash it),(Cash it) شكوى عميل من سبب الرفض,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: Complaint about rejection reason (Cash it)
+Question AR: (Cash it) شكوى عميل من سبب الرفض
+
+Script:
+شكوى عميل من سبب الرفض:
+< يتم رفض المعاملة لأكثر من سبب يتم معرفتها من خلال الاشعار المرسل ويمكن التقديم مره اخري في حالة حل هذا السبب مثل (كتابة مبلغ مشتريات مختلف عن المتواجد بالإيصال المرسل) ""معلومة ليك""
+- يتم معرفة سبب الرفض من خلال Rejection Sheet
+Cash It -> Tech Complaint -> Complaint about rejection reason Escalation: No"
+KB,1184,00ce3701124858d4a6e5fec96725b1c7,0,General,Complain,Non-Technical Issue,Yes,ok,Delay Receiving feedback (Cash it),(Cash it )شكوى عميل من عدم الرد علي الطلب حتى الان,yes,"Vertical: General | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Delay Receiving feedback (Cash it)
+Question AR: (Cash it )شكوى عميل من عدم الرد علي الطلب حتى الان
+
+Script:
+شكوى عميل من عدم الرد علي الطلب حتى الآن:
+يتم الرد بالموافقة أو الرفض في خلال 48 ساعة عمل
+- لم يتم مرور المهلة : في حالة عدم مرور المهلة بعد لا يتم تقديم طلب يتم التأكد اولا من عدم تواجد رقم العميل في (Rejection Sheet or CRM)
+Cash It -> Non-Tech Complaint -> Delay Receiving feedback Escalation: No
+- تم مرور المهلة : بعتذر ليك برجاء مراجعة بعض البيانات (الاسم بالكامل - الرقم القومي - التواصل بنفس الرقم المسجل بالخدمة)
+بعتذر ليك عن التأخير من خلالي هيتم تقديم طلب والرد في خلال 48 ساعة عمل بحالة الطلب. ٨
+Cash It -> Non-Tech Complaint -> Delay Receiving feedback Escalation: Yes"
+KB,1185,668d111c1fc85968896246faf796b848,0,General,Complain,Technical Issue,Yes,ok,Delay in Transfer After Approval (Cash it),(Cash it ) شكوى عميل من عدم تحويل المبلغ بعد الموافقة,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Delay in Transfer After Approval (Cash it)
+Question AR: (Cash it ) شكوى عميل من عدم تحويل المبلغ بعد الموافقة
+
+Script:
+شكوى عميل من عدم تحويل المبلغ بعد الموافقة:
+يتم تحويل المبلغ في خلال 3 ايام عمل من الموافقة. A يتم ارسال SMS بتحويل المبلغ. هل تم مرور المهلة ام لا؟
+لم يتم مرور المهلة : في حالة عدم مرور المهلة بعد لا يتم تقديم طلب
+Cash It -> Tech Complaint -> Delay in Transfer After Approval Escalation: No
+لم مرور المهلة : بعتذر ليك برجاء مراجعة بعض البيانات (الاسم بالكامل - الرقم القومي - التواصل بنفس الرقم المسجل به في الخدمة - طريقة استلام التمويل)
+يتم مراجعة ال CRM والتأكد من ان حالة القرض Issued (تم الموافقة عليه) ۔
+« من خلالي هقدم لحضرتك طلب تأخير تحويل التمويل حتى الآن وانتظر الرد في خلال 48 ساعة عمل.
+Cash It -> Tech Complaint -> Delay in Transfer After Approval Escalation: Yes"
+KB,1187,091048b94eca51788ac91bbdb93a635a,0,General,Complain,Technical Issue,Yes,ok,unable to upload the receipt (Cash it),(Cash it ) شكوى عميل من عدم امكانية رفع الايصال واستكمال الطلب,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: unable to upload the receipt (Cash it)
+Question AR: (Cash it ) شكوى عميل من عدم امكانية رفع الايصال واستكمال الطلب
+
+Script:
+شكوى عميل من عدم امكانية رفع الايصال واستكمال الطلب:
+بعتذر ليك عن اي مشكلة واجهتك. برجاء توضيح ايه اللي بيظهر لحضرتك. برجاء التأكد من الآتي:
+التأكد من صحة الايصال ووضوحه. التأكد من ان العميل (من عملاء الموافقة الفورية) التأكد بأن لا يوجد بلوك علي الحد الائتماني.
+التأكد بأن مبلغ التمويل المطلوب لم يتخط الحد الائتماني المتبقي لدي العميل. - عمل بعض الخطوات التنشيطية للتطبيق والمحاولة مرة اخري -
+Cash It -> Tech Complaint -> unable to upload the receipt Escalation: No
+في حالة وجود نفس المشكلة
+برجاء مراجعة بعض البيانات (الاسم بالكامل - الرقم القومي - رقم الموبيل)
+إرسال اسكرين شوت من المشكلة اللي بتواجه حضرتك علي رقم الواتساب الخاص بنا +20216303 هيتم الرد في اقرب وقت
+Cash It -> Tech Complaint -> unable to upload the receipt Escalation: Yes"
+KB,1253,cc3ea965dc7a5cb4ab0490d96d111a6a,0,General,Inquiry,Technical Issue,No,ok,Spin & win (Halan),استفسار عن عجلة الحظ (Halan),yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Spin & win (Halan)
+Question AR: استفسار عن عجلة الحظ (Halan)
+
+Script:
+استفسار عن عجلة الحظ :
+Halan -> Inquiry -> Spin & win game
+- العميل بيقدر يكسب جوايز لما يلف عجلة الحظ .. زي برومو كود أو خصم (بيكون موضح من متجر حالا او من حالا جملة) لازم نوضح للعميل البرومو كود او الخصم بيكون علي حسب الهدية جاتله علي اي متجر (حالا ولا جملة)
+لو العميل اشتكي ان الخصم متطبقش .. بنطلب منه يببعت سكرين من الجايزة علي رقم الواتساب 20216303+
+Halan -> complaint-> non tech -> Spin & win issue
+Escalation: Yes"
+KB,1385,2c618e57aecf5b6b92cb04a1a14d2c94,0,General,Inquiry,Non-Technical Issue,No,ok,Inquiry about Nokia c12 Payment methods,Nokia c12 استفسار عميل عن طرق سداد الاقساط,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Nokia c12 Payment methods
+Question AR: Nokia c12 استفسار عميل عن طرق سداد الاقساط
+
+Script:
+- استفسار عميل عن طرق سداد الأقساط:
+٥ البطاقة الائتمانية ( Debit \ Credit كارد )
+٥ من خلال ماكينة فوري ( كود فوري لدفع اقساط ال CF ) عن طريق الرقم أو الرقم القومي. ٥ من خلال محفظة حالا
+Nokia - Inquiry - inquiry about Nokia c12 Payment methods"
+KB,1386,efb4bc85c19f5780827c43ebf96c3156,0,General,Inquiry,Non-Technical Issue,No,ok,Inquiry about payment method (Cash it),(Cash it) كيفية دفع الاقساط,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about payment method (Cash it)
+Question AR: (Cash it) كيفية دفع الاقساط
+
+Script:
+كيفية دفع الأقساط
+< كريديت كارد (يجب دفع المبلغ المطلوب كما هو لا يمكن دفع جزء منه أو أكثر من المبلغ المطلوب)
+< فوري عن طريق الكود 71822 متبوع برقم الهاتف او رقم البطاقة
+< عن طريق محفظة حالاً.
+عن طريق اي محفظة الكترونية (حالا كاش او اي محفظة ثانية)
+< عن طريق كارت حالا (يجب علي العميل قفل زر ""التقسيط بكارت حالا"" من التطبيق).
+< عن طريق اي ماكينة ""بساطة / مكسب/أمان"" باستخدامك كود العميل
+< عن طريق InstaPay
+Cash It -> Inquiry -> Inquiry about payment method"
+KB,1400,30bd602cbfd25bfa80c2abf60e67b5c3,0,General,Inquiry,Technical Issue,No,ok,Inquiry about receiving loan method (Cash It),استفسار عميل عن طريقة استلام التمويل (Cash It),yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about receiving loan method (Cash It)
+Question AR: استفسار عميل عن طريقة استلام التمويل (Cash It)
+
+Script:
+استفسار عميل عن طريقة استلام التمويل:
+يتم الاستلام من خلال طريقتين: ٥ حساب بنكي - محفظة الكترونية - كارت حالا
+ملحوظة مهمة : لازم يكون رقم المسجل باسمك وليس خط شركات او باسم شخص اخر ويكون نفس الرقم المسجل A علي التطبيق.
+Cash It -> Inquiry -> Inquiry about receiving loan method"
+KB,1416,2b7443c62130541ba49abd6e69e99c0a,0,General,Inquiry,Non-Technical Issue,No,ok,inquiry about one card service,؟ One Card ايه هي خدمة,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: inquiry about one card service
+Question AR: ؟ One Card ايه هي خدمة
+
+Script:
+ايه هى خدمة One Card ؟
+One Card -> inquiry -> inquiry about one card service
+هي خدمة لو حضرتك بتلعب العاب زي (PUBG- Free fire والعاب تانية كتير موجوده عالتطبيق) بتقدر تشحن الالعاب دي عن طريق تطبيق حالا .. و بتقدر تدفع عن طريق :
+Credit/Debit Card .1 2. محفظة حالا
+مع العلم ان ال Voucher بيتم استخدامه مره واحده بس ومش بيتم استرجاع قيمة الVoucher."
+KB,1427,ab8ffa305570508f9aafafd0f55e967c,0,General,Inquiry,Technical Issue,No,ok,Cash IT -Invoice Later,(Invoice Later)  ما هو قرض ال50 الف,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Cash IT -Invoice Later
+Question AR: (Invoice Later)  ما هو قرض ال50 الف
+
+Script:
+Cash it -> Inquiry -> Inquiry about 50k cash limit
+دلوقتى العميل يقدر يسحب معاملة CASH IT ويرفع الفاتورة وقت تاني
+-->> ويمكن للعميل سحب مبلغ كاش على الكارت بحد اقصى 50 الف وايداع الفاتورة خلال 3 شهور.
+سيتم خصم المبلغ من الحد الائتمانى الخاص بالعميل .. و عند ايداع الفاتورة سيتم استرجاع امكانية سحب مبلغ اخر من invoice later-Cash It
+ملحوظة :
+بیتم ايداع المبلغ فی Halan Card بس . 1
+لازم العميل يكون معاه CF Limit يغطى المبلغ اللى هيستخدمه من cash it. .2
+لو العميل مش معاه كارت .. لازم يقدم على كارت عشان يقدر يستفيد بالخدمة. .3
+- ممكن تلغى المعاملة ؟
+Cash it -> Request -> Cancel cash limit request Escalation: No
+- بمجرد طلب سحب مبلغ كاش سیتم ايداع المبلغ فی حالا کارت الخاص بالعميل و مفيش امکانیه بالالغاء.
+- ممكن نعمل سداد مبكرة
+Cash It-> Request -> Early Full Settlement Escalation: Yes
+ممكن نعمل سداد مبكر بالطريقة العادية .. علما بأن هيتم السداد واسترجاع الليمت للحد الائتماني لكن مش هيقدر يستخدم Cash it-invoice later لحد ما يتم ايداع الفاتورة.
+لو العميل اشتكى من انه طلب cash it
+cash it -> Complain -> tech -> invoice later loan not reflected in Halan Card Escalation: Yes
+لازم نتأكد ان القرض موجود على crm ونرجع للتیم لیدر الموجود نتأكد ان الفلوس منزلتش علی الکارت
+هنعتذر للعمیل و نوضحله انه هیتم حل المشكلة خلال 48 ساعة عمل"
+KB,1445,d30f16837aaa503885c765853c41309a,0,General,Inquiry,Technical Issue,No,ok,General Inquiry (Cash it),Cash It عميل يستفسر عن ايه هي خدمة,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: General Inquiry (Cash it)
+Question AR: Cash It عميل يستفسر عن ايه هي خدمة
+
+Script:
+عميل يستفسر عن ايه هي خدمة Cash It:
+هى خدمة بتوفر فيها حالا لحضرتك تمويل ليك بقيمة المشتريات التى قمت بها من اي تاجر فى آخر 3 شهور بقيمة تمويل تبدأ من 500 جنيه الى 50,000 وثم يتم تقسيطها مرة أخري لحالا على مدة تقسيط من 6 شهور وحتى 36 شهر.
+هى خدمة بتوفر فيها حالا لحضرتك تمويل ليك بقيمة المشتريات التى قمت بها من اي تاجر في آخر 3 شهور بقيمة الحد الائتماني الخاص بالعميل (رصيد تقسيط العميل) يتم تقسيطها مرة أخري لحالا على مدة تقسيط من 6 شهور وحتى 36 شهر
+شروط التقديم علي الخدمة:
+AAAA
+لازم تكون الفاتورة بأسم العميل
+< وجود حد ائتماني لديك مع حالا
+أن يكون تم الامضاء على الحد الائتماني من خلال مندوب وفروع (عميل موافقة فورية \ الفروع) التأكد من عدم تخطى قيمة التمويل المطلوب رصيد العميل فى الحد الائتماني المتبقى.
+A
+عدم وجود حظر على الحد الائتمانى الخاص بالعميل.
+وجود ايصال الشراء سليم وواضح لإرساله من خلال التطبيق يشمل (اسم التاجر - التاريخ - قيمة عملية الشراء) A
+ان يكون الايصال لم يمر عليه أكثر من ثلاث أشهر في وقت عملية التقديم A
+ان يكون الايصال أصلى وصحيح ولا يكون نسخة مكررة أو مسجل يدويا. A
+A
+تكون قيمة المعاملة من 500 الى 50,000 كحد أقصى.
+وجود حساب بنكى أو محفظة الكترونية او كارت حالا مسجلين بنفس الرقم المسجل به على حالا ويكون باسمك وليس اسم A شخص اخر أو خط شركات.
+A A
+غير متاح حاليا رفع إيسكرين شوت من معاملات أون لاين (لا يوجد شراء online) حتى من خلال تطبيق حالا يتم رفض هذه الإيصالات (ايصال دفع - شحن محفظة - Paymop - فوري)
+ملحوظة: لا يشترط طلب تمويل بنفس قيمة الايصال بالكامل يمكن عمل طلب جزئي من قيمة الفاتورة وكتابته أثناء التقديم.
+Cash It -> Inquiry -> General Inquiry"
+KB,1455,4337df6d52995799bacab5e2268088f1,0,General,Complain,Technical Issue,No,ok,Cash It Icon does not appear (Cash it),(cash it) شكوى عميل من عدم ظهور الايقونة الخاصة بالخدمة,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: Cash It Icon does not appear (Cash it)
+Question AR: (cash it) شكوى عميل من عدم ظهور الايقونة الخاصة بالخدمة
+
+Script:
+شكوى عميل من عدم ظهور الايقونة الخاصة بالخدمة:
+بعتذر ليك عن اي مشكلة واجهتك. A
+برجاء مراجعة بعض البيانات (الرقم المتواصل به - الرقم القومي - الاسم بالكامل) التأكد من خلال CRM ان العميل لديه حد ائتماني كافي
+■ لوكل الشروط متوفرة : بعتذر ليك برجاء عمل بعض الخطوات التنشيطية للتأكد من ظهور الخدمة
+Cash It -> Tech Complaint -> Cash It Icon does not appear Escalation: No
+في حالة وجود نفس المشكلة: برجاء ارسال اسكرين شوت علي رقم الواتساب الخاص بنا +20216303 من عدم ظهور الخدمة ومن خلالي هيتم تقديم طلب والرد في أقرب وقت.
+Cash It -> Tech Complaint -> Cash It Icon does not appear Escalation: Yes"
+KB,1488,c24237f2b69d5932a994bb42c1ba1070,0,General,Inquiry,Non-Technical Issue,No,ok,Inquiry about Tap-To-Win eligibility,متاحة لكل العملاء  Tap-To-Win هل,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Tap-To-Win eligibility
+Question AR: متاحة لكل العملاء  Tap-To-Win هل
+
+Script:
+هل Tap-To-Win متاحة لكل العملاء ؟
+Halan-> Inquiry -> Inquiry about Tap-To-Win eligibility
+- متاحة لكل عملاء Credit Scoring, وعملاء الفروع في القاهرة والجيزة والاسكندرية (فروع مبعوتة)"
+KB,1491,5eae595e6e155d1fa447aff64ab43839,0,General,Complain,Technical Issue,Yes,ok,Tap-To-Win prize not available on app,مش متاحة ليه بعد ما استخدم 500ج Tap-To-Win عميل يشكوا ان,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Tap-To-Win prize not available on app
+Question AR: مش متاحة ليه بعد ما استخدم 500ج Tap-To-Win عميل يشكوا ان
+
+Script:
+عميل يشكوا ان Tap-To-Win مش متاحة ليه بعد ما استخدم 500ج؟
+Halan-> complaint -> tech -> Tap-To-Win prize not available on app Escalation: No لازم نتأكد ان :
+1- المعاملات تمت عن طريق الكارت ( CF On Card)
+2- المعاملات بقيمة 500 ج في اليوم ( مش اكتر من يوم).
+3- العميل من credit scoring ولو فروع لازم يكون من الفروع المخصصة.
+هنقدم طلب لحل المشكلة و ناخد بياناته كاملة و سكرين شوت من الجايزة و سیتم الرد خلال 48 ساعة عمل.
+Back Office <- Escalation: Yes"
+KB,1492,662a6453cd965c18a6771dc8cdf892a6,0,General,Inquiry,Technical Issue,No,ok,Same number Process (Halan),المكالمات اللي لازم العميل يكلمني قيها من نفس الرقم (Halan),yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Same number Process (Halan)
+Question AR: المكالمات اللي لازم العميل يكلمني قيها من نفس الرقم (Halan)
+
+Script:
+Case
+Call from same numb
+Exception from another numbe
+Comment
+As a general question no problem to share any info related to installments .. But if customer ""asked for HIS installments"" he must contact us from the same registered line
+Inquiry about order status
+Same Number
+Inquiry about block reason
+Same Number
+Inquiry about customer code
+Same Number
+Inquiry about order delivery date
+Same Number
+Inquiry about rejection reason (cash it)
+Same Number
+Inquiry about Request status (cash it)
+Same Number
+Cancel the purchasing limit or amount
+Same Number
+Requesting early transfer (vendor)
+Same Number
+Customer wants to change branch (Halan)
+Same Number
+Reschedule installment (Halan)
+Same Number
+Request to decrease CF limit
+Same Number
+Early settlement (Halan)
+Same Number
+Finishing All Instant Approval Installment Paper - Clearance Letter
+Same Number
+Installment schedule disappeared (Halan)
+Same Number
+Wrong Product
+Same Number
+Delay receiving product
+Same Number
+Under Processing order Issue
+Same Number
+Change the delivery time
+Same Number
+Tax invoice Request
+Same Number
+Return product request (Halan)
+Same Number
+Cancel purchased request (Halan)
+Same Number
+Delay of activate salary lending service
+Same Number
+Installment didn't deducted from salary (Salary Lending)
+Same Number
+The lending salary not transfer to bank-wallet-card
+Same Number
+Request / Delay of card activation for Salary lending
+Same Number
+Employee wants to deactivate lending salary service
+Same Number
+Transfer Salary lending to Halan Card
+Same Number
+Salary lending (Early settlement)
+Same Number
+Cancel Gold limit
+Same Number
+Early settlement (Gold)
+Same Number
+Cancel Gold Request (Gold)
+Same Number
+Reschedule installment (cash it)
+Same Number
+Decrease CF Limit
+Same Number
+Early Full Settlement (cash it)
+Same Number
+Amount Deducted and Customer didn't receive the Serial Number (One Card)
+Same Number
+Voucher Serial Number is missing numbers (One Card)
+Same Number
+Create CF request
+Same Number"
+KB,1492,6c2fde213c5a548aa505965a83405838,1,General,Inquiry,Technical Issue,No,ok,Same number Process (Halan),المكالمات اللي لازم العميل يكلمني قيها من نفس الرقم (Halan),yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Same number Process (Halan)
+Question AR: المكالمات اللي لازم العميل يكلمني قيها من نفس الرقم (Halan)
+
+Script:
+cash it)
+Same Number
+Amount Deducted and Customer didn't receive the Serial Number (One Card)
+Same Number
+Voucher Serial Number is missing numbers (One Card)
+Same Number
+Create CF request
+Same Number
+Credit Scoring Portal Data
+Same Number
+Inquiry about Loan Request status
+No Problem through other number
+Inquiry about related branch
+No Problem through other number
+Verify NID
+Change mobile number
+No Problem through other number
+Must mention the old number
+Wrong SMS Payment reminder after paid (Not Appear in App)
+No Problem through other number
+Unable to Request a CF limit
+No Problem through other number
+Agent must mention the line he wants to registered on CF
+Delay of transfers - Vendor
+No Problem through other number
+Limit reflect on I-Score after closing (Halan)
+No Problem through other number
+Generating OTP (Halan)
+No Problem through other number
+Logesticst team will contact customer on the number in the request
+Schedule delivery time
+No Problem through other number
+Limit Increase
+No Problem through other number
+Salary lending service is disable
+No Problem through other number
+OTP not received (Salary lending)
+No Problem through other number
+Employee wants to activate lending salary service
+No Problem through other number
+Settlement after resignation (Salary lending)
+No Problem through other number
+Customer wants to contact again with Halan administration
+No Problem through other number
+Request follow up - Confirmation
+No Problem through other number
+Limit Increase
+No Problem through other number
+Inquiry about installment
+Same Number"
+KB,1510,4f598b7b95ee5e0faf0a252df72e58c7,0,General,Inquiry,Technical Issue,No,ok,Inquiry about predict and win,؟ Predict and win اية هي,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about predict and win
+Question AR: ؟ Predict and win اية هي
+
+Script:
+اية هى Predict and win؟
+Halan-> inquiry -> Inquiry about predict and win
+دلوقتي تقدر تتوقع نتايج ماتشات مصر في بطولة افريقيا وتكسب 50 جنيه علي محفظة حالا اخر معاد لتوقع نتيجة المباراة بيكون قبل الماتش ب5 دقايق .. وفي حالة التوقع صحيح، الجايزة بتضاف علي محفظة العميل خلال 4 ساعات عمل بعد نهاية المبارة
+هتكون متاحة علي التطبيق لكل عملاء حالا
+Prediet & Win
+محتاس نقضى
+دماعن اللكورة
+عشان نجيب البطولة
+عشان نجيب البطولة
+Predict & WH SO COm
+Mianich starts in The 12% 17
+Your prediction
+Time is up! Predictions are now closed
+SEA O
+1
+1
+Match is ond Dit yee peedict righ?
+Enjoy the matcht
+Upcoming Matches
+Upcoming Matches
+Favet VS Ar 044: 29 6:00
+Egypt VS Bowth Ahice dec 366. 5:00 Pud
+Favet VS Souik Ablea Duc 26.5:00 PM
+Dec: 26. 5:00 PM
+Du 29. 6:00
+Previous Preckctions
+Psevious Predictions
+Prealous Predictions
+Previous Predictions
+2-0
+2.0
+2-0
+havet
+Predict & Win
+Predict & Win
+محناصر تفضى
+محناص تفضى
+محتاجين نقضى
+دماءنا للكورة. عشان نجيب البطولة
+عشان نجيب البطولة
+عشان نجيب البطولة
+Predket & Win SO FOPI
+fev 10, 05:00 Am
+Am 05:00 .16 سيه
+Egypt
+Subck Toer Predicties
+Upcoming Matches
+Upcoming Matches
+Egppi VE.A Dec 29. 6 00
+Dec 35 5:00 PM
+for 19. 5:00
+2 -0
+Tap to win
+Play now
+Win up to 10.000 EGP with Halan Card
+٨
+Picked for you
+Spin & Win
+Circle
+Gomla
+Malan Card
+Predict & win
+Predlict Now
+Egypt VS Angola
+Deals for you
+Prefect & wis to rom
+Upcoming Matches
+Faxpt V. A Des 29. 6:00
+Figureel V'S South Ation De: 26. 5:00 PmA
+2 . 0
+2-0
+Predict & Win
+Predict & Win
+مصاصي نفضى
+دماعنا للكورة
+دماءنا للكورة
+دما عنا للكورة"
+KB,1511,2f6a32e5acb45d20993bbb1468b30fb4,0,General,Complain,Non-Technical Issue,No,ok,Predict and win prize not added to wallet,Predict and win عميل توقع النتيجة صح  و المبلغ متحولش,yes,"Vertical: General | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Predict and win prize not added to wallet
+Question AR: Predict and win عميل توقع النتيجة صح  و المبلغ متحولش
+
+Script:
+عميل توقع النتيجة صح والمبلغ متحولش Predict and win؟
+Halan -> Complaint -> Non tech -> Predict and win prize not added to wallet
+لازم نتأكد الاول من محفظة العميل ان الجايزة منزلتش (ممكن تكون نزلت وتم استخدامها) .. لو نزلت Escalation : No
+لو منزلتش .. لازم العميل يبعتلنا سكرين من التوقع الصح علي رقم الواتساب وهنقدمله طلب وسيتم الرد خلال 24 ساعة عمل Escalation:Yes
+لازم ناخد بیانات العمیل کاملة ف التیکت (اسم - رقم - بطاقة)
+9:41
+Predict & Win
+X
+Goal!
+Your prediction was right! 50 EGP has been added to your Halan Balance, enjoy your reward!
+Your prediction was right! 50 EGP has been added to your Halan Balance, enjoy your reward!
+Okay, Got it!
+Okay, Got it!
+Predict & Win
+X"
+KB,1512,84d8fd1ad3265c5093a8accc472d718e,0,General,Inquiry,Technical Issue,No,ok,Bill Payment Inquiry (Halan),اية هي خدمة شحن و دفع الفواتير ؟ (Halan),yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Bill Payment Inquiry (Halan)
+Question AR: اية هي خدمة شحن و دفع الفواتير ؟ (Halan)
+
+Script:
+اية هي خدمة شحن ودفع الفواتير ؟
+Halan -> Inquiry -> Bill Payment Inquiry
+عن طريق تطبيق حالا حضرتك ممکن تشحن رصيد لكل الشبكات و تدفع فواتير و اقساط زي :
+- دفع اقساط زي ""Valu و بريميم كارد و بي تيك""
+- تدفع فواتير الكهرباء - المياه - غاز
+- دفع مصاريف بعض المدارس والجامعات
+- حجز سفر زي جوباص و مصر للطيران و سويفل
+- خدمات طبية (فيزيتا)
+- ممکن کمان تتبرع لجمعیات خیریة کتیر
+طرق دفع الفواتير هي
+Apple Pay .1
+Credit Card .2
+3. محفظة الكترونية
+4. محفظة حالا
+.5
+Halan Card
+6. عن طريق "" رصيد حالا"" الخاص بحضرتك واقل فاتورة تكون ب 500ج علي فترات تقسيط ( شهر - شهرين - 6 اشهر ) فقط"
+KB,1513,1aed383ebabf5e979688b33838a683c0,0,General,Inquiry,Technical Issue,No,ok,bill,CRM تفاصيل دفع الفاتورة علي,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: bill
+Question AR: CRM تفاصيل دفع الفاتورة علي
+
+Script:
+تفاصيل دفع الفاتورة على CRM
+Bill Payment Details
+الخدمة اللي تم دفع الفاتورة او شحن الرصید لها
+Date & Time: 17/12/2025, 11:30
+وقت المعاملة
+Service Name: Etisalat
+رقم عميلة الشحن
+UPG Transaction ID: 0138fb04-5713-4e01-8b58-bffec4e1amz
+رقم العميل اللي دفع منه الفاتورة
+User Phone Number: 01144695355
+Bill Gateway: BEE
+Bill Type:
+PRE
+Group Name: Telecom
+Category: Mobile
+Payment Methods: {HALAN_CARD}
+طريقة الدفع
+Payment Breakdown
+Total Amount
+Service Fees
+Paid Amount
+Bill Transaction ID: 34701f20-8ff5-4b2c-a1a3-7b4867aba4a4
+User ID: 5aeb3b1fa8850500037d711b
+Beneficiary Number: 01106034844
+الرقم اللي العمیل دفعله ١ شحنله الفاتورة او الرصيد (المستفید)"
+KB,1514,becd89a92dd257239477a98ed19de159,0,General,Inquiry,Technical Issue,No,ok,bill,CRM معني طرق دفع الفواتير علي,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: bill
+Question AR: CRM معني طرق دفع الفواتير علي
+
+Script:
+معني طرق دفع الفواتير على CRM
+طريقة الدفع
+Payment Method
+کارت حالا
+HALAN CARD
+HALAN_CONSUMER_FINANCE_PRICING
+حالا كريديت (بالتقسيط)
+R2P
+محفظة الكترونية
+CLOSED_LOOP_WALLET
+محفظة حالا (محفظة التطبيق)
+APPLE_PAY
+APPLE PAY
+PAYFORT_CREDIT_CARD
+کریدیت كارد
+کریدیت كارد
+PAYFORT_WITH_TOKENIZATION_V1"
+KB,1515,308f2ff758ab5e1b8ba743b6ab007a90,0,General,Inquiry,Technical Issue,No,ok,bill,CRM معني حالات الفواتيرعلي,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: bill
+Question AR: CRM معني حالات الفواتيرعلي
+
+Script:
+معنى حالات الفواتير على CRM
+1- في الحالة دي الفاتورة اتدفعت بنجاح :
+Provider State:
+SUCCESS
+Payment State:
+SUCCESS
+2- في الحالة دي متخصمش اي مبلغ من العميل .. العمیل اکتفي بالاستعلام عن المبلغ المطلوب و لم يتم عملية الشحن او دفع الفاتورة (یعني مش هقدم شکوي للعميل) :
+Provider State:
+INITIATED
+Payment State:
+INITIATED
+4- في الحالة دي لم يتم الخصم ولم تكتمل عملية الدفع (العميل مكملش الدفع) .. يعني مش هقدم شكوي للعميل
+Payment State: FAILED
+Provider State:
+INITIATED
+Payment State:
+PENDING
+Provider State:
+INITIATED
+5- في الحالة دي فعلا تم الخصم من العميل ولم يتم دفع الفاتورة .. (هنقدم شكوي للعميل Bill payment not : (reflected
+Payment State: SUCCESS
+Provider State: FAILED"
+KB,1519,226d997c72e45358aced50b90694c489,0,General,Complain,Technical Issue,Yes,ok,Customer cant pay a bill (Halan),عميل لا يستطيع دفع فاتورة (Halan),yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Customer cant pay a bill (Halan)
+Question AR: عميل لا يستطيع دفع فاتورة (Halan)
+
+Script:
+*
+عميل لا يستطيع دفع فاتورة:
+Halan -> Complaint -> Technical -> Customer can't pay a bill
+هنأكد علي العميل لو بيدفع الفاتورة برصيد حالا : لازم الفاتورة تكون علي الاقل بقيمة 500 جنيه (مش اقل من كدا).
+• ونتأكد كمان ان الرصيد الموجود في المحفظة الالكترونیە او الکریدیت کارد کافي لدفع الفاتورة.
+• لو الشروط دي موجودة والعميل لسة مش عارف يدفع الفاتورة بوضحله الخطوات التنشيطية . .Escalation No
+في حالة تواصل معانا العميل مرة اخري ووضح ان المشكلة متحلتش هنمشي مع العميل خطوات تنشيطية :
+نتأكد ان الانترنت شغال معاه بصورة طبيعية. . نتأكد ان العميل بيختار دفع الفاتورة او شحن الرصيد لشركة الاتصالات الصحيحة .. للرقم اللي هو اختاره. (لو الرقم 012 يبقي لازم العميل يكون اختار الدفع لشبكة Orange).
+نأکد علي العمیل انه عنده فاتورة مستحقة الدفع فعلاً. •
+بعد الخطوات التنشيطية لو المشكلة متحلتش , بناخد من العميل :
+1. بیانات العميل کاملة
+2. طريقة الدفع
+3. الفاتورة اللي بيتم دفعه
+Escalation Yes بنقدمله طلب و بیتم الرد خلال 48 ساعة عمل."
+KB,1520,b0fb4feeebf254bfbff8c79992607ace,0,General,Complain,Technical Issue,Yes,ok,invoice later loan not reflected in Halan Card (Cash It),و المبلغ متحول علي الكارت cash it لو العميل اشتكي من انه طلب  (Cash It),yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: invoice later loan not reflected in Halan Card (Cash It)
+Question AR: و المبلغ متحول علي الكارت cash it لو العميل اشتكي من انه طلب  (Cash It)
+
+Script:
+لو العميل اشتكي من انه طلب cash it والمبلغ متحول علي الكارت
+cash it -> Complain -> tech -> invoice later loan not reflected in Halan Card Escalation: Yes
+لازم نتأكد ان القرض موجود علي crm ونرجع للتيم ليدر الموجود نتأكد ان الفلوس منزلتش علي الكارت
+هنعتذر للعميل ونوضحله انه هيتم حل المشكلة خلال 48 ساعة عمل"
+KB,1533,37203f8f2f315daf8753dc6f70363b54,0,General,Complain,Technical Issue,Yes,ok,Escalation process,شكوى ضد موظف + طلب التحدث مع مدير,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Escalation process
+Question AR: شكوى ضد موظف + طلب التحدث مع مدير
+
+Script:
+شكوى ضد موظف + طلب التحدث مع مدير
+في حالة أن العميل:
+يشتكي من موظف فرع أو قسم التحصيل.
+يوجد تطاول، ألفاظ غير لائقة، أو طلب رشوة او ماشابه ذلك ويطلب التحدث مع . مدير
+الإجراء المطلوب:
+On Spotإبلاغ التيم ليدر الموجود ويتواصل مع العميل فورا .
+(Complaint Against Staff تسجيل الشكوى الأساسية)."
+KB,1534,4b6347f2484c5d94bebc4db3ce461ed7,0,General,Complain,Technical Issue,Yes,ok,Escalation process,شكوى ضد موظف بدون طلب مدير,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Escalation process
+Question AR: شكوى ضد موظف بدون طلب مدير
+
+Script:
+شكوى ضد موظف بدون
+طلب مدير
+في حالة أن العميل: لديه شكوى ضد موظف فرع أو قسم التحصيل. يوجد تطاول، ألفاظ غير لائقة، أو طلب رشوة او ماشابه ذلك . والعميل لم يطلب التحدث مع مدير.
+الإجراء المطلوب:
+(Complaint Against Staffتسجيل شكوى ضد موظف ).
+تزويد العميل برقم الشكوى.
+إبلاغ التيم ليدر بالحالة وارسال رقم التيكت لليدر المتاح ."
+KB,1535,abda9282be35518faaaab0bd8705a7b2,0,General,Complain,Technical Issue,Yes,ok,Escalation process,Normal Escalation,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Escalation process
+Question AR: Normal Escalation
+
+Script:
+Normal Escalation
+في حالة أن العميل يطلب التحدث مع مدير: الخطوات: فهم مشكلة العميل ومحاولة المساعدة.1 في حال إصرار العميل :. 2
+(Escalation Ticket تسجيل) .1 إبلاغ العميل أن المدير سيتواصل معه خلال ساعة واحدة .2
+إذا رفض العميل الانتظار : .3
+( إبلاغ التيم ليدر للتواصل مع العميل فورًا ونعمل تيكت الاسكليشن ) .1"
+KB,1536,3bb46843b700520383fe3133ed38ddac,0,General,Complain,Technical Issue,Yes,ok,Escalation process,Urgent complains,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Escalation process
+Question AR: Urgent complains
+
+Script:
+Urgent complains
+إذا ذكر العميل أنه سيقوم بالشكوى إلى:
+جهاز حماية المستهلك
+الهيئة العامة للرقابة المالية المقر الرئيسي للشركة (مول العرب) رئاسة مجلس الوزراء وسائل التواصل الاجتماعي لو دخل اى حد بيقول انه تابع بأى جهه رقابيه وطالب التواصل مع حد من ادارة حالا الإجراء الفوري:
+إبلاغ التيم ليدر فورًا دون تأخير ونقدم طلب للمدير يتابع العميل
+التعامل مع الحالة بهدوء واحترافية
+محاولة احتواء الموقف ومساعدة العميل"
+KB,1537,33aefd7e82ea5944a8cede5cc34a4982,0,General,Complain,Technical Issue,Yes,ok,Escalation process,Delayed tickets,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Escalation process
+Question AR: Delayed tickets
+
+Script:
+Delayed tickets : تأخير طلب وتخطى مدة العمل
+أى مكالمه ياشباب العميل داخل بيسأل عالتيكت بتاعته ولقينا انها تخطت المهله فالحالة دى بنقدم تيكت جديده وبختار
+Delayed Ticket وبنبلغ العميل عملنا استعجال لطلبه ومشكلته هتتحل ف أقرب وقت
+Escalation needed? *
+Yes
+No
+Delayed Ticket
+Collection Call - Customer Received a call from collection team to collect Installment?
+Yes
+O No
+Existing Ticket Number*"
+KB,1620,e3d4f85f78255a278152f78dc8eb16af,0,General,Inquiry,Technical Issue,No,ok,Inquiry about Tap-To-Win (Halan),Tap-To-Win اية هي,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about Tap-To-Win (Halan)
+Question AR: Tap-To-Win اية هي
+
+Script:
+اية هي Tap-To-Win ؟
+Halan-> Inquiry -> Inquiry about Tap-To-Win
+هی لعبة داخل تطبیق حالًا. حضرتك بتكون مؤهل ليها بعد إتمام معاملات يومية بقيمة إجمالية 1000 جنيه أو أكثر باستخدام کارت حالًا (CF On Card)
+يقوم العميل بخلط مجموعة من البطاقات، ثم يختار بطاقة واحدة ليكشف عن الجائزة ویکسب كاش باك فوري من 20جنيه حتى 10,000 جنيه . يتم إضافة مبلغ المكافأة مباشرة إلی کارت حالًا الخاص بالعميل.
+متاح للعميل محاولة واحد فقط ف اليوم."
+KB,1622,321dfd970d3c5bb19b8f74fda5a5be8a,0,General,Complain,Technical Issue,Yes,ok,Tap-To-Win prize not available on app,مش متاحة ليه بعد ما استخدم 1000ج  Tap-To-Winعميل يشكوا ان,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Tap-To-Win prize not available on app
+Question AR: مش متاحة ليه بعد ما استخدم 1000ج  Tap-To-Winعميل يشكوا ان
+
+Script:
+عميل يشكوا ان Tap-To-Win مش متاحة ليه بعد ما استخدم 1000 ج؟
+Halan-> complaint -> tech -> Tap-To-Win prize not available on app Escalation: No لازم نتأكد ان :
+1- المعاملات تمت عن طريق الكارت ( CF On Card)
+2- المعاملات بقيمة 1000 ج في الیوم ( مش اكتر من يوم).
+3- العميل من credit scoring ولو فروع لازم يكون من الفروع المخصصة.
+هنقدم طلب لحل المشكلة وناخد بياناته كاملة و سكرين شوت من الجايزة وسيتم الرد خلال 48 ساعة عمل.
+Back Office <- Escalation: Yes"
+KB,1644,db8b95eea9f45e37b09c52013c396e09,0,General,Request,Non-Technical Issue,Yes,ok,Cancel Loan after disbursement (Cash It),"بعد الصرف ""Invoice later"" عميل يريد الغاء الطلب",yes,"Vertical: General | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Cancel Loan after disbursement (Cash It)
+Question AR: بعد الصرف ""Invoice later"" عميل يريد الغاء الطلب
+Notes: (لجميع العملاء)
+Body: (لجميع العملاء)
+
+Script:
+عميل يريد الغاء الطلب ""Invoice later"" قبل استكماله بعد الصرف (لجميع العملاء):
+Cash it -> Request -> Cancel Loan after disbursement
+Escalation: Yes
+في حالة عميل طلب انه يلغي معاملة -> المعاملة دي ""Cash It - Cash Loan"", والفلوس ع الكارت بتبقي ظاهرة كدا علي CRM
+Vendor Name
+Disbursement Type
+Cash loan
+UPG_HALAN_CARD_NO_PIN
+هنراجع الحاجات :
+1. تقديم الطلب خلال 24 ساعة من تاريخ إصدار القرض.
+2. مبلغ المصروف لازم يبقي بدون أي استخدام : في حال قام العميل بسحب المبلغ أو إيداعه مرة أخرى فسيتم رفض الطلب (نقدر نشوفها من ""CRM -> Card transactions"".
+3. متاحة لجميع العملاء ( الفروع وCredit Scoring )
+سيتم الغاء القرض وخصم المبلغ من الكارت خلال 48 ساعة عمل .. لازم ناخد البيانات دي في التيكت:
+اسم العميل
+تاريخ المعاملة
+رقم البطاقة
+حالة الطلب
+قيمة المعاملة
+الفرع"
+KB,1738,2e9a8c86cca55556bee33695e45740f0,0,General,Inquiry,Non-Technical Issue,No,ok,Inquiry about salary time,موظف بيستفسر عن موعد القبض,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about salary time
+Question AR: موظف بيستفسر عن موعد القبض
+
+Script:
+يرجي الرجوع والتواصل مع ادارة الموارد البشرية
+- Escalation: No
+- CRM: General → Inquiry → Inquiry about salary time"
+KB,1740,18feed700dae5daab38640b288ec3fbb,0,General,Inquiry,Non-Technical Issue,No,ok,Directed to HR Hotline,موظف حالي أو سابق داخل MNT-Halan عنده مشكلة فى الأوراق أو المستحقات,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Directed to HR Hotline
+Question AR: موظف حالي أو سابق داخل MNT-Halan عنده مشكلة فى الأوراق أو المستحقات
+
+Script:
+دلوقتي حضرتك تقدر تتواصل مع خدمة عملاء الموارد البشرية عن طريق الأرقام التالية: (0248812619) - (0223661712)
+• علما بأن مواعيد العمل الخاصة بهم من الساعة 10 ص حتى 7 م جمعة وسبت اجازة.
+- Escalation: No
+- CRM: Irrelevant Call → Directed to HR Hotline"
+KB,1767,8d0f523a7bda59da9cb00d8f455ded37,0,General,Request,Non-Technical Issue,Yes,ok,"want to contact with marketing administration,legal IT",عميل يريد التواصل مع قسم التسويق الإداري ...... الخ,yes,"Vertical: General | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: want to contact with marketing administration,legal IT
+Question AR: عميل يريد التواصل مع قسم التسويق الإداري ...... الخ
+
+Script:
+اسم الشركة ؟
+حضرتك ممكن توضحلي القسم الذي تريد التواصل معه؟
+ما الهدف من التواصل بالتفصيل ؟
+تم تسجيل طلبك و ارساله للقسم المختص و لو فى امكانية هيتم التواصل معك
+بيتم عمل التكت بكل التفاصيل اسم العميل - رقم تليفونه اسم الشركة - القسم الذي يريد التواصل معه - الهدف من التواصل
+Send to call center TL
+- Escalation: Yes
+- CRM: Request → want to contact with marketing administration,legal IT"
+KB,1770,39f03ec5ed8d5cd78278457761730e68,0,General,Inquiry,Non-Technical Issue,No,ok,IVR Tree and Routing,شجرة الرد الآلي وتوجيه المكالمات,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: IVR Tree and Routing
+Question AR: شجرة الرد الآلي وتوجيه المكالمات
+
+Script:
+Queue Name | IVR Tree Selection
+Card | لإعادة تعيين الرقم السري يضغط 1 ثم 1
+ | الاستفسارات يضغط 1 ثم 2
+ | الشكاوي يضغط 1 ثم 3
+ | للتقديم وتفعيل حالا كريديت يضغط 2 ثم 1
+Halan Inbound |
+ | التقديم على المشروعات الصغيره 2 ثم 2
+ | الشكاوي والدعم يضغط 2 ثم 3
+Cash | لإعادة تعيين الرقم السري يضغط 3 ثم 1
+الشكاوي والدعم يضغط 3 ثم 2
+Elite | استثمار يضغط 4 ثم 1
+ | جمعية يضغط 4 ثم 2
+ | دهب يضغط 4 ثم 3
+Gomla | يضغط 5
+Salary lending | للتقديم يضغط 6 ثم 1
+الراتب المبكر | الشكاوي والدعم يضغط 6 ثم 2
+- Escalation: No
+- CRM: General → Inquiry → IVR Tree"
+KB,1840,84f5d3d400505986af902f7b934db0f8,0,General,Complain,Non-Technical Issue,Yes,ok,Against Staff Complaints,شكوى عميل فى موظف (فرع - تحصيل - نقطة تفعيل - توصيل - حالا مارت..),yes,"Vertical: General | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Against Staff Complaints
+Question AR: شكوى عميل فى موظف (فرع - تحصيل - نقطة تفعيل - توصيل - حالا مارت..)
+
+Script:
+بنعتذر للعميل عن المشكلة اللي واجهته ... تسمع المشكلة بالظبط ونكتب الشكوي بالكامل مع كتابة اسم العميل رباعي وبيتم تقديم الشكوي واتخاذ الاجراء اللازم بعد التحقيق في الشكوي والرد بيكون خلال 3 أيام عمل.
+
+في حالة شكوى سوء المعاملة: لازم نوضح ف التيكت وقت الشكوي - العميل معاه دليل ولا لا سكرين شوت - رسايل - صور للمشكلة ونوضح دا ف التيكت مع توضيح رقم الواتساب للعميل +20216303
+
+في حالة العميل يشكوا موظف التحصيل: لازم نتأكد من CRM متأخرات العميل كام قسط ومدفعش كام قسط ونختار أقل من 3 شهور ولا أكثر من 3 شهور.
+- Escalation: Yes
+- CRM: General → Complain → Against Staff"
+KB,1859,4ac1dd96441753e7b3b6aef9d5d43bb2,0,General,Inquiry,Non-Technical Issue,No,ok,General Info and Business Rules,معلومات عامة وقواعد العمل الخاصة بكارت حالا,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: General Info and Business Rules
+Question AR: معلومات عامة وقواعد العمل الخاصة بكارت حالا
+
+Script:
+- ""كاش إت"" أصبح يمكن تحويله على كارت حالا، وعلشان نفرق بينه وبين الحد الائتماني، هنلاقي قرض اتفتح بقيمة معاملة ""كاش إت"" اللي نزلت على الكارت وبيكون اسمه CF Loan على البورتال و Cash Loan على CRM. و ""كاش إت"" دي خدمة على أبلكيشن حالا، العميل بيرفع فاتورة شراء على التطبيق وبينزل له مبلغ الفاتورة دي على الكارت يقدر يسحبه او تشتري بيه. ولازم أيقونة ""تفعيل الكريديت على الكارت تكون مقفولة"".
+- الحد الأدنى للقرض Credit on Card أصبح 50 جنيه فيما أكثر ، أي أنه لا يمكن انشاء قرض بقيمة أقل من 50 جنيه.
+- لابد من استلام كارت حالا عند تفعيل حالا كريديت.
+- المبلغ الموجود داخل محفظة حالا يمكن استخدامه في دفع أقساط - شبكه تجار حالا ، دفع قسط حالا، شحن الرصيد، دفع فواتير، دفع اقساط متجر حالا، حالا جملة.
+- في حالة ان العميل حول الليمت من التطبيق للكارت وعمل عملية بالكارت وال Toggle لسه مفتوحة، بعدها العميل عمل إيداع على الكارت من مبلغه الشخصي الخاص بيه، فقيمة العملية هتتخصم من المبلغ الكاش. او ان العميل فتح ال Toggle بعدها عمل ايداع بعدها عمل عملية، فقيمة العملية هتتخصم من المبلغ الكاش. يعني لو العميل حول 20000 من التطبيق للكارت، بعدها اشترى منتجات ب 5000 ، بعدها عمل ايداع ب 7000 وال Toggle قفلت ... ف هنلاقي ان مفيش قرض اتفتح وان العميل رجع له حالا كريديت بالكامل على الكارت، وان الايداع الخاص به قيمته اصبحت 2000.
+- علشان نبقى عارفين لما نيجي نحاول نشوف رصيد العميل على الكارت والرصيد ميظهرش دا كدة معناه ان فيه مشكلة في الكارت سواء رقم سري او مشكلة اخرى.
+- عند منح حالا كريديت من فروع مشروعي وتساهيل لعميل التمويل الاستهلاكي، يلزم استلام كارت حالا لتفعيل حالا كريديت الممنوح للعميل. يعني لازم العميل يستلم كارت حالا عند تفعيل حد ائتماني من فروع مشروعي وتساهيل).
+- يمكن عمل الكارت لمجرد ايداع وسحب اموال منه وإليه فقط."
+KB,1859,a73d5c4996f550c89110089313ddd601,1,General,Inquiry,Non-Technical Issue,No,ok,General Info and Business Rules,معلومات عامة وقواعد العمل الخاصة بكارت حالا,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: General Info and Business Rules
+Question AR: معلومات عامة وقواعد العمل الخاصة بكارت حالا
+
+Script:
+تهلاكي، يلزم استلام كارت حالا لتفعيل حالا كريديت الممنوح للعميل. يعني لازم العميل يستلم كارت حالا عند تفعيل حد ائتماني من فروع مشروعي وتساهيل).
+- يمكن عمل الكارت لمجرد ايداع وسحب اموال منه وإليه فقط.
+- لو العميل عنده اكثر من مصدر من الفلوس داخل رصيد الكارت وتم شراء أي منتج من الكارت ف الأولوية هتكون للحد الإئتماني. يعني لو العميل عنده 10 على الكارت و 10 حد ائتماني وعمل ايداع ب 10 من فلوسه .... وحب يشتري موبايل ب 5 ف الأولوية هتكون خصم الفلوس من حالا كريديت. لكن لو العميل قافل التقسيط بكارت حالا فكدة مش هيبقى موجود اصلا حد ائتماني على الكارت ودا معناه ان فلوس الموبايل هتتخصم من ال 20.
+- أقل سن للعميل يكون 15 سنة علشان يعمل كارت. لكن لو العميل هيفعل حد ائتماني ف اقل سن بيكون 21 سنة.
+- العميل يقوم بإنشاء جميع الارقام السرية من الأبلكيشن سواء باسورد ال ATM او باسورد الأبلكيشن.
+
+الفرق بين الكارت القديم والكارت الجديد:
+- الكارت القديم: دا اللي كان بيتعمل في ظرف ابيض وبيبقى موجود فيه باسورد ال ATM في الورقة.
+- الكارت الجديد: بتنزل في ظرف اسود ومش بيكون مكتوب فيها باسورد ال ATM لكن العميل بينشئ الباسورد الخاص به من الأبلكيشن."
+KB,1859,152095f5f2eb53e0abe030b36fff7625,2,General,Inquiry,Non-Technical Issue,No,ok,General Info and Business Rules,معلومات عامة وقواعد العمل الخاصة بكارت حالا,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: General Info and Business Rules
+Question AR: معلومات عامة وقواعد العمل الخاصة بكارت حالا
+
+Script:
+القديم: دا اللي كان بيتعمل في ظرف ابيض وبيبقى موجود فيه باسورد ال ATM في الورقة.
+- الكارت الجديد: بتنزل في ظرف اسود ومش بيكون مكتوب فيها باسورد ال ATM لكن العميل بينشئ الباسورد الخاص به من الأبلكيشن.
+
+جدول استخدامات كارت حالا وفروقاتها:
+| اوجه الاختلاف | Prepaid Card (Only Deposits) يعني من غير حد ائتماني او قرض | Credit on Card |
+| :--- | :--- | :--- |
+| مصاريف اصدار الكارت لأول مرة | الفرع بيوضحها لحضرتك | الفرع بيوضحها لحضرتك |
+| فترة التقسيط | - | 6 To 36 على التطبيق |
+| نسبة الفائدة | - | التمويل الاستهلاكي نفس فائدة حالا كريديت (38.38% سنوياً) / التمويل المضمون / الآمن (Secured Loan) هیتم تحويلك لخدمة العملاء الخاصة بالتمويل المضمون لمساعدة حضرتك. |
+| اماكن التفعيل او طلب الكارت | بعض فروع تساهيل الموجودين في الشيت فروع متشطبة تساهيل .xlsx او المولات او فروع Circle K الموجود فيهم مندوب حالا | بعض فروع تساهيل الموجودين في الشيت فروع متشطبة تساهيل .xlsx او المولات الموجود فيهم مندوب Circle K |
+| اماكن الاستلام | بعض فروع تساهيل الموجودين في الشيت فروع متشطبة تساهيل .xlsx بعض فروع Circle K او المولات الموجود فيهم مندوب حالا | بعض فروع تساهيل الموجودين في الشيت فروع متشطبة تساهيل .xlsx بعض فروع Circle K أو المولات الموجود فيهم مندوب حالا |"
+KB,1859,a1c8844ec1f65d96b04da4f38f4df53a,3,General,Inquiry,Non-Technical Issue,No,ok,General Info and Business Rules,معلومات عامة وقواعد العمل الخاصة بكارت حالا,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: General Info and Business Rules
+Question AR: معلومات عامة وقواعد العمل الخاصة بكارت حالا
+
+Script:
+لشيت فروع متشطبة تساهيل .xlsx بعض فروع Circle K او المولات الموجود فيهم مندوب حالا | بعض فروع تساهيل الموجودين في الشيت فروع متشطبة تساهيل .xlsx بعض فروع Circle K أو المولات الموجود فيهم مندوب حالا |
+| طريقة عمل الخدمة | العميل بيروح الفرع علشان يستكمل اجراءات عمل الكارت. العميل بيعمل الكارت ويقدر يعمل ايداع وسحب عليه من الفلوس الخاصة به. ويقدر بعد كدة ياخد قرض من تساهيل عليه عادي او يفعل حد ائتماني ويحوله على الكارت عادي. | العميل بيحول حالا كريديت بتاعه من التطبيق الى الكارت ومش بيقدر يسحبهم كاش. يقدر يحول كل حالا كريديت الموجود معه من أبلكيشن حالا الى كارت حالا بحد اقصى 50,000 في عملية واحدة وتكون العملية صالحة للاستخدام على الكارت لمدة ساعتين فقط، وإذا لم تستخدم في تلك المدة تسترد او تسترجع مرة اخري على حد ائتماني التطبيق. الفايدة والاقساط بتتحسب لما العميل يستخدم من حالا كريديت في الشراء وليس في حالة وجوده بدون استخدام. يعني لو العميل حول 50.000 على الكارت واستخدمهم في الشراء، الأبلكيشن هيحسب اقساط ال 50.000 على المدة اللي هو عايزها عادي. لكن لو العميل حول 50.000 على الكارت واستخدم 5000 فقط منهم، الأبلكيشن هيحسب اقساط ال 50.000 كلهم اللي حولهم على الكارت وبعدين لما ال 45.000 ترجع على حالا كريديت, هتظهر قيمة الاقساط الفعلية اللي هيدفعها على ال 5000 فقط. |
+
+أماكن التفعيل المعتمدة: New Activation Points 2025 - Copy.xlsx
+- Escalation: No
+- CRM: General → Inquiry → Business Rules"
+KB,283,4899d0978e5656a7b0e8aead486e796e,0,General,Inquiry,Non-Technical Issue,No,ok,"Inquiry about RH , Delivery","عميل يستفسر عن توصيل الافراد , الديلفرى",yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about RH , Delivery
+Question AR: عميل يستفسر عن توصيل الافراد , الديلفرى
+
+Script:
+* عميل يستفسر عن توصيل الأفراد / الديلفرى:
+Inquiry about RH/Delivery <- Inquiry <- Halan
+Escalation :No
+انا بعتذر لحضرتك تم إيقاف خدمة توصيل الأفراد والديلفرى , حالا متخصصة حاليا في خدمات التمويل والتقسيط والمدفوعات فقط.
+ملحوظة :
+في حالة استقبال مكالمة شكوى من سائق انه لم يستقبل رسالة القبض؟
+انا بعتذر لحضرتك، حضرتك لو ليك مستحقات سيتم ارسالها لحضرتك في أقرب وقت ممكن. (لا يتم تقديم طلب)"
+KB,285,9992b3df443c5d43bc1ef7f1adbf5bc6,0,General,Request,Non-Technical Issue,Yes,ok,Customer wants to contact with Halan administration,رغبة العميل في التواصل مع أقسام إدارة حالا,yes,"Vertical: General | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Customer wants to contact with Halan administration
+Question AR: رغبة العميل في التواصل مع أقسام إدارة حالا
+
+Script:
+* رغبة العميل في التواصل مع أقسام إدارة حالا:
+Customer wants to contact with Halan administration <- Request <- Halan
+Escalation : Yes
+اسم الشركة؟
+حضرتك ممكن توضح لي القسم الذي تريد التواصل معه؟
+ما الهدف من التواصل؟
+تم تسجيل طلبك وارساله للقسم المختص ولو في امكانية هيتم التواصل معك
+بيتم عمل التكت بكل التفاصيل اسم العميل - رقم تليفونه -اسم الشركة - القسم الذي يريد التواصل معه - الهدف من التواصل : Send to call center TL"
+KB,286,d296d0cf6ae95592a737af1ced3c390d,0,General,Request,Technical Issue,No,ok,Customer wants to deactivate account,عميل يريد إيقاف حسابه في حالا (يريد اغلاق التطبيق ولا يوجد عنده حد ائتماني),yes,"Vertical: General | Type: Request | Issue: Technical Issue | Escalation: No
+
+Question EN: Customer wants to deactivate account
+Question AR: عميل يريد إيقاف حسابه في حالا (يريد اغلاق التطبيق ولا يوجد عنده حد ائتماني)
+
+Script:
+* عميل يريد إيقاف حسابه فى حالا (يريد اغلاق التطبيق ولا يوجد عنده حد ائتماني):
+Customer wants to deactivate account <- Request <- Halan
+Escalation :No
+ممكن حضرتك تدينى فرصة اعرف ايه السبب واحاول اساعدك في حله. حضرتك ممكن تعمل تسجيل خروج من التطبيق وبذلك يكون وقفت البرنامج مؤقتا وفي نفس الوقت لم يقم بإلغاء حسابك في حالا.
+* فى حالة اصراره على طلبه: سنقوم بإغلاق حسابه من جانبنا بشرط اتصاله من نفس الرقم: تم ايقاف حسابك في حالا (يتم عمل ذلك من خلال الادمن تول).
+سيتم كتابة كومنت على الادمن تول :""As per customer request and called us from same No acc deactivated""
+* فى حالة لم يتواصل برقم تليفونه : استاذنك تشرفنا بالاتصال بالرقم اللى مسجل بيه معانا علشان أقدم لك الطلب"
+KB,378,bb33051938e65291958f9ad1cf3ab314,0,General,Inquiry,Non-Technical Issue,No,ok,Tasaheel WhatsApp,رقم الواتساب الخاص بتساهيل,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Tasaheel WhatsApp
+Question AR: رقم الواتساب الخاص بتساهيل
+Notes: حضرتك تقدر تبعتهالنا علي رقم الواتساب 01050573090
+Body: حضرتك تقدر تبعتهالنا علي رقم الواتساب 01050573090
+
+Script:
+01050573090"
+KB,451,4b2abd5897d955cb85c9c3955e6e6ab1,0,General,Inquiry,Non-Technical Issue,No,ok,inquiry about Halan Coins service,فترة صلاحية النقاط ؟,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: inquiry about Halan Coins service
+Question AR: فترة صلاحية النقاط ؟
+Notes: CRM: Halan coins -> Inquiry -> inquiry about Halan Coins service
+Body: CRM: Halan coins -> Inquiry -> inquiry about Halan Coins service
+
+Script:
+فترة صلاحية النقاط ؟
+Halan coins صالحة لمدة سنة من تاريخ اضافة النقاط ."
+KB,452,d7fc8292c3655188a9aee77ab7747e1f,0,General,Inquiry,Technical Issue,No,ok,inquiry about Halan Coins service,هل متاح تحويل النقط لرقم تاني ؟,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: inquiry about Halan Coins service
+Question AR: هل متاح تحويل النقط لرقم تاني ؟
+
+Script:
+هل متاح تحويل النقط لرقم تانى ؟
+لا غير متاح تحويل النقاط لا رقم تاني"
+KB,453,92aecef69aaf5d4a9bce89a11503b23a,0,General,Inquiry,Non-Technical Issue,No,ok,inquiry about Halan Coins service,هل متاح استخدام النقط ف دفع الفواتير و سحب الفلوس كاش؟,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: inquiry about Halan Coins service
+Question AR: هل متاح استخدام النقط ف دفع الفواتير و سحب الفلوس كاش؟
+
+Script:
+هل متاح استخدام النقط ف دفع الفواتير وسحب الفلوس كاش؟
+لا غير متاح دفع الفواتير او سحبها كاش .. متاح فقط استخدامها في المشتريات."
+KB,454,eb105debdd1e5ef2ac97e504f65e1072,0,General,Inquiry,Non-Technical Issue,No,ok,inquiry about Halan Coins service,ايه هي خدمة نقاط حالا؟,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: inquiry about Halan Coins service
+Question AR: ايه هي خدمة نقاط حالا؟
+Notes: ملحوظة : برنامج النقط متاح فقط لمستخدمين الاندرويد فقط و لازم العميل يبقي منزل اخر تحديث من التطبيق و يأكد الاشتراك
+Body: ملحوظة : برنامج النقط متاح فقط لمستخدمين الاندرويد فقط و لازم العميل يبقي منزل اخر تحديث من التطبيق و يأكد الاشتراك
+
+Script:
+ايه هي خدمة نقاط حالا؟
+• تقديرا من حالاً لعملائها صممنا برنامج Halan coins خصيصاً لحضرتك .. من غيراي رسوم اضافيه هتقدر تجمع Halan coins تقدر تستخدمها لشراء منتجات من خلال تطبيق حالا او من خلال شبكة التجار الخاصة ب Halan coins المتاحة علي التطبيق.
+• عند تجميع النقط تقدر تعمل استبدال للنقاط , والنقاط بتتحول لما يساويها فلوس وبتنزل لحضرتك علي محفظة نقاط حالاً وبتقدر تشتري منتجات من خلال المحفظة الخاصة بالنقط.
+CRM: Halan coins -> Inquiry -> inquiry about Halan Coins service"
+KB,455,ee87dd086f6a5550bacfd1c146042e59,0,General,Inquiry,Non-Technical Issue,No,ok,inquiry about Halan coins service,كيف يعمل برنامج نقاط حالا ؟,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: inquiry about Halan coins service
+Question AR: كيف يعمل برنامج نقاط حالا ؟
+
+Script:
+كيف يعمل برنامج نقاط حالا ؟
+CRM: Halan coins -> Inquiry -> inquiry about Halan coins service
+9:41
+X
+كيف يعمل برنامج حالاً كوينز؟
+إجمع الكوينز
+في كل مرة تقوم فيها بعملية شراء من خلال Halan تربح كوينز. 10 جنية مصري = 1 كوين.
+جمعت كوينز, تصرفهم فين؟ ممكن تصرف الكوينز عن طريق ثلاث اماكن
+1. متجر حالاً
+اشترى من مختلف الفئات فى المتجر، وانت بتدفع اختار طريقة الدفع ""استخدام حالاً كوينز""
+2. حالاً جملة
+اشترى طلبات البيت من حالاً جملة، وانت بتدفع اختار طريقة الدفع ""استخدام حالاً كوينز""
+3. احد التجار
+اشترى طلبات البيت من حالاً جملة، وانت بتدفع اختار طريقة الدفع ""استخدام حالاً كوينز""
+BIM
+28
++50 DeFact
+ACTIV"
+KB,456,1ef74c66aef15a1f91dc23af17598469,0,General,Inquiry,Non-Technical Issue,No,ok,inquiry about Halan coins service,إزاي اقدر افعل برنامج نقاط حالاً ؟,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: inquiry about Halan coins service
+Question AR: إزاي اقدر افعل برنامج نقاط حالاً ؟
+
+Script:
+إزاى اقدر افعل برنامج نقاط حالاً ؟
+لازم حضرتك تكون محدث اخر تحديث للتطبيق وعند فتح التطبيق بيظهر لحضرتك ايقونة الاشتراك اعلي الصفحة الرئيسية
+CRM: Halan coins -> Inquiry -> inquiry about Halan coins service
+9:41
+ـحالا
+حالاً كوينز
+X
+X
+6
+اصرف واكسب مع حالاً كوينز
+بسرعة وبسهولة احصل على جوائز ومكافئات فى كل مرة تصرف فيها.
+اعرف اكثر
+متجر حالا
+تمويل مشروعات
+حالاً ماركت
+دفع فواتير
+دفع فواتير
+حالا تحويش
+عرض الكل
+عروض متجر حالاً
+CO
+الرئيسية
+الطويل
+المتجر
+كارت حالا
+حسابى
+الرئيسية
+التمويل
+المتجر
+كارت حالا
+حسابى
+مبروك! جالك جايزة من حالاً كوينز
+دلوقتي تقدر تحول الكوينز الفلوس، ادخل استلم جايزتك واستمتع بباقي مميزات حالاً كوينز. يرجى قراءة الشروط و الاحكام قبل استلام الجائزة
+احصل على جائزتك المجانية
+h
+حالا تحويش
+دفع فواتير
+دفع فواتير
+حالاً ماركت
+عرض الكل
+عروض متجر حالاً
+9:41
+ـحالا
+5
+h"
+KB,457,13a4a11ffc6c5a8ea429b0de765466fb,0,General,Inquiry,Non-Technical Issue,No,ok,inquiry about available vendors,ازاي اعرف قايمة التجار المتاحين لاستخدام النقط ؟,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: inquiry about available vendors
+Question AR: ازاي اعرف قايمة التجار المتاحين لاستخدام النقط ؟
+
+Script:
+ازاى اعررف قايمة التجار المتاحين لاستخدام النقط ؟
+بعد الاشتراك بيظهر قائمة التجار المتاحين عند الدخول علي حالا كوينز بوينتس وبيظهر كمان عناوين الفروع المتاح فيها استبدال النقاط
+CRM: Halan coins -> Inquiry -> inquiry about available vendors
+9:4
+٨
+حالاً كوينز
+مبروك!
+احصل عليها
+جالك جائزة مجانية من حالاً كوينز
+كيف يعمل برنامج حالاً كوينز؟
+قائمة التجار
+km 21.75
+ستاربكس
+■ طعام
++ خصم فوري
+المعادي
+km 29.94
+الفروع القريبة
+الترتيب حسب الاقرب الى موقعك الحالى
+مصر الجديدة
+km 34.67
+مدينة نصر
+kom 35.31
+سيتي ستارز
+km 36.4
+٥
+DeFacto
+BIM
+ـيم + خصم فوري
+ديفاكتو * خصم فوري
+الشيراتون
+km 39.7
+9:41
+مول العرب km 0.05
+مول مصر
+km 5.57
+المهندسين
+٥
+الكل
+- الأثاث
+فى الطعام
+■ أجهزة المحمول الكمبيوتر
+BIM
+ستاربكس * خصم فوري
+سم خصم فوري
+ACTIV
+نوبي + خصم فوري
+أخلف + خصم فوري
+فرع المعادى 1.2 km
+فرع المعادى 1.2 km
+STARBUCKS"
+KB,458,625fba55e5835f67ae92ffec9c7ca742,0,General,Inquiry,Non-Technical Issue,No,ok,inquiry about available coins,ازاي اعرف انا معايا كام نقطة ؟,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: inquiry about available coins
+Question AR: ازاي اعرف انا معايا كام نقطة ؟
+
+Script:
+ازاى اعرف أنا معايا كام نقطة ؟
+عدد النقط بيظهر لحضرتك في أكثر من مكان ..
+CRM: Halan coins -> Inquiry -> inquiry about available coins
+1. اعلى الصفحة الرئيسية .
+0:41
+ـحالا
+اشتري طلبات البيت من حالاً ماركت
+اطلب دلوقتى
+تمويل مشروعات
+th
+متجر حالا
+2. الدخول علي حسابي هيظهر لحضرتك رصيد محفظة النقط .
+9:41
+>
+حسابي
+محمد علاء السيد 01014491195
+رصيد حالا ٥ جنيه
+نقاط حالا 1.750 نقطة
+بيانات الحساب
+٧
+طلباتى السابقة
+3. الدخول علي البائر الخاص بالخدمة.
+>
+حالاً كوينز
+كوينز
+6
+5 = 0.10 جنية"
+KB,459,1d28ef8f6562595f9f3028810e9dd5ec,0,General,Inquiry,Non-Technical Issue,No,ok,inquiry about coins,هل بيظهر للعميل هيكسب كام نقطة عند شراء المنتجات خلال التطبيق ؟,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: inquiry about coins
+Question AR: هل بيظهر للعميل هيكسب كام نقطة عند شراء المنتجات خلال التطبيق ؟
+
+Script:
+هل بيظهر للعميل هيكسب كام نقطة عند شراء المنتجات خلال التطبيق ؟
+ايوة بيظهرل للعميل عدد النقط اللي هيكسبها خلال اتمام عملية الشراء والعدد دا بيتحدد بناء علي سعر المشتريات .. كل ما المشتريات تزيد عدد النقط هيزيد
+CRM: Halan coins -> Inquiry -> inquiry about coins
+I
+9:41
+٨
+الشراء
+X
+عربة التسوق
+التوصيل
+المراجعة
+الدفع
+Samsung
+تليفزيون سامسو الوضوح AD Full
+ـوصة سمارت LED فائق ـغر داخلي + واي فاي +
+9,000 جنيه
+٢ حذف
+الكمية: 1
+٧
+محمد علاء السيد ابراهيم
+موعد التوصيل
+الاثنين 27 فبراء
+تفاصيل العملية
+طريقة الدفع
+الدفع عند الاستلام
+المخصوم من رصيد المحفظة
+300 جنيه
+المخصوم من رصيد حالاً كوينز
+100 جنيه
+سيتم دفعه عند الاستلام
+8,600 جنيه
+مصاريف الشحن
+50 جنيه
+الاجمالى
++36 كوين
+9,050 جنيه
+Tefal
+مكواة بخار تيفال 2200 وات
+800 جنيه
+حذف
+٧ الكمية: 1
+اجمالى العربة (1)
+26,000 جنيه
+تفسير >
+عنوان الشحن
+المنزل
+غداً
+الاحد
+25 فبراير
+26 فبراير
+متكسب 450 كوين
+شراء"
+KB,461,e3d3bc0f1e5f5af0ba1766366cf7f0d9,0,General,Inquiry,Non-Technical Issue,No,ok,inquiry about coins usage,ازاي اتابع استخدام برنامج النقاط ؟,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: inquiry about coins usage
+Question AR: ازاي اتابع استخدام برنامج النقاط ؟
+
+Script:
+ازاى اتابع استخدام برنامج النقاط ؟
+عند الاشتراك و اضافة النقاط بيظهر لحضرتك عند الدخول علي الخدمة كيفية الاستخدام و الاماكن اللي تم استبدال النقط من خلالها مع اقرب تاريخ انتهاء صلاحية النقاط
+CRM: Halan coins -> Inquiry -> inquiry about coins usage
+9:41
+>
+1
+حالاً كوينز
+كوينز
+1,750 = 165 جنية
+النقاط السابقة
+الإستخدام
+النقاط السابقة
+الإستخدام
+شراء من المتجر
++200
+09 سبتمبر 2023 - 4:13 pm
+شراء من المتجر
++150
+تسجيل الدخول اليومي
+09 سبتمبر 2023 - 4:13 pm
+قبانى
+-5,600
+09 سبتمبر، 2023 - 4:13 pm
+تسجيل الدخول اليومي 09 سبتمبر 2023 - 4:13 pm
++50
+9:41
+I
+9:41
+>
+حالاً كوينز
+كوينز
+1,750 = 165 جنية
+النقاط السابقة
+الإستخدام
+شراء من متجر حالاً
+-10,560
++200
+09 سبتمبر 2023 - 4:13 pm
+09 سبتمبر، 2023 - 4:13 pm
+شراء من المتجر
++150
+09 سبتمبر 2023 - 4:13 pm
+>
+حالا كوينز
+كوينز
+1,750 = 165 جنية
+ء
+09 سبتمبر 2023 - 4:13 pm
+شراء من حالاً جملة
+-2,000
+تنتهي صلاحية 370 نقطة في 1/12/2024
+شراء من المتجر
+09 سبتمبر 2023 - 4:13 pm
++50"
+KB,462,587880825a10591ca86732d844753043,0,General,Inquiry,Technical Issue,No,ok,inquiry about payment methods,طرق الدفع عن طريق نقط حالا عند شراء المنتجات من خلال التطبيق ؟,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: inquiry about payment methods
+Question AR: طرق الدفع عن طريق نقط حالا عند شراء المنتجات من خلال التطبيق ؟
+Notes: CRM: Halan coins -> Inquiry -> inquiry about payment methods
+Body: CRM: Halan coins -> Inquiry -> inquiry about payment methods
+
+Script:
+طرق الدفع عن طريق نقط حالا عند شراء المنتجات من خلال التطبيق ؟
+• يقدر العميل الدفع عن طريق محفظة حالا +نقاط حالاً اذا كان يملك قيمة المشتريات.
+• لو قيمة النقاط + محفظة حالا اقل من قيمة المشتريات يمكن ان يختار معهم طريقة دفع ثالثة سواء الدفع كاش او كريديت كارد او الحد الائتماني.
++-
+م
+الشراء
+العشرالمـ
+الشراء
+التوصيل
+المرفوعة
+استخدام يعيد العجمى الرصيد اختفى لل عبد
+العددكم يعيد المحفظة الوحيد المتبقى: 0 5040
+nude 300.00
+استخدام منظ فوم قرية الشيخ لاجب
+1.300 Ath - 100 جنيه
+[٢ موعد التوصيل
+طرق الدفع
+٤٢٣ شواية
+26 فيواي
+وحيد الذى الاجمالى المصر: 70 جنيه
+بكلية الرهبان في الخصم المباشر
+دفاعية الرقيبان في المخيم المباشر
+تفاصيل العملية
+طريقة الحمى
+العاشور عن وعود الشاشات
+100 جنيه
+8.6٥٥ جنيه
+الخالى العودة 123
+الضالود العوية (41
+الاستعرار للمراجعة
+الشراء
+300.00 جنيه
+ـامدول
+معهد لقد السيد ابراهيم
+استخد لم حافظ كوستر امعبد الله لل عبد
+الستعد الع دة ايوب الوصية العابفى: ٥٠
+1,300 نقطة = 100 جنيه
+٢ موعد التوصيل
+طرق الدفع
+طبق الدفع
+لغسبط
+السيد
+محمد عدد الشباب المشى: 1000 جنيه
+■ تفاصيل العملية
+بحفاقية الرئيسي في الخصم الحراك
+طاقة البيئي في الخميس المائة
+المخصوم من بعيد المد الالشمالى
+8.600 جنيه
+اجمالى العجة !!!
+جو جنيه
+الإجمالى
+الاستمرار للمراجعة
+الاستمرار للمراجعة
+الشراء
+الشراء
+التوصيل
+المراجعة
+الدفع
+استخدام رصيد المحفظة الرصيد المتبقى: 10 جنيه
+1.200 نسكه - 566 جنيه
+استخدام ساط فويتر البعيد الطبفى ١١ جنيه
+الدهن 27 مياه
+20 فيراء
+25 فيوابر
+السيدة
+يعبد القدرة الائتماني المناس 7,000 جنيه
+بطاقة الائتمان أو الخصم المباشر
+طبيعة الوفير
+300 جنيه
+المخصوم من وعبد المحفظة
+100 جنيه
+المتكون من وفية فاظ اتويتز
+الرقم ااتي
+دبس 84/4 جنيه بير الإستكر
+8.400 ويه
+الصاصوم من رصيد قدد الاكتساب
+١٥ جنيه
+المصاريف التشعين
+9,050 جيد
+الاجمالى
+5.000 جنيه
+اجمالى العيد (لا)
+الجمالى العربة (1)
+1,000 جنيه
+بعجود تأكيد الطلب سيتم تحويلك الى صفحة الدفع لادخال بيانات الكارت الخلوى بتك والدفع
+الاستمرار للمراجعة
+الاستمرار للمراجعة
+تقسيط
+يصيد الحد الائتماني المناس: 7,000 جنيه
+بطاقة الائتمان أو الخصم المباشر دقى 5.000 بارد البطاقة
+بطاقة الائتمان أو الخصم المباشر دلع 8.400 جنيه بالبطاقة
+المراجعة
+الموقع"
+KB,462,2fdc8cd357a15a388b99e7c7720a215c,1,General,Inquiry,Technical Issue,No,ok,inquiry about payment methods,طرق الدفع عن طريق نقط حالا عند شراء المنتجات من خلال التطبيق ؟,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: inquiry about payment methods
+Question AR: طرق الدفع عن طريق نقط حالا عند شراء المنتجات من خلال التطبيق ؟
+Notes: CRM: Halan coins -> Inquiry -> inquiry about payment methods
+Body: CRM: Halan coins -> Inquiry -> inquiry about payment methods
+
+Script:
+للمراجعة
+الاستمرار للمراجعة
+تقسيط
+يصيد الحد الائتماني المناس: 7,000 جنيه
+بطاقة الائتمان أو الخصم المباشر دقى 5.000 بارد البطاقة
+بطاقة الائتمان أو الخصم المباشر دلع 8.400 جنيه بالبطاقة
+المراجعة
+الموقع
+استخدام يعيد المحفظة الرصيد الطلبفى الانجليد
+استخدام حاظ كوينز الرصيد الطلبفى: الانجنيه
+طرق الدفع
+طرق الدفع
+تفاصيل العملية
+الدير ومتى دعم 100 جسيد عبد المسلم
+دلس قطع٢ جنيه سد المستعمر
+300 جنيه
+التخصصى من بعد الاضافة
+100 جنيه
+اجمالى العودة ٢١١
+9,000 جنيه
+العنوان
+المراوحة
+العنوان
+المرفوعة
+العقم
+male 300.00
+طرق الدفع
+الى كسة بيه سد المستكم
+الصابف الشعب
+الاستمرار للمراجعة
+25 شيوابو
+2# فبراير
+27 مياه
+طبيعة الوجع
+المراوحة
+١٢٠١٦ موعد التوصيل
+السلطالم وكير الشاشة"
+KB,464,0426a2e08b1d50c8b613c061f0f2b1b2,0,General,Inquiry,Technical Issue,No,ok,inquiry about payment methods,هل ممكن اختار الخصم من المحفظة الاول و المتبقي من المشتريات اخصمه من النقط ؟,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: inquiry about payment methods
+Question AR: هل ممكن اختار الخصم من المحفظة الاول و المتبقي من المشتريات اخصمه من النقط ؟
+
+Script:
+هل ممكن اختار الخصم من المحفظة الاول و المتبقى من المشتريات اخصمه من النقط ؟
+• عند الشراء واختيار طرق الدفع العميل يستطيع اختيار السحب اولا من أي محفظة عن طريق اختيارها اولا ثم اختيار المحفظة الاخري او اختيار أي طريقة دفع اخر تناسبه.
+- هنا اختار العميل الدفع اولا من رصيد محفظته وليس نقاط حالا
+9:41
+0.41
+9:41
+ے
+الشراء
+الشراء
+الشراء
+التوصيل
+الدفع
+المراجعة
+المراجعة
+العنوان
+الدفع
+200.00 جلوي
+استقدام رصيد المضافة الرصيد العابفى: ٥٠ جنيه
+استخدام مات الوباز
+1,300 نقطة = 700 جنيه
+استخدام بالذ كور
+1,200 All - 1:00 جنية
+طرق الدفع
+طرق الدفع
+تقسيط
+25 فبراير
+27 فيزاير
+بطاقة الائتمان أو الخصم المباشر دعوة بنو بالبطية
+الدفع كاش وفر 200 جنيه بالبطانية
+دعوة جنيه بالبطاقة
+رصيد المحفظة
+طريقة الدفع
+250 جنيه
+مصاريف الشحن
+50 جنيه
+الإجمالي
+300 جنيه
+الاستمرار للمراجعة
+الاستمرار للمراجعة
+- هنا لعميل اختار اولا استخدام رصيد المحفظة لكن لم يكمل قيمة المشتريات فأختار بعدها استكمال الدفع عن طريق نقاط حالا.
+-+-
+الشرف
+الباردة
+التوصيل
+المياومة
+200:20 جيد
+الت وعية المضافة الجديد الضفى ا جية
+جصعد لاء السيد ابراهيم
+المستخد العمر ساق البوينز البعبد الضفى ٢٥ جنيه
+طرق الدفع
+الكمية
+بعيد الحد الائتماني الشامي 1000 جنيه
+ساعة الائتمان أو الخصم المباشر
+رصيد المحفظة
+طريقة الدفع
+300 جنيه
+المفهوم من وعبد المحفظة
+جنيه
+المفهوم من وصيد حافظ البون
+5 جنيه
+تخفيف الشعير
+اجمالى العروبة (١)
+350 جنيه
+اجمالى العربية !!!
+314 جنيه
+-+-
+الشراء
+العنوان
+المتخوفو وحيد الصفحه البعيد المشهي: لا بد
+300.00 جنيه
+11 300 جنيه
+استخدام ماط كوينز
+1.200 شطة + 100 جنيه
+طبق الدفع
+طرق الدفع
+طرق الدفع
+تقسيط
+عبد الحميد الائتماني العناصر 7:000 جنيه
+بطاقة الأخبار أو التهم الماكثر سعر 30 جنيه بالبطالة
+C
+الدافع ذاتي دفع لأ جليد البطاقة
+الدفع الكاشي دفع 10 جنيه البطالة
+354 جنيه
+اجمالى العربة (١)
+الاستمرار للمراجعة
+الاستمرار للمراجعة
+الاستمرار للمراجعة
+24
+الشراء
+المرارية
+العرائوعة
+العنوان
+استخدام وعبد المحفظة
+00 300 جابه
+استخدام وعية المدفئة
+استدرا جا كوبز
+السندو فى حفظ كوين
+1300 سعد + 100 جنيه
+موعد التوصيل
+تفاصيل العملية
+الموا عيد السعيد
+300 جنيه
+اجمالى العربة (!)
+الاجمالى
+400 جنيه
+العنوان
+المراجعة
+عنوان الشحن
+wi 200.00
+الحلال"
+KB,464,b281df353bf75c7eb763d4781f78037a,1,General,Inquiry,Technical Issue,No,ok,inquiry about payment methods,هل ممكن اختار الخصم من المحفظة الاول و المتبقي من المشتريات اخصمه من النقط ؟,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: inquiry about payment methods
+Question AR: هل ممكن اختار الخصم من المحفظة الاول و المتبقي من المشتريات اخصمه من النقط ؟
+
+Script:
+ة المدفئة
+استدرا جا كوبز
+السندو فى حفظ كوين
+1300 سعد + 100 جنيه
+موعد التوصيل
+تفاصيل العملية
+الموا عيد السعيد
+300 جنيه
+اجمالى العربة (!)
+الاجمالى
+400 جنيه
+العنوان
+المراجعة
+عنوان الشحن
+wi 200.00
+الحلال
+محمد علاء السيد ابراهيم
+موعد التوصيل
+الاحد 24 فبراير
+قسيط
+ياعيد الدير الائتماني المناس: 7,000 جنيه
+بسطة الـ
+دفع 250 جنيه بالبطاقة
+■ تفاصيل العملية
+المخصوم من وعيد المحفظة
+250 جنيه
+اجمالى العربة (1)
+250 جنيه
+اجمالى العربة (١)
+الم لز داية السعيد
+بطاقة الاقتناع الخصم المباشر دفع الا جيد بالبطاقة
+25 فبراير
+استخدام رصيد المحفظة
+الاستمرار للمراجعة"
+KB,468,3ff3a99140555189842f74d910c93c9d,0,General,Complain,Non-Technical Issue,No,ok,Transaction not Found on System,؟ Loyalty360 في حالة لو رقم العملية مش ظاهر علي,yes,"Vertical: General | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Transaction not Found on System
+Question AR: ؟ Loyalty360 في حالة لو رقم العملية مش ظاهر علي
+
+Script:
+فى حالة لو رقم العملية مش ظاهر على Loyalty360؟
+هنعمل 2 Tickets
+CRM: Halan coins -> complaint -> technical issue -> Transaction not Found on System
+Fresh desk: Technical issue -> Transaction not Found on System
+بنتأكد الاول من علي البورتال ان العملية مش موجودة وبنقدم للعميل طلب علي الفريش ديسك و سيتم حل المشكلة خلال 4 ايام عمل.
+- العميل يبعت سكرين شوت من ال error علي رقم الواتساب بتاعنا 20216303+
+Customer's Name
+Customer's Mobile Number
+Branch Address
+Username
+Issue Description
+Print screen from the issue"
+KB,472,839a780ba5d558cca45fa580d17f9789,0,General,Complain,Non-Technical Issue,No,ok,Confirmation SMS not received,في حالة شكوي العميل من عدم استلامه رسالة التأكيد بعد اتمام العملية  ؟,yes,"Vertical: General | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Confirmation SMS not received
+Question AR: في حالة شكوي العميل من عدم استلامه رسالة التأكيد بعد اتمام العملية  ؟
+
+Script:
+فى حالة شكوى العميل من عدم استلامه رسالة التأكيد بعد اتمام العملية ؟
+هنعمل 2 Tickets
+CRM: Halan coins -> complaint -> Technical issue -> Confirmation SMS not received
+Fresh desk: Connectivity -> Confirmation SMS not received
+بنقدم طلب للعميل وبيتم الرد علي الطلب خلال 4 ايام عمل
+Customer's Name
+Customer's Mobile Number
+Merchant Name
+Branch Address
+Issue Description"
+KB,476,04eea9388e8d5592be5e7681a9887dc0,0,General,Inquiry,Non-Technical Issue,No,ok,Important points (Coins),Important points,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Important points (Coins)
+Question AR: Important points
+
+Script:
+Important points
+• وانت بتدخل الباسورد واليوزر نكتبه يدوي مش ناخده كوبي.
+• ال Account Name وانت بتلوجين اسمه Halan. قبل ما نعمل Search نشيل اي فلتر قديم.
+• من ال Transaction بتقدر تتابع جميع عمليات العميل الخاصة ب Halan Points • ال Wallet code هو بيكون رقم تليفون العميل."
+KB,477,93d101f2809a57b79205c3ed0ad37190,0,General,Inquiry,Non-Technical Issue,No,ok,Loyalty360 Codes,Loyalty360 Codes,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Loyalty360 Codes
+Question AR: Loyalty360 Codes
+
+Script:
+Loyalty360 Codes
+loyalty 360
++
+SKUNAME
+POINTS
+DETAILS .
+DESCRIPTION .
+TYPE
+TRANS. DATE/TIME .
+USER NAME
+Halan Commerce
+8935
+Points accumulated to 01028554746
+Reward
+Accumulation
+2024-01-24 @ 14:49
+Job
+1870
+Halan Commerce
+656
+Points accumulated to 01028554746
+Reward
+Accumulation
+2024-01-24 @ 14:45
+Job
+1866
+2000
+Points redeemed from 01028554746
+Redemption
+Deduction
+2024-01-24 @ 14:34
+DSQ014.008
+1868
+TL
+5000
+Points redeemed from 01028554746
+Redemption
+Deduction
+2024-01-24 @ 14:29
+Laila. emad
+1867
+Halan Commerce
+8935
+Points accumulated to 01028554746
+Reward
+Accumulation
+2024-01-24 @ 14:24
+Job
+1866
+0
+Opt in 01028554746
+Opt In
+Accumulation
+2024-01-24 @ 14:24
+E
+الكود دا معناه انه تم عملية الاستبدال
+Redemption
+الكود دا معناه انه العميل نزله النقاط الخاصة بعملية الشراء
+Reward
+الكود دا معناه ان العميل رجعله التقط اللي كان فيها مشكلة
+Refund
+تاريخ تشغيل الخدمة
+Opt In
+Extract Transactions
+Trans, Date/Time v
+Sort by:
+Descending v
+1865"
+KB,485,5f8a7bf655ba5549ad453a125fe0712a,0,General,Inquiry,Non-Technical Issue,No,ok,inquiry about Halan Coins service,؟Halan Points ازاي اقدر اجمع,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: inquiry about Halan Coins service
+Question AR: ؟Halan Points ازاي اقدر اجمع
+Notes: CRM: Halan coins -> Inquiry -> inquiry about Halan Coins service
+Body: CRM: Halan coins -> Inquiry -> inquiry about Halan Coins service
+
+Script:
+ازاى اقدر اجمع Halan Coins ؟
+1. تقدر تجمع Halan Coins عند شرائك منتجات إستهلاكيه او غذائية من خلال التطبيق. 2. مقابل كل جنية هتصرفه عند الشراء = Halan coin 1 .
+3. كل Halan conis 100 = 1 جنية .
+4. النقط بتنزل لحضرتك بعد استلام المنتجات ب 24 ساعة عمل."
+KB,494,3b4bbd095e8e5cd196f27e9c482cdb57,0,General,Complain,Non-Technical Issue,No,ok,Points Not Added,في حالة شكوي العميل من عدم اضافة النقاط علي حسابه ؟,yes,"Vertical: General | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Points Not Added
+Question AR: في حالة شكوي العميل من عدم اضافة النقاط علي حسابه ؟
+
+Script:
+فى حالة شكوى العميل من عدم اضافة النقاط على حسابه ؟
+هنعمل 2 Tickets
+لازم نوضح للعميل ان النقاط بتنزل بعد 24 ساعة عمل من تاريخ الاستلام مثال: تاريخ الاستلام يوم 1-فبراير الساعة 10 صباحاً يبقى النقط هتنزل 2-فبراير بعد الساعة 10 صباحاً.
+بنراجع Loyalty360 وبنتأكد ان النقط منزلتش للعميل وهنشوف العميل استلم امتي وبناء عليه هنعمل التالي:
+خلال المهلة
+بعد المهلة
+هنأكد علي العميل انه ينتظر وان النقط هتنزل بعد 24 ساعة عمل بعد تاريخ الاستلام .. وفي الحالة دي هنعمل التيكت دي.
+CRM: Halan Points -> complaint -> Technical issue -> Points Not Added (within SL)
+Escalated: NO
+هنعتذر للعميل وهنوضحله انه هيتم تقديم طلب و سيتم حل المشكلة خلال 4 ايام عمل واوضح مشكلة العميل بالتفصيل.
+CRM: Halan Points -> complaint -> Technical issue -> Points Not Added (After SL)
+Escalated: NO
+Fresh desk: Technical issue -> Points Not Added"
+KB,520,fdd84a999c175f848063d43053f30d1b,0,General,Inquiry,Non-Technical Issue,No,ok,Forbidden words reminder,كلمات ممنوعة: استثمار، بورصة، بنك,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Forbidden words reminder
+Question AR: كلمات ممنوعة: استثمار، بورصة، بنك
+
+Script:
+تذكير للأجنت:
+كلمات ممنوعة لا يجب استخدامها مع العملاء: استثمار — بورصة — بنك.
+- Escalation: No"
+KB,572,904020cc9c22562e8bd8de0518e50335,0,General,Request,Non-Technical Issue,Yes,ok,Return product request (Points),في حالة طلب استرجاع المنتج بعد الاستلام ؟ (Points),yes,"Vertical: General | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Return product request (Points)
+Question AR: في حالة طلب استرجاع المنتج بعد الاستلام ؟ (Points)
+
+Script:
+في حالة طلب استرجاع المنتج بعد الاستلام ؟
+CRM: Commerce - Request - Return product request
+Escalation: Yes
+Fresh desk: Request - Cancel Transaction > (Ticketing Team)
+نفس خطوات إسترجاع منتج الطبيعية
+(Ticketing Team)
+- هنتأكد الاول قبل الالغاء ان العميل رجع المنتج مرة اخري وهنفتح التيكت دي لخصم النقط الخاصة بالمنتج اللي قام بإسترجاعه .
+- هنوضح كل حاجة ف التيكت ( وقت العملية - وعدد النقط اللي لازم تتخصم ) و نكتب كومنت ف الادمن تول انه تم فتح تيكت علي فريش ديسك برقم #"
+KB,577,05313abbd93058ba9e4f52b73263e836,0,General,Complain,Non-Technical Issue,Yes,ok,Service outage,في حالة شكوي العميل من وجود مشكلة في اللينك الخاص بالعمليات ؟,yes,"Vertical: General | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Service outage
+Question AR: في حالة شكوي العميل من وجود مشكلة في اللينك الخاص بالعمليات ؟
+
+Script:
+فى حالة شكوى العميل من وجود مشكلة فى اللينك الخاص بالعمليات ؟
+هنعمل 2 Tickets
+CRM: Halan points-> complaint -> technical issue -> Service outage
+Fresh desk: Technical issue -> Service outage
+لو العميل موجود عند التاجر in store : بنكلم رقم 2021299999+ وبنوضحله المشكلة وان العميل موجود in store ومحتاج يستبدل النقط والتواصل بيكون خلال 30 دقيقة
+لو العميل مش موجود عند التاجر : بنقدم تيكت للعميل علي فريش ديسك لحل المشكلة وناخد من العميل البيانات المطلوبة بيتم حل المشكلة خلال ساعتين عمل."
+KB,578,aa67f055290850349024d844e538ace0,0,General,Complain,Non-Technical Issue,Yes,ok,Redemption error (Points),في حالة شكوي العميل من عدم امكانية استبدال النقاط؟,yes,"Vertical: General | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Redemption error (Points)
+Question AR: في حالة شكوي العميل من عدم امكانية استبدال النقاط؟
+
+Script:
+فى حالة شكوي العميل من عدم امكانية استبدال النقاط؟
+هنعمل 2 Tickets
+CRM: Halan points-> complaint -> Technical issue -> Redemption error
+Fresh desk: Technical issue -> Redemption error
+لو العميل موجود عند التاجر in store : بنكلم رقم 2021299999+ وبنوضحله المشكلة وان العميل موجود in store ومحتاج يستبدل النقط والتواصل بيكون خلال 30 دقيقة
+لو العميل مش موجود عند التاجر : بنقدم تيكت للعميل علي فريش ديسك لحل المشكلة وناخد من العميل البيانات المطلوبة بيتم حل المشكلة خلال 4 ايام عمل."
+KB,579,4dc594d15e37552ca9555ab15444aa95,0,General,Complain,Non-Technical Issue,No,ok,OTP SMS not received (Points),في حالة شكوي العميل من عدم استلامه OTP للتأكيد علي العملية,yes,"Vertical: General | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: OTP SMS not received (Points)
+Question AR: في حالة شكوي العميل من عدم استلامه OTP للتأكيد علي العملية
+
+Script:
+فى حالة شكوى العميل من عدم استلامه OTP للتأكيد على العملية ؟
+هنعمل 2 Tickets
+CRM: Halan points-> complaint -> Technical issue -> OTP SMS not received
+Fresh desk: Connectivity -> OTP SMS not received
+لو العميل موجود عند التاجر in store : بنكلم رقم 2021299999+ وبنوضحله المشكلة وان العميل موجود in store ومحتاج يستبدل النقط والتواصل بيكون خلال 30 دقيقة
+لو العميل مش موجود عند التاجر : بنقدم تيكت للعميل علي فريش ديسك لحل المشكلة وناخد من العميل البيانات المطلوبة بيتم حل المشكلة خلال 24 ساعة عمل.
+Customer's Name
+Customer's Mobile Number
+Merchant Name
+Branch Address
+Issue Description"
+KB,613,ccfac807ccf7589fb1a337a26b35824c,0,General,Request,Non-Technical Issue,Yes,ok,Cancel purchased request (Points),هل في حالة طلب العميل الغاء اي اوردر وهل بيتم استرجاع النقط ؟ (Points),yes,"Vertical: General | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Cancel purchased request (Points)
+Question AR: هل في حالة طلب العميل الغاء اي اوردر وهل بيتم استرجاع النقط ؟ (Points)
+
+Script:
+هل في حالة طلب العميل الغاء اي اوردر وهل بيتم استرجاع النقط ؟
+CRM: Commerce -> Request -> Cancel purchased request. CF/Cash
+Commerce -> Request -> Cancel purchased request and return the amount to the wallet.
+Commerce -> Request -> Cancel Purchased from credit card (Not from CF).
+Escalation: Yes
+Fresh desk: Request >> Refund voucher (Ticketing Team)
+- لازم نعرف الاول اية سبب الالغاء ؟ و نحاول نساعد العميل عشان ميلغيش الطلب .. بس لو مُصر علي الالغاء :
+هنوضحله انه سيتم تقديم طلب لالغاء الطلب واسترجاع النقط الخاصة به خلال 4 ايام عمل .. ولو العميل مشتري بالنقط واي طريقة تانية هنوضحله مدة استرجاع الطريقتين.
+مثال: لو العميل اشتري منتج واختار الدفع بالنقط والكريديت كارد -> هنوضحله انه سيتم استرجاع النقط خلال 4 ايام عمل واسترجاع المبلغ علي الكريديت خلال 14 يوم عمل.
+Escalation: Yes وهنوضح فيها قيمة وهنعمل تيكت الكانسل العادية حسب طريقة الشراء و هتكون النقاط اللي تم استخدامها وان العميل محتاج الغاء الاوردر."
+KB,664,8a85eb1b35fa5c1eb60fa4543c88f731,0,General,Inquiry,Technical Issue,No,ok,How to open Halan CRM,Halan CRM ازاي افتح,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: How to open Halan CRM
+Question AR: Halan CRM ازاي افتح
+
+Script:
+ازاي افتح Halan CRM:
+Link: https://crm-portal.fintech.halan.io/app/crm/login-65a5518bba912a7c3233c213
+
+هندخل الايميل و الباسوورد الموجودين في تطبيق Microsoft Authenticator .. هيوصلك كود هتدخله علي الموبايل.
+- Escalation: No"
+KB,666,f6ccda094ba35821af6810949f56be23,0,General,Inquiry,Technical Issue,No,ok,CRM,تقدر تشوف العميل مربوط بأي فرع (متكود علي اي فرع؟) و نزله ليميت استهلاكي او قرض تساهيل ولا لا,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: CRM
+Question AR: تقدر تشوف العميل مربوط بأي فرع (متكود علي اي فرع؟) و نزله ليميت استهلاكي او قرض تساهيل ولا لا
+
+Script:
+تقدر تشوف العميل مربوط بأى فرع (متكود على أى فرع؟) ونزله ليميت استهلاكى او قرض تساهيل ولا لا ؟:
+- لو العميل مقدم طلب الحصول علي حد ائتماني -> بيظهر بيانات القرض في CF Tab.
+- لو العميل مقدم علي طلب الحصول على قرض من تساهيل -> بيظهر القرض في LTS Tab.
+- بيظهر اسم الفرع المكود عليه العميل مع بياناته.
+Customer Name:
+National Id:
+Gender: female
+its]
+منه محمد صبحى العشماوى - منسقة :Loan Officer
+القاهرة - حدائق القبة :Branch Name
+Customer Key: 11025
+۔ Mobile Number: 01141 **
+Disburseme ...
+Principal
+Created At
+Issued At
+Status
+Loan Key
+- لو العميل عنده ليميت بنقدر نشوفه من Loan Tab.
+Customer Limits
+of 1
+< Page 1
+Limit Type
+Remaining Limit
+Limit
+خدمي
+10000000
+10000000
+تمويل إستهلاكي
+534
+10000"
+KB,667,9d8686f9b73c51c9a230e5149e876199,0,General,Inquiry,Technical Issue,No,ok,CRM,Dispatched to branchتقدر تشوف حالة الطلبات ال,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: CRM
+Question AR: Dispatched to branchتقدر تشوف حالة الطلبات ال
+
+Script:
+تقدر تشوف حالة الطلبات الDispatched to branch :
+1- من خلال البحث برقم البطاقة هيظهرلك حالة الطلب
+Customer Leads
+1 Records <Pige 1 of 1 >
+brand
+businessAddress.
+business Area
+businessCity
+businessGovermate
+businessAddress
+businessSector
+Created At
+Statut
+Typ
+Channel
+Name
+82.76
+قرص
+قرص
+ـجارى
+0
+20/03/2024
+submitted
+micro
+كول سنتر
+يحي سط محمد احمد
+2- اضغط علي (ايقونة العين) لتفاصيل الطلب وهتقدر تعرف رد الاخصائي علي الطلب.
+3- تقدر تعرف هل تم التواصل بالعميل ولا لا لو حالة الطلب dispatched بس لسة متردش علي العميل.
+Dial History
+>
+4 Records ٧ Page 1 of 1
+duration
+message
+Reason
+Name
+Date
+لم يتم الرد
+العميل لم يرد
+... يم بركى متولى - اخصائى
+11/03/2024 13:04
+16
+لم يتم الرد
+العميل لم يرد
+... يم بركى متولى - اخصائى
+12/03/2024 12:09
+16
+تم الرد
+... ستكمال أوراق ملف الحالة
+... يم بركى متولى - اخصائى
+12/03/2024 12:17
+16
+العميل لم يرد
+... يم بركى متولى - اخصائى
+18/03/2024 12:03"
+KB,668,b2e1a6df1fde5139a4bd4ecf282206c3,0,General,Inquiry,Technical Issue,No,ok,CRM,بنقدر نعرف بيانات القرض,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: CRM
+Question AR: بنقدر نعرف بيانات القرض
+
+Script:
+بنقدر نعرف بيانات الفرض :
+1- رقم القرض = Loan Key
+2- تاريخ القرض , تاريخ الشراء من الليمت = Issue Date
+3- حالة القرض = issued ,Still Open , Closed , Finished installments
+4- قيمة القرض المستخد من الليمت = Principal
+5- حصل علي القرض في اي صورة ( حالا كاش , ليمت , كارت حالا) = Disbursement Type
+Its cf
+Limits
+خلود خالد عبدالعال نصرالدين - اخصائي تمويل استهلاكى :Loan Officer
+القاهرة - حدائق القبة - تساهيل :Branch Name
+Customer Key: 1516800
+Mobile Number: 011 .**
+disbursementType
+Loan type
+Principal
+Status
+Creation Date
+Issue Date
+Loan Key
+halanCard
+تمويل إستهلاكي
+10000
+issued
+13/02/2024
+13/02/2024
+151680000533001"
+KB,669,dbb1926e5d56554a8b0239a27521e829,0,General,Inquiry,Technical Issue,No,ok,CRM,بنقدر نعرف بيانات معاملات الشراء,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: CRM
+Question AR: بنقدر نعرف بيانات معاملات الشراء
+
+Script:
+بنقدر نعرف بيانات معاملات الشراء :
+1- قيمة المعاملة = Loan Amount 2- تاريخ المعاملة = Issue Date
+3- عدد الاقساط الخاص بالمعاملة = Tenor 4- حالة القسط = (Status (paid - unpaid , partially paid
+5- تاريخ الدفع = Paid at
+Loan Details
+Loan Amount: 10000
+Issue Date: 13/02/2024
+Disbursement Type: halanCard
+Tenor: 24 months
+of 4
+1
+Page
+24 Records
+Installment date
+Installment
+id
+Paid At
+totalPaid
+Status
+Mar 2024
+13/02/2024 17:07
+2
+28/02/2024 12:30
+642
+paid
+Apr 2024
+642
+3
+642
+May 2024
+unpaid
+Jun 2024
+unpaid
+642
+4
+unpaid
+Jul 2024
+642
+unpaid
+Aug 2024
+642
+1
+642
+paid
+642
+6
+X"
+KB,790,6484ea1558d25897be08fce2c5f365a0,0,General,Inquiry,Technical Issue,No,ok,inquiry about Nokia c12,استفسار عميل عن موبيل Nokia C12,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: inquiry about Nokia c12
+Question AR: استفسار عميل عن موبيل Nokia C12
+
+Script:
+استفسار عميل عن موبيل Nokia C12: ۔
+يوجد تعاون بين تطبيق حالا و شركة نوكيا من خلاله بيتم تسهيل الحصول علي موبايل نوكيا سي 12 بطريقة سداد سهلة
+Nokia - Inquiry - inquiry about Nokia c12"
+KB,793,a7fa1596eb455bebb31ceb0f639d0078,0,General,Inquiry,Technical Issue,No,ok,inquiry about Nokia c12,Nokia c12 هل الموبايل  متاح لجميع المحافظات,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: inquiry about Nokia c12
+Question AR: Nokia c12 هل الموبايل  متاح لجميع المحافظات
+
+Script:
+- هل الموبايل متاح لجميع المحافظات ؟
+تقدر تطلب الموبايل من التطبيق من خلال القاهرة والجيزة فقط.
+جميع المحافظات خلال اقرب فرع من فروع مشروعي او تساهيل (نوضح للعميل عنوان اقرب فرع + مواعيد العمل )
+Nokia - Inquiry - inquiry about Nokia c12
+٥"
+KB,794,c5730b85035158ac9ea15719bcd782ea,0,General,Inquiry,Technical Issue,No,ok,Nokia C12 Pro Mobile Phone Technical Specifications,مواصفات هاتف Nokia C12,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Nokia C12 Pro Mobile Phone Technical Specifications
+Question AR: مواصفات هاتف Nokia C12
+
+Script:
+مواصفات هاتف Nokia C12
+1- الجهاز يدعم شريحتين اتصال مقاس نانو.
+2- كما يدعم شبكات اتصال الجيل الرابع والثالث.
+3- الشاشة نوعها IPS LCD بحجم 6.3 بوصة.
+4- الجهاز يعمل بنظام الاندرويد.
+5- الموبايل بيكون بضمان راية لمدة سنة.
+ملحوظة :
+مع العلم انه لازم الموبايل يتوصل بالانترنت خلال 25 يوم بحد اقصي وفي حالة عدم توصيله هيتم قفل الموبايل تلقائيا.
+Nokia - Inquiry - Nokia C12 Pro Mobile Phone Technical Specifications"
+KB,795,4aed6e4ce8d3515c80d389545e0aff98,0,General,Inquiry,Technical Issue,No,ok,Inquiry about Mobile Phone Locking Software,NOKIA C12 ازاي افتح القفل علي الموبايل,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about Mobile Phone Locking Software
+Question AR: NOKIA C12 ازاي افتح القفل علي الموبايل
+
+Script:
+- إزاى افتح القفل على الموبايل ؟
+القفل بسبب عدم الاتصال بالانترنت : في حالة لم يتم الاتصال بالانترنت خلال 25 يوم بيتم قفل ۔ الموبايل تلقائيا و لفتحه مرة اخري .. بيظهر على الموبايل 3 اختيارات منهم (اعادة التفعيل ) بيتم الضغط عليها لتفعيل الموبايل مرة اخري .
+قفل بسبب تأخير سداد الأقساط : بيتم قفل الموبايل لحين سداد الأقساط ۔ - بعد مرور فترة التقسيط بيقدر العميل التواصل معنا لفك القفل علي الموبايل.
+Nokia - Inquiry - Inquiry about Mobile Phone Locking Software"
+KB,796,d1ffe5cff7ea55e793aaf5886a46bf4b,0,General,Inquiry,Technical Issue,No,ok,Inquiry about Installments details,Nokia c12استفسار عن التقسيط الخاص ب,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about Installments details
+Question AR: Nokia c12استفسار عن التقسيط الخاص ب
+
+Script:
+استفسار عن التقسيط الخاص ب Nokia c12 ؟ ۔ امكانية التقسيط لمدة 25 شهر فقط مع العلم انه لا يمكن اجراء سداد مبكر بعد الشراء. ۔ سيتم دفع أول قسط عند الاستلام. ۔ في حالة التأخير ف دفع الأقساط بيتم قفل الموبايل لحين سداد القسط. ۔
+عند الانتهاء من دفع الأقساط بيتم التواصل معنا لتقديم طلب فتح الموبايل نهائيا.
+Nokia - Inquiry - Inquiry about Installments details"
+KB,799,42b7850aaf345b49ad8800aecb3658fc,0,General,Request,Technical Issue,Yes,ok,Customer finished all the installments and need to remove the Locking Software,(Nokia c12)  عميل يطلب فتح الموبايل نهائيا بعد الانتهاء من دفع الاقساط,yes,"Vertical: General | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Customer finished all the installments and need to remove the Locking Software
+Question AR: (Nokia c12)  عميل يطلب فتح الموبايل نهائيا بعد الانتهاء من دفع الاقساط
+
+Script:
+- عميل يطلب فتح الموبايل نهائيا بعد الانتهاء من دفع الاقساط
+بعد التأكد من دفع جميع الاقساط من خلال CRM بنفتح القفل من خلالنا للعميل
+Nokia -Request-Customer finished all the installments and need to remove the Locking Software
+Escalation: Yes"
+KB,800,d3834c3500f65dc2b3b84ae8403c4818,0,General,Complain,Technical Issue,No,ok,Customer connected to the internet however the mobile still locked,(Nokia c12)  عميل يشكوا ان الموبايل مازال مقفول بعد الاتصال بالانترنت,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: Customer connected to the internet however the mobile still locked
+Question AR: (Nokia c12)  عميل يشكوا ان الموبايل مازال مقفول بعد الاتصال بالانترنت
+
+Script:
+- عميل يشكوا ان الموبايل مازال مقفول بعد الاتصال بالانترنت
+بنوجه العميل لضمان (راية) .. لمعرفة مركز الصيانة 19900
+Nokia -Complaint-Technical-Customer connected to the internet however the mobile still locked
+Escalation: No"
+KB,801,663e5efa5d1f559ca80d2ac3639f80a0,0,General,Complain,Technical Issue,No,ok,Technical Issue in the mobile Phone under Warranty,(Nokia c12 ) عميل يشكوا من مشكلة ف الموبايل و هو داخل الضمان,yes,"Vertical: General | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: Technical Issue in the mobile Phone under Warranty
+Question AR: (Nokia c12 ) عميل يشكوا من مشكلة ف الموبايل و هو داخل الضمان
+
+Script:
+- عميل يشكوا من مشكلة ف الموبايل وهو داخل الضمان
+بنوجه العميل لضمان (راية) .. لمعرفة مركز الصيانة 19900
+Nokia - Complaint- Technical- Technical Issue in the mobile Phone under
+Warranty
+Escalation: No"
+KB,812,6394bae87fe35945ae971fe60ea4dec3,0,General,Inquiry,Non-Technical Issue,No,ok,How to Order Nokia C12 Pro Mobile Phone,Nokia c12 ازاي اقدر اطلب,yes,"Vertical: General | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to Order Nokia C12 Pro Mobile Phone
+Question AR: Nokia c12 ازاي اقدر اطلب
+
+Script:
+- ازاى اقدر اطلب Nokia c12 ؟
+العميل يقدر يطلب الموبايل عن طريق التطبيق أو عن طريق زيارة فروع مشروعي او تساهيل والاوراق المطلوبة هي صورة البطاقة فقط.
+في حالة الطلب من التطبيق بيوصلك مكالمة لتأكيد الطلب و يوصل لحضرتك لحد البيت بدون اي رسوم توصيل.
+في حالة زيارة الفرع بيتم التعاقد و الاستلام من الفرع
+مع العلم ان الموبايل متاح بقسط شهري 300 جنية لمدة 25 شهر - ولا يمكن تقديم طلب جدولة للاقساط.
+ملحوظة هامة
+- مندوب التوصيل بيفتح الموبايل للعميل وبيفتحله القفل عند تسليم المنتج
+Nokia - Inquiry - How to Order Nokia C12 Pro Mobile Phone"
+KB,816,8ba0026951e65795beebde4d7b248252,0,General,Inquiry,Technical Issue,No,ok,Verification Process(Halan),Verification Process(Halan),yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Verification Process(Halan)
+Question AR: Verification Process(Halan)
+
+Script:
+Verification Process
+Financial Inquiry
+General Inquiry
+Actions / Request
+لو العميل بيستفسر عن شيء بعيد عن بيانات العميل السرية زي ( ميعاد استلام المنتج أمتي - الفرع المكود به العميل ) لو العميل بيكلمنا من رقم موبايل اخر .. هنراجع معاه البيانات و هنجاوب علي استفساره.
+اى استفسارات مالية :
+زي استفسار العميل عن ( اخر معاملة قام بيها - اخر عملية شحن - معاد تسديد آخر قسط - متبقى اد اية ف الحد الائتمانى - هل عندي حظر ولا لا ) لازم العميل يكلمنا من نفس الرقم و يوضحله ، بعد مراجعة بياناته_(اسم رباعي - رقم بطاقة - رقم الموبايل ) من علي CRM
+لازم العميل يكلمنا من نفس الرقم وبعد مراجعة بياناته (اسم رباعى - رقم بطاقة - رقم الموبايل ) من على CRM نقدمله الطلب اللى محتاجه زي (سداد مبكر - الغاء حد ائتمانى - استرجاع منتج - كود العميل )
+ملاحظات هامة :
+1. لو مش عارف تحدد المكالمة اللى معاك هي اي نوع من الثلاثة .. ارجع لليدر الموجود فورا يساعدك فى حل المشكلة.
+2. لو استفسار العميل على شيء اجابته موجود فى التطبيق زي ( متبقي كام ف الليمت - اخر عمليات قام بيها العميل - هل القسط اتسدد ولا لا ) لازم اوضح للعميل ازاي يعرف اجابة سؤاله من على التطبيق.
+3. لو عميل عايز يعمل change mobile number / change branch و بيتكلم من رقم تانى . ممكن نراجع معااه بياناته على CRM (اسمه ورقمه وبطاقته) و ممكن نراجع مثلا نازله ليمت اد اية (لضمان ان دا العميل نفسه) ونقدمله الطلب عادي لو معاه البيانات دي.
+4. لو عميل كلمنا محتاج يأكد/ يلغى طلبه (حد ائتماني او تساهيل) وبيكلمنا من رقم تاني .. هراجع معااه بياناته على (اسمه ورقمه اللي مقدم منه وبطاقته) وبأكدله الطلب ."
+KB,850,d54cff60aa995276847bcd4214e0e464,0,General,Request,Technical Issue,No,ok,Stolen Mobile Phone need to lock the device,(Nokia c12) في حالة سرقة او ضياع الموبايل من العميل ؟,yes,"Vertical: General | Type: Request | Issue: Technical Issue | Escalation: No
+
+Question EN: Stolen Mobile Phone need to lock the device
+Question AR: (Nokia c12) في حالة سرقة او ضياع الموبايل من العميل ؟
+
+Script:
+فى حالة سرقة او ضياع الموبايل من العميل
+في حالة العميل اشتري الموبايل من الفرع : هنوجه للفرع مرة اخري لايقاف الموبايل. في حالة شراء الموبايل من خلال التطبيق : هيتم تقديم طلب وف اقرب وقت هيتم ايقاف الموبايل.
+Nokia - Request -Stolen Mobile Phone need to lock the device
+Escalation: Yes"
+KB,921,1cbe06b9064e5cd7a3c2990d662a8448,0,General,Inquiry,Technical Issue,No,ok,admin tool locked by other user (Halan),في حالة استفسارالعميل عن طلب علي ادمن تول و الطلب مقفول من احد زمايلنا,yes,"Vertical: General | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: admin tool locked by other user (Halan)
+Question AR: في حالة استفسارالعميل عن طلب علي ادمن تول و الطلب مقفول من احد زمايلنا
+
+Script:
+* فى حالة استفسار العميل عن طلب على ادمن تول و الطلب مقفول من احد زمايلنا:
+Halan->inquiry-> admin tool locked by other user
+بنعتذر للعمیل و بنوضحله انه هیتم التواصل معاه خلال نص ساعة لمتابعة طلبه وبناخد بيانات العميل عندنا عشان نكلمه خلال المهله
+X
+Error!
+order_is_locked_by_another_admin_user
+OK"

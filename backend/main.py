@@ -27,6 +27,7 @@ from backend.services.account_updates_schema import ensure_account_updates_schem
 from backend.services.auth_schema import ensure_auth_schema
 from backend.services.bootstrap import ensure_bootstrap_superadmin
 from backend.services.chat_schema import ensure_chat_schema
+from backend.services.agent_queue_access_schema import ensure_agent_queue_access_schema
 from backend.services.http_request_log_schema import ensure_http_request_log_schema
 from backend.services.llm_config_schema import ensure_llm_config_schema
 from backend.services.role_nav_permissions import ensure_role_nav_permissions_schema
@@ -51,6 +52,7 @@ async def lifespan(app: FastAPI):
     await ensure_account_updates_schema(db)
     await ensure_auth_schema(db)
     await ensure_chat_schema(db)
+    await ensure_agent_queue_access_schema(db)
     await ensure_http_request_log_schema(db)
     await ensure_llm_config_schema(db)
     await ensure_role_nav_permissions_schema(db)

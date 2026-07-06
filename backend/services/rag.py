@@ -302,12 +302,14 @@ async def search_knowledge(
     query: str,
     *,
     top_k: int,
+    verticals: list[str] | None = None,
 ) -> list[dict[str, Any]]:
     return await asyncio.to_thread(
         embedding_svc.search,
         corpus_id,
         query,
         top_k=top_k,
+        verticals=verticals,
     )
 
 
@@ -329,6 +331,7 @@ async def stream_rag_response(
     user_message: str,
     top_k: int | None = None,
     kb_source_base_url: str | None = None,
+    verticals: list[str] | None = None,
 ) -> AsyncIterator[tuple[str, StreamResult | None]]:
     settings = get_settings()
     tk = top_k or settings.search_default_top_k
@@ -340,7 +343,9 @@ async def stream_rag_response(
     history = await load_conversation_history(db, session_id)
 
     try:
-        chunks = await search_knowledge(embedding_svc, corpus_id, user_message, top_k=tk)
+        chunks = await search_knowledge(
+            embedding_svc, corpus_id, user_message, top_k=tk, verticals=verticals
+        )
     except Exception:
         _log.exception("KB search failed for account %s", account_id)
         chunks = []

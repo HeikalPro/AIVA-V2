@@ -1,0 +1,19 @@
+Total rows exported: 694
+All chunks (incl. split segments): True
+Include demo / other corpora: True
+Output directory: D:\AIVA\AIVA-V2\scripts\exports\by_vertical
+
+CF: 181 rows -> kb_chunks_CF.csv
+General: 104 rows -> kb_chunks_General.csv
+Pay: 104 rows -> kb_chunks_Pay.csv
+Tasaheel: 89 rows -> kb_chunks_Tasaheel.csv
+Gomla: 75 rows -> kb_chunks_Gomla.csv
+Halan: 42 rows -> kb_chunks_Halan.csv
+Saving: 39 rows -> kb_chunks_Saving.csv
+Gold: 31 rows -> kb_chunks_Gold.csv
+Commerce: 22 rows -> kb_chunks_Commerce.csv
+Demo Smoke Test: 4 rows -> kb_chunks_Demo_Smoke_Test.csv
+Salary lending: 2 rows -> kb_chunks_Salary_lending.csv
+Irrelevant Call: 1 rows -> kb_chunks_Irrelevant_Call.csv
+
+Complete dump: kb_chunks_ALL.csv (694 rows)

@@ -13,12 +13,27 @@ from backend.auth.deps import (
     require_roles_or_nav_permission,
 )
 from backend.auth.hashing import hash_password
-from backend.dependencies import DbDep
+from backend.dependencies import DbDep, EmbeddingServiceDep
 from backend.exceptions import ConflictError, ForbiddenError, NotFoundError
 from backend.schemas.agents import TraineeCreate
+from backend.schemas.kb_queues import (
+    AgentQueueAccessOut,
+    AgentQueueAccessUpdate,
+    AgentQueueSummaryOut,
+    QueueGroupOut,
+)
 from backend.schemas.users import UserOut
 from backend.services.account_membership import grant_account_role_access
+from backend.services.agent_queue_access import (
+    build_agent_queue_summaries,
+    list_assigned_queue_keys,
+    list_assigned_queue_keys_by_account,
+    require_can_manage_agent_queues,
+    set_assigned_queue_keys,
+)
 from backend.services.audit import write_audit_log
+from backend.services.chat_queues import load_account_corpus_config
+from backend.services.kb_queue_groups import list_queue_catalog
 from backend.services.user_queries import build_user_out
 
 router = APIRouter(prefix="/agents", tags=["agents"])
@@ -254,3 +269,122 @@ async def promote_trainee_to_agent(
         new_value={"is_trainee": False, "account_id": account_id, "role": ROLE_AGENT},
     )
     return await build_user_out(db, user_id)
+
+
+@router.get("/queue-access/bulk", response_model=AgentQueueSummaryOut)
+async def bulk_agent_queue_access(
+    user: Annotated[UserContext, Depends(_AGENT_ACCESS)],
+    db: DbDep,
+    embedding_svc: EmbeddingServiceDep,
+    account_id: int = Query(..., description="Account context"),
+) -> AgentQueueSummaryOut:
+    account = await db.fetch_one(
+        "SELECT organization_id FROM AIVA_accounts WHERE id = :id",
+        {"id": account_id},
+    )
+    if not account:
+        raise NotFoundError("Account not found")
+    require_account_access(account_id, user, int(account["organization_id"]))
+
+    user_ids = await _list_agent_user_ids(db, {account_id})
+    _corpus_id, corpus_config = await load_account_corpus_config(db, embedding_svc, account_id)
+    assigned_by_user = await list_assigned_queue_keys_by_account(db, account_id=account_id)
+    items = build_agent_queue_summaries(
+        user_ids=user_ids,
+        corpus_config=corpus_config,
+        assigned_by_user=assigned_by_user,
+    )
+    return AgentQueueSummaryOut(
+        account_id=account_id,
+        agents=[
+            {
+                "user_id": item["user_id"],
+                "queues": [QueueGroupOut(**q) for q in item["queues"]],
+                "is_restricted": item["is_restricted"],
+            }
+            for item in items
+        ],
+    )
+
+
+@router.get("/{user_id}/queue-access", response_model=AgentQueueAccessOut)
+async def get_agent_queue_access(
+    user_id: int,
+    user: Annotated[UserContext, Depends(_AGENT_ACCESS)],
+    db: DbDep,
+    embedding_svc: EmbeddingServiceDep,
+    account_id: int = Query(..., description="Account context"),
+) -> AgentQueueAccessOut:
+    await require_can_manage_agent_queues(db, user, account_id=account_id, target_user_id=user_id)
+
+    on_account = await db.fetch_one(
+        """
+        SELECT 1 FROM AIVA_account_users
+        WHERE account_id = :account_id AND user_id = :user_id AND status = 'ACTIVE'
+        """,
+        {"account_id": account_id, "user_id": user_id},
+    )
+    if not on_account:
+        raise NotFoundError("Agent is not assigned to this account")
+
+    _corpus_id, corpus_config = await load_account_corpus_config(db, embedding_svc, account_id)
+    catalog = list_queue_catalog(corpus_config)
+    assigned = await list_assigned_queue_keys(db, account_id=account_id, user_id=user_id)
+    allowed = assigned if assigned else [item["key"] for item in catalog]
+
+    return AgentQueueAccessOut(
+        account_id=account_id,
+        user_id=user_id,
+        available_queues=[QueueGroupOut(**item) for item in catalog],
+        assigned_queues=assigned,
+        allowed_queues=allowed,
+    )
+
+
+@router.put("/{user_id}/queue-access", response_model=AgentQueueAccessOut)
+async def update_agent_queue_access(
+    user_id: int,
+    body: AgentQueueAccessUpdate,
+    user: Annotated[UserContext, Depends(_AGENT_ACCESS)],
+    db: DbDep,
+    embedding_svc: EmbeddingServiceDep,
+    account_id: int = Query(..., description="Account context"),
+) -> AgentQueueAccessOut:
+    await require_can_manage_agent_queues(db, user, account_id=account_id, target_user_id=user_id)
+
+    on_account = await db.fetch_one(
+        """
+        SELECT 1 FROM AIVA_account_users
+        WHERE account_id = :account_id AND user_id = :user_id AND status = 'ACTIVE'
+        """,
+        {"account_id": account_id, "user_id": user_id},
+    )
+    if not on_account:
+        raise NotFoundError("Agent is not assigned to this account")
+
+    _corpus_id, corpus_config = await load_account_corpus_config(db, embedding_svc, account_id)
+    assigned = await set_assigned_queue_keys(
+        db,
+        account_id=account_id,
+        user_id=user_id,
+        queue_keys=body.queue_keys,
+        corpus_config=corpus_config,
+        assigned_by=user.id,
+    )
+    await write_audit_log(
+        db,
+        user_id=user.id,
+        entity_type="agent_queue_access",
+        entity_id=user_id,
+        action_type="UPDATE",
+        old_value=None,
+        new_value={"account_id": account_id, "queue_keys": assigned},
+    )
+    catalog = list_queue_catalog(corpus_config)
+    return AgentQueueAccessOut(
+        account_id=account_id,
+        user_id=user_id,
+        available_queues=[QueueGroupOut(**item) for item in catalog],
+        assigned_queues=assigned,
+        allowed_queues=assigned,
+    )
