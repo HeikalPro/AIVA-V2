@@ -57,6 +57,25 @@ async def normalize_session_active_queues(
     )
 
 
+def reconcile_active_queues_with_allowed(
+    corpus_config: dict | None,
+    active: list[str] | None,
+    allowed: list[str],
+) -> list[str] | None:
+    """Drop queues the agent no longer has; fall back to all allowed if none remain."""
+    if active is None:
+        return None
+    allowed_set = set(allowed)
+    filtered = [key for key in active if key in allowed_set]
+    if not filtered:
+        filtered = list(allowed)
+    return validate_active_queues(
+        corpus_config,
+        filtered,
+        allowed_queue_keys=allowed,
+    )
+
+
 async def resolve_search_verticals_for_session(
     db: Database,
     user: UserContext,
@@ -71,10 +90,10 @@ async def resolve_search_verticals_for_session(
     allowed = await get_allowed_queue_keys(
         db, user, account_id=account_id, corpus_config=corpus_config
     )
-    validated = validate_active_queues(
+    validated = reconcile_active_queues_with_allowed(
         corpus_config,
         active,
-        allowed_queue_keys=allowed,
+        allowed,
     )
     return resolve_verticals(corpus_config, validated)
 

@@ -24,6 +24,11 @@ from backend.services.account_dependencies import delete_account_dependencies
 from backend.services.audit import write_audit_log
 from backend.services.role_nav_permissions import seed_account_role_nav_permissions
 from backend.services.user_queries import build_user_out
+from backend.services.widget_features import (
+    dumps_widget_features,
+    parse_widget_features,
+    widget_features_out,
+)
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/accounts", tags=["accounts"])
@@ -50,7 +55,7 @@ _ACCOUNT_LIST_NAV = (
 
 _ACCOUNT_WITH_ORG_SELECT = """
 SELECT a.id, a.organization_id, a.llm_config_id, a.name, a.description, a.corpus_id, a.status,
-       a.kb_source_base_url, a.created_at,
+       a.kb_source_base_url, a.widget_features, a.created_at,
        o.name AS organization_name, o.code AS organization_code
 FROM AIVA_accounts a
 JOIN AIVA_organizations o ON o.id = a.organization_id
@@ -59,6 +64,8 @@ JOIN AIVA_organizations o ON o.id = a.organization_id
 
 def _to_account_out(row: dict | None) -> AccountOut:
     data = serialize_row(row) or {}
+    features = parse_widget_features(data.get("widget_features"))
+    data["widget_features"] = widget_features_out(features)
     return AccountOut(**data)
 
 
@@ -126,13 +133,18 @@ async def create_account(
     account_id = await db.execute(
         """
         INSERT INTO AIVA_accounts (
-            organization_id, llm_config_id, name, description, corpus_id, status, kb_source_base_url
+            organization_id, llm_config_id, name, description, corpus_id, status,
+            kb_source_base_url, widget_features
         ) VALUES (
-            :organization_id, :llm_config_id, :name, :description, :corpus_id, :status, :kb_source_base_url
+            :organization_id, :llm_config_id, :name, :description, :corpus_id, :status,
+            :kb_source_base_url, :widget_features
         )
         RETURNING id INTO :out_id
         """,
-        body.model_dump(),
+        {
+            **body.model_dump(exclude={"widget_features"}),
+            "widget_features": dumps_widget_features(body.widget_features),
+        },
         return_id=True,
     )
     row = await _fetch_account_by_id(db, int(account_id or 0))
@@ -216,6 +228,10 @@ async def update_account(
     if not updates:
         row = await _fetch_account_by_id(db, account_id)
         return _to_account_out(row)
+
+    widget_features = updates.pop("widget_features", None)
+    if widget_features is not None:
+        updates["widget_features"] = dumps_widget_features(widget_features)
 
     updates["id"] = account_id
     set_parts = [f"{k} = :{k}" for k in updates if k != "id"]

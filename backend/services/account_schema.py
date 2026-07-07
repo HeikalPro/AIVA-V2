@@ -23,3 +23,6 @@ async def ensure_account_schema(db: Database) -> None:
     if not await _column_exists(db, "AIVA_ACCOUNTS", "kb_source_base_url"):
         await db.execute("ALTER TABLE AIVA_accounts ADD (kb_source_base_url VARCHAR2(512))")
         _log.info("Added AIVA_accounts.kb_source_base_url")
+    if not await _column_exists(db, "AIVA_ACCOUNTS", "widget_features"):
+        await db.execute("ALTER TABLE AIVA_accounts ADD (widget_features CLOB)")
+        _log.info("Added AIVA_accounts.widget_features")

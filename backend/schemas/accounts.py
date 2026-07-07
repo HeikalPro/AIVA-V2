@@ -2,6 +2,8 @@ import re
 
 from pydantic import BaseModel, Field, field_validator
 
+from backend.schemas.widget_features import WidgetFeaturesConfig
+
 
 def _normalize_kb_source_base_url(value: object | None) -> str | None:
     if value is None:
@@ -22,6 +24,7 @@ class AccountCreate(BaseModel):
     llm_config_id: int | None = None
     status: str = "ACTIVE"
     kb_source_base_url: str | None = None
+    widget_features: WidgetFeaturesConfig | None = None
 
     @field_validator("kb_source_base_url", mode="before")
     @classmethod
@@ -36,6 +39,7 @@ class AccountUpdate(BaseModel):
     llm_config_id: int | None = None
     status: str | None = None
     kb_source_base_url: str | None = None
+    widget_features: WidgetFeaturesConfig | None = None
 
     @field_validator("kb_source_base_url", mode="before")
     @classmethod
@@ -54,4 +58,5 @@ class AccountOut(BaseModel):
     corpus_id: str | None
     status: str
     kb_source_base_url: str | None = None
+    widget_features: dict | None = None
     created_at: str | None = None
