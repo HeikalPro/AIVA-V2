@@ -45,6 +45,10 @@ class Settings(BaseSettings):
     llm_default_input_usd_per_million_tokens: float | None = None
     llm_default_output_usd_per_million_tokens: float | None = None
 
+    # Shared secret the widget must send (X-Widget-Log-Secret header) to POST conversation
+    # logs to /api/logs/widget-turn. Empty = widget logging disabled (endpoint rejects all).
+    widget_log_secret: str = ""
+
     search_default_top_k: int = 10
     # Default KB link template when account.kb_source_base_url is empty. Use {id} or suffix with =.
     kb_source_base_url: str = "http://192.168.1.13/halankb/view.php?id="

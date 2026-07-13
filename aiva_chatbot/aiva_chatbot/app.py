@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import os
 from contextlib import asynccontextmanager
@@ -19,10 +20,14 @@ from llm_service.core.exceptions import (
 )
 
 from aiva_chatbot.bot import Chatbot, ChatTurnResult, create_chatbot_from_env
+from aiva_chatbot.conversation_log import log_widget_turn
 from aiva_chatbot.env_bootstrap import preload_monorepo_dotenv
 from aiva_chatbot.settings import ApiSettings
 
 _log = logging.getLogger(__name__)
+
+# Keep references to in-flight background logging tasks so they aren't GC'd.
+_bg_tasks: set[asyncio.Task] = set()
 
 
 def _parse_cors(origins: str) -> list[str]:
@@ -127,8 +132,29 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
+def _schedule_turn_log(request: Request, body: ChatRequest, bot: Chatbot, result: ChatTurnResult) -> None:
+    """Fire-and-forget: log this turn to the backend. Never blocks or raises."""
+    settings: ApiSettings = request.app.state.settings
+    if not settings.backend_log_url or not settings.log_secret:
+        return
+    query = next((m.content for m in reversed(body.messages) if m.role == "user"), None)
+    task = asyncio.create_task(
+        log_widget_turn(
+            backend_log_url=settings.backend_log_url,
+            log_secret=settings.log_secret,
+            corpus_id=body.corpus_id or bot.corpus_id,
+            query=query,
+            top_k=body.top_k,
+            vertical=body.vertical,
+            result=result,
+        )
+    )
+    _bg_tasks.add(task)
+    task.add_done_callback(_bg_tasks.discard)
+
+
 @app.post("/chat", response_model=ChatResponse)
-async def chat(body: ChatRequest, bot: ChatbotDep) -> ChatResponse:
+async def chat(body: ChatRequest, bot: ChatbotDep, request: Request) -> ChatResponse:
     raw = [m.model_dump() for m in body.messages]
     try:
         result = await bot.achat_with_messages(
@@ -165,4 +191,5 @@ async def chat(body: ChatRequest, bot: ChatbotDep) -> ChatResponse:
     except LLMServiceError as exc:
         _log.exception("LLM error during chat")
         raise HTTPException(status_code=502, detail=f"LLM request failed: {exc!s}") from None
+    _schedule_turn_log(request, body, bot, result)
     return _to_response(result)

@@ -30,18 +30,77 @@ def _parse_json_blob(raw: Any) -> dict[str, Any]:
 
 
 def _audit_summary(row: dict[str, Any]) -> str:
-    action = str(row.get("action_type") or "")
-    entity = str(row.get("entity_type") or "")
-    actor = row.get("actor_email") or (f"user #{row['user_id']}" if row.get("user_id") else "system")
+    action = str(row.get("action_type") or "").replace("_", " ").title()
+    entity = str(row.get("entity_type") or "").replace("_", " ")
+    actor = row.get("actor_email") or (f"user #{row['user_id']}" if row.get("user_id") else "System")
     entity_id = row.get("entity_id") or "?"
-    return f"{actor} — {action} {entity} #{entity_id}"
+    return f"{actor} performed {action} on {entity} #{entity_id}"
 
 
 def _sign_in_summary(row: dict[str, Any]) -> str:
-    email = row.get("user_email") or (f"user #{row['user_id']}" if row.get("user_id") else "unknown")
-    event = str(row.get("event_type") or "event")
+    email = row.get("user_email") or (f"user #{row['user_id']}" if row.get("user_id") else "Unknown user")
+    event = str(row.get("event_type") or "event").replace("_", " ").title()
     ip = row.get("ip_address") or "—"
-    return f"{email} — {event} — {ip}"
+    return f"{email} {event.lower()} from {ip}"
+
+
+def _ai_request_summary(row: dict[str, Any]) -> str:
+    status = str(row.get("status") or "?").upper()
+    model = row.get("model_name") or "unknown model"
+    tokens = (int(row.get("input_tokens") or 0), int(row.get("output_tokens") or 0))
+    cost = row.get("total_cost")
+    cost_str = f" — ${float(cost):.4f}" if isinstance(cost, (int, float)) else ""
+    if status == "FAILED" and row.get("error_message"):
+        return f"FAILED ({model}) — {str(row['error_message'])[:120]}"
+    return f"{status} — {model} — {tokens[0]}→{tokens[1]} tok{cost_str}"
+
+
+async def list_ai_requests(
+    db: Database,
+    *,
+    org_id: int | None = None,
+    account_id: int | None = None,
+    status: str | None = None,
+    limit: int = 100,
+    offset: int = 0,
+) -> list[dict[str, Any]]:
+    """Per-request LLM call log (model, tokens, cost, latency, failures)."""
+    limit = max(1, min(limit, 500))
+    offset = max(0, offset)
+    binds: dict[str, Any] = {"limit": limit, "offset": offset}
+    filters = ["1=1"]
+    if org_id is not None:
+        filters.append("a.organization_id = :org_id")
+        binds["org_id"] = org_id
+    if account_id is not None:
+        filters.append("NVL(ar.account_id, cs.account_id) = :account_id")
+        binds["account_id"] = account_id
+    if status:
+        filters.append("UPPER(TRIM(ar.status)) = :status")
+        binds["status"] = status.upper()
+
+    where_sql = " AND ".join(filters)
+    rows = await db.fetch_all(
+        f"""
+        SELECT ar.id, ar.session_id, NVL(ar.account_id, cs.account_id) AS account_id,
+               ar.model_name, ar.provider, ar.input_tokens, ar.output_tokens,
+               ar.response_time_ms, ar.total_cost, ar.status, ar.error_message,
+               ar.source, a.name AS account_name, a.organization_id
+        FROM AIVA_ai_requests ar
+        LEFT JOIN AIVA_chat_sessions cs ON cs.id = ar.session_id
+        LEFT JOIN AIVA_accounts a ON a.id = NVL(ar.account_id, cs.account_id)
+        WHERE {where_sql}
+        ORDER BY ar.id DESC
+        OFFSET :offset ROWS FETCH NEXT :limit ROWS ONLY
+        """,
+        binds,
+    )
+    out: list[dict[str, Any]] = []
+    for row in rows:
+        data = serialize_row(row) or {}
+        data["summary"] = _ai_request_summary(data)
+        out.append(data)
+    return out
 
 
 def _supervisor_activity_visible(row: dict[str, Any], account_ids: set[int]) -> bool:

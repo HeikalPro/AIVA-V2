@@ -45,6 +45,15 @@ class ApiSettings(BaseSettings):
         default="*",
         description="Comma-separated origins for CORS, or a single ``*``.",
     )
+    backend_log_url: str = Field(
+        default="",
+        description="Backend URL for conversation logging, e.g. http://backend:8000/api/logs/widget-turn. "
+        "Empty disables widget logging entirely.",
+    )
+    log_secret: str = Field(
+        default="",
+        description="Shared secret sent as X-Widget-Log-Secret; must match the backend's widget_log_secret.",
+    )
 
     @field_validator("corpus_id", mode="before")
     @classmethod

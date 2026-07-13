@@ -30,6 +30,7 @@ from backend.services.chat_queues import (
 )
 from backend.services.kb_queue_groups import dumps_active_queues_json, list_queue_catalog
 from backend.services.rag import format_llm_error, sanitize_kb_source_url, stream_rag_response
+from backend.services.rag_retrieval_log import persist_rag_retrieval
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/chat", tags=["chat"])
@@ -471,7 +472,27 @@ async def send_message(
                 if result is not None:
                     final_result = result
         except Exception as exc:
-            yield f"data: {json.dumps({'type': 'error', 'message': format_llm_error(exc)})}\n\n"
+            error_text = format_llm_error(exc)
+            try:
+                await db.execute(
+                    """
+                    INSERT INTO AIVA_ai_requests (
+                        session_id, account_id, model_name, provider, input_tokens,
+                        output_tokens, response_time_ms, total_cost, status, error_message
+                    ) VALUES (
+                        :session_id, :account_id, NULL, NULL, 0,
+                        0, NULL, NULL, 'FAILED', :error_message
+                    )
+                    """,
+                    {
+                        "session_id": session_id,
+                        "account_id": int(session["account_id"]),
+                        "error_message": error_text[:2000] or None,
+                    },
+                )
+            except Exception:
+                pass
+            yield f"data: {json.dumps({'type': 'error', 'message': error_text})}\n\n"
             yield f"data: {json.dumps({'type': 'done', 'user_message_id': user_message_id})}\n\n"
             return
 
@@ -518,15 +539,16 @@ async def send_message(
             await db.execute(
                 """
                 INSERT INTO AIVA_ai_requests (
-                    session_id, model_name, provider, input_tokens,
-                    output_tokens, response_time_ms, total_cost, status
+                    session_id, account_id, model_name, provider, input_tokens,
+                    output_tokens, response_time_ms, total_cost, status, error_message
                 ) VALUES (
-                    :session_id, :model_name, :provider, :input_tokens,
-                    :output_tokens, :response_time_ms, :total_cost, :status
+                    :session_id, :account_id, :model_name, :provider, :input_tokens,
+                    :output_tokens, :response_time_ms, :total_cost, :status, :error_message
                 )
                 """,
                 {
                     "session_id": session_id,
+                    "account_id": int(session["account_id"]),
                     "model_name": final_result.model_name,
                     "provider": final_result.provider,
                     "input_tokens": final_result.prompt_tokens or 0,
@@ -534,7 +556,21 @@ async def send_message(
                     "response_time_ms": final_result.latency_ms,
                     "total_cost": final_result.total_cost,
                     "status": request_status,
+                    "error_message": (final_result.error or "")[:2000] or None,
                 },
+            )
+            await persist_rag_retrieval(
+                db,
+                session_id=session_id,
+                account_id=int(session["account_id"]),
+                corpus_id=str(corpus_id),
+                query_text=body.message_text,
+                top_k=final_result.top_k_used or None,
+                verticals=final_result.verticals_used,
+                status=final_result.retrieval_status or "UNKNOWN",
+                chunks=final_result.chunks_used,
+                retrieval_ms=final_result.retrieval_ms or None,
+                error_message=final_result.retrieval_error,
             )
             yield f"data: {json.dumps({'type': 'done', 'latency_ms': final_result.latency_ms, 'user_message_id': user_message_id, 'assistant_message_id': assistant_message_id, 'sources': final_result.sources})}\n\n"
         else:

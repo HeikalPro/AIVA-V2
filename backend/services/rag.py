@@ -97,6 +97,12 @@ class StreamResult:
     chunks_used: list[dict[str, Any]] = field(default_factory=list)
     sources: list[dict[str, str]] = field(default_factory=list)
     error: str | None = None
+    # Retrieval trace (populated before the LLM call) for RAG diagnostics.
+    top_k_used: int = 0
+    verticals_used: list[str] = field(default_factory=list)
+    retrieval_ms: int = 0
+    retrieval_status: str = ""  # SUCCESS | EMPTY | FAILED
+    retrieval_error: str | None = None
 
 
 def _normalize_parent_id(value: Any) -> str:
@@ -342,13 +348,21 @@ async def stream_rag_response(
     llm_row = await load_llm_config(db, account_id)
     history = await load_conversation_history(db, session_id)
 
+    retrieval_start = time.perf_counter()
+    retrieval_status = "SUCCESS"
+    retrieval_error: str | None = None
     try:
         chunks = await search_knowledge(
             embedding_svc, corpus_id, user_message, top_k=tk, verticals=verticals
         )
-    except Exception:
+    except Exception as exc:
         _log.exception("KB search failed for account %s", account_id)
         chunks = []
+        retrieval_status = "FAILED"
+        retrieval_error = format_llm_error(exc)
+    retrieval_ms = int((time.perf_counter() - retrieval_start) * 1000)
+    if retrieval_status == "SUCCESS" and not chunks:
+        retrieval_status = "EMPTY"
 
     context = _format_context(chunks)
     system_prompt = system_template.replace("{context}", context)
@@ -372,6 +386,11 @@ async def stream_rag_response(
             kb_base,
             max_count=settings.kb_source_max_count,
         ),
+        top_k_used=tk,
+        verticals_used=list(verticals or []),
+        retrieval_ms=retrieval_ms,
+        retrieval_status=retrieval_status,
+        retrieval_error=retrieval_error,
     )
 
     try:
