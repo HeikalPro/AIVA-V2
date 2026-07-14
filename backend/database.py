@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import logging
-import time
 from contextlib import asynccontextmanager
 from typing import Any, AsyncIterator
 
@@ -11,35 +10,6 @@ from backend.config import Settings, get_settings
 from backend.utils import normalize_db_row
 
 _log = logging.getLogger(__name__)
-_sql_log = logging.getLogger("aiva.sql")
-
-# Bind keys whose values must never reach the logs.
-_SENSITIVE_BIND_KEYS = ("password", "secret", "token", "hash", "otp", "wallet")
-
-
-def _compact_sql(sql: str) -> str:
-    """Collapse whitespace/newlines so a query fits on one log line."""
-    return " ".join(sql.split())
-
-
-def _bind_summary(params: dict[str, Any] | None) -> str:
-    """Render bind variables for logging: redact secrets, truncate long strings,
-    and show only a type name for non-primitive binds (e.g. Oracle OUT vars)."""
-    if not params:
-        return "{}"
-    parts: list[str] = []
-    for key, value in params.items():
-        low = key.lower()
-        if any(marker in low for marker in _SENSITIVE_BIND_KEYS):
-            parts.append(f"{key}=***")
-        elif value is None or isinstance(value, (int, float, bool)):
-            parts.append(f"{key}={value}")
-        elif isinstance(value, str):
-            shown = value if len(value) <= 80 else value[:79] + "…"
-            parts.append(f"{key}={shown!r}")
-        else:
-            parts.append(f"{key}=<{type(value).__name__}>")
-    return "{" + ", ".join(parts) + "}"
 
 
 class Database:
@@ -106,32 +76,6 @@ class Database:
             self._pool = None
             _log.info("Oracle async pool closed")
 
-    async def _timed_execute(
-        self,
-        cur: oracledb.AsyncCursor,
-        sql: str,
-        params: dict[str, Any],
-        *,
-        op: str,
-    ) -> None:
-        """Run cur.execute with timing; WARN on slow queries, DEBUG on every query."""
-        t0 = time.perf_counter()
-        try:
-            await cur.execute(sql, params)
-        finally:
-            elapsed_ms = (time.perf_counter() - t0) * 1000
-            threshold = self._settings.db_slow_query_ms
-            if threshold and elapsed_ms >= threshold:
-                _sql_log.warning(
-                    "Slow SQL %.0fms [%s]: %s | binds=%s",
-                    elapsed_ms, op, _compact_sql(sql), _bind_summary(params),
-                )
-            elif _sql_log.isEnabledFor(logging.DEBUG):
-                _sql_log.debug(
-                    "SQL %.1fms [%s]: %s | binds=%s",
-                    elapsed_ms, op, _compact_sql(sql), _bind_summary(params),
-                )
-
     async def fetch_one(
         self,
         sql: str,
@@ -141,7 +85,7 @@ class Database:
     ) -> dict[str, Any] | None:
         if conn is not None:
             cur = conn.cursor()
-            await self._timed_execute(cur, sql, params or {}, op="fetch_one")
+            await cur.execute(sql, params or {})
             row = await cur.fetchone()
             if row is None:
                 return None
@@ -160,7 +104,7 @@ class Database:
     ) -> list[dict[str, Any]]:
         if conn is not None:
             cur = conn.cursor()
-            await self._timed_execute(cur, sql, params or {}, op="fetch_all")
+            await cur.execute(sql, params or {})
             rows = await cur.fetchall()
             if not rows:
                 return []
@@ -182,11 +126,9 @@ class Database:
             cur = conn.cursor()
             if return_id:
                 out_id = cur.var(int)
-                await self._timed_execute(
-                    cur, sql, {**(params or {}), "out_id": out_id}, op="execute"
-                )
+                await cur.execute(sql, {**(params or {}), "out_id": out_id})
                 return int(out_id.getvalue()[0])
-            await self._timed_execute(cur, sql, params or {}, op="execute")
+            await cur.execute(sql, params or {})
             return None
 
         async with self.connection() as c:
