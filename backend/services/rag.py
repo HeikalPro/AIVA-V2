@@ -28,6 +28,29 @@ from backend.services.system_prompt import get_system_prompt_text
 from embedding_service.service import EmbeddingService
 
 _log = logging.getLogger(__name__)
+_chat_log = logging.getLogger("aiva.chat")
+
+
+def _truncate(text: Any, limit: int = 200) -> str:
+    """Single-line, length-capped rendering of free text for DEBUG logs."""
+    if not text:
+        return ""
+    collapsed = " ".join(str(text).split())
+    return collapsed if len(collapsed) <= limit else collapsed[: limit - 1] + "…"
+
+
+def _top_score(chunks: list[dict[str, Any]]) -> float | None:
+    scores = []
+    for ch in chunks:
+        raw = ch.get("score")
+        if raw is None:
+            continue
+        try:
+            scores.append(float(raw))
+        except (TypeError, ValueError):
+            continue
+    return max(scores) if scores else None
+
 
 _LLM_SERVICE_ENV = Path(__file__).resolve().parents[2] / "llm_service" / ".env"
 _ROOT_ENV = Path(__file__).resolve().parents[2] / ".env"
@@ -344,9 +367,23 @@ async def stream_rag_response(
     start = time.perf_counter()
     kb_base = resolve_kb_source_base_url(kb_source_base_url, settings)
 
+    _chat_log.debug(
+        "chat.rag start | account=%s session=%s corpus=%s top_k=%s verticals=%s | q=%r",
+        account_id, session_id, corpus_id, tk, verticals or [], _truncate(user_message),
+    )
+
     system_template, _ = await load_active_prompt(db, account_id)
     llm_row = await load_llm_config(db, account_id)
     history = await load_conversation_history(db, session_id)
+
+    _chat_log.debug(
+        "chat.rag config | provider=%s model=%s temp=%s max_tokens=%s | system_len=%s history_msgs=%s",
+        (llm_row or {}).get("provider") or settings.llm_default_provider,
+        (llm_row or {}).get("model_name") or settings.llm_default_model,
+        (llm_row or {}).get("temperature"),
+        (llm_row or {}).get("max_tokens"),
+        len(system_template), len(history),
+    )
 
     retrieval_start = time.perf_counter()
     retrieval_status = "SUCCESS"
@@ -363,6 +400,19 @@ async def stream_rag_response(
     retrieval_ms = int((time.perf_counter() - retrieval_start) * 1000)
     if retrieval_status == "SUCCESS" and not chunks:
         retrieval_status = "EMPTY"
+
+    if _chat_log.isEnabledFor(logging.DEBUG):
+        top = _top_score(chunks)
+        _chat_log.debug(
+            "chat.rag retrieval | status=%s chunks=%s top_score=%s took=%sms",
+            retrieval_status, len(chunks), f"{top:.3f}" if top is not None else "n/a", retrieval_ms,
+        )
+        for i, ch in enumerate(chunks, start=1):
+            _chat_log.debug(
+                "chat.rag chunk[%d] parent=%s score=%s text=%r",
+                i, _normalize_parent_id(ch.get("parent_id")), ch.get("score"),
+                _truncate(ch.get("text") or ch.get("content"), 120),
+            )
 
     context = _format_context(chunks)
     system_prompt = system_template.replace("{context}", context)
@@ -393,6 +443,12 @@ async def stream_rag_response(
         retrieval_error=retrieval_error,
     )
 
+    _chat_log.debug(
+        "chat.rag llm.start | model=%s provider=%s temp=%s max_tokens=%s messages=%s system_prompt_len=%s sources=%s",
+        result.model_name, result.provider, temperature, max_tokens,
+        len(messages), len(system_prompt), len(result.sources),
+    )
+
     try:
         async for chunk in client.astream(
             messages,
@@ -420,5 +476,11 @@ async def stream_rag_response(
         input_tokens=result.prompt_tokens,
         output_tokens=result.completion_tokens,
         settings=settings,
+    )
+
+    _chat_log.debug(
+        "chat.rag llm.done | status=%s reply_len=%s prompt_tok=%s completion_tok=%s cost=%s latency=%sms",
+        "FAILED" if result.error else "SUCCESS", len(result.full_text),
+        result.prompt_tokens, result.completion_tokens, result.total_cost, result.latency_ms,
     )
     yield "", result

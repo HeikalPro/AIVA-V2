@@ -28,6 +28,9 @@ class Settings(BaseSettings):
     oracle_pool_min: int = 2
     oracle_pool_max: int = 20
     oracle_call_timeout_ms: int | None = None
+    # Queries at/above this wall-clock threshold log a WARNING (0 disables slow-query logging).
+    # Every query also logs at DEBUG when the backend runs with backend_debug=True.
+    db_slow_query_ms: int = 500
 
     jwt_secret_key: str = "change-me-to-a-long-random-secret"
     jwt_access_token_expire_minutes: int = 15
