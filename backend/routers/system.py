@@ -78,18 +78,13 @@ async def system_resources(
 async def system_components(
     user: Annotated[UserContext, Depends(_ACCESS)],
     db: DbDep,
-    embedding_svc: EmbeddingServiceDep,
 ) -> SystemComponentsOut:
-    """Reachability of external dependencies: Oracle DB, Redis, LLM provider, chatbot."""
+    """Reachability of external dependencies: Oracle DB and the LLM provider."""
     settings = get_settings()
-    redis_url = getattr(embedding_svc.settings, "redis_url", None)
-    queue_name = getattr(embedding_svc.settings, "redis_job_queue", "embedding_service:jobs")
 
-    database, redis, llm, chatbot = await asyncio.gather(
+    database, llm = await asyncio.gather(
         sh.db_health(db),
-        sh.redis_snapshot(redis_url, queue_name),
         sh.llm_health(),
-        sh.service_health(settings.chatbot_health_url or None),
     )
 
     components = [
@@ -108,22 +103,6 @@ async def system_components(
             latency_ms=llm.get("latency_ms"),
             detail=llm.get("detail"),
             info=llm.get("info"),
-        ),
-        ComponentHealth(
-            key="redis",
-            label="Redis",
-            status=redis.get("status", "unknown"),
-            latency_ms=redis.get("latency_ms"),
-            detail=redis.get("detail"),
-            info=(f"queue depth: {redis.get('queue_depth')}" if redis.get("queue_depth") is not None else None),
-        ),
-        ComponentHealth(
-            key="chatbot",
-            label="Chatbot service",
-            status=chatbot.get("status", "unknown"),
-            latency_ms=chatbot.get("latency_ms"),
-            detail=chatbot.get("detail"),
-            info=chatbot.get("info"),
         ),
     ]
 
