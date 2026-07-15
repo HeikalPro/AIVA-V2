@@ -28,6 +28,7 @@ NAV_PERMISSION_CATALOG: list[dict[str, str]] = [
     {"key": "tickets", "label": "Tickets"},
     {"key": "ingestion", "label": "Ingestion"},
     {"key": "logs", "label": "Logs"},
+    {"key": "system", "label": "System Health"},
 ]
 
 ALL_NAV_KEYS: frozenset[str] = frozenset(item["key"] for item in NAV_PERMISSION_CATALOG)
@@ -78,6 +79,7 @@ DEFAULT_ROLE_NAV_PERMISSIONS: dict[str, list[str]] = {
         "logs",
         "tickets",
         "ingestion",
+        "system",
     ],
 }
 
@@ -111,6 +113,7 @@ async def ensure_role_nav_permissions_schema(db: Database) -> None:
     await _seed_default_role_nav_permissions(db)
     await _ensure_agents_nav_permission(db)
     await _ensure_logs_nav_permission(db)
+    await _ensure_system_nav_permission(db)
     await ensure_account_role_nav_permissions_schema(db)
     await ensure_user_nav_permissions_schema(db)
 
@@ -188,6 +191,8 @@ _LOGS_NAV_ROLES = frozenset(
     {ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR, ROLE_DEVELOPER}
 )
 
+_SYSTEM_NAV_ROLES = frozenset({ROLE_SUPER_ADMIN, ROLE_DEVELOPER})
+
 
 async def _ensure_agents_nav_permission(db: Database) -> None:
     """Grant the agents nav key to supervisor-facing roles when missing (existing DBs)."""
@@ -239,6 +244,34 @@ async def _ensure_logs_nav_permission(db: Database) -> None:
             """
             INSERT INTO AIVA_role_nav_permissions (role_id, nav_key)
             VALUES (:role_id, 'logs')
+            """,
+            {"role_id": role_id},
+        )
+
+
+async def _ensure_system_nav_permission(db: Database) -> None:
+    """Grant the system-health nav key to super admin + developer (existing DBs)."""
+    if "system" not in ALL_NAV_KEYS:
+        return
+    role_rows = await db.fetch_all("SELECT id, name FROM AIVA_roles")
+    for row in role_rows:
+        role_name = str(row["name"])
+        if role_name not in _SYSTEM_NAV_ROLES:
+            continue
+        role_id = int(row["id"])
+        existing = await db.fetch_one(
+            """
+            SELECT 1 FROM AIVA_role_nav_permissions
+            WHERE role_id = :role_id AND nav_key = 'system'
+            """,
+            {"role_id": role_id},
+        )
+        if existing:
+            continue
+        await db.execute(
+            """
+            INSERT INTO AIVA_role_nav_permissions (role_id, nav_key)
+            VALUES (:role_id, 'system')
             """,
             {"role_id": role_id},
         )

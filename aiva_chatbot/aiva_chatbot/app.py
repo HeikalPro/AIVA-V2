@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import os
+import traceback
 from contextlib import asynccontextmanager
 from typing import Annotated, Literal
 
@@ -20,7 +21,7 @@ from llm_service.core.exceptions import (
 )
 
 from aiva_chatbot.bot import Chatbot, ChatTurnResult, create_chatbot_from_env
-from aiva_chatbot.conversation_log import log_widget_turn
+from aiva_chatbot.conversation_log import log_widget_error, log_widget_turn
 from aiva_chatbot.env_bootstrap import preload_monorepo_dotenv
 from aiva_chatbot.settings import ApiSettings
 
@@ -153,6 +154,35 @@ def _schedule_turn_log(request: Request, body: ChatRequest, bot: Chatbot, result
     task.add_done_callback(_bg_tasks.discard)
 
 
+def _schedule_error_log(request: Request, body: ChatRequest, status_code: int, exc: BaseException) -> None:
+    """Fire-and-forget: report a failed turn (with traceback) to the backend.
+
+    Never blocks or raises — purely additive to the normal error response.
+    """
+    settings: ApiSettings = request.app.state.settings
+    if not settings.backend_log_url or not settings.log_secret:
+        return
+    try:
+        query = next((m.content for m in reversed(body.messages) if m.role == "user"), None)
+        stack = "".join(traceback.format_exception(type(exc), exc, exc.__traceback__))
+        task = asyncio.create_task(
+            log_widget_error(
+                backend_log_url=settings.backend_log_url,
+                log_secret=settings.log_secret,
+                corpus_id=body.corpus_id,
+                query=query,
+                exception_type=type(exc).__name__,
+                exception_message=str(exc),
+                stack_trace=stack,
+                status_code=status_code,
+            )
+        )
+        _bg_tasks.add(task)
+        task.add_done_callback(_bg_tasks.discard)
+    except Exception:
+        _log.warning("Failed to schedule widget error log", exc_info=True)
+
+
 @app.post("/chat", response_model=ChatResponse)
 async def chat(body: ChatRequest, bot: ChatbotDep, request: Request) -> ChatResponse:
     raw = [m.model_dump() for m in body.messages]
@@ -168,28 +198,33 @@ async def chat(body: ChatRequest, bot: ChatbotDep, request: Request) -> ChatResp
             skip_retrieval=body.skip_retrieval,
         )
     except ValueError as exc:
+        _schedule_error_log(request, body, 400, exc)
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    except AuthenticationError:
+    except AuthenticationError as exc:
         _log.warning("LLM authentication failed")
+        _schedule_error_log(request, body, 401, exc)
         raise HTTPException(
             status_code=401,
             detail="LLM provider rejected credentials or API key is missing. "
             "Set keys in llm_service/.env or repo .env (see OPENAI_API_KEY / LLM_*).",
         ) from None
     except RateLimitError as exc:
+        _schedule_error_log(request, body, 429, exc)
         raise HTTPException(
             status_code=429,
             detail="LLM provider rate limit exceeded.",
             headers={"Retry-After": str(int(exc.retry_after or 60))},
         ) from None
-    except oracledb.exceptions.DatabaseError:
+    except oracledb.exceptions.DatabaseError as exc:
         _log.exception("Oracle error during chat")
+        _schedule_error_log(request, body, 503, exc)
         raise HTTPException(
             status_code=503,
             detail="Knowledge base is unavailable (database error). Check Oracle DSN and credentials.",
         ) from None
     except LLMServiceError as exc:
         _log.exception("LLM error during chat")
+        _schedule_error_log(request, body, 502, exc)
         raise HTTPException(status_code=502, detail=f"LLM request failed: {exc!s}") from None
     _schedule_turn_log(request, body, bot, result)
     return _to_response(result)

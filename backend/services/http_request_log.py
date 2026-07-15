@@ -83,11 +83,11 @@ async def list_http_request_logs(
     binds: dict[str, Any] = {
         "limit": limit,
         "offset": offset,
-        "org_id": org_id,
     }
     filters = ["1=1"]
     if org_id is not None:
         filters.append("org_id = :org_id")
+        binds["org_id"] = org_id
     if http_method:
         filters.append("http_method = :http_method")
         binds["http_method"] = http_method.upper()

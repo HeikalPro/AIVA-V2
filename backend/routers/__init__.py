@@ -16,6 +16,7 @@ from backend.routers import (
     organizations,
     prompts,
     roles,
+    system,
     tickets,
     users,
 )
@@ -40,4 +41,5 @@ def build_api_router() -> APIRouter:
     router.include_router(http_logs.router)
     router.include_router(llm_configs.router)
     router.include_router(logs.router)
+    router.include_router(system.router)
     return router

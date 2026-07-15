@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import logging
 import time
+import traceback
+import uuid
 from typing import TYPE_CHECKING
 
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
@@ -13,6 +15,7 @@ from starlette.responses import Response
 from backend.auth.jwt import decode_token
 from backend.database import Database
 from backend.services.auth_audit import client_ip
+from backend.services.error_log import persist_error_log
 from backend.services.http_request_log import RequestActor, persist_http_request_log
 
 if TYPE_CHECKING:
@@ -103,7 +106,47 @@ async def request_logging_middleware(request: Request, call_next: RequestRespons
         return await call_next(request)
 
     start = time.perf_counter()
-    response = await call_next(request)
+    try:
+        response = await call_next(request)
+    except Exception as exc:
+        # Unhandled error → capture the full traceback for the Errors view, record
+        # a 500 access-log row, then re-raise so normal error handling proceeds.
+        elapsed_ms = (time.perf_counter() - start) * 1000
+        template = _route_template(request)
+        actor = _resolve_actor(request)
+        ip = client_ip(request) or "-"
+        request_id = uuid.uuid4().hex
+        db = _database(request)
+        await persist_error_log(
+            db,
+            exception_type=type(exc).__name__,
+            exception_message=str(exc),
+            stack_trace="".join(traceback.format_exception(type(exc), exc, exc.__traceback__)),
+            source="HTTP",
+            http_method=request.method,
+            path=path,
+            route_template=template,
+            status_code=500,
+            request_id=request_id,
+            user_id=actor.user_id,
+            user_email=actor.user_email,
+            org_id=actor.org_id,
+            client_ip=ip if ip != "-" else None,
+        )
+        await persist_http_request_log(
+            db,
+            http_method=request.method,
+            path=path,
+            query_string=request.url.query or None,
+            handler_name=_handler_label(request),
+            route_template=template,
+            status_code=500,
+            duration_ms=elapsed_ms,
+            actor=actor,
+            client_ip=ip if ip != "-" else None,
+        )
+        _log.exception("Unhandled error in %s %s (request_id=%s)", request.method, path, request_id)
+        raise
     elapsed_ms = (time.perf_counter() - start) * 1000
 
     handler = _handler_label(request)

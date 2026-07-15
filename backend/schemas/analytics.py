@@ -11,6 +11,13 @@ class DashboardStats(BaseModel):
     total_cost: float | None
 
 
+class AiTimeseriesPoint(BaseModel):
+    day: str  # YYYY-MM-DD
+    calls: int
+    avg_latency_ms: float | None = None
+    total_tokens: int
+
+
 class AgentMetricOut(BaseModel):
     user_id: int
     account_id: int
@@ -20,5 +27,7 @@ class AgentMetricOut(BaseModel):
     avg_response_time: float | None
     ai_usage_count: int | None
     successful_answers: int | None
+    failed_answers: int | None = None
     escalation_count: int | None
     calculated_at: str | None
+    failure_reasons: str | None = None

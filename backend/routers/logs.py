@@ -14,21 +14,32 @@ from backend.dependencies import DbDep
 from backend.schemas.http_logs import HttpRequestLogListOut, HttpRequestLogOut
 from backend.config import get_settings
 from backend.schemas.logs import (
+    AiMetricsOut,
     AiRequestListOut,
     AiRequestOut,
     AuditLogListOut,
     AuditLogOut,
+    ErrorLogListOut,
+    ErrorLogOut,
+    ErrorTypeCount,
     RagRetrievalListOut,
     RagRetrievalOut,
     SignInLogListOut,
     SignInLogOut,
+    WidgetErrorIn,
     WidgetTurnAck,
     WidgetTurnIn,
 )
 from backend.services.ai_request_log import persist_ai_request
 from backend.services.http_request_log import list_http_request_logs
 from backend.services.llm_cost import estimate_llm_cost_usd
-from backend.services.log_queries import list_ai_requests, list_audit_logs, list_sign_in_logs
+from backend.services.error_log import error_type_counts, list_error_logs, persist_error_log
+from backend.services.log_queries import (
+    get_ai_request_metrics,
+    list_ai_requests,
+    list_audit_logs,
+    list_sign_in_logs,
+)
 from backend.services.rag_retrieval_log import list_rag_retrievals, persist_rag_retrieval
 
 router = APIRouter(prefix="/logs", tags=["logs"])
@@ -200,6 +211,55 @@ async def ai_request_logs(
     )
 
 
+@router.get("/ai-metrics", response_model=AiMetricsOut)
+async def ai_request_metrics(
+    user: Annotated[UserContext, Depends(_AI_ACCESS)],
+    db: DbDep,
+    account_id: int | None = Query(default=None),
+    status: str | None = Query(default=None, max_length=16),
+    start: str | None = Query(default=None, max_length=10),
+    end: str | None = Query(default=None, max_length=10),
+) -> AiMetricsOut:
+    data = await get_ai_request_metrics(
+        db,
+        org_id=_org_scope(user),
+        account_id=account_id,
+        status=status,
+        start=start,
+        end=end,
+    )
+    return AiMetricsOut(**data)
+
+
+@router.get("/errors", response_model=ErrorLogListOut)
+async def error_logs(
+    user: Annotated[UserContext, Depends(_AI_ACCESS)],
+    db: DbDep,
+    exception_type: str | None = Query(default=None, max_length=255),
+    start: str | None = Query(default=None, max_length=10),
+    end: str | None = Query(default=None, max_length=10),
+    limit: int = Query(default=100, ge=1, le=500),
+    offset: int = Query(default=0, ge=0),
+) -> ErrorLogListOut:
+    org = _org_scope(user)
+    rows = await list_error_logs(
+        db,
+        org_id=org,
+        exception_type=exception_type,
+        start=start,
+        end=end,
+        limit=limit,
+        offset=offset,
+    )
+    counts = await error_type_counts(db, org_id=org, start=start, end=end)
+    return ErrorLogListOut(
+        items=[ErrorLogOut(**row) for row in rows],
+        type_counts=[ErrorTypeCount(**c) for c in counts],
+        limit=limit,
+        offset=offset,
+    )
+
+
 @router.post("/widget-turn", response_model=WidgetTurnAck)
 async def log_widget_turn(
     body: WidgetTurnIn,
@@ -272,5 +332,44 @@ async def log_widget_turn(
         status="FAILED" if body.llm_error else "SUCCESS",
         error_message=body.llm_error,
         source="WIDGET",
+    )
+    return WidgetTurnAck(ok=True)
+
+
+@router.post("/widget-error", response_model=WidgetTurnAck)
+async def log_widget_error(
+    body: WidgetErrorIn,
+    db: DbDep,
+    x_widget_log_secret: Annotated[str | None, Header()] = None,
+) -> WidgetTurnAck:
+    """Ingest one failed widget turn (with stack trace) for the Errors view.
+
+    Same shared-secret guard as widget-turn. Best-effort: always returns ok so
+    the chatbot never treats logging as a hard error.
+    """
+    secret = get_settings().widget_log_secret
+    if not secret:
+        raise HTTPException(status_code=503, detail="Widget logging is disabled")
+    if x_widget_log_secret != secret:
+        raise HTTPException(status_code=401, detail="Invalid widget log secret")
+
+    org_id: int | None = None
+    if body.corpus_id:
+        acct = await db.fetch_one(
+            "SELECT organization_id FROM AIVA_accounts WHERE corpus_id = :corpus_id",
+            {"corpus_id": body.corpus_id},
+        )
+        if acct and acct["organization_id"] is not None:
+            org_id = int(acct["organization_id"])
+
+    await persist_error_log(
+        db,
+        exception_type=body.exception_type,
+        exception_message=body.exception_message,
+        stack_trace=body.stack_trace,
+        source="WIDGET",
+        path="aiva_chatbot /chat",
+        status_code=body.status_code,
+        org_id=org_id,
     )
     return WidgetTurnAck(ok=True)

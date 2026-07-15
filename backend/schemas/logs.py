@@ -68,10 +68,12 @@ class RagRetrievalListOut(BaseModel):
 
 class AiRequestOut(BaseModel):
     id: int
+    created_at: str | None = None
     session_id: int | None = None
     account_id: int | None = None
     account_name: str | None = None
     organization_id: int | None = None
+    user_email: str | None = None
     model_name: str | None = None
     provider: str | None = None
     input_tokens: int | None = None
@@ -86,6 +88,64 @@ class AiRequestOut(BaseModel):
 
 class AiRequestListOut(BaseModel):
     items: list[AiRequestOut]
+    limit: int
+    offset: int
+
+
+class AiMetricsSummary(BaseModel):
+    total_calls: int
+    avg_latency_ms: float | None = None
+    min_latency_ms: float | None = None
+    max_latency_ms: float | None = None
+    total_tokens: int
+    success_count: int
+    failed_count: int
+    success_rate: float | None = None
+    error_rate: float | None = None
+
+
+class AiMetricsBreakdownItem(BaseModel):
+    model_name: str
+    provider: str | None = None
+    count: int
+    avg_latency_ms: float | None = None
+    min_latency_ms: float | None = None
+    max_latency_ms: float | None = None
+    total_tokens: int
+    error_rate: float | None = None
+
+
+class AiMetricsOut(BaseModel):
+    summary: AiMetricsSummary
+    by_model: list[AiMetricsBreakdownItem]
+
+
+class ErrorLogOut(BaseModel):
+    id: int
+    created_at: str | None = None
+    exception_type: str
+    exception_message: str | None = None
+    stack_trace: str | None = None
+    source: str | None = None
+    http_method: str | None = None
+    path: str | None = None
+    route_template: str | None = None
+    status_code: int | None = None
+    request_id: str | None = None
+    user_id: int | None = None
+    user_email: str | None = None
+    org_id: int | None = None
+    client_ip: str | None = None
+
+
+class ErrorTypeCount(BaseModel):
+    exception_type: str
+    count: int
+
+
+class ErrorLogListOut(BaseModel):
+    items: list[ErrorLogOut]
+    type_counts: list[ErrorTypeCount]
     limit: int
     offset: int
 
@@ -119,3 +179,14 @@ class WidgetTurnIn(BaseModel):
 
 class WidgetTurnAck(BaseModel):
     ok: bool
+
+
+class WidgetErrorIn(BaseModel):
+    """One failed widget turn, reported by the standalone chatbot for the Errors view."""
+
+    corpus_id: str | None = None
+    query_text: str | None = None
+    exception_type: str
+    exception_message: str | None = None
+    stack_trace: str | None = None
+    status_code: int | None = None

@@ -31,6 +31,7 @@ from backend.services.chat_queues import (
 from backend.services.kb_queue_groups import dumps_active_queues_json, list_queue_catalog
 from backend.services.rag import format_llm_error, sanitize_kb_source_url, stream_rag_response
 from backend.services.rag_retrieval_log import persist_rag_retrieval
+from backend.services.sse_metrics import count_stream
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/chat", tags=["chat"])
@@ -576,4 +577,4 @@ async def send_message(
         else:
             yield f"data: {json.dumps({'type': 'done', 'user_message_id': user_message_id})}\n\n"
 
-    return StreamingResponse(event_stream(), media_type="text/event-stream")
+    return StreamingResponse(count_stream(event_stream()), media_type="text/event-stream")

@@ -43,3 +43,11 @@ async def ensure_ai_request_schema(db: Database) -> None:
         if not await _column_exists(db, "AIVA_AI_REQUESTS", col_name):
             await db.execute(f"ALTER TABLE AIVA_ai_requests ADD ({col_name} {col_type})")
             _log.info("Added AIVA_ai_requests.%s", col_name)
+
+    # created_at powers the "When" column in the error/AI logs. Add it nullable
+    # (instant metadata change; existing historical rows stay NULL rather than
+    # getting a misleading backfilled time), then default future inserts to now.
+    if not await _column_exists(db, "AIVA_AI_REQUESTS", "created_at"):
+        await db.execute("ALTER TABLE AIVA_ai_requests ADD (created_at TIMESTAMP)")
+        await db.execute("ALTER TABLE AIVA_ai_requests MODIFY (created_at DEFAULT SYSTIMESTAMP)")
+        _log.info("Added AIVA_ai_requests.created_at")

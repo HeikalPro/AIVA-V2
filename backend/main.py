@@ -31,6 +31,7 @@ from backend.services.agent_queue_access_schema import ensure_agent_queue_access
 from backend.services.ai_request_schema import ensure_ai_request_schema
 from backend.services.http_request_log_schema import ensure_http_request_log_schema
 from backend.services.rag_retrieval_schema import ensure_rag_retrieval_schema
+from backend.services.error_log import ensure_error_log_schema
 from backend.services.llm_config_schema import ensure_llm_config_schema
 from backend.services.role_nav_permissions import ensure_role_nav_permissions_schema
 from backend.services.system_prompt import ensure_system_prompt_storage
@@ -58,6 +59,7 @@ async def lifespan(app: FastAPI):
     await ensure_ai_request_schema(db)
     await ensure_http_request_log_schema(db)
     await ensure_rag_retrieval_schema(db)
+    await ensure_error_log_schema(db)
     await ensure_llm_config_schema(db)
     await ensure_role_nav_permissions_schema(db)
     await ensure_system_prompt_storage(db)
