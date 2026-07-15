@@ -117,6 +117,20 @@ class ProcessInfo(BaseModel):
     cpu_percent: float | None = None
 
 
+class ComponentHealth(BaseModel):
+    key: str
+    label: str
+    status: str  # up | down | degraded | not_configured | unknown
+    latency_ms: float | None = None
+    detail: str | None = None
+    info: str | None = None
+
+
+class SystemComponentsOut(BaseModel):
+    generated_at: str
+    components: list[ComponentHealth]
+
+
 class SystemResourcesOut(BaseModel):
     generated_at: str
     platform: PlatformInfo

@@ -49,6 +49,10 @@ class Settings(BaseSettings):
     # logs to /api/logs/widget-turn. Empty = widget logging disabled (endpoint rejects all).
     widget_log_secret: str = ""
 
+    # Optional: aiva_chatbot service /health URL, for the Components dependency check.
+    # Empty = not checked (reported as "not configured").
+    chatbot_health_url: str = ""
+
     search_default_top_k: int = 10
     # Default KB link template when account.kb_source_base_url is empty. Use {id} or suffix with =.
     kb_source_base_url: str = "http://192.168.1.13/halankb/view.php?id="

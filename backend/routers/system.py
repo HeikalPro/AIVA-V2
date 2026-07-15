@@ -11,10 +11,13 @@ from backend.auth.deps import (
     require_roles_or_nav_permission,
 )
 from backend.dependencies import DbDep, EmbeddingServiceDep
+from backend.config import get_settings
 from backend.schemas.system import (
+    ComponentHealth,
     ComponentStatus,
     RedisStatus,
     ResourceStats,
+    SystemComponentsOut,
     SystemHealthOut,
     SystemResourcesOut,
     TrafficStats,
@@ -69,3 +72,62 @@ async def system_resources(
     """Detailed host + backend-process resource snapshot (CPU, memory, disk, network)."""
     snap = await asyncio.to_thread(resource_snapshot)
     return SystemResourcesOut(**snap)
+
+
+@router.get("/components", response_model=SystemComponentsOut)
+async def system_components(
+    user: Annotated[UserContext, Depends(_ACCESS)],
+    db: DbDep,
+    embedding_svc: EmbeddingServiceDep,
+) -> SystemComponentsOut:
+    """Reachability of external dependencies: Oracle DB, Redis, LLM provider, chatbot."""
+    settings = get_settings()
+    redis_url = getattr(embedding_svc.settings, "redis_url", None)
+    queue_name = getattr(embedding_svc.settings, "redis_job_queue", "embedding_service:jobs")
+
+    database, redis, llm, chatbot = await asyncio.gather(
+        sh.db_health(db),
+        sh.redis_snapshot(redis_url, queue_name),
+        sh.llm_health(),
+        sh.service_health(settings.chatbot_health_url or None),
+    )
+
+    components = [
+        ComponentHealth(
+            key="database",
+            label="Database",
+            status=database.get("status", "unknown"),
+            latency_ms=database.get("latency_ms"),
+            detail=database.get("detail"),
+            info=settings.oracle_dsn,
+        ),
+        ComponentHealth(
+            key="llm",
+            label="LLM",
+            status=llm.get("status", "unknown"),
+            latency_ms=llm.get("latency_ms"),
+            detail=llm.get("detail"),
+            info=llm.get("info"),
+        ),
+        ComponentHealth(
+            key="redis",
+            label="Redis",
+            status=redis.get("status", "unknown"),
+            latency_ms=redis.get("latency_ms"),
+            detail=redis.get("detail"),
+            info=(f"queue depth: {redis.get('queue_depth')}" if redis.get("queue_depth") is not None else None),
+        ),
+        ComponentHealth(
+            key="chatbot",
+            label="Chatbot service",
+            status=chatbot.get("status", "unknown"),
+            latency_ms=chatbot.get("latency_ms"),
+            detail=chatbot.get("detail"),
+            info=chatbot.get("info"),
+        ),
+    ]
+
+    return SystemComponentsOut(
+        generated_at=datetime.now(timezone.utc).isoformat(),
+        components=components,
+    )

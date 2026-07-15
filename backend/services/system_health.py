@@ -56,6 +56,61 @@ async def redis_snapshot(redis_url: str | None, queue_name: str) -> dict[str, An
             pass
 
 
+async def llm_health() -> dict[str, Any]:
+    """Cheap reachability check for the default LLM provider — a models list call
+    (no tokens/cost). Reuses the app's own OpenAI credential/endpoint resolution.
+    """
+    try:
+        from backend.services.rag import _official_openai_provider_config
+
+        cfg = _official_openai_provider_config()
+        base = str(cfg.base_url).rstrip("/")
+        key = cfg.api_key.get_secret_value() if getattr(cfg, "api_key", None) else None
+    except Exception as exc:
+        return {"status": "unknown", "latency_ms": None, "detail": str(exc)[:200]}
+
+    if not key:
+        return {"status": "not_configured", "latency_ms": None, "detail": "No OPENAI_API_KEY set", "info": base}
+
+    try:
+        import httpx
+    except Exception:
+        return {"status": "unknown", "latency_ms": None, "detail": "httpx unavailable", "info": base}
+
+    start = time.perf_counter()
+    try:
+        async with httpx.AsyncClient(timeout=5) as client:
+            resp = await client.get(f"{base}/models", headers={"Authorization": f"Bearer {key}"})
+        latency = round((time.perf_counter() - start) * 1000, 1)
+        if resp.status_code == 200:
+            return {"status": "up", "latency_ms": latency, "info": base}
+        if resp.status_code in (401, 403):
+            return {"status": "down", "latency_ms": latency, "detail": f"Auth rejected (HTTP {resp.status_code})", "info": base}
+        return {"status": "degraded", "latency_ms": latency, "detail": f"HTTP {resp.status_code}", "info": base}
+    except Exception as exc:
+        return {"status": "down", "latency_ms": None, "detail": str(exc)[:200], "info": base}
+
+
+async def service_health(url: str | None) -> dict[str, Any]:
+    """Generic HTTP health check (e.g. the aiva_chatbot /health endpoint)."""
+    if not url:
+        return {"status": "not_configured", "latency_ms": None}
+    try:
+        import httpx
+    except Exception:
+        return {"status": "unknown", "latency_ms": None, "detail": "httpx unavailable", "info": url}
+    start = time.perf_counter()
+    try:
+        async with httpx.AsyncClient(timeout=5) as client:
+            resp = await client.get(url)
+        latency = round((time.perf_counter() - start) * 1000, 1)
+        if resp.status_code < 400:
+            return {"status": "up", "latency_ms": latency, "info": url}
+        return {"status": "down", "latency_ms": latency, "detail": f"HTTP {resp.status_code}", "info": url}
+    except Exception as exc:
+        return {"status": "down", "latency_ms": None, "detail": str(exc)[:200], "info": url}
+
+
 def system_resources() -> dict[str, Any]:
     """CPU and memory usage via psutil. Blocks ~0.1s for the CPU sample, so
     call this off the event loop (asyncio.to_thread).
