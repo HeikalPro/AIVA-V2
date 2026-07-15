@@ -44,6 +44,14 @@ class Settings(BaseSettings):
     llm_default_model: str = "gpt-4.1-mini"
     llm_default_input_usd_per_million_tokens: float | None = None
     llm_default_output_usd_per_million_tokens: float | None = None
+    # Markup added on top of the raw LLM cost before it is reported/stored (e.g. 10 = +10%).
+    llm_cost_markup_pct: float = 10.0
+
+    # Widget installer (.exe) distribution. Files are stored on disk (latest-only);
+    # metadata lives in AIVA_widget_release. In Docker, point WIDGET_RELEASE_DIR at a
+    # mounted volume so uploads survive restarts.
+    widget_release_dir: str = str(_ROOT / "data" / "widget_release")
+    widget_release_max_mb: int = 300
 
     # Shared secret the widget must send (X-Widget-Log-Secret header) to POST conversation
     # logs to /api/logs/widget-turn. Empty = widget logging disabled (endpoint rejects all).

@@ -29,7 +29,8 @@ from backend.services.chat_queues import (
     session_out_from_row,
 )
 from backend.services.kb_queue_groups import dumps_active_queues_json, list_queue_catalog
-from backend.services.rag import format_llm_error, sanitize_kb_source_url, stream_rag_response
+from backend.config import get_settings
+from backend.services.rag import format_llm_error, load_llm_config, sanitize_kb_source_url, stream_rag_response
 from backend.services.rag_retrieval_log import persist_rag_retrieval
 from backend.services.sse_metrics import count_stream
 from backend.utils import serialize_row
@@ -453,6 +454,13 @@ async def send_message(
         return_id=True,
     )
 
+    # Labels used to attribute a request to its provider/model even when it fails
+    # before the stream produces a result (e.g. "model does not exist").
+    _settings = get_settings()
+    _llm_row = await load_llm_config(db, int(session["account_id"]))
+    model_label = str((_llm_row or {}).get("model_name") or _settings.llm_default_model)
+    provider_label = str((_llm_row or {}).get("provider") or _settings.llm_default_provider)
+
     async def event_stream():
         final_result = None
         assistant_message_id: int | None = None
@@ -481,13 +489,15 @@ async def send_message(
                         session_id, account_id, model_name, provider, input_tokens,
                         output_tokens, response_time_ms, total_cost, status, error_message
                     ) VALUES (
-                        :session_id, :account_id, NULL, NULL, 0,
+                        :session_id, :account_id, :model_name, :provider, 0,
                         0, NULL, NULL, 'FAILED', :error_message
                     )
                     """,
                     {
                         "session_id": session_id,
                         "account_id": int(session["account_id"]),
+                        "model_name": model_label,
+                        "provider": provider_label,
                         "error_message": error_text[:2000] or None,
                     },
                 )
@@ -573,7 +583,7 @@ async def send_message(
                 retrieval_ms=final_result.retrieval_ms or None,
                 error_message=final_result.retrieval_error,
             )
-            yield f"data: {json.dumps({'type': 'done', 'latency_ms': final_result.latency_ms, 'user_message_id': user_message_id, 'assistant_message_id': assistant_message_id, 'sources': final_result.sources})}\n\n"
+            yield f"data: {json.dumps({'type': 'done', 'latency_ms': final_result.latency_ms, 'user_message_id': user_message_id, 'assistant_message_id': assistant_message_id, 'sources': final_result.sources, 'usage': {'input_tokens': final_result.prompt_tokens or 0, 'output_tokens': final_result.completion_tokens or 0, 'total_cost': final_result.total_cost}})}\n\n"
         else:
             yield f"data: {json.dumps({'type': 'done', 'user_message_id': user_message_id})}\n\n"
 

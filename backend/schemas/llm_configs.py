@@ -37,3 +37,23 @@ class LLMConfigOut(BaseModel):
     reranker_model: str | None
     is_active: bool
     created_at: str | None
+
+
+class ModelCatalogItem(BaseModel):
+    id: str
+    display_name: str | None = None
+    provider: str | None = None
+    modality: str | None = None
+    context_window: int | None = None
+    status: str | None = None
+    input_per_1m_egp: float | None = None
+    output_per_1m_egp: float | None = None
+    currency: str = "EGP"
+
+
+class ModelCatalogOut(BaseModel):
+    items: list[ModelCatalogItem]
+    error: str | None = None  # message from the most recent failed fetch, if any
+    error_at: str | None = None  # ISO time of that failure
+    last_success_at: str | None = None  # ISO time the catalog was last fetched OK
+    stale: bool = False  # True when serving an older cached copy after a failed refresh

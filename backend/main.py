@@ -34,7 +34,9 @@ from backend.services.rag_retrieval_schema import ensure_rag_retrieval_schema
 from backend.services.error_log import ensure_error_log_schema
 from backend.services.llm_config_schema import ensure_llm_config_schema
 from backend.services.role_nav_permissions import ensure_role_nav_permissions_schema
+from backend.services.sovereign_catalog import start_catalog_scheduler
 from backend.services.system_prompt import ensure_system_prompt_storage
+from backend.services.widget_schema import ensure_widget_release_schema
 from backend.limiter import limiter
 from backend.exceptions import HTTPException
 from backend.middleware import RequestLoggingMiddleware
@@ -63,15 +65,20 @@ async def lifespan(app: FastAPI):
     await ensure_llm_config_schema(db)
     await ensure_role_nav_permissions_schema(db)
     await ensure_system_prompt_storage(db)
+    await ensure_widget_release_schema(db)
 
     embedding_svc = EmbeddingService()
     app.state.embedding_service = embedding_svc
     app.state.database = db
 
+    # Refresh SovereignEG model prices daily at 22:00 Africa/Cairo (warms cache on startup too).
+    catalog_task = start_catalog_scheduler()
+
     _log.info("AIVA backend started on %s:%s", settings.backend_host, settings.backend_port)
     try:
         yield
     finally:
+        catalog_task.cancel()
         embedding_svc.close()
         await db.close_pool()
         _log.info("AIVA backend shutdown complete")

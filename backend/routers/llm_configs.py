@@ -1,13 +1,14 @@
 from typing import Annotated, Any
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 
 from backend.auth.deps import ROLE_DEVELOPER, ROLE_SUPER_ADMIN, UserContext, require_roles, require_roles_or_nav_permission
 from backend.dependencies import DbDep
 from backend.exceptions import NotFoundError
 from backend.schemas.common import MessageResponse
-from backend.schemas.llm_configs import LLMConfigCreate, LLMConfigOut, LLMConfigUpdate
+from backend.schemas.llm_configs import LLMConfigCreate, LLMConfigOut, LLMConfigUpdate, ModelCatalogOut
 from backend.services.audit import write_audit_log
+from backend.services.sovereign_catalog import get_sovereign_catalog_status
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/llm-configs", tags=["llm-configs"])
@@ -43,6 +44,18 @@ async def list_llm_configs(
 ) -> list[LLMConfigOut]:
     rows = await db.fetch_all("SELECT * FROM AIVA_llm_configs ORDER BY id")
     return [_row_to_out(r) for r in rows]
+
+
+@router.get("/model-catalog", response_model=ModelCatalogOut)
+async def model_catalog(
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("llm-configs", ROLE_SUPER_ADMIN, ROLE_DEVELOPER))],
+    refresh: bool = Query(default=False, description="Bypass the cache and refetch from SovereignEG"),
+) -> ModelCatalogOut:
+    """SovereignEG model catalog with live per-model pricing (EGP per 1M tokens).
+
+    Returns the fetch outcome alongside the items so the UI can show an error/stale banner.
+    """
+    return ModelCatalogOut(**await get_sovereign_catalog_status(force=refresh))
 
 
 @router.post("", response_model=LLMConfigOut, status_code=201)

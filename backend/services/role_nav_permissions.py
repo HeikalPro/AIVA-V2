@@ -29,6 +29,7 @@ NAV_PERMISSION_CATALOG: list[dict[str, str]] = [
     {"key": "ingestion", "label": "Ingestion"},
     {"key": "logs", "label": "Logs"},
     {"key": "system", "label": "System Health"},
+    {"key": "widget-download", "label": "Widget Download"},
 ]
 
 ALL_NAV_KEYS: frozenset[str] = frozenset(item["key"] for item in NAV_PERMISSION_CATALOG)
@@ -58,6 +59,7 @@ DEFAULT_ROLE_NAV_PERMISSIONS: dict[str, list[str]] = {
         "account-updates",
         "tickets",
         "ingestion",
+        "widget-download",
     ],
     ROLE_ACCOUNT_MANAGER: [
         "dashboard",
@@ -69,9 +71,19 @@ DEFAULT_ROLE_NAV_PERMISSIONS: dict[str, list[str]] = {
         "account-updates",
         "tickets",
         "ingestion",
+        "widget-download",
     ],
-    ROLE_SUPERVISOR: ["dashboard", "agents", "logs", "account-updates", "chat", "tickets", "ingestion"],
-    ROLE_AGENT: ["chat"],
+    ROLE_SUPERVISOR: [
+        "dashboard",
+        "agents",
+        "logs",
+        "account-updates",
+        "chat",
+        "tickets",
+        "ingestion",
+        "widget-download",
+    ],
+    ROLE_AGENT: ["chat", "widget-download"],
     ROLE_DEVELOPER: [
         "dashboard",
         "prompts",
@@ -80,6 +92,7 @@ DEFAULT_ROLE_NAV_PERMISSIONS: dict[str, list[str]] = {
         "tickets",
         "ingestion",
         "system",
+        "widget-download",
     ],
 }
 
@@ -114,6 +127,7 @@ async def ensure_role_nav_permissions_schema(db: Database) -> None:
     await _ensure_agents_nav_permission(db)
     await _ensure_logs_nav_permission(db)
     await _ensure_system_nav_permission(db)
+    await _ensure_widget_download_nav_permission(db)
     await ensure_account_role_nav_permissions_schema(db)
     await ensure_user_nav_permissions_schema(db)
 
@@ -272,6 +286,31 @@ async def _ensure_system_nav_permission(db: Database) -> None:
             """
             INSERT INTO AIVA_role_nav_permissions (role_id, nav_key)
             VALUES (:role_id, 'system')
+            """,
+            {"role_id": role_id},
+        )
+
+
+async def _ensure_widget_download_nav_permission(db: Database) -> None:
+    """Grant the widget-download nav key to every role (all signed-in users can download)."""
+    if "widget-download" not in ALL_NAV_KEYS:
+        return
+    role_rows = await db.fetch_all("SELECT id FROM AIVA_roles")
+    for row in role_rows:
+        role_id = int(row["id"])
+        existing = await db.fetch_one(
+            """
+            SELECT 1 FROM AIVA_role_nav_permissions
+            WHERE role_id = :role_id AND nav_key = 'widget-download'
+            """,
+            {"role_id": role_id},
+        )
+        if existing:
+            continue
+        await db.execute(
+            """
+            INSERT INTO AIVA_role_nav_permissions (role_id, nav_key)
+            VALUES (:role_id, 'widget-download')
             """,
             {"role_id": role_id},
         )

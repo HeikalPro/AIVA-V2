@@ -48,6 +48,10 @@ class TokenUsage(BaseModel):
     prompt_tokens: int = 0
     completion_tokens: int = 0
     total_tokens: int = 0
+    # Some OpenAI-compatible gateways (e.g. SovereignEG/OpenRouter) return a cost
+    # directly in the usage block. Carried through so callers can prefer it over a
+    # local price-table estimate. None when the provider did not report a cost.
+    cost_usd: float | None = None
 
 
 class LLMResponse(BaseModel):

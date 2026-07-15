@@ -162,6 +162,7 @@ async def get_ai_request_metrics(
                MIN(ar.response_time_ms) AS min_latency,
                MAX(ar.response_time_ms) AS max_latency,
                NVL(SUM(ar.input_tokens), 0) + NVL(SUM(ar.output_tokens), 0) AS total_tokens,
+               NVL(SUM(ar.total_cost), 0) AS total_cost,
                SUM(CASE WHEN UPPER(TRIM(ar.status)) = 'SUCCESS' THEN 1 ELSE 0 END) AS success_count,
                SUM(CASE WHEN UPPER(TRIM(ar.status)) = 'FAILED' THEN 1 ELSE 0 END) AS failed_count
         {join_sql}
@@ -179,6 +180,7 @@ async def get_ai_request_metrics(
         "min_latency_ms": float(s["min_latency"]) if s.get("min_latency") is not None else None,
         "max_latency_ms": float(s["max_latency"]) if s.get("max_latency") is not None else None,
         "total_tokens": int(s.get("total_tokens") or 0),
+        "total_cost": float(s["total_cost"]) if s.get("total_cost") is not None else None,
         "success_count": success,
         "failed_count": failed,
         "success_rate": round(success / total, 4) if total else None,

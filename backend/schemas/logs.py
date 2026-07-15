@@ -98,6 +98,7 @@ class AiMetricsSummary(BaseModel):
     min_latency_ms: float | None = None
     max_latency_ms: float | None = None
     total_tokens: int
+    total_cost: float | None = None
     success_count: int
     failed_count: int
     success_rate: float | None = None

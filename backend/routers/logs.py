@@ -32,7 +32,7 @@ from backend.schemas.logs import (
 )
 from backend.services.ai_request_log import persist_ai_request
 from backend.services.http_request_log import list_http_request_logs
-from backend.services.llm_cost import estimate_llm_cost_usd
+from backend.services.sovereign_catalog import estimate_llm_cost_egp
 from backend.services.error_log import error_type_counts, list_error_logs, persist_error_log
 from backend.services.log_queries import (
     get_ai_request_metrics,
@@ -314,7 +314,7 @@ async def log_widget_turn(
 
     total_cost = body.total_cost
     if total_cost is None and body.model_name:
-        total_cost = estimate_llm_cost_usd(
+        total_cost = await estimate_llm_cost_egp(
             model_name=body.model_name,
             input_tokens=body.input_tokens,
             output_tokens=body.output_tokens,
