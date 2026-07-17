@@ -26,6 +26,33 @@ def stored_file_path() -> Path:
     return release_dir() / STORED_FILENAME
 
 
+# User-facing name for the fixed installer download.
+INSTALLER_FILENAME = "Aiva-Setup.exe"
+
+
+def installer_path() -> Path:
+    """Path to the fixed installer to serve.
+
+    Uses settings.widget_installer_path when set (durable, survives redeploys);
+    otherwise falls back to the legacy uploaded file at stored_file_path().
+    """
+    configured = (get_settings().widget_installer_path or "").strip()
+    return Path(configured) if configured else stored_file_path()
+
+
+def installer_info() -> dict[str, Any] | None:
+    """Metadata for the fixed installer, read straight from disk. None if missing."""
+    path = installer_path()
+    if not path.exists():
+        return None
+    return {
+        "version": get_settings().widget_version,
+        "file_size": path.stat().st_size,
+        "original_filename": INSTALLER_FILENAME,
+        "content_type": "application/octet-stream",
+    }
+
+
 async def get_current_release(db: Database) -> dict[str, Any] | None:
     row = await db.fetch_one(
         """

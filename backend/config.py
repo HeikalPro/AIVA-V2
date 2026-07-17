@@ -53,6 +53,13 @@ class Settings(BaseSettings):
     widget_release_dir: str = str(_ROOT / "data" / "widget_release")
     widget_release_max_mb: int = 300
 
+    # Fixed installer distribution (durable, no upload/DB). When WIDGET_INSTALLER_PATH is
+    # set, the download + metadata endpoints serve this one file directly. Point it at a
+    # path that survives redeploys (NOT the ephemeral widget_release_dir). Empty = fall
+    # back to the legacy uploaded file at widget_release_dir/widget-latest.exe.
+    widget_installer_path: str = ""
+    widget_version: str = "1.0.0"
+
     # Shared secret the widget must send (X-Widget-Log-Secret header) to POST conversation
     # logs to /api/logs/widget-turn. Empty = widget logging disabled (endpoint rejects all).
     widget_log_secret: str = ""

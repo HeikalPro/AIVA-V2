@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import os
-import re
 import tempfile
 from typing import Annotated
 
@@ -22,9 +21,11 @@ from backend.schemas.common import MessageResponse
 from backend.schemas.widget import WidgetReleaseOut
 from backend.services.audit import write_audit_log
 from backend.services.widget_release import (
+    INSTALLER_FILENAME,
     STORED_FILENAME,
     delete_release,
-    get_current_release,
+    installer_info,
+    installer_path,
     replace_release,
     stored_file_path,
 )
@@ -37,22 +38,19 @@ _CHUNK = 1024 * 1024  # 1 MB streaming chunk
 _MANAGE_ROLES = (ROLE_SUPER_ADMIN, ROLE_DEVELOPER)
 
 
-def _download_name(release: dict) -> str:
-    version = re.sub(r"[^A-Za-z0-9._-]+", "-", str(release.get("version") or "")).strip("-")
-    if version:
-        return f"AIVA-Widget-{version}.exe"
-    name = str(release.get("original_filename") or "aiva-widget.exe")
-    return name if name.lower().endswith(".exe") else f"{name}.exe"
-
-
 @router.get("", response_model=WidgetReleaseOut | None)
 async def current_release(
     _user: Annotated[UserContext, Depends(get_current_user)],
-    db: DbDep,
 ) -> WidgetReleaseOut | None:
-    """Current widget release metadata (any signed-in user). None if nothing uploaded."""
-    release = await get_current_release(db)
-    return WidgetReleaseOut(**release) if release else None
+    """Current widget installer metadata (any signed-in user). None if none available.
+
+    Served from the fixed installer file on disk (no DB row), so metadata can't
+    desync from the actual file across restarts/redeploys.
+    """
+    info = installer_info()
+    if not info:
+        return None
+    return WidgetReleaseOut(id=0, uploaded_by=0, **info)
 
 
 @router.post("", response_model=WidgetReleaseOut, status_code=201)
@@ -123,17 +121,15 @@ async def upload_release(
 @router.get("/download")
 async def download_release(
     _user: Annotated[UserContext, Depends(get_current_user)],
-    db: DbDep,
 ) -> FileResponse:
-    """Download the latest widget .exe (any signed-in user)."""
-    release = await get_current_release(db)
-    path = stored_file_path()
-    if not release or not path.exists():
-        raise NotFoundError("No widget release has been uploaded yet.")
+    """Download the widget installer (any signed-in user)."""
+    path = installer_path()
+    if not path.exists():
+        raise NotFoundError("No widget installer is available yet.")
     return FileResponse(
         path=str(path),
         media_type="application/octet-stream",
-        filename=_download_name(release),
+        filename=INSTALLER_FILENAME,
     )
 
 
