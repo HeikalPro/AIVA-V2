@@ -19,7 +19,6 @@ from backend.routers import (
     system,
     tickets,
     users,
-    widget,
 )
 
 
@@ -43,5 +42,4 @@ def build_api_router() -> APIRouter:
     router.include_router(llm_configs.router)
     router.include_router(logs.router)
     router.include_router(system.router)
-    router.include_router(widget.router)
     return router

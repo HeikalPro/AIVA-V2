@@ -47,19 +47,6 @@ class Settings(BaseSettings):
     # Markup added on top of the raw LLM cost before it is reported/stored (e.g. 10 = +10%).
     llm_cost_markup_pct: float = 10.0
 
-    # Widget installer (.exe) distribution. Files are stored on disk (latest-only);
-    # metadata lives in AIVA_widget_release. In Docker, point WIDGET_RELEASE_DIR at a
-    # mounted volume so uploads survive restarts.
-    widget_release_dir: str = str(_ROOT / "data" / "widget_release")
-    widget_release_max_mb: int = 300
-
-    # Fixed installer distribution (durable, no upload/DB). When WIDGET_INSTALLER_PATH is
-    # set, the download + metadata endpoints serve this one file directly. Point it at a
-    # path that survives redeploys (NOT the ephemeral widget_release_dir). Empty = fall
-    # back to the legacy uploaded file at widget_release_dir/widget-latest.exe.
-    widget_installer_path: str = ""
-    widget_version: str = "1.0.0"
-
     # Shared secret the widget must send (X-Widget-Log-Secret header) to POST conversation
     # logs to /api/logs/widget-turn. Empty = widget logging disabled (endpoint rejects all).
     widget_log_secret: str = ""
