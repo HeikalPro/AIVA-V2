@@ -8,7 +8,9 @@ Run from the repo root (AIVA-V2):
     python -m backend.scripts.backfill_ai_request_cost_egp            # apply
     python -m backend.scripts.backfill_ai_request_cost_egp --dry-run  # preview only
 
-Rows with no model_name or zero tokens are skipped (their cost is left as-is / NULL).
+Rows with zero tokens are skipped. Rows whose model has no SovereignEG price are priced
+via the configured default EGP fallback (llm_default_*_egp_per_million_tokens) when set;
+if no default is configured they remain uncounted (NULL), as before.
 """
 
 from __future__ import annotations
@@ -47,8 +49,7 @@ async def main(dry_run: bool) -> None:
             """
             SELECT id, model_name, input_tokens, output_tokens, total_cost
             FROM AIVA_ai_requests
-            WHERE model_name IS NOT NULL
-              AND (NVL(input_tokens, 0) > 0 OR NVL(output_tokens, 0) > 0)
+            WHERE NVL(input_tokens, 0) > 0 OR NVL(output_tokens, 0) > 0
             """
         )
         _log.info("Rows to consider: %d", len(rows))
@@ -56,7 +57,7 @@ async def main(dry_run: bool) -> None:
         updated = skipped = 0
         for r in rows:
             cost = await estimate_llm_cost_egp(
-                model_name=str(r["model_name"]),
+                model_name=str(r.get("model_name") or ""),
                 input_tokens=r.get("input_tokens"),
                 output_tokens=r.get("output_tokens"),
                 settings=settings,

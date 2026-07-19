@@ -44,6 +44,11 @@ class Settings(BaseSettings):
     llm_default_model: str = "gpt-4.1-mini"
     llm_default_input_usd_per_million_tokens: float | None = None
     llm_default_output_usd_per_million_tokens: float | None = None
+    # Fallback EGP rates used when a model has no SovereignEG catalog price, so every
+    # model an account uses still contributes to the total cost instead of being dropped
+    # as NULL. Leave unset to keep the old behavior (unpriced models stay uncounted).
+    llm_default_input_egp_per_million_tokens: float | None = None
+    llm_default_output_egp_per_million_tokens: float | None = None
     # Markup added on top of the raw LLM cost before it is reported/stored (e.g. 10 = +10%).
     llm_cost_markup_pct: float = 10.0
 

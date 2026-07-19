@@ -164,18 +164,64 @@ def start_catalog_scheduler() -> asyncio.Task[None]:
     return asyncio.create_task(_daily_refresh_loop(), name="sovereign-catalog-refresh")
 
 
+def _norm_model_id(s: str) -> str:
+    """Normalize a model id for tolerant matching: lowercase, unify separators.
+
+    Collapses any run of non-alphanumeric characters to a single '-' so that
+    variants like ``claude-haiku-4.5`` and ``claude-haiku-4-5`` compare equal.
+    """
+    out: list[str] = []
+    prev_sep = False
+    for ch in s.strip().lower():
+        if ch.isalnum():
+            out.append(ch)
+            prev_sep = False
+        elif not prev_sep:
+            out.append("-")
+            prev_sep = True
+    return "".join(out).strip("-")
+
+
+def _rates(item: dict[str, Any]) -> tuple[float, float]:
+    return (float(item.get("input_per_1m_egp") or 0.0), float(item.get("output_per_1m_egp") or 0.0))
+
+
 async def get_model_egp_pricing(model_name: str) -> tuple[float, float] | None:
     """Return (input_per_1m_egp, output_per_1m_egp) for a model from the cached catalog.
 
-    Matches the model id case-insensitively. Missing rates default to 0.0. Returns None
-    when the model is not in the catalog (or the catalog is unavailable).
+    Matching is tolerant, in order of confidence: (1) exact id, (2) separator-normalized
+    id (so ``claude-haiku-4-5`` matches catalog ``claude-haiku-4.5``), (3) longest
+    boundary-prefix (so a versioned/echoed id like ``gemini-3.1-pro-2`` or a dated
+    snapshot like ``deepseek-v3-0324`` falls back to its base ``gemini-3.1-pro`` /
+    ``deepseek-v3``). Missing rates default to 0.0. Returns None when nothing matches
+    (or the catalog is unavailable) — the caller then applies the default EGP fallback.
     """
     if not model_name:
         return None
+    catalog = await get_sovereign_catalog()
     target = model_name.strip().lower()
-    for item in await get_sovereign_catalog():
+
+    # 1. Exact (case-insensitive).
+    for item in catalog:
         if str(item.get("id") or "").lower() == target:
-            return (float(item.get("input_per_1m_egp") or 0.0), float(item.get("output_per_1m_egp") or 0.0))
+            return _rates(item)
+
+    # 2. Separator-normalized exact match.
+    ntarget = _norm_model_id(target)
+    if ntarget:
+        for item in catalog:
+            if _norm_model_id(str(item.get("id") or "")) == ntarget:
+                return _rates(item)
+
+        # 3. Longest boundary-prefix (handles versioned/snapshot suffixes).
+        best: tuple[int, dict[str, Any]] | None = None
+        for item in catalog:
+            nid = _norm_model_id(str(item.get("id") or ""))
+            if nid and ntarget.startswith(nid + "-") and (best is None or len(nid) > best[0]):
+                best = (len(nid), item)
+        if best is not None:
+            return _rates(best[1])
+
     return None
 
 
@@ -190,7 +236,9 @@ async def estimate_llm_cost_egp(
     """Estimated request cost in EGP (with markup), using live SovereignEG prices.
 
     Prefers a provider-reported cost when present; otherwise multiplies token counts by
-    the model's SovereignEG EGP rates. Returns None when the model/pricing is unknown.
+    the model's SovereignEG EGP rates. When the model has no usable catalog price, falls
+    back to the configured default EGP rates so every model an account uses still counts
+    toward the total. Returns None only when there is no price and no default configured.
     """
     cfg = settings or get_settings()
 
@@ -201,9 +249,17 @@ async def estimate_llm_cost_egp(
         return None
 
     pricing = await get_model_egp_pricing(model_name)
-    if pricing is None:
-        return None
+    input_rate, output_rate = pricing if pricing is not None else (0.0, 0.0)
 
-    input_rate, output_rate = pricing
+    # No usable SovereignEG price (model not in catalog, or catalog rates are 0/missing):
+    # fall back to the configured default EGP rates so the request isn't dropped as NULL.
+    if input_rate == 0.0 and output_rate == 0.0:
+        default_in = getattr(cfg, "llm_default_input_egp_per_million_tokens", None)
+        default_out = getattr(cfg, "llm_default_output_egp_per_million_tokens", None)
+        if default_in is None and default_out is None:
+            return None
+        input_rate = float(default_in or 0.0)
+        output_rate = float(default_out or 0.0)
+
     cost = (int(input_tokens or 0) / 1_000_000) * input_rate + (int(output_tokens or 0) / 1_000_000) * output_rate
     return apply_cost_markup(cost, cfg)
