@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import time
 import traceback
@@ -17,11 +18,25 @@ from backend.database import Database
 from backend.services.auth_audit import client_ip
 from backend.services.error_log import persist_error_log
 from backend.services.http_request_log import RequestActor, persist_http_request_log
+from backend.services.notifications import notify_error_admins_developers
 
 if TYPE_CHECKING:
     from backend.auth.deps import UserContext
 
 _log = logging.getLogger("aiva.http")
+
+# Keep strong references to fire-and-forget alert tasks so they aren't GC'd mid-flight.
+_alert_tasks: set[asyncio.Task] = set()
+
+
+def _schedule_error_alert(**kwargs) -> None:
+    """Send the admin/developer error alert without delaying the error response."""
+    try:
+        task = asyncio.create_task(notify_error_admins_developers(**kwargs))
+    except RuntimeError:
+        return  # No running loop (shouldn't happen inside middleware).
+    _alert_tasks.add(task)
+    task.add_done_callback(_alert_tasks.discard)
 
 
 def _handler_label(request: Request) -> str:
@@ -132,6 +147,18 @@ async def request_logging_middleware(request: Request, call_next: RequestRespons
             user_email=actor.user_email,
             org_id=actor.org_id,
             client_ip=ip if ip != "-" else None,
+        )
+        _schedule_error_alert(
+            exception_type=type(exc).__name__,
+            exception_message=str(exc),
+            stack_trace="".join(traceback.format_exception(type(exc), exc, exc.__traceback__)),
+            http_method=request.method,
+            path=path,
+            route_template=template,
+            status_code=500,
+            request_id=request_id,
+            user_email=actor.user_email,
+            organization_id=actor.org_id,
         )
         await persist_http_request_log(
             db,

@@ -41,6 +41,8 @@ from backend.services.log_queries import (
     list_sign_in_logs,
 )
 from backend.services.rag_retrieval_log import list_rag_retrievals, persist_rag_retrieval
+from backend.services.notifications import notify_error_admins_developers
+from backend.schemas.notifications import DeveloperNotifyOut
 
 router = APIRouter(prefix="/logs", tags=["logs"])
 
@@ -257,6 +259,42 @@ async def error_logs(
         type_counts=[ErrorTypeCount(**c) for c in counts],
         limit=limit,
         offset=offset,
+    )
+
+
+_ERROR_TEST_ACCESS = require_roles_or_nav_permission(
+    "logs",
+    ROLE_SUPER_ADMIN,
+    ROLE_ORG_ADMIN,
+)
+
+
+@router.post("/errors/test", response_model=DeveloperNotifyOut)
+async def send_test_error_alert(
+    user: Annotated[UserContext, Depends(_ERROR_TEST_ACCESS)],
+) -> DeveloperNotifyOut:
+    """Send a sample error alert to admins + developers to verify email delivery.
+
+    Bypasses the ``NOTIFY_ERRORS_ENABLED`` switch and the duplicate throttle
+    (``force=True``) so the mail is always attempted, and returns the delivery
+    status (sent / no_recipients / failed) so the UI can report it.
+    """
+    return await notify_error_admins_developers(
+        exception_type="TestAlert",
+        exception_message=f"Test error alert triggered by {user.email}.",
+        stack_trace=(
+            "Traceback (most recent call last):\n"
+            '  File "test", line 1, in <module>\n'
+            "TestAlert: This is a test error alert — no real error occurred."
+        ),
+        http_method="POST",
+        path="/api/logs/errors/test",
+        route_template="/logs/errors/test",
+        status_code=500,
+        request_id=None,
+        user_email=user.email,
+        organization_id=user.organization_id,
+        force=True,
     )
 
 

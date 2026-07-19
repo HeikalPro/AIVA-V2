@@ -75,6 +75,10 @@ class Settings(BaseSettings):
 
     notify_developers_enabled: bool = False
     notify_skip_creator: bool = True
+    # Email admins + developers when an unhandled server error is logged.
+    notify_errors_enabled: bool = False
+    # Suppress duplicate alerts for the same (exception type, route) within this window.
+    notify_errors_throttle_seconds: int = 300
     frontend_url: str = "http://localhost:5173"
     zoho_mail_api_base: str = "https://mail.zoho.com/api"
     zoho_mail_from_address: str = ""
