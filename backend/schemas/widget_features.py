@@ -7,11 +7,22 @@ VALID_CALCULATOR_TENORS = frozenset({6, 9, 12, 18, 24, 30, 36})
 
 
 class CalculatorProductConfig(BaseModel):
-    """Per-product calculator settings (rates and tenors)."""
+    """Per-product calculator settings (display name, rates and tenors)."""
 
+    label: str | None = None
     apr: float | None = None
     tenors: list[int] | None = None
     flat_rates: dict[str, float] | None = None
+
+    @field_validator("label", mode="before")
+    @classmethod
+    def normalize_label(cls, value: object | None) -> str | None:
+        if value is None:
+            return None
+        text = str(value).strip()
+        if not text:
+            return None
+        return text[:60]
 
     @field_validator("apr", mode="before")
     @classmethod
@@ -103,8 +114,37 @@ class WidgetInstallmentCalculatorConfig(BaseModel):
         return out or None
 
 
+class WidgetKbQueuesConfig(BaseModel):
+    """Per-account visibility override for the KB queue buttons (Gomla/Halan/...).
+
+    ``visible_keys is None`` means "no override" — the widget shows every queue
+    the corpus/agent allows (current default). A list restricts the widget to
+    only those queue keys.
+    """
+
+    visible_keys: list[str] | None = None
+
+    @field_validator("visible_keys", mode="before")
+    @classmethod
+    def normalize_visible_keys(cls, value: object | None) -> list[str] | None:
+        if value is None:
+            return None
+        if not isinstance(value, list):
+            return None
+        out: list[str] = []
+        seen: set[str] = set()
+        for raw in value:
+            key = str(raw).strip()
+            if not key or key in seen:
+                continue
+            seen.add(key)
+            out.append(key)
+        return out
+
+
 class WidgetFeaturesConfig(BaseModel):
     installment_calculator: WidgetInstallmentCalculatorConfig | None = None
+    kb_queues: WidgetKbQueuesConfig | None = None
 
     def calculator_enabled(self) -> bool:
         calc = self.installment_calculator
@@ -115,3 +155,10 @@ class WidgetFeaturesConfig(BaseModel):
         if not calc or not calc.enabled:
             return []
         return list(calc.types)
+
+    def kb_visible_keys(self) -> list[str] | None:
+        """Return the visibility allow-list, or None when no override is set."""
+        kb = self.kb_queues
+        if kb is None:
+            return None
+        return kb.visible_keys

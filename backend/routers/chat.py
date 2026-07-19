@@ -29,6 +29,7 @@ from backend.services.chat_queues import (
     session_out_from_row,
 )
 from backend.services.kb_queue_groups import dumps_active_queues_json, list_queue_catalog
+from backend.services.widget_features import parse_widget_features
 from backend.config import get_settings
 from backend.services.rag import format_llm_error, load_llm_config, sanitize_kb_source_url, stream_rag_response
 from backend.services.rag_retrieval_log import persist_rag_retrieval
@@ -117,6 +118,14 @@ async def get_chat_queue_access(
     allowed = await get_allowed_queue_keys(
         db, user, account_id=account_id, corpus_config=corpus_config
     )
+
+    # Per-account admin override: hide any KB button not in the visibility allow-list.
+    features = parse_widget_features(account.get("widget_features"))
+    visible_keys = features.kb_visible_keys()
+    if visible_keys is not None:
+        visible_set = set(visible_keys)
+        allowed = [key for key in allowed if key in visible_set]
+
     return ChatQueueAccessOut(
         account_id=account_id,
         available_queues=[QueueGroupOut(**item) for item in catalog if item["key"] in allowed],

@@ -15,13 +15,16 @@ from backend.auth.deps import (
     require_roles_or_any_nav_permission,
     require_roles_or_nav_permission,
 )
-from backend.dependencies import DbDep
-from backend.exceptions import ForbiddenError, NotFoundError
+from backend.dependencies import DbDep, EmbeddingServiceDep
+from backend.exceptions import BadRequestError, ForbiddenError, NotFoundError
 from backend.schemas.accounts import AccountCreate, AccountOut, AccountUpdate
 from backend.schemas.common import MessageResponse
+from backend.schemas.kb_queues import QueueGroupOut
 from backend.schemas.users import UserOut
 from backend.services.account_dependencies import delete_account_dependencies
 from backend.services.audit import write_audit_log
+from backend.services.chat_queues import load_account_corpus_config
+from backend.services.kb_queue_groups import list_queue_catalog
 from backend.services.role_nav_permissions import seed_account_role_nav_permissions
 from backend.services.user_queries import build_user_out
 from backend.services.widget_features import (
@@ -174,6 +177,34 @@ async def get_account(
         raise NotFoundError("Account not found")
     require_account_access(account_id, user, int(row["organization_id"]))
     return _to_account_out(row)
+
+
+@router.get("/{account_id}/kb-queues", response_model=list[QueueGroupOut])
+async def list_account_kb_queues(
+    account_id: int,
+    user: Annotated[
+        UserContext,
+        Depends(require_roles_or_nav_permission("accounts", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_DEVELOPER)),
+    ],
+    db: DbDep,
+    embedding_svc: EmbeddingServiceDep,
+) -> list[QueueGroupOut]:
+    """KB queue buttons available for this account's corpus (for the widget editor).
+
+    Returns the full catalog (every button that *could* be shown). The admin
+    then chooses which to expose via ``widget_features.kb_queues.visible_keys``.
+    Accounts with no knowledge base return an empty list rather than erroring.
+    """
+    row = await _fetch_account_by_id(db, account_id)
+    if not row:
+        raise NotFoundError("Account not found")
+    require_account_access(account_id, user, int(row["organization_id"]))
+
+    try:
+        _corpus_id, corpus_config = await load_account_corpus_config(db, embedding_svc, account_id)
+    except (BadRequestError, NotFoundError):
+        return []
+    return [QueueGroupOut(**item) for item in list_queue_catalog(corpus_config)]
 
 
 @router.get("/{account_id}/users", response_model=list[UserOut])
