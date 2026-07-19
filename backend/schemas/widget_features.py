@@ -1,9 +1,54 @@
 from __future__ import annotations
 
+import re
+
 from pydantic import BaseModel, Field, field_validator
 
 VALID_INSTALLMENT_CALCULATOR_TYPES = frozenset({"cash-it", "instant-approval", "branches"})
 VALID_CALCULATOR_TENORS = frozenset({6, 9, 12, 18, 24, 30, 36})
+
+_HEX_COLOR_RE = re.compile(r"^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$")
+
+
+class WidgetBrandingConfig(BaseModel):
+    """Per-account widget branding (header text, accent color, logo)."""
+
+    title: str | None = None
+    subtitle: str | None = None
+    accent_color: str | None = None
+    logo_url: str | None = None
+
+    @field_validator("title", "subtitle", mode="before")
+    @classmethod
+    def normalize_text(cls, value: object | None) -> str | None:
+        if value is None:
+            return None
+        text = str(value).strip()
+        return text[:60] if text else None
+
+    @field_validator("accent_color", mode="before")
+    @classmethod
+    def normalize_accent(cls, value: object | None) -> str | None:
+        if value is None:
+            return None
+        text = str(value).strip()
+        if not text:
+            return None
+        if not _HEX_COLOR_RE.match(text):
+            raise ValueError("accent_color must be a hex color like #0057A8")
+        return text.lower()
+
+    @field_validator("logo_url", mode="before")
+    @classmethod
+    def normalize_logo(cls, value: object | None) -> str | None:
+        if value is None:
+            return None
+        text = str(value).strip()
+        if not text:
+            return None
+        if not (text.startswith("https://") or text.startswith("http://") or text.startswith("data:image/")):
+            raise ValueError("logo_url must be an http(s) or data:image URL")
+        return text[:2000]
 
 
 class CalculatorProductConfig(BaseModel):
@@ -145,6 +190,7 @@ class WidgetKbQueuesConfig(BaseModel):
 class WidgetFeaturesConfig(BaseModel):
     installment_calculator: WidgetInstallmentCalculatorConfig | None = None
     kb_queues: WidgetKbQueuesConfig | None = None
+    branding: WidgetBrandingConfig | None = None
 
     def calculator_enabled(self) -> bool:
         calc = self.installment_calculator
