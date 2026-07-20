@@ -132,4 +132,8 @@ if __name__ == "__main__":
         host=s.backend_host,
         port=s.backend_port,
         reload=s.backend_debug,
+        # Behind a TLS-terminating reverse proxy: without these, every request
+        # is attributed to the proxy's IP (rate limiting and request logs).
+        proxy_headers=True,
+        forwarded_allow_ips="*",
     )
