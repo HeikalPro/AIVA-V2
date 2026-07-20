@@ -10,10 +10,23 @@ from backend.auth.deps import (
     require_roles_or_nav_permission,
 )
 from backend.dependencies import DbDep
-from backend.schemas.http_logs import HttpRequestLogListOut, HttpRequestLogOut
-from backend.services.http_request_log import list_http_request_logs
+from backend.schemas.http_logs import (
+    HttpRequestLogListOut,
+    HttpRequestLogOut,
+    HttpRequestStatsOut,
+)
+from backend.services.http_request_log import get_http_request_stats, list_http_request_logs
 
 router = APIRouter(prefix="/http-logs", tags=["http-logs"])
+
+_ACCESS = require_roles_or_nav_permission("http-logs", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_DEVELOPER)
+
+
+def _org_scope(user: UserContext) -> int | None:
+    """Super admins and developers see everything; org admins see their org only."""
+    if not user.is_super_admin and not user.has_role(ROLE_DEVELOPER) and user.is_org_admin:
+        return user.organization_id
+    return None
 
 
 def _summary(row: dict) -> str:
@@ -33,24 +46,16 @@ def _to_out(row: dict) -> HttpRequestLogOut:
 
 @router.get("", response_model=HttpRequestLogListOut)
 async def list_logs(
-    user: Annotated[
-        UserContext,
-        Depends(require_roles_or_nav_permission("http-logs", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_DEVELOPER)),
-    ],
+    user: Annotated[UserContext, Depends(_ACCESS)],
     db: DbDep,
     limit: int = Query(default=100, ge=1, le=500),
     offset: int = Query(default=0, ge=0),
     method: str | None = Query(default=None, max_length=10),
 ) -> HttpRequestLogListOut:
     """Explainable HTTP handler logs. Org admins see their organization only."""
-    org_filter: int | None = None
-    if not user.is_super_admin and not user.has_role(ROLE_DEVELOPER):
-        if user.is_org_admin:
-            org_filter = user.organization_id
-
     rows = await list_http_request_logs(
         db,
-        org_id=org_filter,
+        org_id=_org_scope(user),
         limit=limit,
         offset=offset,
         http_method=method,
@@ -60,3 +65,20 @@ async def list_logs(
         limit=limit,
         offset=offset,
     )
+
+
+@router.get("/stats", response_model=HttpRequestStatsOut)
+async def request_stats(
+    user: Annotated[UserContext, Depends(_ACCESS)],
+    db: DbDep,
+    start: str | None = Query(default=None, max_length=10),
+    end: str | None = Query(default=None, max_length=10),
+) -> HttpRequestStatsOut:
+    """Aggregate request counts per endpoint and per user. Org admins see their organization only."""
+    data = await get_http_request_stats(
+        db,
+        org_id=_org_scope(user),
+        start=start,
+        end=end,
+    )
+    return HttpRequestStatsOut(**data)
