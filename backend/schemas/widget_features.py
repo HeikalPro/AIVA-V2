@@ -187,10 +187,72 @@ class WidgetKbQueuesConfig(BaseModel):
         return out
 
 
+class WidgetLocationItem(BaseModel):
+    """One branch/office shown in the widget's locations panel."""
+
+    name: str
+    area: str | None = None
+    address: str | None = None
+    phone: str | None = None
+    hours: str | None = None
+    maps_url: str | None = None
+
+    @field_validator("name", mode="before")
+    @classmethod
+    def normalize_name(cls, value: object) -> str:
+        text = str(value or "").strip()
+        if not text:
+            raise ValueError("location name is required")
+        return text[:80]
+
+    @field_validator("area", "phone", "hours", mode="before")
+    @classmethod
+    def normalize_short_text(cls, value: object | None) -> str | None:
+        if value is None:
+            return None
+        text = str(value).strip()
+        return text[:120] if text else None
+
+    @field_validator("address", mode="before")
+    @classmethod
+    def normalize_address(cls, value: object | None) -> str | None:
+        if value is None:
+            return None
+        text = str(value).strip()
+        return text[:300] if text else None
+
+    @field_validator("maps_url", mode="before")
+    @classmethod
+    def normalize_maps_url(cls, value: object | None) -> str | None:
+        if value is None:
+            return None
+        text = str(value).strip()
+        if not text:
+            return None
+        if not (text.startswith("https://") or text.startswith("http://")):
+            raise ValueError("maps_url must be an http(s) URL")
+        return text[:2000]
+
+
+class WidgetLocationsConfig(BaseModel):
+    """Per-account branch/location list surfaced as a widget panel."""
+
+    enabled: bool = False
+    items: list[WidgetLocationItem] = Field(default_factory=list)
+
+    @field_validator("items", mode="before")
+    @classmethod
+    def normalize_items(cls, value: object | None) -> list[object]:
+        if not isinstance(value, list):
+            return []
+        return value[:100]
+
+
 class WidgetFeaturesConfig(BaseModel):
     installment_calculator: WidgetInstallmentCalculatorConfig | None = None
     kb_queues: WidgetKbQueuesConfig | None = None
     branding: WidgetBrandingConfig | None = None
+    locations: WidgetLocationsConfig | None = None
 
     def calculator_enabled(self) -> bool:
         calc = self.installment_calculator
