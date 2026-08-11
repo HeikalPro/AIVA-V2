@@ -84,7 +84,7 @@ async def system_components(
 
     database, llm = await asyncio.gather(
         sh.db_health(db),
-        sh.llm_health(),
+        sh.llm_health(db),
     )
 
     components = [

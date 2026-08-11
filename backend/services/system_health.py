@@ -6,6 +6,7 @@ result rather than raising, so the overall snapshot always renders.
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import time
 from typing import Any
@@ -56,22 +57,10 @@ async def redis_snapshot(redis_url: str | None, queue_name: str) -> dict[str, An
             pass
 
 
-async def llm_health() -> dict[str, Any]:
-    """Cheap reachability check for the default LLM provider — a models list call
-    (no tokens/cost). Reuses the app's own OpenAI credential/endpoint resolution.
-    """
-    try:
-        from backend.services.rag import _official_openai_provider_config
-
-        cfg = _official_openai_provider_config()
-        base = str(cfg.base_url).rstrip("/")
-        key = cfg.api_key.get_secret_value() if getattr(cfg, "api_key", None) else None
-    except Exception as exc:
-        return {"status": "unknown", "latency_ms": None, "detail": str(exc)[:200]}
-
+async def _probe_llm_endpoint(base: str, key: str | None) -> dict[str, Any]:
+    """Models-list reachability call (no tokens/cost) against one OpenAI-compatible endpoint."""
     if not key:
-        return {"status": "not_configured", "latency_ms": None, "detail": "No OPENAI_API_KEY set", "info": base}
-
+        return {"status": "not_configured", "latency_ms": None, "detail": "No API key resolved", "info": base}
     try:
         import httpx
     except Exception:
@@ -89,6 +78,64 @@ async def llm_health() -> dict[str, Any]:
         return {"status": "degraded", "latency_ms": latency, "detail": f"HTTP {resp.status_code}", "info": base}
     except Exception as exc:
         return {"status": "down", "latency_ms": None, "detail": str(exc)[:200], "info": base}
+
+
+async def llm_health(db: Database | None = None) -> dict[str, Any]:
+    """Reachability of the LLM endpoints the active LLM configs actually use.
+
+    Each config row carries its own provider/base URL; credentials resolve
+    exactly like the chat path (custom-endpoint key for SovereignEG-style
+    endpoints, official OPENAI_API_KEY otherwise). Distinct endpoints are
+    probed concurrently and aggregated into one component status. Falls back
+    to the official-OpenAI resolution when no active configs exist.
+    """
+    try:
+        from backend.services.rag import _official_openai_provider_config, _provider_config
+    except Exception as exc:
+        return {"status": "unknown", "latency_ms": None, "detail": str(exc)[:200]}
+
+    rows: list[dict[str, Any]] = []
+    if db is not None:
+        try:
+            rows = await db.fetch_all(
+                "SELECT DISTINCT provider, api_base_url FROM AIVA_llm_configs WHERE is_active = 1"
+            )
+        except Exception:
+            _log.warning("could not load active LLM configs for health probe", exc_info=True)
+
+    targets: dict[str, str | None] = {}  # base_url -> api key
+    for row in rows:
+        try:
+            cfg = _provider_config(str(row.get("provider") or "openai"), row)
+        except Exception:
+            cfg = None
+        if cfg is None:
+            continue
+        secret = getattr(cfg, "api_key", None)
+        targets[str(cfg.base_url).rstrip("/")] = secret.get_secret_value() if secret else None
+    if not targets:
+        try:
+            cfg = _official_openai_provider_config()
+            secret = getattr(cfg, "api_key", None)
+            targets[str(cfg.base_url).rstrip("/")] = secret.get_secret_value() if secret else None
+        except Exception as exc:
+            return {"status": "unknown", "latency_ms": None, "detail": str(exc)[:200]}
+
+    results = await asyncio.gather(*(_probe_llm_endpoint(base, key) for base, key in targets.items()))
+    if len(results) == 1:
+        return results[0]
+
+    # Several distinct endpoints: healthy overall only when all are up;
+    # otherwise degraded/down with the failing endpoints in the detail.
+    failing = [r for r in results if r["status"] != "up"]
+    latencies = [r["latency_ms"] for r in results if r["latency_ms"] is not None]
+    latency = max(latencies) if latencies else None
+    info = ", ".join(r["info"] for r in results)
+    if not failing:
+        return {"status": "up", "latency_ms": latency, "info": info}
+    status = "down" if len(failing) == len(results) else "degraded"
+    detail = "; ".join(f"{r['info']}: {r.get('detail') or r['status']}" for r in failing)[:200]
+    return {"status": status, "latency_ms": latency, "detail": detail, "info": info}
 
 
 async def service_health(url: str | None) -> dict[str, Any]:
