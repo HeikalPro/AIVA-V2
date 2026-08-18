@@ -6,6 +6,8 @@ from zoho_auth.models import ZohoUserSession
 
 from backend.auth.deps import UserContext, get_current_user
 from backend.auth.hashing import verify_password
+from backend.auth.status import STATUS_ACTIVE, STATUS_DISABLED, STATUS_PENDING_EMAIL_VERIFICATION, STATUS_PASSWORD_RESET_REQUIRED
+from backend.services.auth_audit import log_auth_event
 from backend.auth.jwt import create_token_pair, decode_token
 from backend.config import get_settings
 from backend.dependencies import DbDep
@@ -18,6 +20,7 @@ from backend.services.zoho_auth_service import (
     pop_oauth_state,
 )
 from backend.services.zoho_user_provisioning import provision_zoho_user
+from backend.services.role_nav_permissions import resolve_user_nav_permissions
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -69,10 +72,6 @@ async def _issue_tokens_for_user(
         organization_id=int(user["organization_id"]),
         email=str(user["email"]),
     )
-    await db.execute(
-        "UPDATE AIVA_users SET last_login = CURRENT_TIMESTAMP WHERE id = :id",
-        {"id": int(user["id"])},
-    )
     return TokenResponse(**tokens)
 
 
@@ -106,20 +105,70 @@ async def _issue_tokens_for_zoho_user(
 @router.post("/login", response_model=TokenResponse)
 @limiter.limit(get_settings().rate_limit_login)
 async def login(body: LoginRequest, request: Request, db: DbDep) -> TokenResponse:
+    settings = get_settings()
     user = await db.fetch_one(
         """
-        SELECT id, email, organization_id, status, password_hash
+        SELECT id, email, organization_id, status, password_hash,
+               failed_login_attempts, locked_until
         FROM AIVA_users
         WHERE LOWER(email) = LOWER(:email)
         """,
         {"email": body.email},
     )
 
-    if not user or not verify_password(body.password, str(user.get("password_hash") or "")):
-        if user:
-            await _record_login_attempt(db, request, user_id=int(user["id"]), success=False)
+    if not user:
         raise UnauthorizedError("Invalid email or password")
 
+    locked_until = user.get("locked_until")
+    if locked_until is not None and hasattr(locked_until, "timestamp"):
+        from datetime import datetime, timezone
+
+        if locked_until.timestamp() > datetime.now(timezone.utc).timestamp():
+            raise UnauthorizedError("Invalid email or password")
+
+    if not verify_password(body.password, str(user.get("password_hash") or "")):
+        user_id = int(user["id"])
+        await _record_login_attempt(db, request, user_id=user_id, success=False)
+        failed = int(user.get("failed_login_attempts") or 0) + 1
+        if failed >= settings.login_max_failed_attempts:
+            await db.execute(
+                """
+                UPDATE AIVA_users
+                SET failed_login_attempts = :failed,
+                    locked_until = SYSTIMESTAMP + NUMTODSINTERVAL(:mins, 'MINUTE')
+                WHERE id = :id
+                """,
+                {"failed": failed, "mins": settings.login_lock_minutes, "id": user_id},
+            )
+            await log_auth_event(db, event_type="account_locked", user_id=user_id, request=request)
+        else:
+            await db.execute(
+                "UPDATE AIVA_users SET failed_login_attempts = :failed WHERE id = :id",
+                {"failed": failed, "id": user_id},
+            )
+        await log_auth_event(db, event_type="login_failed", user_id=user_id, request=request)
+        raise UnauthorizedError("Invalid email or password")
+
+    status = str(user.get("status") or "")
+    user_id = int(user["id"])
+    if status == STATUS_PENDING_EMAIL_VERIFICATION:
+        raise UnauthorizedError("Please verify your email before logging in.")
+    if status == STATUS_DISABLED:
+        raise UnauthorizedError("Your account is disabled. Contact support.")
+    if status == STATUS_PASSWORD_RESET_REQUIRED:
+        raise UnauthorizedError("Password reset is required before you can sign in.")
+    if status != STATUS_ACTIVE:
+        raise UnauthorizedError("Invalid email or password")
+
+    await db.execute(
+        """
+        UPDATE AIVA_users
+        SET failed_login_attempts = 0, locked_until = NULL, last_login = CURRENT_TIMESTAMP
+        WHERE id = :id
+        """,
+        {"id": user_id},
+    )
+    await log_auth_event(db, event_type="login_success", user_id=user_id, request=request)
     return await _issue_tokens_for_user(db, request, user)
 
 
@@ -130,6 +179,8 @@ async def zoho_login(
     redirect: Annotated[bool, Query()] = False,
     return_to: Annotated[str | None, Query()] = None,
 ):
+    if not get_settings().zoho_login_enabled:
+        raise BadRequestError("Zoho login is disabled. Use email and password sign-in.")
     service = get_zoho_auth_service()
     callback_url = service.validate_return_to(return_to)
     auth_url, _state = service.start_login(return_to=callback_url)
@@ -149,6 +200,15 @@ async def zoho_callback(
     error_description: Annotated[str | None, Query(alias="error_description")] = None,
 ) -> RedirectResponse:
     service = get_zoho_auth_service()
+    if not get_settings().zoho_login_enabled:
+        return RedirectResponse(
+            service.format_frontend_redirect(
+                {},
+                error="Zoho login is disabled. Use email and password sign-in.",
+                return_to=None,
+            ),
+            status_code=302,
+        )
     state_ok, return_to = pop_oauth_state(state)
 
     if error:
@@ -225,7 +285,21 @@ async def logout(
 
 
 @router.get("/me", response_model=UserProfile)
-async def me(user: Annotated[UserContext, Depends(get_current_user)]) -> UserProfile:
+async def me(
+    user: Annotated[UserContext, Depends(get_current_user)],
+    db: DbDep,
+) -> UserProfile:
+    role_ids = list({r.role_id for r in user.roles})
+    permissions = await resolve_user_nav_permissions(
+        db,
+        user_id=user.id,
+        role_ids=role_ids,
+        role_names=user.role_names,
+        is_super_admin=user.is_super_admin,
+        organization_id=user.organization_id,
+        membership_account_ids=user.membership_account_ids,
+        is_org_admin=user.is_org_admin,
+    )
     return UserProfile(
         id=user.id,
         email=user.email,
@@ -233,4 +307,5 @@ async def me(user: Annotated[UserContext, Depends(get_current_user)]) -> UserPro
         first_name=user.first_name,
         last_name=user.last_name,
         roles=sorted(user.role_names),
+        permissions=permissions,
     )

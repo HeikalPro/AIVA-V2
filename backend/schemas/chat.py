@@ -1,8 +1,15 @@
-from pydantic import BaseModel, Field
+from typing import Literal, Self
+
+from pydantic import BaseModel, Field, model_validator
 
 
 class SessionCreate(BaseModel):
     account_id: int
+    active_queues: list[str] | None = None
+
+
+class SessionQueuesUpdate(BaseModel):
+    active_queues: list[str] = Field(min_length=1)
 
 
 class SessionOut(BaseModel):
@@ -16,11 +23,17 @@ class SessionOut(BaseModel):
     started_at: str | None
     ended_at: str | None
     message_count: int | None = None
+    active_queues: list[str] = Field(default_factory=list)
 
 
 class MessageCreate(BaseModel):
     message_text: str = Field(min_length=1)
     top_k: int | None = Field(default=None, ge=1, le=50)
+
+
+class KbSourceOut(BaseModel):
+    parent_id: str
+    url: str
 
 
 class MessageOut(BaseModel):
@@ -32,3 +45,35 @@ class MessageOut(BaseModel):
     completion_tokens: int | None
     latency_ms: int | None
     created_at: str | None
+    rating: Literal["up", "down"] | None = None
+    feedback: str | None = None
+    rated_at: str | None = None
+    sources: list[KbSourceOut] = Field(default_factory=list)
+
+
+class MessageRatingCreate(BaseModel):
+    rating: Literal["up", "down"]
+    feedback: str | None = None
+
+    @model_validator(mode="after")
+    def require_feedback_on_down(self) -> Self:
+        if self.rating == "down" and not (self.feedback or "").strip():
+            raise ValueError("feedback is required when rating is down")
+        return self
+
+
+class MessageRatingOut(BaseModel):
+    message_id: int
+    session_id: int
+    account_id: int
+    account_name: str | None
+    organization_id: int
+    organization_name: str | None
+    agent_user_id: int
+    agent_email: str | None
+    agent_first_name: str | None
+    agent_last_name: str | None
+    message_text: str
+    rating: Literal["up", "down"]
+    feedback: str | None
+    rated_at: str | None

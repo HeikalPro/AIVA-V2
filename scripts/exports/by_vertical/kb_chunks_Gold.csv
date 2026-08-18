@@ -1,0 +1,513 @@
+﻿corpus_name,external_parent_id,chunk_id,chunk_index,vertical,interaction_type,issue_type,escalation,answer_status,question_en,question_ar,has_embedding,chunk_text
+KB,1019,57fb51ec3d3b55b5853d7a3b7236165c,0,Gold,Request,Non-Technical Issue,No,ok,Customer wants to change contract signing from courier to branch,عميل يريد تغيير مضي العقد من المندوب للفرع,yes,"Vertical: Gold | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Customer wants to change contract signing from courier to branch
+Question AR: عميل يريد تغيير مضي العقد من المندوب للفرع
+
+Script:
+عميل يريد تغيير مضي العقد من المندوب للفرع:
+بتأكد من البورتال حاله الطلب (لم يفعل بعد / جاهز للتوصيل).
+بنسأل العميل عن سبب اتجاه للفرع و بنحاول نعدل العميل ان المندوب يروح ليه لامضاء العقد.
+لو العميل اصر: بتوضح للعميل عنوان اقرب فرع ومواعيد الفرع وايه بيقدر يتوجه ليه لامضاء العقد، والعميل بيوضح للمندوب انه هيتوجه للفرع للامضاء.
+
+ملحوظة: نبص علي منطقه العميل او المحافظه ينفع فيها فرع او مندوب ولا لأ قبل التأكيد علي العميل المعلومه.
+- Escalation: No
+- CRM: Request → Request a call from courier → Escalation Needed No
+"
+KB,1339,43c72febabbc5aeea4a39384c96fed72,0,Gold,Inquiry,Non-Technical Issue,No,ok,How to Apply (Gold),ازاي اقدر اقدم علي خدمة حالا للدهب ؟,yes,"Vertical: Gold | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to Apply (Gold)
+Question AR: ازاي اقدر اقدم علي خدمة حالا للدهب ؟
+
+Script:
+إزاى اقدر اقدم على خدمة حالا للذهب ؟
+Gold -> Inquiry -> How to Apply
+• عشان تقدر تثبت سعر الذهب بسعر دلوقتى , ممكن حضرتك تفتح التطبيق معايا دلوقتي وتختار من ال7 منتجات المتوفرين وهيتواصلوا معاك ف خلال 48 ساعه لأنهاء اجراءات عملية الشراء.
+• لو مش متوفر انترنت , تقدر تقدم الطلب بعد ما تقفل معايا وهيتواصلوا معاك."
+KB,1340,e5d0e49102ac5d298536510486a453d7,0,Gold,Complain,Technical Issue,Yes,ok,Unable to apply,عميل يشتكي من ظهور رسالة خطأ اثناء التقديم في خدمة حالا جولد ؟,yes,"Vertical: Gold | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Unable to apply
+Question AR: عميل يشتكي من ظهور رسالة خطأ اثناء التقديم في خدمة حالا جولد ؟
+
+Script:
+عميل يشتكي من ظهور رسالة خطأ أثناء التقديم فى خدمة حالا جولد ؟
+Gold -> Complaint -> Technical -> Unable to apply
+نتأكد من قيمة الذهب اللي العميل بيشتريه ميكونش اكثر من الحد الائتماني الخاص بالعميل .. الحد الاقصى (مليون جنية) حسب الاستعلام."
+KB,1348,6a3cd86cef0d5ff2a9fdc87673541f80,0,Gold,Request,Non-Technical Issue,Yes,ok,Customer asks about how to receive the gold and pickup location,في حالة سؤال العميل عن كيفية استلام الذهب و مكان الاستلام,yes,"Vertical: Gold | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Customer asks about how to receive the gold and pickup location
+Question AR: في حالة سؤال العميل عن كيفية استلام الذهب و مكان الاستلام
+
+Script:
+في حالة سؤال العميل عن كيفية استلام الذهب و مكان الاستلام:
+هنوضح للعميل انه فى خلال اقرب وقت هيتم التواصل لتوضيح.
+- Escalation: Yes
+- CRM: Gold → Request → asked to receive the gold"
+KB,1380,5c201defea8a5083affb136e76e58019,0,Gold,Inquiry,Non-Technical Issue,No,ok,How to pay the installments,عميل يستسفر عن طرق دفع القسط؟,yes,"Vertical: Gold | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How to pay the installments
+Question AR: عميل يستسفر عن طرق دفع القسط؟
+
+Script:
+عميل يستفسر عن طرق دفع القسط؟
+Gold -> Inquiry -> How to pay the installments
+كريديت كارد (يجب دفع المبلغ المطلوب كما هو لا يمكن دفع جزء منه أو أكثر من المبلغ المطلوب) فوري عن طريق الكود 71822 متبوع برقم الموبايل او رقم البطاقة.
+عن طريق محفظة حالاً.
+عن طريق اي محفظة الكترونية (حالا كاش او اي محفظة تانية)
+عن طريق كارت حالا (يجب على العميل قفل زر ""التقسيط بكارت حالا"" من التطبيق).
+عن طريق اي ماكينة ""بساطة / مكسب/أمان""o-pay / بإستخدام رقم الموبايل او الرقم القومي
+عن طريق InstaPay"
+KB,1388,6bcb5267dce051d9a61ad9cd8df7faec,0,Gold,Request,Non-Technical Issue,Yes,ok,Confirmation on his request,طلب العميل مكالمة من القسم المختص في حالة مرور المهلة ومازال في انتظار الموافقة,yes,"Vertical: Gold | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Confirmation on his request
+Question AR: طلب العميل مكالمة من القسم المختص في حالة مرور المهلة ومازال في انتظار الموافقة
+
+Script:
+طلب العميل مكالمة من القسم المختص في حالة مرور المهلة ومازال في انتظار الموافقة:
+في حالة مرور المهلة ولم يتم التواصل بيه يتم تقديم طلب والتواصل بيه في خلال يوم عمل . بيتم مراجعة البيانات (رقم الموبيل - الرقم القومي - الاسم بالكامل)
+Gold -> Request -> Confirmation on his request
+Activate Windo Cato Cattings ta r"
+KB,1404,34fee8cbcf67592fb3eb72cb5a5c24fb,0,Gold,Inquiry,Technical Issue,No,ok,General Inquiry,ما هي خدمة حالا جولد و الشروط الخاصة بالتقديم؟,yes,"Vertical: Gold | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: General Inquiry
+Question AR: ما هي خدمة حالا جولد و الشروط الخاصة بالتقديم؟
+
+Script:
+ما هى خدمة حالا جولد والشروط الخاصة بالتقديم؟
+Gold -> Inquiry -> General Inquiry
+• دلوقتي بتقدم لحضرتك فرصة انك تشتري دهب بالتقسيط على 12 شهر و طبعا ده بيكون بسعر انهاردة وتقدر تستلمه بعد انتهاء المده , يعني اكنك اشتريت دهب كمان سنه بسعر انهاردة وزي ما حضرتك عارف اسعار الذهب ف زيادة دايما يعنى استثمار ناجح.
+الشروط الخاصة:
+٥ سبائك ( 5 جرام , 10 جرام, 20 جرام، ربع جنيه دهب، نص جنية دهب، جنيه ذهب او أونصة) حضرتك تقدر تختار اللي بتفضله.
+الخدمة متاحة حاليا التوصيل في معظم المحافظات ( يتم التوصيل فى معظم الاماكن المتاح بها مناديب فقط) ۔
+٥ بيكون في مصاريف شراء 2% بيتم دفعهم عند امضاء الأوراق ومش بيتم خصمها من سعر الذهب ٥ نسبة الفائدة بتكون 19.66 -- في حالة سؤال العميل. ( هذه الفائدة للعملاء الجدد ولن تتغير في حالة العميل المفعل)
+° وعشان تقدر تثبت سعر الذهب بسعر دلوقتي , ممكن حضرتك تفتح التطبيق معايا دلوقتي ونقدم الطلب وهيتواصلوا معاك ف خلال 48 ساعه لأنهاء اجراءات عملية الشراء.
+٥ لو مش متوفر انترنت , تقدر تقدم الطلب بعد ما تقفل معايا وهيتواصلوا معاك."
+KB,1405,85491a69577850399504c1aa163d87e2,0,Gold,Inquiry,Technical Issue,No,ok,How to Apply,ازاي اقدر اقدم علي خدمة حالا للدهب ؟,yes,"Vertical: Gold | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: How to Apply
+Question AR: ازاي اقدر اقدم علي خدمة حالا للدهب ؟
+
+Script:
+ازاى اقدر اقدم على خدمة حالا للذهب ؟
+Gold -> Inquiry -> How to Apply
+يتم التقديم من خلال التطبيق أو فروع مشروعي وتساهيل.
+• إفي حالة التقديم من التطبيق عشان تقدر تثبت سعر الذهب بسعر دلوقتي, ممكن حضرتك تفتح التطبيق معايا دلوقتي وتختار من ال7 منتجات المتوفرين وهيتواصلوا معاك ف خلال 48 ساعه لأنهاء إجراءات عملية الشراء.
+• لو مش متوفر انترنت , تقدر تقدم الطلب بعد ما تقفل معايا وهيتواصلوا معاك."
+KB,281,15c8cdb53c1052b7a8baecd8dea048f8,0,Gold,Inquiry,Non-Technical Issue,No,ok,How can I grantee the service,في حالة سؤال العميل عن ازاي يضمن الخدمة؟,yes,"Vertical: Gold | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: How can I grantee the service
+Question AR: في حالة سؤال العميل عن ازاي يضمن الخدمة؟
+
+Script:
+فى حالة سؤال العميل عن ازاى يضمن الخدمة؟
+Gold -> Inquiry -> How can I grantee the service
+شركة حالا للتمويل الاستهلاكي موجودة ف السوق من سنة 2017 , ومرخص للشركة بمزاولة نشاط التمويل الاستهلاكي. والشركة عندها اكتر من نشاط قائم ف السوق و موجودين علي التطبيق تقدر"
+KB,422,b6139487dcc457129d87e3fe473ed7d5,0,Gold,Inquiry,Non-Technical Issue,No,ok,,في حالة سؤال العميل عن العقد الخاص بخدمة الدهب؟ (Gold),yes,"Vertical: Gold | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question AR: في حالة سؤال العميل عن العقد الخاص بخدمة الدهب؟ (Gold)
+
+Script:
+فى حالة سؤال العميل عن العقد الخاص بخدمة الدهب؟
+حضرتك المندوب بيجيلك بالعقد الخاص بالدهب بيكون عقد التمويل وعقد الرهن الخاص بالدهب .. "" في الوقت الحالي العقد مكون من نسخة واحدة"" ولو حضرتك محتاج تصور العقد بالموبايل مفيش مشكلة
+· المندوب بيستلم من حضرتك مصاريف الشراء وبيسلم حضرتك اقرار استلام مصاريف الشراء , وبعد امضاء العقد بنتواصل مع حضرتك لتسليمك شهادة خاصة بالدهب."
+KB,497,f97f010f5b1b5a349b998ce577ed8269,0,Gold,Inquiry,Non-Technical Issue,Yes,ok,General Inquiry (Gold),امتي مندوب جولد هيروح للعميل عشان يمضي العقد,yes,"Vertical: Gold | Type: Inquiry | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: General Inquiry (Gold)
+Question AR: امتي مندوب جولد هيروح للعميل عشان يمضي العقد
+Notes: Gold -> Inquiry -> General Inquiry
+Body: Gold -> Inquiry -> General Inquiry
+
+Script:
+امتى مندوب جولد هيروح للعميل عشان بمضى العقد:
+Gold -> Inquiry -> General Inquiry
+المندوب بيتواصل مع العميل بعد 24 ساعة عمل بعد مكالمة التأكيد وبيتم تفعيل الخدمة خلال 48 ساعة عمل بعد امضاء العقد."
+KB,512,abb6386f4a355c358318d30526d97e96,0,Gold,Request,Non-Technical Issue,No,ok,Cancel Gold Limit,في حالة العميل طلب الغاء ليميت الجولد,yes,"Vertical: Gold | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Cancel Gold Limit
+Question AR: في حالة العميل طلب الغاء ليميت الجولد
+
+Script:
+فى حالة العميل طلب الغاء ليميت الجولد
+Gold -> request -> Cancel Gold Limit Escalation: No
+• ممكن اعرف ایة سبب الالغاء و نحاول اننا نوضح للعمیل ان اللیمت لو حتي مستخدمهوش مش هيأثر علی ال I-Score."
+KB,605,a34a2b4efe2457059b4ff37e2760223d,0,Gold,Inquiry,Technical Issue,No,ok,General Inquiry (Gold),في حالة طلب العميل عن امكانية استلام الدهب ع طول؟,yes,"Vertical: Gold | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: General Inquiry (Gold)
+Question AR: في حالة طلب العميل عن امكانية استلام الدهب ع طول؟
+
+Script:
+في حالة طلب العميل عن امكانية استلام الدهب ع طول؟
+General Inquiry <- Inquiry <- Gold
+طبعا زي ما حضرتك عارف ان الدهب يعتبر استثمار طويل الأجل , و اسعار الذهب في ازدياد وكأنك بتشتري دهب كمان سنه بسعر اليوم. وتقدر حضرتك تستفيد بخدمة السداد المعجل : تقدر تستلم بعد 4 شهور بعد تسوية المديونية أو لو حضرتك حابب تبيع الدهب بعد 4 شهور. • في حالة رفض العميل للانتظار او خدمة السداد المعجل: لو حضرتك حابب تقدر تقدم علي طلب للحصول علي حد ائتماني وتقدر تشتري الدهب وتستلمه من أحد التجار المتعاقدين مع حالا."
+KB,610,0d422b78ba7158a79949b934133e5c7f,0,Gold,Inquiry,Technical Issue,No,ok,Unable to apply (Gold),عميل يشتكي من ظهور رسالة خطأ اثناء التقديم في خدمة حالا جولد ؟,yes,"Vertical: Gold | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Unable to apply (Gold)
+Question AR: عميل يشتكي من ظهور رسالة خطأ اثناء التقديم في خدمة حالا جولد ؟
+
+Script:
+عميل يشتكى من ظهور رسالة خطأ أثناء التقديم فى خدمة حالا جولد ؟
+Gold -> Complaint -> Technical -> Unable to apply
+ممكن يتم ظهور رسالة خطأ أثناء التقديم لأن العميل خارج نطاق الخدمة (ليس من المحافظات اللي فيها الخدمة) · هنعتذر للعميل عن عدم توفر الخدمة و بمجرد ما تكون متاحة هيتم ارسال رسالة علي التطبيق لحضرتك عشان تقدر تستخدمها.
+نتأكد من قيمة الذهب اللي العميل بيشتريه ميكونش اكثر من الحد الائتماني الخاص بالعميل .. الحد الأقصي (مليون جنية) حسب الاستعلام."
+KB,653,1d5e62a53ed85751b3ba2d7fdc0fa74b,0,Gold,Inquiry,Technical Issue,No,ok,inquiry about the gold certificate,في حالة سؤال العميل عن العقد  والشهادة الخاصة بخدمة الدهب؟,yes,"Vertical: Gold | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: inquiry about the gold certificate
+Question AR: في حالة سؤال العميل عن العقد  والشهادة الخاصة بخدمة الدهب؟
+
+Script:
+فى حالة سؤال العميل عن العقد والشهادة الخاصة بخدمة الدهب؟
+حضرتك المندوب بيجيلك بالعقد الخاص بالدهب بيكون عقد التمويل وعقد الرهن الخاص بالدهب .. "" في الوقت الحالي العقد مكون من نسخة واحدة"" ولو حضرتك محتاج تصور العقد بالموبايل مفيش مشكلة.
+المندوب بيستلم من حضرتك مصاريف الشراء وبيسلم حضرتك اقرار استلام مصاريف الشراء , وبعد امضاء العقد بنتواصل مع حضرتك لتسلیمك شهادة خاصة بالدهب.
+Gold -> Inquiry -> inquiry about the gold certificate"
+KB,654,aa72f4ef89f45a399b74e532a5c1fce9,0,Gold,Inquiry,Non-Technical Issue,No,ok,Inquiry about installment date (Gold),الفتره اللى العميل بيقدر يسدد بيها الاقساط قبل نزول غرمات,yes,"Vertical: Gold | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about installment date (Gold)
+Question AR: الفتره اللى العميل بيقدر يسدد بيها الاقساط قبل نزول غرمات
+
+Script:
+الفتره اللى العميل بيقدر يسدد بيها الاقساط قبل نزول غرمات:
+یتم تسديد الاقساط مثل اقساط الCF من يوم 1 الي يوم 5 کل شهر.
+Gold -> Inquiry -> Inquiry about installment date"
+KB,657,b8b6824b9c035af5a126c1a00537b78c,0,Gold,Complain,Technical Issue,No,ok,service not activated yet (Gold),في حالة شكوي عميل من عدم ظهور جدول الاقساط بعد الامضاء,yes,"Vertical: Gold | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: service not activated yet (Gold)
+Question AR: في حالة شكوي عميل من عدم ظهور جدول الاقساط بعد الامضاء
+
+Script:
+فى حالة شكوى عميل من عدم ظهور جدول الاقساط بعد الامضاء :
+ممكن اعرف حضرتك مضيت العقد امتي ؟ يتم التأكد من مرور 48 ساعة عمل من موعد الامضاء استأذنك توضحلي رقم الموبيل او الرقم القومي الللي تم التقديم بيه
+تاريخ تقديم الطلب (وعمل فيلتر من خلال البورتال بالتاريخ والرقم) · التأكد من خلال بورتال جولد:
+حالة العميل (مربوط) حالة الطلب (تم التوقيع) وعند الضغط علي العين لمعرفة التفاصيل يتم ظهور (فشل) = بعتذر لحضرتك يوجد مشكلة تقنية يتم العمل عليها وبمجرد حلها سوف يتم ظهور الخدمة من خلال التطبيق ونزول جدول الاقساط .
+ملحوظة : لا يوجد اي اقساط علي العميل في هذه الحالة, وفور حلها وظهور جدول الاقساط بالفعل علي التطبيق
+Gold -> Complaint -> Technical -> service not activated yet
+Escalation: No
+٧ فى انتظار الموافقة - ٧
+قيد المراجعة
+- تم طباعة العقد
+جاهز للاستلام
+تم التوقيع 6 - - ٧ فى انتظار التوقيع
+7 طلب مفعل
+التصرف
+65378d817841516c40ef4ab2 تم التوقيع
+بيانات المستخدم <
+الطلبات
+السعر
+مصاريف شراء الحالة
+سعر BTC تاريخ شراء BTC رقم المنتج
+رقم الفئة
+اسم المنتج
+فشل
+20 جرام سبيكة ذهب أصفر بى تى سى - عيار 24 58.479.76 ج.م 2047
+65378eb37841516c40ef4abc 64d112311c20085e89b65a7"
+KB,662,4f39746cd7a45ac386fa503421e32f9c,0,Gold,Inquiry,Non-Technical Issue,No,ok,Inquiry about the status of the request (Gold),العميل (مربوط) حالة الطلب (تم التوقيع) وعند الضغط علي العين لمعرفة التفاصيل يتم ظهور (فشل),yes,"Vertical: Gold | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about the status of the request (Gold)
+Question AR: العميل (مربوط) حالة الطلب (تم التوقيع) وعند الضغط علي العين لمعرفة التفاصيل يتم ظهور (فشل)
+
+Script:
+استفسار عميل عن حالة الطلب الخاصة به بعد التقديم:
+Gold -> Inquiry -> Inquiry about the status of the request
+يتم التأكد من حالة الطلب من خلال البورتال.
+استأذنك توضحلي رقم الموبيل او الرقم القومي اللي مقدم من خلاله (البحث برقم الهاتف او الرقم القومي).
+استأذنك توضحلي تاريخ تقديم الطلب (عمل فيلتر بالتاريخ من خانة (البداية والنهاية) في اعلي الصفحة).
+حالة العميل (مربوط) حالة الطلب (تم التوقيع) وعند الضغط علي العين لمعرفة التفاصيل يتم ظهور (فشل) = بعتذر لحضرتك يوجد مشكلة تقنية بمجرد حلها سوف يتم ظهور الخدمة من خلال التطبيق ونزول جدول الاقساط .
+ملحوظة : لا يوجد اي اقساط علي العميل في هذه الحالة الا اذا تم حلها وظهولا جدول الاقساط بالفعل علي التطبيق.
+٧ قيد المراجعة فى انتظار الموافقة - ٧
+٧ تم طباعة العقد
+جاهز للاستلام - ٧ فى انتظار التوقيع
+تم التوقيع 6 -
+7 طلب مفعل
+التصرف
+٠٠
+65378d817841516c40ef4ab2 تم التوقيع
+بيانات المستخدم <
+الطلبات
+السعر
+مصاريف شراء
+الحالة
+سعر BTC تاريخ شراء BTC رقم المنتج
+رقم الفئة
+اسم المنتج
+20 جرام سبيكه ذهب أصغر بى تى سى - عيار 24 58.479.76 ج.م 2047
+فشل
+65378eb37841516c40et4abc 64d112311c2d085e89b6d5a7"
+KB,729,3d9d0441a2bc5b5787d7887509ad1c9a,0,Gold,Complain,Technical Issue,No,ok,Unable to receive the payment code message(Gold),عميل يشكو من عدم وصول الرسالة الخاصة بكود دفع القسط ؟(Gold),yes,"Vertical: Gold | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: Unable to receive the payment code message(Gold)
+Question AR: عميل يشكو من عدم وصول الرسالة الخاصة بكود دفع القسط ؟(Gold)
+
+Script:
+عميل يشكو من عدم وصول الرسالة الخاصة بكود دفع القسط ؟
+Gold -> Complaint -> Technical -> Unable to receive the payment code message > Escalated No
+التأكد أولا من خلال بورتال جولد من ان الطلب مفعل.
+يتم مراجعة ال CRM وابلاغ العميل بالكود الخاص بيه لدفع الأقساط كود فوري - 71822"
+KB,730,838c8351de0f5898972f6137779e8011,0,Gold,Inquiry,Technical Issue,Yes,ok,General Inquiry (Gold),ايه اللي بيحصل بعد انتهاء مدة القرض؟,yes,"Vertical: Gold | Type: Inquiry | Issue: Technical Issue | Escalation: Yes
+
+Question EN: General Inquiry (Gold)
+Question AR: ايه اللي بيحصل بعد انتهاء مدة القرض؟
+
+Script:
+ايه اللى بيحصل بعد انتهاء مدة القرض؟
+General Inquiry <- Inquiry <- Gold
+• قبل سداد آخر قسط ، بيتم التواصل مع العميل لابلاغة بموعد الاستلام بعد سداد آخر قسط"
+KB,731,92b936efee595cad8134ce4af4f4abbc,0,Gold,Inquiry,Non-Technical Issue,No,ok,Inquiry about the status of the request (Gold),"استفسار عميل عن حالة الطلب الخاصة به بعد التقديم , حالة العميل (مربوط) حالة الطلب (في انتظار الموافقة)",yes,"Vertical: Gold | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about the status of the request (Gold)
+Question AR: استفسار عميل عن حالة الطلب الخاصة به بعد التقديم , حالة العميل (مربوط) حالة الطلب (في انتظار الموافقة)
+
+Script:
+استفسار عميل عن حالة الطلب الخاصة به بعد التقديم:
+Gold -> Inquiry -> Inquiry about the status of the request
+يتم التأكد من حالة الطلب من خلال البورتال. ·
+استأذنك توضحلي رقم الموبيل او الرقم القومي اللي مقدم من خلاله (البحث برقم الهاتف او الرقم القومي). استأذنك توضحلي تاريخ تقديم الطلب (عمل فيلتر بالتاريخ من خانة (البداية والنهاية) في اعلي الصفحة).
+16/04/2024
+16/04/2024 1
+X رقم الهاتف ٧ 01060188177
+اسم العميل
+الرقم القومي
+رقم الهاتف
+حالة العميل
+تاريخ الطلب
+عدد المنتجات السعر الكلي
+مصاريف شراء
+حالة الطلب
+رقم الطلب
+التأكد من حالة الطلب الخاصة بالعميل من خلال خانة (حالة العميل - حالة الطلب):
+•
+حالة العميل (مربوط) حالة الطلب (في انتظار الموافقة) = حضرتك مقدم طلب بالفعل من خلال التطبيق وهيتم التواصل من خلال القسم المختص في خلال 48 ساعة لتأكيد الطلب.
+16/04/2024
+16/04/2024 1
+رقم الهاتف
+X 01060188177 V
+اسم العميل
+الرقم القومي
+رقم الهاتف
+حالة العميل
+تاريخ الطلب
+عدد المنتجات
+السعر الكلي
+مصاريف شراء
+حالة الطلب
+رقم الطلب
++
+بس خالد يس سليمان
+29710140102993
+01060188177
+مربوط
+16/04/2024
+19990.3 جم
+700
+في انتظار الموافقة
+661dfc1793e9ae2c7cocc553"
+KB,732,2cdc72f648c85b6398b9fed0b8346148,0,Gold,Inquiry,Non-Technical Issue,No,ok,Inquiry about the status of the request (Gold),(جاهز للاستلام) حالة العميل (مربوط)حالة الطلب (في انتظار التوقيع),yes,"Vertical: Gold | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about the status of the request (Gold)
+Question AR: (جاهز للاستلام) حالة العميل (مربوط)حالة الطلب (في انتظار التوقيع)
+
+Script:
+استفسار عميل عن حالة الطلب الخاصة به بعد التقديم:
+Gold -> Inquiry -> Inquiry about the status of the request
+• يتم التأكد من حالة الطلب من خلال البورتال. استأذنك توضحلي رقم الموبيل او الرقم القومي اللي مقدم من خلاله (البحث برقم الهاتف او الرقم القومي).
+• استأذنك توضحلي تاريخ تقديم الطلب (عمل فيلتر بالتاريخ من خانة (البداية والنهاية) في اعلي الصفحة).
+التأكد من حالة الطلب الخاصة بالعميل من خلال خانة (حالة العميل - حالة الطلب):
+• حالة العميل (مربوط) حالة الطلب (في انتظار التوقيع) = تم التواصل مع حضرتك وتم تأكيد الطلب وفي انتظار تواصل المندوب للامضاء في خلال 48 ساعة.
+· حالة العميل (مربوط) حالة الطلب (جاهز للاستلام) = تم التواصل مع حضرتك وتم تأكيد الطلب وفي انتظار تواصل المندوب للامضاء في خلال 24 ساعة
+٣ النهاية البداية
+٧ الرقم القومي
+اسم العميل
+الرقم القومي
+رقم الهاتف
+حالة العميل ٢
+تاريخ الطلب
+عدد المنتجات
+السعر الكلي
+مصاريف شراء
+حالة الطلب ؟
+رقم الطلب
++ عز عبد الحكيم عز العرب محجوب
+30005220103036
+01102758256
+مربوط
+14/04/2024
+1
+80701.2 ج.م
+2825
+في انتظار التوقيع
+661bfa2b93e9ae2c7c6cb10d"
+KB,733,1946c1c897055f90a04affe46368c2ca,0,Gold,Inquiry,Non-Technical Issue,No,ok,Inquiry about the status of the request (Gold),حالة العميل (مربوط) حالة الطلب (تم التوقيع),yes,"Vertical: Gold | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about the status of the request (Gold)
+Question AR: حالة العميل (مربوط) حالة الطلب (تم التوقيع)
+
+Script:
+استفسار عميل عن حالة الطلب الخاصة به بعد التقديم:
+Gold -> Inquiry -> Inquiry about the status of the request
+• يتم التأكد من حالة الطلب من خلال البورتال.
+استأذنك توضحلي رقم الموبيل او الرقم القومي اللي مقدم من خلاله (البحث برقم الهاتف او الرقم القومي). استأذنك توضحلي تاريخ تقديم الطلب (عمل فيلتر بالتاريخ من خانة (البداية والنهاية) في اعلي الصفحة).
+التأكد من حالة الطلب الخاصة بالعميل من خلال خانة (حالة العميل - حالة الطلب):
+• الضغط علي شكل العين للتأكد من حالة الطلب.
+• حالة العميل (مربوط) حالة الطلب (تم التوقيع) = تم توقيع العقد وسيتم تفعيل الخدمة في خلال 48 ساعة عمل من الامضاء.
+01/04/2024
+16/04/2024 1
+رقم الهاتف
+X 01024103898 V
+اسم العميل
+الرقم القومي
+رقم الهاتف
+حالة العميل :
+تاريخ الطلب
+عدد المنتجات
+السعر الكلي
+مصاريف شراء
+حالة الطلب ؟
+رقم الطلب
++
+حسام الدين حسن ابراهيم حسن ابراهيم
+27807010109836
+01024103898
+مربوط
+11/04/2024
+1
+6992 ج.م
+245
+تم التوقيع
+66183b7093e9ae2c7coc908b"
+KB,766,15c57030e4f35dfc878a2d27086c3675,0,Gold,Inquiry,Technical Issue,No,ok,Why I should pay payment fees (Gold),عميل يستفسر عن سبب دفع مصاريف الشراء؟,yes,"Vertical: Gold | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Why I should pay payment fees (Gold)
+Question AR: عميل يستفسر عن سبب دفع مصاريف الشراء؟
+
+Script:
+عميل يستفسر عن سبب دفع مصاريف الشراء %2؟
+Gold -> Inquiry -> Why I should pay payment fees?
+• دي بتكون مصاريف ادارية وقيمتها %2"
+KB,804,f3f1912cab015d50a68a0f75b53d1ac9,0,Gold,Request,Technical Issue,Yes,ok,Request for gold certification,في حالة طلب العميل استلام شهادة الدهب,yes,"Vertical: Gold | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Request for gold certification
+Question AR: في حالة طلب العميل استلام شهادة الدهب
+
+Script:
+في حالة طلب العميل استلام شهادة الدهب.
+هنوضح للعميل اننا هنقدمله طلب لاستلام شهادة الدهب و في اقرب وقت هيتم التواصل معاه للاستلام
+Gold - Request - Request for gold certification Escalation Yes"
+KB,807,a99541c6d1f35a1ca9567f1bd34cd023,0,Gold,Inquiry,Technical Issue,No,ok,General Inquiry (Gold),هل ممكن اغير ميعاد امضاء عقد الدهب؟,yes,"Vertical: Gold | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: General Inquiry (Gold)
+Question AR: هل ممكن اغير ميعاد امضاء عقد الدهب؟
+
+Script:
+هل ممكن اغير ميعاد امضاء العقد ؟
+Gold -> Inquiry -> General Inquiry
+الخيار دا غير متاح .. المندوب بيتواصل مع العميل خلال 24 ساعة وفي حالة لم يتم الرد بيتم الغاء الطلب ولازم العميل يطلب اوردر تاني لصعوبة تثبيت سعر الدهب"
+KB,808,239e023fe96757d58b01fe48c434b34d,0,Gold,Inquiry,Technical Issue,No,ok,Inquiry about the status of the request (Gold),حالة العميل (مربوط) حالة الطلب (مفعل),yes,"Vertical: Gold | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about the status of the request (Gold)
+Question AR: حالة العميل (مربوط) حالة الطلب (مفعل)
+
+Script:
+استفسار عميل عن حالة الطلب الخاصة به بعد التقديم:
+Gold -> Inquiry -> Inquiry about the status of the request
+يتم التأكد من حالة الطلب من خلال البورتال. • استأذنك توضحلي رقم الموبيل او الرقم القومي اللي مقدم من خلاله (البحث برقم الهاتف او الرقم القومي). • استأذنك توضحلي تاريخ تقديم الطلب (عمل فيلتر بالتاريخ من خانة (البداية والنهاية) في اعلي الصفحة).
+التأكد من حالة الطلب الخاصة بالعميل من خلال خانة (حالة العميل - حالة الطلب):
+• حالة العميل (مربوط) حالة الطلب (مفعل) = تم تفعيل الخدمة لحضرتك بنجاح ونزول جدول الاقساط علي التطبيق.
+01/03/2024
+31/03/2024 1
+الرقم القومي
+29806042100696
+X
+اسم العميل
+الرقم القومي
+رقم الهاتف
+حالة العميل
+تاريخ الطلب
+عدد المنتجات
+السعر الكلي
+مصاريف شراء
+حالة الطلب :
+رقم الطلب
++ حسن محمد حسن عويس
+29806042100696
+01155519912
+مريوط
+22/03/2024
+1
+6292 ج.م
+221
+طلب مفعل
+65fded8e00d0c51a0d196516"
+KB,809,e7f9a3906fc15abd80bfafd2992d2adf,0,Gold,Inquiry,Technical Issue,No,ok,Important points (GOLD),اهم الاسئلة (GOLD),yes,"Vertical: Gold | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Important points (GOLD)
+Question AR: اهم الاسئلة (GOLD)
+
+Script:
+اهم الاسئلة
+ليه يتم اضافة مصنعية ودمغة على السبائك؟
+المصنعیه تتحسب بناء على العیار و الوزن و ده نظیر تحویل الذهب من ماده خام الی السبیکه او الجنیه و الدمغه فهی تکلفه دمغ المنتج من مصلحه الدمغه و الموازين
+ما هو الفرق بين السبائك والعملات؟
+لا يوجد اختلاف بين السبائك والعملات الذهبية كوسيلة ادخارية طويلة الأجل لحفظ لقيمة النقود، ولكن هناك تنوع أكثر من حيث الأحجام في السبائك فهي تبدأ من وزن 1 جرام عيار 24 حتى الكيلو جرام، وبالنسبة للعملات ف هي عيار 21 وأقل وزن هو الربع جنیه 2 جرام.
+لماذا يوجد سعرين للذهب شراء وبيع؟
+من المتعارف عليه على مستوى العالم ان هناك سعرين للذهب سعر للبيع وسعر للشراء، وقد يكون الفرق بينهم کبیر او ضئيل بناء على التغير السريع أو الحركة البطيئة السعر الشاشة العالمية وكذلك معدل العرض والطلب بالسوق المحلي.
+كيف يتم احتساب سعر الشراء؟
+- بناء على العرض والطلب في السوق المصري .
+ما هي توقعاتكم لزيادة الأسعار الفترة القادمة؟
+الذهب مرتبط بشكل وثيق بالأحداث السياسية والاقتصادية على مستوى العالم، مع الأخذ في الاعتبار مستوى العرض والطلب في السوق المصري وسعر الصرف في مصر، وبالتالي لا يوجد توقعات فعلية سواء بالزيادة أو النقصان.
+نشتري ذهب في الوقت الحالي ام ننتظر؟
+في حالة ان الشراء بغرض الادخار لفترات طويلة الاجل "" مدة لا تقل عن سنتين "" فانه بالتأكيد الذهب سيكون أحد أفضل الوسائل للحفاظ على القيمة الشرائية للنقود من التضخم بغض النظر عن السعر الحالي للذهب
+هل الأفضل تجزئة المنتجات أم شراء قطعة واحدة؟
+إذا كان هناك احتياج الى جزء من المبلغ اثناء فترة الادخار فالأفضل بالتأكيد هو تجزئة المنتجات حتى يتم بيع الجزء الذي يعادل القيمة التي من الممكن الاحتياج لها من السيولة النقدية والاحتفاظ بباقي الكمية لفترة أطول وبالتالي تحقيق عائد أعلى منها عند إعادة بيعها. أما في حالة عدم الاحتياج لأي جزء من المبلغ خلال فترة الادخار فالأفضل هو شراء قطعة واحدة او قطعتين بحيث يسهل الاحتفاظ بهم."
+KB,890,f95197ac19c6596b9a99f11c253ccff3,0,Gold,Request,Non-Technical Issue,Yes,ok,Early settlement (Gold),هل في امكانية للسداد المبكر- المعجل؟ (Gold),yes,"Vertical: Gold | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Early settlement (Gold)
+Question AR: هل في امكانية للسداد المبكر- المعجل؟ (Gold)
+
+Script:
+هل في امكانية للسداد المبكر المعجل؟
+Gold -> Inquiry -> Early settlement Inquiry Gold -> Request -> Early settlement
+Escalation: Yes
+تقدر حضرتك تستلم بعد 4 شهور بعد تسوية المديونية بدون اي رسوم للسداد المبكر وبتدفع المتبقى من اصل الاقساط • بدون فوايد
+وبتقدر تستلم الدهب بعد تسوية المبلغ. هل تم دفع اقساط 4 شهور؟ Yes
+·
+ممكن توضيح (الرقم القومي - الاسم رباعي - رقم الموبيل)
+سوف يتم تقديم طلب سداد معجل والتواصل مع حضرتك في اقرب وقت لتوضيح التفاصيل. ·"
+KB,983,737c6ec79f8851cc9ff66e0b70d3965d,0,Gold,Request,Technical Issue,Yes,ok,Cancel Gold Request (Gold),في حالة العميل طلب الغاء اوردر الجولد,yes,"Vertical: Gold | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Cancel Gold Request (Gold)
+Question AR: في حالة العميل طلب الغاء اوردر الجولد
+
+Script:
+فى حالة العميل طلب الغاء اوردر الجولد:
+Gold -> Request -> Cancel Gold Request
+Escalation: Yes
+لازم نسأل العميل على سبب الالغاء ولو العميل بيواجه اي مشكلة نحلهاله ويتم التأكد من خلال البورتال من حالة الطلب. لو مصر على الالغاء هنقدمله طلب الغاء وهذوضحله ان في 2% رسوم الغاء (في حالة طلب العميل بعد يوم 9-يوليو) ولن يتم استرداد مصاريف الالغاء .. وهيتم التواصل خلال 48 ساعة عمل.
+ملحوظة : في حالة وجود أي أقساط مدفوعة بالفعل يتم ردها للعميل مرة اخرى
+31/03/2004 1 01/03/2024
+× 29906042180696 الرقم القومي
+اسم العميل
+الرقم القومي
+رقم الهاتف
+حالة العميل ٢
+تاريخ الطلب
+عدد المنتجات السعر الكلي
+مصاريف شراء حالة الطلب ؟
+رقم الطلب
++ صن محمد حسين عوبس
+29805042100696
+01 195519912
+هبوط
+22/03/2024
+6292 3 م
+221
+طلب مفعل"
+KB,984,8bae9b75bb395ddbb9c64f4b565218b3,0,Gold,Request,Non-Technical Issue,Yes,ok,asked to receive the Gold after full payment,في حالة سداد العميل للاقساط ولم يتم التواصل به لاستلام الذهب,yes,"Vertical: Gold | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: asked to receive the Gold after full payment
+Question AR: في حالة سداد العميل للاقساط ولم يتم التواصل به لاستلام الذهب
+
+Script:
+فى حالة سداد العميل للأقساط ولم يتم التواصل به لاستلام الذهب:
+استأديك توضحلى بعض البيانات (موعد دفع آخر قسط - الرقم القومى - الرقم المقدم بيه - الاسم بالكامل). هل تم دفع جميع الأقساط بالكامل؟ (افأكد من خلال CRM).
+من خلالي هيتم تقديم طاب لحضرتك للفواصل بيك في اقرب وقت فوضيح موعد ومكان الاستلام.
+ملحوظة : يشترط اعلام العميل بنفسه للذهب
+Gold->Request->asked to receive the Gold
+Escalation: Yes"

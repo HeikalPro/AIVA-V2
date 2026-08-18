@@ -1,0 +1,34 @@
+=== FILL FROM EXISTING OK CHUNKS (same question) ===
+
+1259: no ok chunk with same question
+
+525: no ok chunk with same question
+
+546: no ok chunk with same question
+
+550: no ok chunk with same question
+
+559: no ok chunk with same question
+
+491: no ok chunk with same question
+
+1637: no ok chunk with same question
+
+1581: no ok chunk with same question
+
+1258: no ok chunk with same question
+
+862: no ok chunk with same question
+
+699: no ok chunk with same question
+
+1005: no ok chunk with same question
+
+1083: no ok chunk with same question
+
+=== RELATED: same Question EN, different AR (share script?) ===
+
+Question EN: May offer winners announcement (تساهيل)
+  1259: AR=إمتى هيتم السحب؟
+  1258: AR=هتتواصلوا معايا إزاي لو كسبت؟
+  No OK script in DB for this Question EN yet

@@ -39,7 +39,15 @@ async def delete_account_dependencies(db: Database, account_id: int) -> None:
         {"account_id": account_id},
     )
     await db.execute(
+        "DELETE FROM AIVA_account_updates WHERE account_id = :account_id",
+        {"account_id": account_id},
+    )
+    await db.execute(
         "UPDATE AIVA_tickets SET account_id = NULL WHERE account_id = :account_id",
+        {"account_id": account_id},
+    )
+    await db.execute(
+        "DELETE FROM AIVA_account_role_nav_permissions WHERE account_id = :account_id",
         {"account_id": account_id},
     )
     await db.execute(

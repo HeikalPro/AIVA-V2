@@ -2,35 +2,54 @@ from __future__ import annotations
 
 import html
 import logging
+import time
 
-from backend.auth.deps import ROLE_DEVELOPER
+from backend.auth.role_constants import (
+    ROLE_DEVELOPER,
+    ROLE_ORG_ADMIN,
+    ROLE_SUPER_ADMIN,
+)
 from backend.config import get_settings
 from backend.dependencies import get_db
-from backend.schemas.tickets import DeveloperNotifyOut
 from backend.schemas.notifications import DeveloperNotifyOut
 from backend.services.email.base import EmailMessage
-from backend.services.email.zoho_mail import get_zoho_mail_sender
+from backend.services.email import get_mail_sender
 
 _log = logging.getLogger(__name__)
 
+# Roles that receive server-error alerts.
+ERROR_ALERT_ROLES = (ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_DEVELOPER)
 
-async def fetch_developer_emails(
-    organization_id: int,
+
+async def fetch_role_emails(
+    roles: list[str] | tuple[str, ...],
     *,
+    organization_id: int | None = None,
     exclude_user_id: int | None = None,
 ) -> list[str]:
+    """Active users' emails for the given role name(s), optionally scoped to an org."""
+    if not roles:
+        return []
     db = get_db()
+    role_binds = {f"role{i}": name for i, name in enumerate(roles)}
+    role_placeholders = ", ".join(f":{k}" for k in role_binds)
+    where = [
+        "u.status = 'ACTIVE'",
+        f"r.name IN ({role_placeholders})",
+    ]
+    binds: dict[str, object] = dict(role_binds)
+    if organization_id is not None:
+        where.append("u.organization_id = :org_id")
+        binds["org_id"] = organization_id
     rows = await db.fetch_all(
-        """
+        f"""
         SELECT DISTINCT u.id, u.email
         FROM AIVA_users u
         JOIN AIVA_user_roles ur ON ur.user_id = u.id
         JOIN AIVA_roles r ON r.id = ur.role_id
-        WHERE u.organization_id = :org_id
-          AND u.status = 'ACTIVE'
-          AND r.name = :role
+        WHERE {" AND ".join(where)}
         """,
-        {"org_id": organization_id, "role": ROLE_DEVELOPER},
+        binds,
     )
     emails: list[str] = []
     for row in rows:
@@ -40,6 +59,18 @@ async def fetch_developer_emails(
         if email and email not in emails:
             emails.append(email)
     return emails
+
+
+async def fetch_developer_emails(
+    organization_id: int,
+    *,
+    exclude_user_id: int | None = None,
+) -> list[str]:
+    return await fetch_role_emails(
+        [ROLE_DEVELOPER],
+        organization_id=organization_id,
+        exclude_user_id=exclude_user_id,
+    )
 
 
 async def _creator_display_name(user_id: int) -> str:
@@ -138,7 +169,7 @@ async def notify_developers_new_ticket(
         html_body=html_body,
     )
     try:
-        ok = await get_zoho_mail_sender().send(msg)
+        ok = await get_mail_sender().send(msg)
     except Exception:
         _log.exception("Failed to notify developers about ticket #%s", ticket_id)
         ok = False
@@ -153,9 +184,8 @@ async def notify_developers_new_ticket(
     return DeveloperNotifyOut(
         status="failed",
         message=(
-            "Email was not sent. Configure ZOHO_MAIL_FROM_ADDRESS to a real Zoho mailbox, "
-            "then authorize the server once: cd AIVA-V2 && python -m zoho_auth --force-login "
-            "(accept Mail permissions). Web sign-in does not update the mail sender token."
+            "Email was not sent. Configure SMTP_HOST, SMTP_PASSWORD, and SMTP_FROM_EMAIL "
+            "in backend/.env (or use Zoho Mail as fallback)."
         ),
         recipients=recipients,
     )
@@ -229,7 +259,7 @@ async def notify_developers_new_ingestion(
         html_body=html_body,
     )
     try:
-        ok = await get_zoho_mail_sender().send(msg)
+        ok = await get_mail_sender().send(msg)
     except Exception:
         _log.exception("Failed to notify developers about ingestion #%s", request_id)
         ok = False
@@ -244,9 +274,136 @@ async def notify_developers_new_ingestion(
     return DeveloperNotifyOut(
         status="failed",
         message=(
-            "Email was not sent. Configure ZOHO_MAIL_FROM_ADDRESS to a real Zoho mailbox, "
-            "then authorize the server once: cd AIVA-V2 && python -m zoho_auth --force-login "
-            "(accept Mail permissions). Web sign-in does not update the mail sender token."
+            "Email was not sent. Configure SMTP_HOST, SMTP_PASSWORD, and SMTP_FROM_EMAIL "
+            "in backend/.env (or use Zoho Mail as fallback)."
         ),
         recipients=recipients,
     )
+
+
+# Last-sent monotonic timestamp per (exception_type, route) — throttles error alerts
+# so a crash loop can't flood inboxes.
+_error_alert_last_sent: dict[tuple[str, str], float] = {}
+
+
+def _error_alert_throttled(exception_type: str, route: str, window_seconds: int) -> bool:
+    if window_seconds <= 0:
+        return False
+    key = (exception_type, route)
+    now = time.monotonic()
+    last = _error_alert_last_sent.get(key)
+    if last is not None and (now - last) < window_seconds:
+        return True
+    _error_alert_last_sent[key] = now
+    return False
+
+
+async def notify_error_admins_developers(
+    *,
+    exception_type: str,
+    exception_message: str | None,
+    stack_trace: str | None,
+    http_method: str | None,
+    path: str | None,
+    route_template: str | None,
+    status_code: int | None,
+    request_id: str | None,
+    user_email: str | None,
+    organization_id: int | None,
+    force: bool = False,
+) -> DeveloperNotifyOut:
+    """Email admins + developers about an unhandled server error. Never raises.
+
+    ``force=True`` (used by the "send test alert" button) bypasses both the
+    ``notify_errors_enabled`` switch and the duplicate throttle so the mail is
+    always attempted.
+    """
+    settings = get_settings()
+    if not force and not settings.notify_errors_enabled:
+        return DeveloperNotifyOut(
+            status="disabled",
+            message="Error email notifications are turned off in server settings.",
+        )
+
+    route = route_template or path or "-"
+    if not force and _error_alert_throttled(exception_type, route, settings.notify_errors_throttle_seconds):
+        _log.info(
+            "Throttled error alert for %s at %s (within %ss window)",
+            exception_type,
+            route,
+            settings.notify_errors_throttle_seconds,
+        )
+        return DeveloperNotifyOut(status="disabled", message="Throttled duplicate error alert.")
+
+    try:
+        recipients = await fetch_role_emails(ERROR_ALERT_ROLES, organization_id=organization_id)
+    except Exception:
+        _log.exception("Failed to resolve error-alert recipients")
+        return DeveloperNotifyOut(status="failed", message="Could not resolve recipients.")
+
+    if not recipients:
+        _log.warning(
+            "No admin/developer recipients for error alert (%s); org=%s",
+            exception_type,
+            organization_id,
+        )
+        return DeveloperNotifyOut(
+            status="no_recipients",
+            message="No active admins or developers to email.",
+        )
+
+    link = _frontend_link("/logs")
+    where = f"{http_method or ''} {path or route}".strip()
+    trace_preview = (stack_trace or "").strip()
+    if len(trace_preview) > 4000:
+        trace_preview = trace_preview[:4000] + "\n... (truncated)"
+
+    text = (
+        f"An unhandled error occurred in AIVA.\n\n"
+        f"Type: {exception_type}\n"
+        f"Message: {exception_message or '—'}\n"
+        f"Where: {where or '—'}\n"
+        f"Status: {status_code or '—'}\n"
+        f"Request ID: {request_id or '—'}\n"
+        f"User: {user_email or 'anonymous'}\n"
+    )
+    if trace_preview:
+        text += f"\nStack trace:\n{trace_preview}\n"
+    text += f"\nOpen error logs: {link}\n"
+
+    html_body = (
+        f"<p>An <strong>unhandled error</strong> occurred in AIVA.</p>"
+        f"<ul>"
+        f"<li><strong>Type:</strong> {html.escape(exception_type)}</li>"
+        f"<li><strong>Message:</strong> {html.escape(exception_message or '—')}</li>"
+        f"<li><strong>Where:</strong> {html.escape(where or '—')}</li>"
+        f"<li><strong>Status:</strong> {status_code or '—'}</li>"
+        f"<li><strong>Request ID:</strong> {html.escape(request_id or '—')}</li>"
+        f"<li><strong>User:</strong> {html.escape(user_email or 'anonymous')}</li>"
+        f"</ul>"
+    )
+    if trace_preview:
+        safe = html.escape(trace_preview).replace("\n", "<br>")
+        html_body += f"<p><strong>Stack trace:</strong></p><pre>{safe}</pre>"
+    html_body += f'<p><a href="{html.escape(link)}">Open error logs in AIVA</a></p>'
+
+    msg = EmailMessage(
+        to=recipients,
+        subject=f"[AIVA] Error: {exception_type} at {route}",
+        text_body=text,
+        html_body=html_body,
+    )
+    try:
+        ok = await get_mail_sender().send(msg)
+    except Exception:
+        _log.exception("Failed to send error alert email")
+        ok = False
+
+    if ok:
+        _log.info("Sent error alert to %s", ", ".join(recipients))
+        return DeveloperNotifyOut(
+            status="sent",
+            message=f"Error alert sent to: {', '.join(recipients)}",
+            recipients=recipients,
+        )
+    return DeveloperNotifyOut(status="failed", message="Error alert email was not sent.", recipients=recipients)

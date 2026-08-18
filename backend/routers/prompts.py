@@ -4,11 +4,13 @@ from fastapi import APIRouter, Depends, Query
 
 from backend.auth.deps import (
     ROLE_ACCOUNT_MANAGER,
+    ROLE_DEVELOPER,
     ROLE_ORG_ADMIN,
     ROLE_SUPER_ADMIN,
     UserContext,
     require_account_access,
     require_roles,
+    require_roles_or_nav_permission,
 )
 from backend.dependencies import DbDep
 from backend.exceptions import ForbiddenError, NotFoundError
@@ -20,12 +22,19 @@ from backend.utils import serialize_row
 
 router = APIRouter(prefix="/prompts", tags=["prompts"])
 
+_PROMPT_ROLES = (
+    ROLE_SUPER_ADMIN,
+    ROLE_ORG_ADMIN,
+    ROLE_ACCOUNT_MANAGER,
+    ROLE_DEVELOPER,
+)
+
 
 @router.get("/system", response_model=SystemPromptOut)
 async def get_system_prompt(
     _user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(require_roles_or_nav_permission("prompts", *_PROMPT_ROLES)),
     ],
     db: DbDep,
 ) -> SystemPromptOut:
@@ -40,7 +49,7 @@ async def get_system_prompt(
 @router.patch("/system", response_model=SystemPromptOut)
 async def update_system_prompt(
     body: SystemPromptUpdate,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_DEVELOPER))],
     db: DbDep,
 ) -> SystemPromptOut:
     await set_system_prompt_text(db, body.prompt_text, user_id=user.id)
@@ -64,7 +73,7 @@ async def update_system_prompt(
 async def list_prompts(
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(require_roles_or_nav_permission("prompts", *_PROMPT_ROLES)),
     ],
     db: DbDep,
     account_id: int | None = Query(default=None),
@@ -97,7 +106,7 @@ async def create_prompt(
     body: PromptCreate,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(require_roles_or_nav_permission("prompts", *_PROMPT_ROLES)),
     ],
     db: DbDep,
 ) -> PromptOut:
@@ -151,7 +160,7 @@ async def update_prompt(
     body: PromptUpdate,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(require_roles_or_nav_permission("prompts", *_PROMPT_ROLES)),
     ],
     db: DbDep,
 ) -> PromptOut:
@@ -191,7 +200,7 @@ async def delete_prompt(
     prompt_id: int,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(require_roles_or_nav_permission("prompts", *_PROMPT_ROLES)),
     ],
     db: DbDep,
 ) -> MessageResponse:

@@ -10,6 +10,7 @@ from backend.auth.deps import (
     UserContext,
     require_account_access,
     require_roles,
+    require_roles_or_nav_permission,
 )
 from backend.auth.hashing import hash_password
 from backend.database import Database
@@ -19,11 +20,13 @@ from backend.schemas.common import MessageResponse
 from backend.schemas.users import (
     AccountUserAssign,
     UserCreate,
+    UserNavPermissionsUpdate,
     UserOut,
     UserRoleAssign,
     UserUpdate,
 )
 from backend.services.account_membership import (
+    clear_account_access_outside_organization,
     get_user_and_account,
     grant_account_role_access,
     prepare_user_for_account_assignment,
@@ -31,7 +34,12 @@ from backend.services.account_membership import (
     upsert_account_membership,
 )
 from backend.services.audit import write_audit_log
+from backend.services.organization_dependencies import delete_user_dependencies
 from backend.services.user_queries import build_user_out
+from backend.services.role_nav_permissions import (
+    _resolve_account_scoped_role_nav_permissions,
+    set_user_extra_nav_permissions,
+)
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/users", tags=["users"])
@@ -67,7 +75,7 @@ async def _replace_user_role(
 async def list_users(
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(require_roles_or_nav_permission("users", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
     ],
     db: DbDep,
     organization_id: int | None = Query(default=None),
@@ -156,7 +164,12 @@ async def create_user(
         entity_type="user",
         entity_id=int(user_id or 0),
         action_type="CREATE",
-        new_value={"email": body.email, "role_id": body.role_id},
+        new_value={
+            "email": body.email,
+            "role_id": body.role_id,
+            "organization_id": body.organization_id,
+            "account_id": body.account_id,
+        },
     )
     return await _user_out(db, int(user_id))
 
@@ -166,7 +179,7 @@ async def get_user(
     user_id: int,
     current: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(require_roles_or_nav_permission("users", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
     ],
     db: DbDep,
 ) -> UserOut:
@@ -194,8 +207,23 @@ async def update_user(
     updates = body.model_dump(exclude_unset=True)
     updates.pop("role_id", None)
 
+    new_org_id = updates.get("organization_id")
+    if new_org_id is not None:
+        if not current.is_super_admin:
+            raise ForbiddenError("Only super admin can change user organization")
+        org_row = await db.fetch_one(
+            "SELECT id FROM AIVA_organizations WHERE id = :id",
+            {"id": new_org_id},
+        )
+        if not org_row:
+            raise NotFoundError("Organization not found")
+        if int(new_org_id) != int(old["organization_id"]):
+            await clear_account_access_outside_organization(db, user_id, int(new_org_id))
+
     if "password" in updates:
         updates["password_hash"] = hash_password(updates.pop("password"))
+
+    audit_new_value = dict(updates)
     if updates:
         updates["id"] = user_id
         set_parts = [f"{k} = :{k}" for k in updates if k != "id"]
@@ -210,7 +238,7 @@ async def update_user(
         entity_id=user_id,
         action_type="UPDATE",
         old_value=serialize_row(old),
-        new_value=updates,
+        new_value=audit_new_value,
     )
     return await _user_out(db, user_id)
 
@@ -244,17 +272,97 @@ async def set_user_role(
     return await _user_out(db, user_id)
 
 
+@router.put("/{user_id}/nav-permissions", response_model=UserOut)
+async def set_user_nav_permissions(
+    user_id: int,
+    body: UserNavPermissionsUpdate,
+    current: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    db: DbDep,
+) -> UserOut:
+    target = await db.fetch_one(
+        "SELECT id, organization_id FROM AIVA_users WHERE id = :id",
+        {"id": user_id},
+    )
+    if not target:
+        raise NotFoundError("User not found")
+    if not current.is_super_admin and int(target["organization_id"]) != current.organization_id:
+        raise ForbiddenError("Cannot change page access for users in another organization")
+    if ROLE_SUPER_ADMIN in {
+        str(r["name"])
+        for r in await db.fetch_all(
+            """
+            SELECT r.name FROM AIVA_user_roles ur
+            JOIN AIVA_roles r ON r.id = ur.role_id
+            WHERE ur.user_id = :user_id
+            """,
+            {"user_id": user_id},
+        )
+    }:
+        raise ForbiddenError("Super Admin page access cannot be customized")
+
+    role_rows = await db.fetch_all(
+        """
+        SELECT ur.role_id, r.name AS role_name
+        FROM AIVA_user_roles ur
+        JOIN AIVA_roles r ON r.id = ur.role_id
+        WHERE ur.user_id = :user_id
+        """,
+        {"user_id": user_id},
+    )
+    role_ids = list({int(r["role_id"]) for r in role_rows})
+    role_names = {str(r["role_name"]) for r in role_rows}
+    membership_rows = await db.fetch_all(
+        """
+        SELECT account_id FROM AIVA_account_users
+        WHERE user_id = :user_id AND status = 'ACTIVE'
+        """,
+        {"user_id": user_id},
+    )
+    membership_account_ids = {int(r["account_id"]) for r in membership_rows}
+    role_perms = set(
+        await _resolve_account_scoped_role_nav_permissions(
+            db,
+            user_id=user_id,
+            organization_id=int(target["organization_id"]),
+            is_org_admin=ROLE_ORG_ADMIN in role_names,
+            membership_account_ids=membership_account_ids,
+            role_ids=role_ids,
+            role_names=role_names,
+        )
+    )
+    extra_only = [k for k in body.extra_nav_permissions if k not in role_perms]
+
+    saved = await set_user_extra_nav_permissions(
+        db,
+        user_id,
+        extra_only,
+        allow_restricted=current.is_super_admin,
+    )
+    await write_audit_log(
+        db,
+        user_id=current.id,
+        entity_type="user",
+        entity_id=user_id,
+        action_type="UPDATE_NAV_PERMISSIONS",
+        new_value={"extra_nav_permissions": saved},
+    )
+    return await _user_out(db, user_id)
+
+
 @router.delete("/{user_id}", response_model=MessageResponse)
 async def delete_user(
     user_id: int,
     current: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
     db: DbDep,
 ) -> MessageResponse:
+    if user_id == current.id:
+        raise ForbiddenError("You cannot delete your own account")
     old = await db.fetch_one("SELECT * FROM AIVA_users WHERE id = :id", {"id": user_id})
     if not old:
         raise NotFoundError("User not found")
     if not current.is_super_admin and int(old["organization_id"]) != current.organization_id:
         raise ForbiddenError("Cannot delete user in another organization")
+    await delete_user_dependencies(db, user_id)
     await db.execute("DELETE FROM AIVA_users WHERE id = :id", {"id": user_id})
     await write_audit_log(
         db,
@@ -296,7 +404,7 @@ async def assign_account(
     body: AccountUserAssign,
     current: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(require_roles_or_nav_permission("users", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
     ],
     db: DbDep,
 ) -> UserOut:

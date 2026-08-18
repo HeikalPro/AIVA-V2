@@ -1,0 +1,5 @@
+﻿corpus_name,external_parent_id,chunk_id,chunk_index,vertical,interaction_type,issue_type,escalation,answer_status,question_en,question_ar,has_embedding,chunk_text
+Demo Smoke Test,r1,c275007687365bf08d2289151f4ce266,0,(null),,,,,,,yes,To reset your password go to Settings → Security → Reset Password.
+Demo Smoke Test,r2,f7f1912ca8885852afdc24d716443757,0,(null),,,,,,,yes,Cancelling a subscription: Billing → Manage Plan → Cancel.
+Demo Smoke Test,r3,fa46463dddfb54aba12720bcec10cbb5,0,(null),,,,,,,yes,Standard shipping within Egypt takes 3–5 business days.
+Demo Smoke Test,r4,b99c690285165435ad0cc85eefdbd511,0,(null),,,,,,,yes,Refunds are processed within 7 working days back to the original payment method.

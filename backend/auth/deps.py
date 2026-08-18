@@ -13,12 +13,14 @@ from backend.exceptions import ForbiddenError, UnauthorizedError
 
 _bearer = HTTPBearer(auto_error=False)
 
-ROLE_SUPER_ADMIN = "SUPER_ADMIN"
-ROLE_ORG_ADMIN = "ORGANIZATION_ADMIN"
-ROLE_ACCOUNT_MANAGER = "ACCOUNT_MANAGER"
-ROLE_SUPERVISOR = "SUPERVISOR"
-ROLE_AGENT = "AGENT"
-ROLE_DEVELOPER = "DEVELOPER"
+from backend.auth.role_constants import (
+    ROLE_ACCOUNT_MANAGER,
+    ROLE_AGENT,
+    ROLE_DEVELOPER,
+    ROLE_ORG_ADMIN,
+    ROLE_SUPER_ADMIN,
+    ROLE_SUPERVISOR,
+)
 
 ROLE_HIERARCHY = {
     ROLE_SUPER_ADMIN: 100,
@@ -155,6 +157,64 @@ def require_roles(*allowed: str) -> Callable:
         if not user.has_role(*allowed):
             raise ForbiddenError(f"Requires one of roles: {', '.join(allowed)}")
         return user
+
+    return _checker
+
+
+async def _nav_permissions_for_user(db: Database, user: UserContext) -> set[str]:
+    from backend.services.role_nav_permissions import resolve_user_nav_permissions
+
+    role_ids = list({r.role_id for r in user.roles})
+    perms = await resolve_user_nav_permissions(
+        db,
+        user_id=user.id,
+        role_ids=role_ids,
+        role_names=user.role_names,
+        is_super_admin=user.is_super_admin,
+        organization_id=user.organization_id,
+        membership_account_ids=user.membership_account_ids,
+        is_org_admin=user.is_org_admin,
+    )
+    return set(perms)
+
+
+def require_roles_or_nav_permission(nav_key: str, *allowed: str) -> Callable:
+    """Allow access when the user has a matching role OR the nav page permission."""
+
+    async def _checker(
+        user: Annotated[UserContext, Depends(get_current_user)],
+        db: Annotated[Database, Depends(get_db)],
+    ) -> UserContext:
+        if user.is_super_admin:
+            return user
+        if allowed and user.has_role(*allowed):
+            return user
+        permissions = await _nav_permissions_for_user(db, user)
+        if nav_key in permissions:
+            return user
+        role_hint = ", ".join(allowed) if allowed else "appropriate role"
+        raise ForbiddenError(f"Requires {role_hint} or access to '{nav_key}'")
+
+    return _checker
+
+
+def require_roles_or_any_nav_permission(nav_keys: tuple[str, ...], *allowed: str) -> Callable:
+    """Allow access when the user has a matching role OR any of the nav permissions."""
+
+    async def _checker(
+        user: Annotated[UserContext, Depends(get_current_user)],
+        db: Annotated[Database, Depends(get_db)],
+    ) -> UserContext:
+        if user.is_super_admin:
+            return user
+        if allowed and user.has_role(*allowed):
+            return user
+        permissions = await _nav_permissions_for_user(db, user)
+        if permissions.intersection(nav_keys):
+            return user
+        keys_hint = ", ".join(nav_keys)
+        role_hint = ", ".join(allowed) if allowed else "appropriate role"
+        raise ForbiddenError(f"Requires {role_hint} or one of: {keys_hint}")
 
     return _checker
 

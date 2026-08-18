@@ -5,27 +5,60 @@ from fastapi import APIRouter, Depends, Query
 from backend.auth.deps import (
     ROLE_ACCOUNT_MANAGER,
     ROLE_AGENT,
+    ROLE_DEVELOPER,
     ROLE_ORG_ADMIN,
     ROLE_SUPER_ADMIN,
     ROLE_SUPERVISOR,
     UserContext,
     require_account_access,
     require_roles,
+    require_roles_or_any_nav_permission,
+    require_roles_or_nav_permission,
 )
-from backend.dependencies import DbDep
-from backend.exceptions import ForbiddenError, NotFoundError
+from backend.dependencies import DbDep, EmbeddingServiceDep
+from backend.exceptions import BadRequestError, ForbiddenError, NotFoundError
 from backend.schemas.accounts import AccountCreate, AccountOut, AccountUpdate
 from backend.schemas.common import MessageResponse
+from backend.schemas.kb_queues import QueueGroupOut
 from backend.schemas.users import UserOut
 from backend.services.account_dependencies import delete_account_dependencies
 from backend.services.audit import write_audit_log
+from backend.services.chat_queues import load_account_corpus_config
+from backend.services.kb_queue_groups import list_queue_catalog
+from backend.services.role_nav_permissions import seed_account_role_nav_permissions
 from backend.services.user_queries import build_user_out
+from backend.services.widget_features import (
+    dumps_widget_features,
+    parse_widget_features,
+    widget_features_out,
+)
 from backend.utils import serialize_row
 
 router = APIRouter(prefix="/accounts", tags=["accounts"])
 
+_ACCOUNT_LIST_ROLES = (
+    ROLE_SUPER_ADMIN,
+    ROLE_ORG_ADMIN,
+    ROLE_ACCOUNT_MANAGER,
+    ROLE_AGENT,
+    ROLE_SUPERVISOR,
+    ROLE_DEVELOPER,
+)
+_ACCOUNT_LIST_NAV = (
+    "accounts",
+    "prompts",
+    "account-updates",
+    "tickets",
+    "ingestion",
+    "dashboard",
+    "users",
+    "agents",
+    "chat",
+)
+
 _ACCOUNT_WITH_ORG_SELECT = """
-SELECT a.id, a.organization_id, a.llm_config_id, a.name, a.description, a.corpus_id, a.status, a.created_at,
+SELECT a.id, a.organization_id, a.llm_config_id, a.name, a.description, a.corpus_id, a.status,
+       a.kb_source_base_url, a.widget_features, a.created_at,
        o.name AS organization_name, o.code AS organization_code
 FROM AIVA_accounts a
 JOIN AIVA_organizations o ON o.id = a.organization_id
@@ -33,7 +66,10 @@ JOIN AIVA_organizations o ON o.id = a.organization_id
 
 
 def _to_account_out(row: dict | None) -> AccountOut:
-    return AccountOut(**serialize_row(row) or {})
+    data = serialize_row(row) or {}
+    features = parse_widget_features(data.get("widget_features"))
+    data["widget_features"] = widget_features_out(features)
+    return AccountOut(**data)
 
 
 async def _fetch_account_by_id(db: DbDep, account_id: int) -> dict | None:
@@ -53,15 +89,7 @@ def _scoped_org_filter(user: UserContext, organization_id: int | None) -> int | 
 async def list_accounts(
     user: Annotated[
         UserContext,
-        Depends(
-            require_roles(
-                ROLE_SUPER_ADMIN,
-                ROLE_ORG_ADMIN,
-                ROLE_ACCOUNT_MANAGER,
-                ROLE_AGENT,
-                ROLE_SUPERVISOR,
-            )
-        ),
+        Depends(require_roles_or_any_nav_permission(_ACCOUNT_LIST_NAV, *_ACCOUNT_LIST_ROLES)),
     ],
     db: DbDep,
     organization_id: int | None = Query(default=None),
@@ -98,7 +126,7 @@ async def create_account(
     body: AccountCreate,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN)),
+        Depends(require_roles_or_nav_permission("accounts", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN)),
     ],
     db: DbDep,
 ) -> AccountOut:
@@ -108,16 +136,22 @@ async def create_account(
     account_id = await db.execute(
         """
         INSERT INTO AIVA_accounts (
-            organization_id, llm_config_id, name, description, corpus_id, status
+            organization_id, llm_config_id, name, description, corpus_id, status,
+            kb_source_base_url, widget_features
         ) VALUES (
-            :organization_id, :llm_config_id, :name, :description, :corpus_id, :status
+            :organization_id, :llm_config_id, :name, :description, :corpus_id, :status,
+            :kb_source_base_url, :widget_features
         )
         RETURNING id INTO :out_id
         """,
-        body.model_dump(),
+        {
+            **body.model_dump(exclude={"widget_features"}),
+            "widget_features": dumps_widget_features(body.widget_features),
+        },
         return_id=True,
     )
     row = await _fetch_account_by_id(db, int(account_id or 0))
+    await seed_account_role_nav_permissions(db, int(account_id or 0))
     await write_audit_log(
         db,
         user_id=user.id,
@@ -134,7 +168,7 @@ async def get_account(
     account_id: int,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR)),
+        Depends(require_roles_or_nav_permission("accounts", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_SUPERVISOR, ROLE_DEVELOPER)),
     ],
     db: DbDep,
 ) -> AccountOut:
@@ -145,10 +179,38 @@ async def get_account(
     return _to_account_out(row)
 
 
+@router.get("/{account_id}/kb-queues", response_model=list[QueueGroupOut])
+async def list_account_kb_queues(
+    account_id: int,
+    user: Annotated[
+        UserContext,
+        Depends(require_roles_or_nav_permission("accounts", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER, ROLE_DEVELOPER)),
+    ],
+    db: DbDep,
+    embedding_svc: EmbeddingServiceDep,
+) -> list[QueueGroupOut]:
+    """KB queue buttons available for this account's corpus (for the widget editor).
+
+    Returns the full catalog (every button that *could* be shown). The admin
+    then chooses which to expose via ``widget_features.kb_queues.visible_keys``.
+    Accounts with no knowledge base return an empty list rather than erroring.
+    """
+    row = await _fetch_account_by_id(db, account_id)
+    if not row:
+        raise NotFoundError("Account not found")
+    require_account_access(account_id, user, int(row["organization_id"]))
+
+    try:
+        _corpus_id, corpus_config = await load_account_corpus_config(db, embedding_svc, account_id)
+    except (BadRequestError, NotFoundError):
+        return []
+    return [QueueGroupOut(**item) for item in list_queue_catalog(corpus_config)]
+
+
 @router.get("/{account_id}/users", response_model=list[UserOut])
 async def list_account_users(
     account_id: int,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("users", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
     db: DbDep,
 ) -> list[UserOut]:
     row = await db.fetch_one("SELECT organization_id FROM AIVA_accounts WHERE id = :id", {"id": account_id})
@@ -176,7 +238,15 @@ async def update_account(
     body: AccountUpdate,
     user: Annotated[
         UserContext,
-        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+        Depends(
+            require_roles_or_nav_permission(
+                "accounts",
+                ROLE_SUPER_ADMIN,
+                ROLE_ORG_ADMIN,
+                ROLE_ACCOUNT_MANAGER,
+                ROLE_DEVELOPER,
+            )
+        ),
     ],
     db: DbDep,
 ) -> AccountOut:
@@ -189,6 +259,10 @@ async def update_account(
     if not updates:
         row = await _fetch_account_by_id(db, account_id)
         return _to_account_out(row)
+
+    widget_features = updates.pop("widget_features", None)
+    if widget_features is not None:
+        updates["widget_features"] = dumps_widget_features(widget_features)
 
     updates["id"] = account_id
     set_parts = [f"{k} = :{k}" for k in updates if k != "id"]
@@ -212,7 +286,7 @@ async def update_account(
 @router.delete("/{account_id}", response_model=MessageResponse)
 async def delete_account(
     account_id: int,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    user: Annotated[UserContext, Depends(require_roles_or_nav_permission("accounts", ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
     db: DbDep,
 ) -> MessageResponse:
     old = await db.fetch_one("SELECT * FROM AIVA_accounts WHERE id = :id", {"id": account_id})

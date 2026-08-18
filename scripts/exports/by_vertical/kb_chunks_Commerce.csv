@@ -1,0 +1,447 @@
+﻿corpus_name,external_parent_id,chunk_id,chunk_index,vertical,interaction_type,issue_type,escalation,answer_status,question_en,question_ar,has_embedding,chunk_text
+KB,1118,12e8aac8ac2158ada71d0451a7d7e7e9,0,Commerce,Complain,Non-Technical Issue,Yes,ok,Canceled Order – Money Not Return to Halan Card,شكوى عميل من عدم رد مبلغ أوردر ملغي لكارت حالا,yes,"Vertical: Commerce | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Canceled Order – Money Not Return to Halan Card
+Question AR: شكوى عميل من عدم رد مبلغ أوردر ملغي لكارت حالا
+
+Script:
+شكوى عميل من عدم رد مبلغ أوردر ملغي لكارت حالا:
+Halan Gomla → Complaints related to Product
+انا بعتذر جدا لحضرتك استأذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه.
+هيتم التأكد من تفاصيل أوردر العميل.
+تم تقديم شكوى لحضرتك وهيتم حل المشكلة في 48 ساعة عمل.
+- Escalation: Yes"
+KB,1167,0a11cf7d525e5d63bc439b0bb5c925d7,0,Commerce,Complain,Non-Technical Issue,Yes,ok,Canceled Order – Money Not Return to Halan Card,شكوى عميل من عدم رد مبلغ أوردر ملغي لكارت حالا,yes,"Vertical: Commerce | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Canceled Order – Money Not Return to Halan Card
+Question AR: شكوى عميل من عدم رد مبلغ أوردر ملغي لكارت حالا
+
+Script:
+شكوى عميل من عدم رد مبلغ أوردر ملغي لكارت حالا:
+Halan Gomla → Complaints related to Product
+انا بعتذر جدا لحضرتك استأذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه.
+هيتم التأكد من تفاصيل أوردر العميل.
+تم تقديم شكوى لحضرتك وهيتم حل المشكلة في 48 ساعة عمل.
+- Escalation: Yes"
+KB,1211,381bf2aab84f581bb830955a3616e7f9,0,Commerce,Complain,Technical Issue,Yes,ok,Under Processing order Issue,Under processing عميل يشكو من أنه أتم عملية الشراء و العملية,yes,"Vertical: Commerce | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Under Processing order Issue
+Question AR: Under processing عميل يشكو من أنه أتم عملية الشراء و العملية
+
+Script:
+* عميل يشكو من أنه أتم عملية الشراء والعملية Under Processing:
+Commerce -> inquiry -> Under Processing order Commerce -> complaint -> Tech -> Under Processing order Issue Escalation: Yes
+- بنتأكد مع العميل انه لم يتم خصم اي مصاريف سواء من الحد الائتماني او من المحفظة او من الكريديت كارد وبنوضحله انه يعيد عملية الشراء مرة اخري.
+ولو العميل أكد انه تم الخصم من الكريديت كارد او من المحفظة او الحد الائتماني .. هنقدم للعميل طلب و ۔ هيتم حل مشكلة العميل ف اقرب وقت.
+لازم نزود رقم البطاقة وال Transaction ID في التيكت
+لو الاوردر كريديت كارد و العميل وضح ان قيمة المنتج اتخصمت من رصيده .. لازم نطلب من العميل يبعتلنا صورة من رسالة الخصم اللي وصلتله علي رقم الواتساب بتاعنا."
+KB,1358,c6de0258d9915cbdac290d68514f2d40,0,Commerce,Request,Technical Issue,No,ok,courier service (Halan),عميل يستفسرعن خدمات توصيل أو شحن حالاً (Halan),yes,"Vertical: Commerce | Type: Request | Issue: Technical Issue | Escalation: No
+
+Question EN: courier service (Halan)
+Question AR: عميل يستفسرعن خدمات توصيل أو شحن حالاً (Halan)
+
+Script:
+* عميل يستفسر عن خدمات توصيل أو شحن حالاً:
+Halan-> request -> courier service request Halan -> inquiry -> inquiry about courier service request
+-Escalation: No
+بعتذر لحضرتك جدا الخدمة غير متوفرة"
+KB,1393,5469db98717c5d279f87baebf1a2d242,0,Commerce,Complain,Non-Technical Issue,No,ok,Custom Fees (Halan),عميل يشكوا من وجود ضريبه بعد الشراء عن طريق تطبيق حالا (Halan),yes,"Vertical: Commerce | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Custom Fees (Halan)
+Question AR: عميل يشكوا من وجود ضريبه بعد الشراء عن طريق تطبيق حالا (Halan)
+
+Script:
+عميل يشكوا من وجود ضريبه بعد الشراء عن طريق تطبيق حالا:
+Commerce -> complain -> non-technical -> Custom Fees Escalation: No
+لو العميل مشترى المنتج من ""2b أو 2000 Dream"" .. هنوضح للعميل انه يزور أقرب فرع للتاجر اللي اشترى منه مع الفاتورة الضريبية لحل المشكلة.
+لو من علي تطبيق حالا او اي تاجر اخر :
+هنعتذر للعميل و هيتم توضيح تقديم طلب وسيتم الرد خلال اقرب وقت ممكن
+هناخد الداتا دي ونبعتها في ميل لليدر المتاح
+1. Product sealed or unsealed.
+2. Screen from Telephony app.
+3. IMEI 1, 2.
+4. Screen from NTRA SMS if customer received it.
+Delivery Date
+Order Date
+Seller
+Product name
+Transaction ID
+ID
+Mobile
+Name"
+KB,1439,36c7592cbd995c33bfb7d14f8bdefc87,0,Commerce,Complain,Non-Technical Issue,Yes,ok,Canceled Order – Money Not Return to Halan Card,شكوى عميل من عدم رد مبلغ أوردر ملغي لكارت حالا,yes,"Vertical: Commerce | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Canceled Order – Money Not Return to Halan Card
+Question AR: شكوى عميل من عدم رد مبلغ أوردر ملغي لكارت حالا
+
+Script:
+شكوى عميل من عدم رد مبلغ أوردر ملغي لكارت حالا:
+Halan Gomla → Complaints related to Product
+انا بعتذر جدا لحضرتك استأذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه.
+هيتم التأكد من تفاصيل أوردر العميل.
+تم تقديم شكوى لحضرتك وهيتم حل المشكلة في 48 ساعة عمل.
+- Escalation: Yes"
+KB,1545,b2c563a0ac225d44a04df1ca8b50d6b1,0,Commerce,Request,Technical Issue,Yes,ok,Cancel purchased request (Halan),عميل يريد الغاء طلب الشراء و استرداد قيمة الطلب(و لم يتم التسليم) (Halan),yes,"Vertical: Commerce | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Cancel purchased request (Halan)
+Question AR: عميل يريد الغاء طلب الشراء و استرداد قيمة الطلب(و لم يتم التسليم) (Halan)
+
+Script:
+عميل يريد الغاء طلب الشراء و استرداد قيمة الطلب (ولم يتم التسليم) :
+- Commerce -> Request -> Cancel purchased request {CF / Cash }
+- Commerce -> Request -> Cancel purchased request and return the amount to the wallet
+Commerce -> Request -> Cancel Purchased from credit card (Not From CF)
+- Escalation :Yes
+مشتري من التاجر
+ممكن اعرف من حضرتك ايه سبب الالقاء؟
+مشتري من التطبيق
+جـ
+Purchased
+Cash
+هتقدم لحضرتك طلب وهيتم الغاء الطلب خلال يومين عمل
+Proceed W/D
+هتقدم لحضرتك طلب وهيتم الغاء الطلب و استرجاع الليمت في خلال 48 ساعة عمل
+Purchased
+CF
+Proceed W/D
+هتقدم لحضرتك طلب وهيتم الغاء الطلب خلال يومين عمل
+هتقدم لحضرتك طلب وهيتم الغاء الطلب في خلال 24 ساعة عمل
+هتقدم لحضرتك طلب وهيتم الغاء الطلب خلال يومين عمل
+هيتم تقديم طلب الاسترجاع المبلغ خلال يومين عمل والمبلغ هيترد على الحساب في خلال 14 يوم عمل
+هيتم تقديم طلب لاسترجاع المبلغ خلال يومين عمل و المبلغ هيترد علي الحساب في خلال 14 يوم عمل
+Purchased
+هتقدم لحضرتك طلب وهيتم الغاء الطلب خلال يومين عمل
+هتقدم لحضرتك طلب وهيتم الغاء الطلب خلال يومين عمل
+ملاحظات هامة:
+لازم لما تكتسل تضيف رقم التيكت فى order notes
+فى حاله أن العميل دفع أى أقساط ضرورة كتابة التفاصيل فى التيكت مع ذكر تم الدفع من خلال أيه.
+في حالة ان العميل مصمم على طلبه: استاذن حضرتك بالرجوع للتاجر لمساعدة حضرتك.
+Purchased
+Wallet
+Proceed W/D
+Purchased
+Credit Card/ Apple Pay
+Proceed W/D
+Halan Card
+Proceed W/D
+هتقدم لحضرتك طلب وهيتم الغاء الطلب في خلال 24 ساعة"
+KB,1549,72ede800c7c35a2eac826fbfd14917a6,0,Commerce,Request,Technical Issue,Yes,ok,Tax invoice request,عميل يريد استلام فاتورة ضريبية,yes,"Vertical: Commerce | Type: Request | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Tax invoice request
+Question AR: عميل يريد استلام فاتورة ضريبية
+
+Script:
+*عميل يريد استلام فاتورة ضريبية:
+Commerce > request > Tax invoice request
+لو ال Seller Halan : يومين عمل لو ال Seller اي تاجر تاني : 4 ايام عمل
+طلب المنتج وتم تأكيد ميعاد الاستلام
+لو الطلب Proceed with delivery
+لو تم تأكيد الطلب هنوضح لللعميل اننا هنقدم طلب و ارسال الفاتورة
+Escalation :Yes
+لم يطلب المنتج ولم يتم تأكيد طلبه
+لو الطلب لسة Purchased
+بنوضح للعميل انه يطلبها من فريق التوصيل عند التواصل لتأكيد الطلب.
+-Escalation :No"
+KB,1608,df7c519c777159fb97eaec9445f5a230,0,Commerce,Request,Non-Technical Issue,Yes,ok,Return product request (Halan),عميل يريد استرجاع منتج (Halan),yes,"Vertical: Commerce | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Return product request (Halan)
+Question AR: عميل يريد استرجاع منتج (Halan)
+
+Script:
+* عميل يريد استرجاع منتج:
+مشتري من تطبيق حالاً
+Commerce -> Request -> Return product request Escalation: Yes
+ضرورة التأكد من الاتي وتوضيحه ف التكت:
+۔
+حضرتك تقدر ترجع المنتج في خلال 14 يوم وفقا لسياسات الاسترجاع .
+التغليف (الكرتونة ) الخاصة بالمنتج كما هي سليمة وكذلك حالة المنتج.
+لو الإرجاع بسبب عيب ف المنتج ضرورة إحضار ما يؤكد العيب من الضمان (تقرير شركة الضمان). ۔
+لو طلب الإرجاع نتيجة لتغير رأي العميل في شراء المنتج (تبديل بشيء أخر - لا يحتاجه -... ) بيتم إضافة تكلفة التوصيل.
+الإرجاع بيكون لمنتجات ال MDAs ( هي منتجات ثقيلة الوزن , مثل : الثلاجات - غسالات - بوتاجازات - مبرد مياه - فريزر- تليفزيونات - مکیف)
+لا يوجد إرجاع لمنتجات ال SDAs ( موبايلات - تابلت - ساعات الكترونية ....... ) في حالة فتح علبة المنتج ""تم فك السلوفانه"" ۔
+بناءً على سياسة الاستبدال والاسترجاع
+=
+لازم نأكد علي العميل يبعت صور وفيديو للمنتج لان مهلة الرد علي الطلب هتبدأ من وقت ارسال الصور والفيديو.
+لازم نعرف منه سبب طلب الاسترجاع ونوضحه في التيكت بالتفصيل . -
+انا هقدم طلب لحضرتك وهيتم التواصل مع حضرتك في خلال 7 أيام عمل لتنسيق عملية استرجاع المنتج من بعد ارسال ۔
+الصور والفيديو.
+ملاحظات مهمة
+سبب الإرجاع هو ؟:
+المنتج هو :-
+المنتج خلال 14 یوم من وقت التسليم : --
+حالة التغليف والمنتج :-----
+أهل تقرير الضمان في حالة وجود عيب بالمنتج ؟ : -
+لو العمیل محتاج يسترجع اوردر تم شراءه كاش .. قيمة الاوردر بیتم ردها عن طريق فوري في خلال 5 أيام عمل من تسليم المنتج ( بيوصل للعميل كود فوري يقدر من خلاله سحب الفلوس مجانا بدون اي مصاريف وكود السحب بيكون 7163)
+لازم نوضح للعميل انه عند الرجوع للضمان لاستخراج تقرير بحالة المنتج (لو في عيب صناعة بالمنتج) لازم يكون مع العميل فاتورة ضريبية للمنتج.
+مشتري من تاجر
+استأذن حضرتك ترجع للتاجر"
+KB,1609,bc95b5fa442252918243a4efe282a34d,0,Commerce,Request,Financial Issue,Yes,ok,Wrong Product (Halan),عميل أستلم منتج مختلف عن اللي قام بطلبه (Halan),yes,"Vertical: Commerce | Type: Request | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Wrong Product (Halan)
+Question AR: عميل أستلم منتج مختلف عن اللي قام بطلبه (Halan)
+
+Script:
+عميل أستلم منتج مختلف عن اللى قام بطلبه:
+Commerce <- Complaint <- Financial <- Wrong Product -Escalation: Yes
+انا بعتذر لحضرتك تم تسجيل شكوى لفريق التوصيل وهيثم حل المشكلة مع حضرتك في خلال 7 أيام عمل.
+لازم نأكد علي العميل يبعت صور وفيديو للمنتج لان مهلة الرد علي الطلب هتبدأ من وقت ارسال الصور والفيديو."
+KB,1610,dd2e6dd55f8a51e4a6cf984cd38c7a56,0,Commerce,Request,Non-Technical Issue,Yes,ok,Delay receiving product (Halan),عميل يشكو من تأخر استلام المنتج (Halan),yes,"Vertical: Commerce | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Delay receiving product (Halan)
+Question AR: عميل يشكو من تأخر استلام المنتج (Halan)
+
+Script:
+* عميل يشكو من تأخر استلام المنتج:
+Commerce -> Complaint -> Non-Technical -> Delay receiving product
+Escalation: Yes
+لم يتعدي ميعاد الاستلام
+عدي ميعاد الاستلام
+نعتذر للعميل على التأخير , هنقدم لحضرتك شكوي لفريق التوصيل وهيتم التواصل مع حضرتك ف خلال 24 ساعة عمل وتسليم المنتج خلال 5 أيام عمل بحد اقصي.
+يتم مراجعة ميعاد الاستلام من الادمن تول وابلاغ العميل بالانتظار حتى ميعاد الاستلام.
+Commerce -> inquiry -> Inquiry about delivery
+time (Within SLA)
+لازم ندخل على أدمن تول ونشوف حالة الطلب وتتأكد من التالى:
+Escalation: Yes
+Info
+Status last updated at
+Product Status
+Oracle ID
+h ID
+135-
+19.21
+Proceed with delivery
+43CU7000"
+KB,1804,6061bd455b475f27b8746cdec0dac594,0,Commerce,Inquiry,Non-Technical Issue,No,ok,Inquiry about Bill Payment,عميل بيستفسر عن شحن أو دفع الفواتير على تطبيق حالا,yes,"Vertical: Commerce | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Bill Payment
+Question AR: عميل بيستفسر عن شحن أو دفع الفواتير على تطبيق حالا
+
+Script:
+دلوقتي من خلال تطبيق حالا حضرتك تقدر تشحن رصيد لكل الشبكات وتدفع فواتير وأقساط زي:
+- دفع اقساط زي Valu و بريميم كارد و بي تيك
+- تدفع فواتير الكهرباء - المياه - غاز
+- دفع مصاريف بعض المدارس والجامعات
+- حجز سفر زي جوباص ومصر للطيران و سويفل
+- خدمات طبية (فيزيتا)
+- ممكن كمان تتبرع لجمعيات خيرية كتير
+
+غير متاح دفع اقساط عن طريق Credit On Card
+
+طرق شحن الرصيد أو دفع الفواتير او الأقساط من خانة ""ادفع فواتيرك"": فودافون متاحة فقط من خلال (محفظة إلكترونية - كارت حالا)
+- Apple Pay
+- Credit Card
+- محفظة الكترونية
+- محفظة حالا
+- کارت حالا
+- كريديت حالا الخاص بحضرتك وأقل فاتورة تكون بقيمة 500 جنيه وعلى فترات تقسيط شهر - شهرين - 6 شهور فقط
+
+ملحوظة: لا يمكن شحن رصيد لشركات الاتصالات من خلال الكريديت.
+
+تفاصيل دفع الفاتورة على CRM (Bill Payment Details):
+- Date & Time: وقت المعاملة
+- Bill Transaction ID: رقم المعاملة
+- User ID: رقم العميل المميز
+- Beneficiary Number: رقم عميلة الشحن أو الرقم اللي العميل دفعله / شحنله الفاتورة او الرصيد (المستفيد)
+- Service Name / Bill Gateway: الخدمة اللي تم دفع الفاتورة او شحن الرصيد لها (مثال: BEE, Etisalat)
+- User Phone Number: رقم العميل اللي دفع منه الفاتورة
+
+معنى طرق الدفع على CRM:
+| طريقة الدفع Payment Method | معنى طريقة الدفع |
+| :--- | :--- |
+| HALAN CARD | کارت حالا |
+| HALAN_CONSUMER_FINANCE_PRICING | حالا كريديت (بالتقسيط) |
+| R2P | محفظة الكترونية |
+| CLOSED LOOP WALLET | محفظة حالا (محفظة التطبيق) |
+| APPLE PAY | APPLE PAY |
+| PAYFORT_CREDIT_CARD | کریدیت کارد |
+| PAYFORT_WITH_TOKENIZATION_V1 | کریدیت کارد |"
+KB,1804,136c4fd4675c51849114c40c206b6cbd,1,Commerce,Inquiry,Non-Technical Issue,No,ok,Inquiry about Bill Payment,عميل بيستفسر عن شحن أو دفع الفواتير على تطبيق حالا,yes,"Vertical: Commerce | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Bill Payment
+Question AR: عميل بيستفسر عن شحن أو دفع الفواتير على تطبيق حالا
+
+Script:
+التقسيط) |
+| R2P | محفظة الكترونية |
+| CLOSED LOOP WALLET | محفظة حالا (محفظة التطبيق) |
+| APPLE PAY | APPLE PAY |
+| PAYFORT_CREDIT_CARD | کریدیت کارد |
+| PAYFORT_WITH_TOKENIZATION_V1 | کریدیت کارد |
+
+معني حالات الفواتير على CRM:
+1. في حالة Payment State: SUCCESS / Provider State: SUCCESS -> في الحالة دي الفاتورة اتدفعت بنجاح.
+2. في حالة Payment State: INITIATED / Provider State: INITIATED -> في الحالة دي متخصمش اي مبلغ من العميل .. العميل اكتفي بالاستعلام عن المبلغ المطلوب و لم يتم عملية الشحن او دفع الفاتورة (يعني مش هقدم شكوى للعميل).
+3. في حالة Payment State: FAILED / Provider State: INITIATED -> في الحالة دي لم يتم الخصم ولم تكتمل عملية الدفع (العميل مكملش الدفع) .. يعني مش هقدم شكوي للعميل.
+4. في حالة Payment State: PENDING / Provider State: INITIATED -> العملية معلقة قيد المراجعة الفنية.
+5. في حالة Payment State: SUCCESS / Provider State: FAILED -> في الحالة دي فعلا تم الخصم من العميل ولم يتم دفع الفاتورة.. (هنقدم شكوى للعميل Bill payment not reflected).
+- Escalation: No
+- CRM: Commerce → Inquiry → Inquiry about Bill Payment"
+KB,1827,86a8c82e45cc5a92a477db9b872ea183,0,Commerce,Complain,Technical Issue,Yes,ok,Customer can't pay a bill,عميل لا يستطيع دفع فاتورة على تطبيق حالا,yes,"Vertical: Commerce | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Customer can't pay a bill
+Question AR: عميل لا يستطيع دفع فاتورة على تطبيق حالا
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب على العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة على الكارت / رصيد الكارت الحالي)
+هسأل حضرتك بعض الخطوات عشان نقدر نتأكد ان حضرتك بتعمل الخطوات بشكل صحيح:
+- سيتم التأكيد على العميل من وجود رصيد كافي في طريقة الدفع المختارة من خلاله.
+- نتأكد من الانترنت يعمل بكفاءة.
+- نتأكد ان العميل بيختار الخدمة المرادة بصورة صحيحة (مثال: العميل يريد شحن رصيده ورقم موبايله 012 فيجب أن تكون جهة الشحن أورانج).
+- نتأكد ان العميل لديه بالفعل فاتورة مستحقة.
+
+ملحوظات هامة لازم نتأكد منها في المكالمة وقبل تقديم أي شكوى:
+- غير متاح شحن رصيد فودافون باستخدام محفظة أبلكيشن حالا ولكن يمكن شحن رصيد فودافون باستخدام كارت حالا او أي محفظة الكترونية.
+- لا يمكن شحن رصيد لشركات الاتصالات من خلال الكريديت.
+- في حالة ان العميل بيستخدم حالا كريديت، لابد أن تكون القيمة أكثر من 500 جنيه.
+- لا يمكن دفع أقساط عن طريق Credit on Card.
+
+بعد التأكد من كل الخطوات سيتم تقديم شكوى للعميل والرد يكون خلال 48 ساعة عمل بها:
+- بيانات العميل كاملة (الاسم بالكامل والرقم القومي).
+- طريقة الدفع.
+- الفاتورة اللي بيتم دفعها.
+- Escalation: Yes
+- CRM: Commerce → Complain → Customer can't pay a bill"
+KB,1830,c8264ad29f4a55218153a869a1b3f16e,0,Commerce,Complain,Financial Issue,Yes,ok,Bill Payment not Reflected,عميل يشتكي من خصم عملية شحن رصيد او دفع فاتورة فاشلة من تطبيق حالا بالكارت,yes,"Vertical: Commerce | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Bill Payment not Reflected
+Question AR: عميل يشتكي من خصم عملية شحن رصيد او دفع فاتورة فاشلة من تطبيق حالا بالكارت
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة على الكارت / رصيد الكارت الحالي)
+بعد التأكد من شكوى العميل وخصم العمليات (من البورتال) وفشلهم من (CRM):
+- لابد من اضافة جميع العمليات في التيكيت.
+- لابد من اضافة جهة الشحن أو دفع الفاتورة في التيكيت.
+- واضافة الاسم بالكامل والرقم القومي.
+- وفي حالة الدفع عن طريق (حالا كاش) برجاء مراجعة اسكريبت كاش وعمل التيكيت الخاصة بحالا كاش.
+
+نعرض علي العميل اننا ممكن نرجع المبلغ المخصوم على محفظة حالا خلال ساعتين عمل (لو العميل وافق هنختار ف الفورم Customer Request to Refund on: Halan Wallet).
+لو العميل رفض ومحتاج استرجاع المبلغ علي نفس طريقة الدفع هنختار (Same Payment) ونوضح المدة حسب طريقة الدفع ما عداااااا لو العميل دافع برصيد التقسيط او كارت حالا (مش هنعرض عليه علشان لازم المبلغ يرجع على نفس الطريقة).
+
+| وسيلة الدفع | سيتم الرد خلال (SLA) |
+| :--- | :--- |
+| كارت حالا | يومين عمل |
+| كارت حالا (Debit + Credit on Card) | 3 أيام عمل |
+| محفظة الكترونية | يومين عمل |
+| محفظة حالا | ساعتين عمل |
+| حالا کريديت (بالتقسيط) (CF) | يومين عمل |
+| Apple Pay / كريديت كارد | ساعتين عمل للرد على الشكوي + 14 يوم عمل لاسترجاع المبلغ |
+
+وفي حالة أن العميل قام بالدفع عن طريق وسيلتين مع بعض (مثال: محفظة حالا + كريديت كارد) هنوضحله المدة الأكبر.
+- Escalation: Yes
+- CRM: Commerce → Complain → Bill Payment not Reflected"
+KB,334,f6a5546cfa59575ebf962ce013780384,0,Commerce,Request,Non-Technical Issue,Yes,ok,Schedule delivery time,عميل يشكوا من تأخر استلام مكالمة تحديد ميعاد الاستلام أو يريد تحديد ميعاد استلام,yes,"Vertical: Commerce | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Schedule delivery time
+Question AR: عميل يشكوا من تأخر استلام مكالمة تحديد ميعاد الاستلام أو يريد تحديد ميعاد استلام
+
+Script:
+* عميل يشكوا من تأخر استلام مكالمة تحديد ميعاد الاستلام أو يريد تحديد ميعاد استلام:
+لم يتعدي المهلة
+بيتم التواصل مع حضرتك لتحديد ميعاد الاستلام في خلال 24 ساعة عمل من طلب حضرتك للمنتج وواضح عندي انك لم تتعدي المدة.
+وحاليا هقدم لحضرتك طلب استعجال للتواصل في خلال ساعتين هيتم التواصل مع حضرتك.
+Escalation: No
+Commerce <- Request <- Schedule delivery time
+تعدي المهلة
+لم يتم الوصول للعميل
+- هنتأكد ايه سبب عدم التواصل مع العميل من order notes.
+- و حاليا هقدم لحضرتك طلب استعجال للتواصل في خلال ساعتين هيتم التواصل مع حضرتك (هنعمل تيكت Validation escalation).
+-Escalation: No
+EDIT USER DATA
+ORDER NOTES
+-"
+KB,339,026df37d8aa85554ba6bc9da56995357,0,Commerce,Request,Non-Technical Issue,No,ok,Change the delivery time,عميل يريد تغيير ميعاد الاستلام,yes,"Vertical: Commerce | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Change the delivery time
+Question AR: عميل يريد تغيير ميعاد الاستلام
+
+Script:
+عميل يريد تغيير ميعاد الاستلام:
+Commerce <- Request <- Change the delivery time -Escalation: No
+تم تقديم طلب حضرتك لفريق التوصيل وسيتم التواصل معك لتنسيق ميعاد التسليم في خلال ساعتين .. هفتح تيكيت Validation Logistics للوجستكس تيم."
+KB,366,62ee08faa53554feac7414ec16a4f650,0,Commerce,Complain,Non-Technical Issue,Yes,ok,Vendor cant return the product,تاجر لا يستطيع استرجاع منتج,yes,"Vertical: Commerce | Type: Complain | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Vendor cant return the product
+Question AR: تاجر لا يستطيع استرجاع منتج
+
+Script:
+* تاجر لا يستطيع استرجاع منتج:
+Commerce <- Complaint <- Non-Technical <- Vendor can't return the product
+حضرتك بتكتب الرقم القومي الخاص بالعميل وسيتم ظهور خانتين (عملية جديدة - استرجاع معاملة).
+سيتم الضغط على استرجاع معاملة: (مع العلم ان خانة استرجاع معاملة بتظهر للتاجر من تاريخ الشراء الى 7 ايام فقط) ٠
+-Escalation :No
+• في حالة عدم ظهور خانة استرجاع معاملة: تم تقديم طلب لحضرتك وسيتم التواصل مع حضرتك في خلال 48 ساعة عمل .
+Escalation :Yes
+سيتم التوضيح في التكت
+- رقم الهاتف الخاص بالعميل
+- سبب استرجاع المنتج
+- رقم الهاتف الخاص بالتاجر المسجل به معنا"
+KB,481,6376ab11c7c4511187567914fe0af1ac,0,Commerce,Request,Non-Technical Issue,No,ok,Change the delivery location,عميل يريد تغيير مكان استلام الاوردر,yes,"Vertical: Commerce | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Change the delivery location
+Question AR: عميل يريد تغيير مكان استلام الاوردر
+
+Script:
+عميل يريد تغيير مكان استلام الاوردر:
+Commerce <- Request <- Change the delivery location Escalation : No
+تم تقديم طلب حضرتك لفريق التوصيل وسيتم التواصل معك في حالة وجود تغيير في ميعاد التسليم ولو عند حضرتك اي مشكلة تقدر تشرفنا بالاتصال علي 16303. هفتح تيكيت Validation Logistics للوجستكس تيم."
+KB,851,b3ab6ba21d7c5a73b074aa4a6e32c0f2,0,Commerce,Inquiry,Non-Technical Issue,No,ok,Inquiry about delivery fees(Halan),عميل يستفسر عن مصاريف التوصيل(Halan),yes,"Vertical: Commerce | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about delivery fees(Halan)
+Question AR: عميل يستفسر عن مصاريف التوصيل(Halan)
+
+Script:
+* عميل يستفسر عن مصاريف التوصيل:
+Commerce <- Inquiry <- Inquiry about delivery fees
+العميل طلب المنتجات
+هوضح للعميل انه سيتم التواصل معه من فريق التوصيل لتحديد رسوم التوصيل بناءً على مكان الإستلام و نوع المنتج.
+العميل لم يطلب المنتجات
+نوضح للعميل ان مصاريف التوصيل بتختلف على حسب المنتجات الي هيشتريها (منتجات خفيفة أو تقيله ) ومكان الاستلام (المحافظة ) ... وده بيتوضحلو بعد ما يطلب الاوردر في مكالمه التأكيد اللي هيستلمها"
+KB,856,843fc17bd2155667b37ac167574c3e41,0,Commerce,Inquiry,Technical Issue,No,ok,Inquiry about the call after purchased(Halan),عميل يستفسر ان شخص من حالا بيكلمه ياخد منه معلومات و بيانات عن عملية الشراء,yes,"Vertical: Commerce | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Inquiry about the call after purchased(Halan)
+Question AR: عميل يستفسر ان شخص من حالا بيكلمه ياخد منه معلومات و بيانات عن عملية الشراء
+
+Script:
+*عميل يستفسر ان شخص من حالا بيكلمه ياخد منه معلومات وبيانات عن عملية الشراء:
+Commerce -> inquiry -> Inquiry about the call after purchased
+الاسم
+خط المكالمات
+بولا ابراهيم ناجح دوس
+01068307496
+بيتر ممدوح راشد حناوي
+01068308137
+نيرمين جميل صالح وهبه
+01068307621
+منار بهجت عفيفي عفيفي سلطان
+01068307801 01068308035
+شيرين حمدي عبدالرحيم رمضان
+سلفيا شوقي سمير شوقي
+01068308076
+سهير رمسيس صدقي اسطس
+01068306913
+ميرنا ميلاد ملاك غطاس
+01068308163
+لو رقم من الارقام دي .. دا بيكون زميل لينا من حالا بيعمل اسطلاع رأي من العملاء لضمان مستوي و تجربة شراء خدمة احسن وافضل"
+KB,999,7866d2e1da575f4ebc8ab7c8b6592153,0,Commerce,Inquiry,Technical Issue,No,ok,Product Status (Halan),حالات طلب الشراء علي ادمن تول,yes,"Vertical: Commerce | Type: Inquiry | Issue: Technical Issue | Escalation: No
+
+Question EN: Product Status (Halan)
+Question AR: حالات طلب الشراء علي ادمن تول
+
+Script:
+Issue Type
+Inquiry about delivery time ( within SLA)
+Inquiry about delivery time ( within SLA)
+محتاج تواصل لتأكيد ميعاد الاستلام
+Purchased
+المنتج داخل عربة التسوق برجاء استكمال طلب الشراء
+Continue Shopping
+Under Processing order
+طلب العميل متاكد وهيستلم
+Proceed With Delivery
+Inquiry about delivery time ( within SLA)
+Product Status
+Failed To Delivery
+هنوضح للعميل ميعاد الاستلام عادي
+Under Processing order
+العميل كده لسه هيأكد الاوردر ولازم نتأكد او نسأل العميل ان المبلغ اتخصم منه سواء من الليميت او فيزا ولو متخصمش يبقي يطلب المنتج تاني
+Under Processing"

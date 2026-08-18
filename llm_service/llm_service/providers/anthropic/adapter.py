@@ -124,9 +124,35 @@ class AnthropicProvider(BaseLLMProviderConfigurable):
                     evt = json.loads(raw)
                 except json.JSONDecodeError:
                     continue
+                if evt.get("type") == "message_start":
+                    usage = (evt.get("message") or {}).get("usage") or {}
+                    input_tokens = int(usage.get("input_tokens") or 0)
+                    if input_tokens:
+                        yield StreamChunk(
+                            delta="",
+                            usage=TokenUsage(
+                                prompt_tokens=input_tokens,
+                                completion_tokens=0,
+                                total_tokens=input_tokens,
+                            ),
+                            correlation_id=request.correlation_id,
+                        )
                 if evt.get("type") == "content_block_delta":
                     delta = evt.get("delta") or {}
                     if delta.get("type") == "text_delta":
                         yield StreamChunk(delta=delta.get("text") or "", correlation_id=request.correlation_id)
+                if evt.get("type") == "message_delta":
+                    usage = evt.get("usage") or {}
+                    output_tokens = int(usage.get("output_tokens") or 0)
+                    if output_tokens:
+                        yield StreamChunk(
+                            delta="",
+                            usage=TokenUsage(
+                                prompt_tokens=0,
+                                completion_tokens=output_tokens,
+                                total_tokens=output_tokens,
+                            ),
+                            correlation_id=request.correlation_id,
+                        )
                 if evt.get("type") == "message_stop":
                     yield StreamChunk(delta="", finish_reason="stop", correlation_id=request.correlation_id)

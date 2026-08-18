@@ -1,0 +1,12 @@
+Vertical: Gomla | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Return Order – Money Not Return to Halan Card
+Question AR: شكوى عميل من عدم رد مبلغ أوردر مرتجع لكارت حالا
+
+Script:
+شكوى عميل من عدم رد مبلغ أوردر مرتجع لكارت حالا:
+Halan Gomla → Complaints related to Product
+انا بعتذر جدا لحضرتك استأذنك ممكن توضح لى الرقم اللى حضرتك طلبت بيه.
+هيتم التأكد من تفاصيل أوردر العميل.
+تم تقديم شكوى لحضرتك وهيتم حل المشكلة في 48 ساعة عمل.
+- Escalation: Yes

@@ -1,0 +1,13 @@
+﻿corpus_name,external_parent_id,chunk_id,chunk_index,vertical,interaction_type,issue_type,escalation,answer_status,question_en,question_ar,has_embedding,chunk_text
+KB,1858,f2d94148e2ff5953aef8372daa821cd9,0,Irrelevant Call,Inquiry,Non-Technical Issue,No,ok,Directed to HR Hotline,موظف حالى أو سابق داخل MNT-Halan عنده مشكلة في الأوراق أو المستحقات,yes,"Vertical: Irrelevant Call | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Directed to HR Hotline
+Question AR: موظف حالى أو سابق داخل MNT-Halan عنده مشكلة في الأوراق أو المستحقات
+
+Script:
+دلوقتي حضرتك تقدر تتواصل مع خدمة عملاء الموارد البشرية عن طريق الأرقام التالية:
+- (0248812619)
+- (0223661712)
+علما بأن مواعيد العمل الخاصة بهم من الساعة 10 ص حتى 7 م جمعة وسبت اجازة.
+- Escalation: No
+- CRM: Irrelevant Call → Inquiry → Directed to HR Hotline"

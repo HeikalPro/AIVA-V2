@@ -98,4 +98,19 @@ class OllamaProvider(BaseLLMProviderConfigurable):
                 delta = msg.get("content") or ""
                 done = data.get("done")
                 fr = "stop" if done else None
-                yield StreamChunk(delta=delta, finish_reason=fr, correlation_id=request.correlation_id)
+                usage = None
+                if done:
+                    pt = int(data.get("prompt_eval_count") or 0)
+                    ct = int(data.get("eval_count") or 0)
+                    if pt or ct:
+                        usage = TokenUsage(
+                            prompt_tokens=pt,
+                            completion_tokens=ct,
+                            total_tokens=pt + ct,
+                        )
+                yield StreamChunk(
+                    delta=delta,
+                    finish_reason=fr,
+                    usage=usage,
+                    correlation_id=request.correlation_id,
+                )

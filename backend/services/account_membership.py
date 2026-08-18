@@ -32,6 +32,28 @@ async def align_user_organization(db: Database, user_id: int, organization_id: i
     )
 
 
+async def clear_account_access_outside_organization(
+    db: Database,
+    user_id: int,
+    organization_id: int,
+) -> None:
+    """Deactivate memberships and scoped roles for accounts outside the user's organization."""
+    foreign_accounts = await db.fetch_all(
+        """
+        SELECT au.account_id
+        FROM AIVA_account_users au
+        JOIN AIVA_accounts a ON a.id = au.account_id
+        WHERE au.user_id = :user_id
+          AND au.status = 'ACTIVE'
+          AND a.organization_id != :organization_id
+        """,
+        {"user_id": user_id, "organization_id": organization_id},
+    )
+    for row in foreign_accounts:
+        account_id = int(row["account_id"])
+        await remove_account_membership(db, user_id, account_id)
+
+
 async def user_has_org_wide_role(db: Database, user_id: int) -> bool:
     row = await db.fetch_one(
         """

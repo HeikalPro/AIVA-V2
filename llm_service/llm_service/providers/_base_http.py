@@ -25,6 +25,52 @@ from llm_service.transport.http_client import build_async_client
 from llm_service.transport.retry import run_with_retry
 
 
+def _first_num(d: dict[str, Any], *keys: str) -> Any:
+    """Return the first present, non-None value among keys (nested dicts flattened by caller)."""
+    for k in keys:
+        v = d.get(k)
+        if v is not None:
+            return v
+    return None
+
+
+def parse_token_usage(raw: Any) -> TokenUsage | None:
+    """Parse a usage block into TokenUsage, tolerant of the different shapes providers return.
+
+    Handles OpenAI (`prompt_tokens`/`completion_tokens`/`total_tokens`), Anthropic-style
+    (`input_tokens`/`output_tokens`), Gemini (`promptTokenCount`/`candidatesTokenCount`/
+    `totalTokenCount`), and gateways that also report a cost (`cost`/`total_cost`/
+    `estimated_cost`, sometimes nested under `usage`). Returns None when nothing usable.
+    """
+    if not isinstance(raw, dict):
+        return None
+    # Some gateways wrap the real usage one level deeper.
+    inner = raw.get("usage")
+    if isinstance(inner, dict):
+        merged: dict[str, Any] = {**inner, **{k: v for k, v in raw.items() if k != "usage"}}
+    else:
+        merged = raw
+
+    prompt = _first_num(merged, "prompt_tokens", "input_tokens", "promptTokenCount", "prompt_token_count")
+    completion = _first_num(
+        merged, "completion_tokens", "output_tokens", "candidatesTokenCount", "completion_token_count"
+    )
+    total = _first_num(merged, "total_tokens", "totalTokenCount", "total_token_count")
+    cost = _first_num(merged, "cost", "total_cost", "cost_usd", "estimated_cost")
+
+    p = int(prompt or 0)
+    c = int(completion or 0)
+    t = int(total) if total is not None else (p + c)
+    if not p and not c and not t and cost is None:
+        return None
+    return TokenUsage(
+        prompt_tokens=p,
+        completion_tokens=c,
+        total_tokens=t,
+        cost_usd=float(cost) if cost is not None else None,
+    )
+
+
 def message_to_openai_dict(m: Message) -> dict[str, Any]:
     if isinstance(m.content, str):
         content: str | list[dict[str, Any]] = m.content
@@ -140,14 +186,7 @@ class BaseHTTPProvider(BaseLLMProviderConfigurable):
         choice0 = data["choices"][0]
         msg = choice0.get("message") or {}
         content = msg.get("content") or ""
-        usage = data.get("usage") or {}
-        tok = None
-        if usage:
-            tok = TokenUsage(
-                prompt_tokens=int(usage.get("prompt_tokens") or 0),
-                completion_tokens=int(usage.get("completion_tokens") or 0),
-                total_tokens=int(usage.get("total_tokens") or 0),
-            )
+        tok = parse_token_usage(data.get("usage"))
         return LLMResponse(
             provider=self.provider_name,
             model=data.get("model", request.model),
@@ -171,6 +210,7 @@ class BaseHTTPProvider(BaseLLMProviderConfigurable):
             "messages": [message_to_openai_dict(m) for m in request.messages],
             "temperature": request.temperature,
             "stream": True,
+            "stream_options": {"include_usage": True},
         }
         if request.max_tokens is not None:
             body["max_tokens"] = request.max_tokens
@@ -199,13 +239,28 @@ class BaseHTTPProvider(BaseLLMProviderConfigurable):
                         chunk = json.loads(data)
                     except json.JSONDecodeError:
                         continue
+                    usage = parse_token_usage(chunk.get("usage"))
                     choices = chunk.get("choices") or []
                     if not choices:
+                        if usage:
+                            yield StreamChunk(delta="", usage=usage, correlation_id=request.correlation_id)
                         continue
                     delta = choices[0].get("delta") or {}
+                    # Only stream user-facing content — never reasoning_content (internal chain-of-thought).
                     text_delta = delta.get("content") or ""
+                    if not text_delta:
+                        message = choices[0].get("message") or {}
+                        if isinstance(message, dict):
+                            text_delta = message.get("content") or ""
+                    if not text_delta:
+                        text_delta = choices[0].get("text") or ""
                     fr = choices[0].get("finish_reason")
-                    yield StreamChunk(delta=text_delta, finish_reason=fr, correlation_id=request.correlation_id)
+                    yield StreamChunk(
+                        delta=text_delta,
+                        finish_reason=fr,
+                        usage=usage,
+                        correlation_id=request.correlation_id,
+                    )
         except ProviderError:
             raise
         except httpx.TimeoutException as e:

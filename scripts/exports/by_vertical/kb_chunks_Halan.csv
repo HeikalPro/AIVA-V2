@@ -1,0 +1,662 @@
+﻿corpus_name,external_parent_id,chunk_id,chunk_index,vertical,interaction_type,issue_type,escalation,answer_status,question_en,question_ar,has_embedding,chunk_text
+KB,1771,60b34be919075e89b37cfb89734c6ab9,0,Halan,Inquiry,Non-Technical Issue,No,ok,Customer Verification Rules,قواعد مراجعة بيانات عميل كارت حالا,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Customer Verification Rules
+Question AR: قواعد مراجعة بيانات عميل كارت حالا
+
+Script:
+يجب مراجعة البيانات مع عميل كارت حالا في الحالات الآتية وطبعا لازم يكون العميل بنفسه اللي بيتواصل معانا:
+1. في حالة توضيح أي معلومات خاصة بالكارت نفسه.
+2. في حالة تقديم شكوى للعميل.
+3. في حالة متابعة الشكاوى.
+4. في حالة اتخاذ أي أكشن او اجراء للعميل.
+5. في حالة تقديم طلب للعميل.
+
+البيانات التي يتم مراجعتها مع العملاء في الحالات السابقة: (الأساسية)
+- نفس رقم الهاتف المفعل بيه الكارت.
+- الرقم القومي.
+- الاسم ثلاثي.
+
+أما الآتي فيجب على العميل الاجابة على 2 من أصل 4 اسئلة: (الاضافية)
+- اخر أربع ارقام من الكارت.
+- اخر عملية ناجحة، حتى لو تحويل ليميت قيمتها كام او تاريخها امتی.
+- رصيد الكارت الحالي.
+- العنوان المذكور على البطاقة الشخصية
+ وفي حالة ان العميل وضح بيانات غلط اثناء أي نقطة اضافية، سيتم سؤاله عن اخرى. وإذا لم ينجح، سيتم التوضيح في النهاية ان البيانات غير متطابقة مع مراعاة عدم توضيح معلومات عن الجزء الخطأ.
+لكن لو استفسار العميل عن أي استفسار عام لا يتم مراجعة البيانات ويتم توضيح الاستفسار بشكل كامل. مثال ايه هوا کارت حالا / رسوم استلام الكارت / طريقة تفعيل الكارت.....
+
+ترتيب استكمال طلب الحصول على الكارت:
+1- فروع Circle K
+2- المولات
+3- باقى نقاط التفعيل
+4- فروع تساهيل اللى موجودة في الشيت (فروع متشطبة)
+5- باقي فروع تساهيل
+- Escalation: No
+- CRM: Halan → Inquiry → Verification Rules"
+KB,1772,e4466a7249025ee8b7972f558dc3a1d5,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about Halan Card,عميل بيستفسر عن ما هو كارت حالا او الفرق بين كارت حالا وباقي الكروت البنكية,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Halan Card
+Question AR: عميل بيستفسر عن ما هو كارت حالا او الفرق بين كارت حالا وباقي الكروت البنكية
+
+Script:
+کارت حالا هو كارت مدفوعات بتقدر تستخدمه في أكثر من استخدام
+تقدر تعمل ايداع او سحب منه فلوس خاصة بحضرتك عن طريق ماكينات الصراف الآلي او ماكينات فوري
+او تقدر تستخدمه ككارت مشتريات عن طريق ان حضرتك تقدم على حالا كريديت ( رصيد مشتريات ) او لو لديك رصيد مشتريات
+وحالا كريديت : هو رصيد تقسيط بينزل لحضرتك على تطبيق حالا تقدر تشتري منه من على التطبيق أو من خلال التجار المتعاقدة مع حالا
+ولو حضرتك حبيت تشتري من اي مكان داخل مصر مش شرط متعاقد مع حالا تقدر تحول حالا كريديت من التطبيق للكارت وتستخدمه عند اي تاجر مش شرط يكون متعاقد مع حالا من خلال ماكينة POS او الدفع في كل المواقع المصرية اونلاين .
+ومش بيكون في رسوم سنوية علي الكارت
+تحب اوضح لحضرتك ازاي تقدر تقدم علي كارت حالا ؟
+لو العميل وافق هيتم توضيح خطوات التقديم علي الكارت بالكامل
+ولو العميل هيعمل الكارت لابد من سؤال العميل هيتوجه لفرع ايه للاختيار في التيكت الفرع اللي هيتوجه ليه
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about Halan Card"
+KB,1773,84ab6e15e61552a7bc8fd780ecd01b28,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about Halan Card Activation Process,عميل بيستفسر عن خطوات تفعيل كارت حالا,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Halan Card Activation Process
+Question AR: عميل بيستفسر عن خطوات تفعيل كارت حالا
+
+Script:
+حضرتك بتقدم على الكارت من خلال الأبلكيشن
+بتدخل على كارت حالا وتضغط على طلب كارت هيطلب من حضرتك الاسم رباعي والرقم القومي، وبعدها هيظهر لحضرتك أقرب فروع ليك لاستكمال طلب الحصول على الكارت...
+يجب ان تكون بطاقة حضرتك سارية وغير تالفة.
+حضرتك بتستلم الكارت في ظرف مغلق وبتستخدم تطبيق حالا لإستخدام الكارت والتعامل عليه.
+تحب اوضح لحضرتك عنوان اقرب فرع ؟
+لو العميل وافق هيتم التوضيح للعميل عنوان اقرب فرع هنمشي بالتريبت ده واحنا بنوجه العميل للفروع :-
+1- فروع Circle K
+2- المولات
+3- باقي نقاط التفعيل
+4- فروع تساهيل اللي موجودة في الشيت (فروع متشطبة)
+5- باقي فروع تساهيل
+
+وحابب اوضح لحضرتك انك بعد متستلم الكارت من الفرع هتفتح تطبيق حالا وتختار كارت حالا عشان تعين من خلاله كلمات سر الكارت
+هتعين اولا كلمة سر 6 ارقام وديه بتكون كلمة السر الكارت على التطبيق تكون غير متتالية وغير متشابهة
+وبعدها هتعين كلمة سر مكونة من 4 ارقام وديه بتكون كلمة سر الكارت عند السحب او الشراء من ATM او POS وتكون غير متتالية او متشابهة
+
+في حالة سؤال العميل عن ميعاد استلام الكارت:
+- لو العميل هيتوجه لموافقة فورية هيتم التوضيح انه في نفس اليوم.
+- لو العميل هيتوجه لفرع تساهيل هيتم التوضيح ان الفرع هو اللي هيوضح لحضرتك
+
+في حالة سؤال العميل عن السن:
+أقل سن للعميل يكون 15 سنة علشان يعمل كارت. لكن لو العميل هيفعل حد ائتماني ف اقل سن بيكون 21 سنة.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about Halan Card Activation Process"
+KB,1774,aad5bbea11895b80bdadaa68b2e71fce,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about Halan Card limits,عميل بيستفسر عن ما هي حدود معاملات الكارت,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Halan Card limits
+Question AR: عميل بيستفسر عن ما هي حدود معاملات الكارت
+
+Script:
+هيتم المعرفة اذا كان العميل عنده كارت حالا اما لا
+في حالة عنده كارت حالا هيتم اتباع هذه الخطوات:
+- هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي )
+- هيتم رؤية نظام الليمت الخاص بالعميل من البورتال هل هو Semi-KYC ام Non-KYC وبعدها هيتم التوضيح للعميل الليمت الخاص به:
+
+| Limits | Non-KYC | Semi-KYC |
+| :--- | :--- | :--- |
+| الحد اليومي للشراء Daily Purchase Limit | 50,000 | 60,000 |
+| الحد الشهري للشراء Monthly Purchase Limit | 160,000 | 200,000 |
+| الحد اليومي للشراء اونلاين Daily Online Purchase Limit | 50,000 | 50,000 |
+| الحد الشهري للشراء اونلاين Monthly Online Purchase Limit | 160,000 | 160,000 |
+| الحد اليومي للسحب كاش Daily Cash Withdrawal Limit | 30,000 | 30,000 |
+| الحد الشهري للسحب كاش Monthly Cash Withdrawal Limit | 160,000 | 200,000 |
+| الحد اليومي للإيداع كاش Daily Cash Deposit Limit | 30,000 | 30,000 |
+| الحد الشهري للإيداع كاش Monthly Cash Deposit Limit | 160,000 | 200,000 |
+| الحد اليومي للاستخدام على POS Daily POS Usage Counter | مرة 20 | مرة 30 |
+| الحد الشهري للاستخدام على POS Monthly POS Usage Counter | 100 مرة | 150 مرة |
+
+ولابد من التوضيح بعد توضيح الجدول للعميل ان نوضح في حالة الايداع من خلال InstaPay يكون الليميت راجع الى الحد اليومي بالنسبة ل InstaPay
+وفي حالة العميل لا يملك كارت حالا وبيسأل قبل ميعمل الكارت عن ليمت الكارت: هيتم التوضيح للعميل اقل ليمت وهو Non KYC
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about Halan Card limits"
+KB,1775,739981a5a83f5607a24c157694c0aaf2,0,Halan,Inquiry,Non-Technical Issue,No,ok,where can I purchase through Halan Card,عميل يستفسر ازاي استخدم كارت حالا في الشراء,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: where can I purchase through Halan Card
+Question AR: عميل يستفسر ازاي استخدم كارت حالا في الشراء
+
+Script:
+حضرتك تقدر تستخدم كارت حالا عند اماكن الشراء داخل مصر ( اي تاجر لديه POS ) .
+او حضرتك تقدر تشتري اونلاين من كل المواقع المصرية.
+او تقدر تشتري بيه من على أبلكيشن حالا من خلال حالا جملة أو الأجهزة الكهربائية او شحن رصيد او يدفع فواتير (بدون مصاريف) او يدفع أقساط لا يمكن دفعها عن طريق (Credit on Card)
+
+في حالة سؤال العميل عن كيفية الشراء بالكارت على تطبيق حالا هيتم التوضيح هذه الخطوات:
+1. بنختار المنتج ونضيقه في عربة التسوق.
+2. نضغط شراء ونختار وسيلة الدفع ""كارت حالا"" لابد من وجود مبلغ العملية على الكارت
+3. بعدها تأكيد الشراء وبندخل باسورد الكارت ""6 أرقام""
+
+ملحوظة : عند الشراء بكارت حالا علي تطبيق حالا بيطلب كتابة باسورد 6 ارقام الخاصة بالكارت علي التطبيق
+وعند الشراء بكارت حالا من خلال اي موقع اونلاين داخل مصر الشراء بيتم عن طريق ارسال OTP للعميل لاتمام عملية الشراء اونلاين
+- Escalation: No
+- CRM: Halan Card → Inquiry → where can I purchase through Halan Card"
+KB,1776,55c7bccdd6c85b968afb5aac2923e8d3,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about how to link Halan Card with Halan account,عميل يستفسر ازاي اربط كارت حالا على حسابي في تطبيق حالا,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about how to link Halan Card with Halan account
+Question AR: عميل يستفسر ازاي اربط كارت حالا على حسابي في تطبيق حالا
+
+Script:
+کارت حالا هيتم ربطه تلقائيا بحساب حضرتك في تطبيق حالا طالما حضرتك بتستخدم نفس رقم الموبايل في الحسابين.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about how to link Halan Card with Halan account"
+KB,1777,c1cb363e8fb25c288fb111f556c4416b,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about Halan card App/ATM Passwords,عميل يستعلم عن الفرق بين كلمة السر الخاصة بالكارت وكلمة السر الخاصة بالكارت على التطبيق,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Halan card App/ATM Passwords
+Question AR: عميل يستعلم عن الفرق بين كلمة السر الخاصة بالكارت وكلمة السر الخاصة بالكارت على التطبيق
+
+Script:
+كلمة السر الخاصة بالكارت على التطبيق دي بتكون كلمة سر الحماية معاملات حضرتك وبتكون مكونة من 6 ارقام.
+كلمة السر الخاصة بالكارت بتكون مكونة من 4 ارقام حضرتك بتستخدمها وقت عمليات الشراء او السحب والايداع وبتقوم ب انشاءها او تغييرها من التطبيق داخل ""كارت حالا"".
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about Halan card App/ATM Passwords"
+KB,1778,1dc7dfb62b835465aac23f7fa80492c2,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about card status,عميل يستفسر عن حالة الكارت,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about card status
+Question AR: عميل يستفسر عن حالة الكارت
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب على العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي)
+يتم التوضيح للعميل حالة الكارت الخاصة به وإذا كان مفعل ام لا.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about card status"
+KB,1783,a8a2d776c9825f548b4cea529e77e549,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about Halan card Activation Fees,عميل يستعلم عن مصاريف اصدار الكارت لأول مرة,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Halan card Activation Fees
+Question AR: عميل يستعلم عن مصاريف اصدار الكارت لأول مرة
+
+Script:
+الفرع بيوضحها لحضرتك
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about Halan card Activation Fees"
+KB,1787,c9805d526ce354918a90de460644bfcb,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about changing mobile number,عميل بيستفسر عن طريقة تغيير رقم الموبايل المسجل به کارت حالا,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about changing mobile number
+Question AR: عميل بيستفسر عن طريقة تغيير رقم الموبايل المسجل به کارت حالا
+
+Script:
+بيتم اخذ الرقم القومي ومعرفة العميل مكود في فرع ايه من CRM مع عدم توضيح اي بيانات تخص العميل علي الكارت الا في حالة مراجعة كل بيانات بورتال كارت ( ولو هنوضح للعميل أي معلومة تخصه لابد ان نراجع بيانات الكارت بالكامل )
+
+لو العميل متكود موافقة فورية ( CRM / Credit Scoring ):
+حضرتك بتتوجه لفرع موجود فيه مندوب حالا، وبتشرفنا بالاتصال من داخل الفرع لتقديم الطلب من خلالنا والفرع هيقدم لحضرتك استمارة تحديث بيانات جديدة (KYC) وهتستقبل كود تفعيل على الرقم الجديد. وحضرتك تقدر تتأكد بعدها من تغيير الرقم لما تدخل على أبلكيشن حالا بالرقم الجديد بعد تأكيد موظف الفرع على التغيير (ولابد من توجيه العميل الي فروع موافقة فورية فقط)
+
+لو العميل متكود فروع من CRM (Branch):
+حضرتك بتتوجه لفرع تساهيل والفرع هيقدم لحضرتك استمارة تحديث بيانات جديدة (KYC) وهتستقبل كود تفعيل على الرقم الجديد. وحضرتك تقدر تتأكد بعدها من تغيير الرقم لما تدخل على أبلكيشن حالا بالرقم الجديد بعد تأكيد موظف الفرع على التغيير (ولابد من توجيه العميل الي فرع تساهيل فقط)
+
+ملحوظة: احنا بنقدم الطلب لعملاء الموافقة الفورية فقط ولازم يكونوا داخل الفرع انما عملاء مشروعي وتساهيل بيتم توجيههم للفرع الخاص بهم.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about changing mobile number"
+KB,1791,43986c8314a9565f8d1bac7aba62ae93,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about previous transaction,عميل يستفسر عن عملية سابقة,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about previous transaction
+Question AR: عميل يستفسر عن عملية سابقة
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي )
+هنوضح للعميل كل العمليات اللي بيسأل عليها.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about previous transaction"
+KB,1792,95eed5e7aecf5ce6a8134577eb99690e,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about available balance,عميل يستفسر عن الرصيد المتاح على الكارت,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about available balance
+Question AR: عميل يستفسر عن الرصيد المتاح على الكارت
+
+Script:
+[IMAGE: App screen showing Halan Card layout with 'رصيد الكارت 0 جنيه' with plus/minus icons for Top-up/Withdrawal and transaction list.]
+
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي )
+
+هنوضح للعميل الرصيد المتاح.
+وحضرتك تقدر تعرف الرصيد المتاح عن طريق الدخول على حساباتي ثم كارت حالا بعدها حضرتك هتكتب باسورد الأبلكيشن المكون من 6 ارقام، وهيظهر لحضرتك رصيدك المتاح على الكارت.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about available balance"
+KB,1797,0b0c97e6292e5784a8388e3f77b6b546,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about rejection reason,عميل بيستفسر عن سبب الرفض بالنسبة للكارت,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about rejection reason
+Question AR: عميل بيستفسر عن سبب الرفض بالنسبة للكارت
+
+Script:
+في حالة ان العميل بيستفسر عن سبب رفض المندوب لعمل الكارت بعد الاستعلام: انا بعتذر جدا لحضرتك، ولكن الرفض بييجي من جانب البنك.
+
+ملحوظة : يمكن لا رفض رفض الحصول على الكارت داخل التطبيق حيث ان الرفض المكتوب داخل الفرع يظهر على البورتال على التطبيق وليس على التطبيق. وفي حالة ظهور رفض الطلب فسيكون هذا الرفض للكريديت وليس الكارت. وفي حالة رفض الكريديت سيتم تحويله لإنبوند حالا.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about rejection reason"
+KB,1798,18ce36f9e0ec558bbf0812f73f2db9df,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about OTP availability,عميل بيستفسر عن OTP وقت عملية السحب,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about OTP availability
+Question AR: عميل بيستفسر عن OTP وقت عملية السحب
+
+Script:
+لا يوجد OTP وقت عملية السحب من خلال ATM
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about OTP availability"
+KB,1799,4d90256e30bf502189ecc2d8d5c41967,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about Account statement,عميل بيستفسر عن كشف حساب,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Account statement
+Question AR: عميل بيستفسر عن كشف حساب
+
+Script:
+بعتذر لحضرتك للأسف لا يوجد كشف حساب، ولكن حضرتك تقدر تدخل على أبلكيشن حالا تعرف العمليات كلها.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about Account statement"
+KB,1800,b763c1cb3e2a59729d94adc245f6e591,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about Halan Card Re-sign SMS,عميل يستفسر عن رسالة تحديث بيانات KYC,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Halan Card Re-sign SMS
+Question AR: عميل يستفسر عن رسالة تحديث بيانات KYC
+
+Script:
+هستاذن حضرتك نتوجه أقرب نقطة تفعيل - Circle K - مولات الإمضاء KYC جديدة لتحديث البيانات مع وجود مستند تحقيق الشخصية ويكون ساري.
+وسيتم توضيح أقرب Circle K او مول لحضرتك دلوقتي ومواعيده.
+
+ملحوظة: العميل مش هياخد كارت جديد... هيبقى نفس الكارت اللي معاه لكن هيعمل KYC جديدة.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about Halan Card Re-sign SMS"
+KB,1805,3d8ad5f0f89b5d07821f04e23fbc134f,0,Halan,Complain,Non-Technical Issue,No,ok,Complaint about not activating Halan Card after receiving,عميل يشتكي من عدم تفعيل الكارت بعد استلامه,yes,"Vertical: Halan | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint about not activating Halan Card after receiving
+Question AR: عميل يشتكي من عدم تفعيل الكارت بعد استلامه
+
+Script:
+حضرتك بتستلم كارت حالا و بتدخل على تطبيق حالا تختار كارت حالا وبنقوم بإنشاء كلمة سر 6 أرقام مختلفين وغير متشابهين او متتاليين خاصين بالكارت على التطبيق وبعدها بنقوم بإنشاء كلمة سر 4 أرقام خاصين بالكارت على ATM او POS ويكونوا ايضا مختلفين وغير متشابهين او متتاليين.
+- لابد من التأكد بعمل كارت حالا بنفس رقم موبايل حالا كريديت الخاص بحضرتك.
+- لابد من الدخول على التطبيق بنفس رقم موبايل حالا كريديت والكارت.
+
+لكن في حالة العميل بيواجه مشكلة في تفعيل الكارت او مش بيفتح معاه على التطبيق:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي )
+
+ثانيا هنشوف حالة الكارت على البورتال ونحدد خطوة الحل:
+- في حالة ظهور (كارت) غير مفعل والعميل يتبع مشروعي او تساهيل: انا بعتذر لحضرتك وهستأذن حضرتك نتوجه للفرع علشان يقدر يفعل الكارت لحضرتك. (Escalation: No)
+- في حالة ظهور (كارت) غير مفعل والعميل Credit Scoring: انا بعتذر لحضرتك وانا من خلالي هقدم شكوى و هيتم تفعيل الكارت خلال 24 ساعة عمل. (Escalation: Yes) مع كتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي في التيكت.
+- في حالة ظهور Unknown Card: انا بعتذر لحضرتك وانا من خلالي حليت المشكلة لحضرتك. (هنضغط على ""تحديث"" حالة الكارت). (Escalation: No) وفي حالة ان المشكلة مازالت موجودة بعد تحديث الحالة سنقوم بتقديم شكوى وسيتم حلها في أقرب وقت. (Escalation: Yes) مع كتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي في التيكت.
+- في حالة ظهور تأكيد رقم العميل - برجاء طباعة الملف ورفعه: انا بعتذر لحضرتك وهستأذنك نتوجه لفرع اصدار الكارت علشان يفعل الكارت لحضرتك. (Escalation: No)
+- اما ان كان كارت العميل للراتب المبكر (Halan Advance) ويشتكي من عدم تفعيل الكارت سيتم تحويله لخدمة عملاء حالا للمساعدة."
+KB,1805,5263366dde7653e295a6fd9015cc5a0f,1,Halan,Complain,Non-Technical Issue,No,ok,Complaint about not activating Halan Card after receiving,عميل يشتكي من عدم تفعيل الكارت بعد استلامه,yes,"Vertical: Halan | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint about not activating Halan Card after receiving
+Question AR: عميل يشتكي من عدم تفعيل الكارت بعد استلامه
+
+Script:
+تك وهستأذنك نتوجه لفرع اصدار الكارت علشان يفعل الكارت لحضرتك. (Escalation: No)
+- اما ان كان كارت العميل للراتب المبكر (Halan Advance) ويشتكي من عدم تفعيل الكارت سيتم تحويله لخدمة عملاء حالا للمساعدة.
+
+ملحوظة هامة :-
+- لو الكارت موجود على البورتال بس لسة متفعلش قدامي هتكون (Not Activating)
+- لو الكارت مش موجود على البورتال قدامي هتكون (Not Activating)
+- لو الكارت مفعل قدامي على البورتال هتكون (Icon)
+- Escalation: No
+- CRM: Halan Card → Complain → Complaint about not activating Halan Card after receiving"
+KB,1806,5d14428f5c86546eb38b4ea88c4463dd,0,Halan,Complain,Non-Technical Issue,No,ok,Complaint about customer forget Halan Card - ATM Password,عميل يشتكي من نسيان كلمة سر ال ATM او POS او يريد تغييرها,yes,"Vertical: Halan | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint about customer forget Halan Card - ATM Password
+Question AR: عميل يشتكي من نسيان كلمة سر ال ATM او POS او يريد تغييرها
+
+Script:
+[IMAGE: App screenshots titled Set Pin on App Experience for creating a new PIN showing layout fields for 4 digits security code with final screen showing green checkmark confirmation.]
+
+في حالة ان العميل نسي او اراد تغيير او كتب باسورد ال ATM او POS خطأ عدة مرات:
+- حضرتك بتفتح تطبيق حالا وتدخل على كارت حالا
+- بتضغط على ايقونة الاعدادات وبتكون موجودة فوق على اليسار.
+- بتضغط على اختيار تغيير الرقم السري .""PIN Code""
+حضرتك ب تنشئ رمز الأمان وبيكون مكون من 4 ارقام وبتعيد ادخاله مرة اخرى، ويكون مختلف عن الباسوورد السابق.
+بعدها هنعمل تسجيل خروج ودخول مرة اخرى.
+(Escalation: No)
+
+في حالة ان العميل دخل على الاعدادات وأنشأ الباسورد الجديد وقام بتسجيل خروج ودخول ومازالت المشكلة موجودة:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي )
+- فتح شيت Negative balance - Google Sheets وإذا كان موجود، سنوضح له القيمة الواجب ايداعها حتى يتم حل المشكلة
+- رؤية اذا كان الرصيد ظاهر ام غير ظاهر
+
+في حالة الرصيد غير ظاهر والعميل عمل تسجيل خروج ودخول وغير متواجد في شيت Negative balance والمشكلة مازالت متواجدة:
+أنا بعتذر لحضرتك وانا من خلالي هقدم شكوى وسيتم حل المشكلة خلال 48 ساعة عمل. (Escalation: Yes) مع كتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي في التيكت.
+- Escalation: No
+- CRM: Halan Card → Complain → Complaint about customer forget Halan Card - ATM Password"
+KB,1807,850f441f55ab5dfdb4e6246acdeb587a,0,Halan,Complain,Non-Technical Issue,No,ok,Complaint about customer forget Halan Card - App Password,عميل نسي الباسورد الخاصة بالكارت على تطبيق حالا,yes,"Vertical: Halan | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint about customer forget Halan Card - App Password
+Question AR: عميل نسي الباسورد الخاصة بالكارت على تطبيق حالا
+
+Script:
+[IMAGE: App interface titled Forget pin showing the OTP FLOW where customer types 5 digits confirmation text message to set custom app security passcode.]
+
+تقدر حضرتك تفتح التطبيق وتضغط على Forgot my password
+بيتبعت لحضرتك OTP في SMS وبعد ما تدخل ال OTP بتقدر تعيد تعيين كلمة السر و بتختار 6 ارقام.
+شروط الباسورد میکنش ارقام متسلسله متكنش مختار نفس الأرقام دي من قبل.
+بعدها نعمل تسجيل خروج ودخول مرة أخرى على التطبيق.
+
+لابد من التأكد من عدم وجود العميل في Negative balance - Google Sheets وإذا كان موجود، سنوضح له القيمة الواجب ايداعها حتى يتم حل المشكلة.
+- Escalation: No
+- CRM: Halan Card → Complain → Complaint about customer forget Halan Card - App Password"
+KB,1808,cc699434635850e49cd2704153e907e1,0,Halan,Complain,Non-Technical Issue,No,ok,Complaint about Lost Halan card,عميل يشتكي من ضياع الكارت تلف الكارت,yes,"Vertical: Halan | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint about Lost Halan card
+Question AR: عميل يشتكي من ضياع الكارت تلف الكارت
+
+Script:
+في حالة ضياع أو تلف الكارت:
+- اولا هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي )
+- ثانيا سنقوم بإرجاع الكريديت مرة اخرى على التطبيق بالضغط على ""إعادة الليميت""
+- ثالثاً سنقوم بوقف الكارت بعد موافقة العميل من خانة ""غلق"".
+
+السيناريو الأول: في حالة العميل متكود موافقة فورية أو راتب مبكر من خلال CRM:
+بيتم توجيه العميل لاحد فروع Circle K فقط المتواجد فيها مندوب حالا وإذا لم يتوفر سيكون أقرب مول ثم باقي الموافقة الفورية في الضرورة القصوى) وبتكون التكلفة 100 جنيه. وفي حالة وجود مبلغ على الكارت القديم، بعد تقديم طلب كارت جديد وتفعيله يتم تحويل المبالغ من الكارت القديم للجديد.
+
+السيناريو الثاني: في حالة العميل متكود تساهيل او مشروعي من خلال CRM:
+بيتم توجيه العميل لاحد فروع تساهيل او مشروعي وبتكون التكلفة 100 جنيه. وفي حالة وجود مبلغ على الكارت القديم، بعد تقديم طلب كارت جديد وتفعيله يتم تحويل المبالغ من الكارت القديم للجديد.
+- Escalation: No
+- CRM: Halan Card → Complain → Complaint about Lost Halan card"
+KB,1809,6cf09fb0538f56cb8378c359360a7ccf,0,Halan,Complain,Non-Technical Issue,No,ok,Complaint about ATM didn't return back the card,عميل يشكوا من اخذ مكنة ال ATM لكارت حالا,yes,"Vertical: Halan | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint about ATM didn't return back the card
+Question AR: عميل يشكوا من اخذ مكنة ال ATM لكارت حالا
+
+Script:
+- اولا هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب على العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي )
+- ثانيا سنقوم بإرجاع الكريديت مرة اخرى على التطبيق بالضغط على ""إعادة الليميت""
+- ثالثاً سنقوم بوقف الكارت بعد موافقة العميل من خانة ""غلق"".
+
+السيناريو الأول: في حالة العميل متكود موافقة فورية أو راتب مبكر من خلال CRM:
+بيتم توجيه العميل لأحد فروع Circle K فقط المتواجد فيها مندوب حالا وإذا لم يتوفر سيكون أقرب مول ثم باقي الموافقة الفورية في الضرورة القصوى) وبتكون التكلفة 100 جنيه. وفي حالة وجود مبلغ على الكارت القديم، بعد تقديم طلب كارت جديد وتفعيله يتم تحويل المبالغ من الكارت القديم للجديد.
+
+السيناريو الثاني: في حالة العميل متكود تساهيل او مشروعي من خلال CRM:
+بيتم توجيه العميل لاحد فروع تساهيل او مشروعي وبتكون التكلفة 100 جنيه. وفي حالة وجود مبلغ على الكارت القديم، بعد تقديم طلب كارت جديد وتفعيله يتم تحويل المبالغ من الكارت القديم للجديد.
+- Escalation: No
+- CRM: Halan Card → Complain → Complaint about ATM didn't return back the card"
+KB,1810,d04fa119888452f781d7de4ae0edf764,0,Halan,Complain,Non-Technical Issue,No,ok,Complaint about Card Deactivated Without Customer Request,عميل يشتكي من حظر الكارت بدون طلبه او اذنه,yes,"Vertical: Halan | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint about Card Deactivated Without Customer Request
+Question AR: عميل يشتكي من حظر الكارت بدون طلبه او اذنه
+
+Script:
+يشتكي العميل من عدم قدرته لإستخدام الكارت وظهر على البورتال ان الكارت محظور.
+اولا هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي )
+
+لو ظهر على البورتال ان الكارت محظور:
+- انا بعتذر لحضرتك وانا من خلالي حليت المشكلة لحضرتك. (هنضغط على ""تحديث"" حالة الكارت). (Escalation: No)
+- وفي حالة ان المشكلة مازالت موجودة بعد تحديث الحالة سنقوم بتقديم شكوى وسيتم الرد عليها خلال 24 ساعة عمل. (Escalation: Yes) مع كتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي في التيكت.
+- Escalation: No
+- CRM: Halan Card → Complain → Complaint about Card Deactivated Without Customer Request"
+KB,1813,b875ff8c67be5bdf8398137f89d475f2,0,Halan,Complain,Non-Technical Issue,No,ok,Complaint different data,عميل لديه مشكلة في الكارت بسبب اختلاف البيانات,yes,"Vertical: Halan | Type: Complain | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Complaint different data
+Question AR: عميل لديه مشكلة في الكارت بسبب اختلاف البيانات
+
+Script:
+عميل يشتكي من عدم القدرة على تحويل حالا كريديت او أي مشكلة اخرى بسبب وجود اختلاف في البيانات بين البورتال والبطاقة وال KYC:
+اولا هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة على الكارت / رصيد الكارت الحالي )
+
+- في حالة ظهور حدث خطأ على البورتال والعميل يؤكد أن معه كارت، ولكن غير ظاهر على البورتال ان العميل عنده کارت: هستأذن حضرتك لو فيه مبلغ موجود على الكارت حضرتك تسحبه وتتوجه للفرع لعمل كارت جديد مع توضيح أنه يوجد اختلاف في الرقم القومي للموظف..... بدون مصاريف بدل فاقد.
+- في حالة وجدنا اختلاف في أرقام الكارت: هستأذن حضرتك نتوجه للفرع لعمل كارت جديد مع توضيح أنه يوجد اختلاف في أرقام الكارت للموظف ..... بدون مصاريف بدل فاقد . وسنقوم بغلق الكارت بعد موافقة العميل. (حتى يتمكن من عمل بدل الفاقد)
+- في حالة اختلاف رقم الموبايل لكن العميل متأكد من صحته: هستأذن حضرتك نتوجه للفرع لتعديل رقم الموبايل الخاص بحضرتك. وفي حالة تواصل العميل بنا لطلب تغيير الرقم ستكون (Request to change mobile number) (Escalation: No) مع كتابة التفاصيل في التيكيت.
+- Escalation: No
+- CRM: Halan Card → Complain → Complaint different data"
+KB,1822,97140c795f4b52ba96949be08d4be6a2,0,Halan,Complain,Technical Issue,No,ok,Complaint about not receiving OTP of Activation code,عميل يشتكي من عدم استلام OTP وقت تفعيل الكارت او فتح التطبيق,yes,"Vertical: Halan | Type: Complain | Issue: Technical Issue | Escalation: No
+
+Question EN: Complaint about not receiving OTP of Activation code
+Question AR: عميل يشتكي من عدم استلام OTP وقت تفعيل الكارت او فتح التطبيق
+
+Script:
+- استأذنك ممكن تعمل وضع الطيران وبعد دقائق ترجع الموبايل للوضع الطبيعي مع وجود حضرتك في مكان فيه شبكة .
+- لو المشكلة مازالت متواجدة: استأذنك ممكن تضع الخط في موبايل اخر عشان لو المشكله ف الموبايل (سعة تخزين الرسايل).
+- لو المشكلة مازالت متواجدة استأذنك ترجع لشركة الاتصالات الخاصة بحضرتك لمعرفة سبب عدم استلام الكود.
+- Escalation: No
+- CRM: Halan Card → Complain → Complaint about not receiving OTP of Activation code"
+KB,1824,aa0e63d6661c5bcb9c4b18ab2576c9a7,0,Halan,Complain,Technical Issue,Yes,ok,Complaint about technical issue on Halan Card icon,عميل يشتكي من عدم فتح أيقونة كارت حالا على التطبيق,yes,"Vertical: Halan | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Complaint about technical issue on Halan Card icon
+Question AR: عميل يشتكي من عدم فتح أيقونة كارت حالا على التطبيق
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة على الكارت / رصيد الكارت الحالي )
+
+السيناريو الأول: في حالة عدم فتح ايقونة كارت حالا على التطبيق اللى من خلالها بدخل على الكارت عشان اكتب كلمة السر:
+هتأكد من دخول العميل بنفس رقم الموبايل اللي عامل عليه الكارت على الأبلكيشن وعمل كل الخطوات التنشيطية مثل تسجيل خروج ودخول ويفتح تاني التطبيق بنفس رقم موبايل الكارت. لو المشكلة مازالت متواجدة بعد مراجعة كل هذه الخطوات مع العميل : وأنا من خلالي هقدم شكوى لحضرتك وسيتم حلها خلال 24 ساعة عمل. هستأذن حضرتك تبعتلنا صورة او فيديو اسكرين على الواتساب الخاص بشركة حالا 20216303 وكتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي. (Escalation: Yes)
+
+السيناريو الثاني: في حالة عدم وجود أيقونة ""تفعيل الكريديت على الكارت"" اثناء تحويل الكريديت من التطبيق للكارت:
+هتأكد من دخول العميل بنفس رقم الموبايل اللي عامل عليه الكارت على الأبلكيشن وعمل كل الخطوات التنشيطية مثل تسجيل خروج ودخول ويفتح تاني التطبيق بنفس رقم موبايل الكارت.
+- في حالة أن العميل Credit Scoring: أنا بعتذر لحضرتك وسيتم حل المشكلة خلال 48 ساعة عمل وهستأذنك بعدها نعمل تسجيل خروج ودخول مرة اخرى على التطبيق. وهيتم كتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي. (Escalation: Yes)
+- في حالة أن العميل فروع: أنا بعتذر لحضرتك، ولكن احنا محتاجين نتوجه لنفس الفرع ليتم حل المشكلة. (Escalation: No)
+
+ملحوظة:-
+- لو الكارت مفعل قدامي على البورتال هتكون (Icon)
+- لو الكارت موجود على البورتال بس لسة متفعلش قدامي هتكون (Not Activating)
+- لو الكارت مش موجود على البورتال قدامي هتكون (Not Activating)
+- Escalation: Yes
+- CRM: Halan Card → Complain → Complaint about technical issue on Halan Card icon"
+KB,1826,0dc2546eb11e51abb005d09f780dfef8,0,Halan,Complain,Technical Issue,Yes,ok,Complaint about not showing Halan Card as a payment method,عميل يشتكي من عدم ظهور كارت حالا كوسيلة دفع في الشراء أو دفع الأقساط,yes,"Vertical: Halan | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Complaint about not showing Halan Card as a payment method
+Question AR: عميل يشتكي من عدم ظهور كارت حالا كوسيلة دفع في الشراء أو دفع الأقساط
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة على الكارت / رصيد الكارت الحالي )
+بعتذر لحضرتك وانا من خلالي هقدم شكوى وهيتم حلها خلال 3 أيام عمل. وهستأذن حضرتك تبعتلنا صورة من طرق الدفع الموجودة عند حضرتك على الأبلكيشن. مع كتابة تفاصيل الشكوي والاسم بالكامل والرقم القومي.
+- Escalation: Yes
+- CRM: Halan Card → Complain → Complaint about not showing Halan Card as a payment method"
+KB,1837,2e876b6b257458eeab6316c29650db70,0,Halan,Complain,Financial Issue,Yes,ok,Negative Balance,عميل رصيده بالسالب ونريد معرفة السبب (خاصة بالباك أوفس وليست خاصة بالانبوند),yes,"Vertical: Halan | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: Negative Balance
+Question AR: عميل رصيده بالسالب ونريد معرفة السبب (خاصة بالباك أوفس وليست خاصة بالانبوند)
+
+Script:
+سيتم التواصل بحضرتك بمجرد معرفة السبب .
+- Escalation: Yes
+- CRM: Halan Card → Complain → Negative Balance"
+KB,1839,b001b868ff405798b1dcbb9ff9d9eaa2,0,Halan,Complain,Financial Issue,No,ok,Complaint about fraud case,عميل يشتكي من عملية نصب,yes,"Vertical: Halan | Type: Complain | Issue: Financial Issue | Escalation: No
+
+Question EN: Complaint about fraud case
+Question AR: عميل يشتكي من عملية نصب
+
+Script:
+اولا هعمل ال Verifications ثانيا هرجع الكريديت وهقفل الكارت بعد موافقة العميل.
+ثالثا هسأل على معلومات وبيانات السرقة.
+أنا بعتذر لحضرتك، ولكن حابب اوضح انه حفاظا على سرية بيانات حضرتك، أستأذنك منشاركش كلمة السر او كلمة السر ذات المرة الواحدة OTP الخاصين بالمحفظة / او الكارت مع أي شخص. مع العلم احنا كخدمة عملاء حالا مش بنطلب أي ارقام سرية خاصة بيك خلال المكالمة أو أي مكالمة لاحقة.
+
+سنقوم بإرجاع الكريديت مرة اخرى على التطبيق بالضغط على ""إعادة الليميت"" ثم سنقوم بوقف الكارت بعد موافقة العميل من خانة ""غلق"" في حالة سرقة الكارت او تسريب بيانات الكارت ويجب على العميل تسجيل الخروج وتسجيل الدخول مرة اخرى حتى يتمكن من استعادة التطبيق. هستأذنك نتوجه لأقرب فرع لعمل كارت اخر.
+
+هسأل العميل عن:
+- بيانات الرقم اللي كلمه
+- الوقت اللي كلمه فيه
+- اسم الشخص
+- هل تمت السرقة ولا لا
+- أي معلومات عن الواقعة
+- هل حضرتك تواصلت من أي رقم اخر بخدمة العملاء مسبقا
+
+نعتذر لحضرتك عن أي إزعاج. ونود التوضيح أن الإجراء المتخذ من جانب حالا هو التأكيد على الالتزام بخطة السداد لتجنب الغرامات. ولا توجد متابعة إضافية على هذه الشكوى في الوقت الحالي.
+- Escalation: No
+- CRM: Halan Card → Complain → Complaint about fraud case"
+KB,1841,e381c28f73e8592aa987ab43bc2a9f37,0,Halan,Request,Non-Technical Issue,Yes,ok,Request to change mobile number,عميل يريد تغيير رقم الموبايل المسجل به کارت حالا,yes,"Vertical: Halan | Type: Request | Issue: Non-Technical Issue | Escalation: Yes
+
+Question EN: Request to change mobile number
+Question AR: عميل يريد تغيير رقم الموبايل المسجل به کارت حالا
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي اما الاتي فيجب على العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي)
+ملحوظة: يمكن تقديم طلب للعميل الموافقة الفورية في حالة الاتصال من رقم هاتف مختلف او ان الكارت ميكونش لسة اتفعل.
+
+السيناريو الأول: لو العميل متكود موافقة فورية (CRM / Credit Scoring):
+لابد ان يكون العميل داخل الفرع ويكون فرع موافقة فورية عشان اقدم الطلب. أنا هقدم لحضرتك طلب لتغيير رقم الموبايل. الفرع هيقدم لحضرتك استمارة تحديث بيانات جديدة (KYC) وهتستقبل كود تفعيل على الرقم الجديد. وحضرتك تقدر تتأكد بعدها من تغيير الرقم لما تدخل على أبلكيشن حالا بالرقم الجديد بعد تأكيد موظف الفرع على التغيير. (لابد من الضغط على ""إرجاع الليميت"" على البورتال قبل تقديم الطلب لعملاء الموافقة الفورية)
+
+السيناريو الثاني: لو العميل متكود فروع من CRM (Branch):
+حضرتك بتتوجه لفرع تساهيل والفرع هيقدم لحضرتك استمارة تحديث بيانات جديدة (KYC) وهتستقبل كود تفعيل على الرقم الجديد. وحضرتك تقدر تتأكد بعدها من تغيير الرقم لما تدخل على أبلكيشن حالا بالرقم الجديد بعد تأكيد موظف الفرع على التغيير (ولابد من توجيه العميل الي فرع تساهيل فقط).
+
+ملحوظة احنا بنقدم الطلب لعملاء الموافقة الفورية فقط ولازم يكونوا داخل الفرع انما عملاء مشروعي وتساهيل بيتم توجيههم للفرع الخاص بهم.
+- Escalation: Yes
+- CRM: Halan Card → Request → Request to change mobile number"
+KB,1845,e8dac42443e65d998466d8842885fc36,0,Halan,Request,Non-Technical Issue,No,ok,Request to deactivate Halan Card,عميل يريد إلغاء الكارت,yes,"Vertical: Halan | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Request to deactivate Halan Card
+Question AR: عميل يريد إلغاء الكارت
+
+Script:
+ممكن اعرف السبب يمكن أقدر اساعد حضرتك. أحاول اساعد العميل وافهم مشكلته واشرح مميزات الكارت.
+لو العميل مصمم على الإلغاء تمام انا من خلالي ممكن أقوم بالإجراء دا لحضرتك.
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي )
+
+- سنقوم بإرجاع الكريديت مرة اخرى على التطبيق بالضغط على ""إعادة الليميت""
+- سيتم ابلاغ العميل بقيمة الرصيد الحالي على الكارت، وإذا تواجد رصيد كاش سيتم اخبار العميل أنه في حالة غلق الكارت لن يتمكن من سحب ذلك المبلغ حتى يقوم بعمل بدل فاقد.
+- ثم سنقوم بوقف الكارت من خانة ""غلق"" بعد موافقة العميل.
+وحضرتك تقدر تفعل كارت حالا مرة اخرى عن طريق التقديم على الكارت من خلال الأبلكيشن والتوجه لأحد الفروع.
+
+ملحوظة لو الكارت اتوقف مش بنعيد فتح نفس الكارت مرة اخرى، والعميل هيحتاج يعمل كارت جديد.
+- Escalation: No
+- CRM: Halan Card → Request → Request to deactivate Halan Card"
+KB,1846,62d979b8dbdb5b128800503b694fc03b,0,Halan,Request,Non-Technical Issue,No,ok,Request Halan card Replacement,عميل بيسأل على اصدار كارت بدل فاقد,yes,"Vertical: Halan | Type: Request | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Request Halan card Replacement
+Question AR: عميل بيسأل على اصدار كارت بدل فاقد
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب على العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي)
+
+السيناريو الأول: في حالة العميل متكود موافقة فورية أو راتب مبكر من خلال CRM:
+بيتم توجيه العميل لاحد فروع Circle K فقط المتواجد فيها مندوب حالا وإذا لم يتوفر سيكون أقرب مول ثم باقي الموافقة الفورية في الضرورة القصوى وبتكون التكلفة 100 جنيه. العمليات التي قمت بها على الكارت القديم ستكون كما هي على الكارت الجديد وكذلك رصيد الكارت.
+
+السيناريو الثاني: في حالة العميل متكود تساهيل او مشروعي من خلال CRM:
+بيتم توجيه العميل لأحد فروع تساهيل او مشروعي وبتكون التكلفة 100 جنيه. العمليات التي قمت بها على الكارت القديم ستكون كما هي على الكارت الجديد وكذلك رصيد الكارت.
+
+في حالة سؤال العميل عن ميعاد استلام کارت بدل فاقد: موظف الفرع بيوضح لحضرتك لكن هيكون في نفس الوقت داخل الفرع.
+- Escalation: No
+- CRM: Halan Card → Request → Request Halan card Replacement"
+KB,1848,9489a7f3abb8511e8734847fe7a030ce,0,Halan,Request,Technical Issue,No,ok,Request to make PIN Code (6 Digits),عميل يظهر له (تم ايقاف حسابك برجاء التواصل مع خدمة العملاء) او (حدث خطأ ما بعد ادخال باسورد الابلكيشن خطأ),yes,"Vertical: Halan | Type: Request | Issue: Technical Issue | Escalation: No
+
+Question EN: Request to make PIN Code (6 Digits)
+Question AR: عميل يظهر له (تم ايقاف حسابك برجاء التواصل مع خدمة العملاء) او (حدث خطأ ما بعد ادخال باسورد الابلكيشن خطأ)
+
+Script:
+[IMAGE: App block screen displaying alert title 'المساعدة والدعم' text message 'تم إيقاف حسابك برجاء التواصل مع خدمة العملاء' with buttons 'اتصل بنا' and exit cross.]
+
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي )
+
+بعتذر لحضرتك لكن المشكلة دي حصلت بسبب ادخال كلمة مرور غير صحيحة عدة مرات على التطبيق. وانا من خلالي هعمل اعادة ضبط لكلمة السر هستأذن حضرتك بعد المكالمة حضرتك هتكتب:
+- كلمة سر جديدة 6 أرقام غير متتاليين أو متشابهين (كلمة سر الكارت على التطبيق)
+- كلمة سر 4 أرقام غير متتاليين أو متشابهين (كلمة سر الكارت على ماكينات الشراء و ATM)
+- تسجيل خروج ثم تسجيل دخول مرة اخرى على التطبيق
+
+السيناريو الأول: إذا كان الرصيد ظاهر مع ضرورة اظهار رصيد الكارت على البورتال:
+سيتم التأكد من عدم حظر حالا كريديت وإذا كان محظور سيتم التوضيح للعميل الفرق بين المشكلتين. (Escalation: No)
+
+السيناريو الثاني: إذا كان الرصيد غير ظاهر:
+سيتم التأكد من عدم وجود اسم العميل في Negative balance - Google Sheets وإذا كان موجود، سنوضح له القيمة الواجب ايداعها حتى يتم حل المشكلة. وفي حالة عدم وجود رصيد بالسالب أنا بعتذر لحضرتك وانا من خلالي هقدم شكوى وسيتم التواصل بحضرتك خلال 24 ساعة عمل مع اضافة الاسم بالكامل والرقم القومي وتفاصيل الشكوي في التيكت. سيتم التأكد من عدم وجود شكوى (6 Digits) او Negative Balance. (Escalation: Yes)
+- Escalation: No
+- CRM: Halan Card → Request → Request to make PIN Code (6 Digits)"
+KB,1849,dce5600272d4555bb7f329bf31edffb2,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about Offer,عميل بيستفسر عن عرض,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Offer
+Question AR: عميل بيستفسر عن عرض
+
+Script:
+سيتم توضيح العرض الخاص بكارت حالا للعميل كما موجود في شيت Merchants Promos.xlsx مع توضيح جميع التفاصيل داخل التيكيت.
+
+مثال عرض الفائدة المخفضة (1% Interest Campaign):
+الفائدة بتكون 1% عند التقسيط بإستخدام كارت حالا. مدة التقسيط شهر واحد. العميل لابد ان يكون Instant Approval ومش موجود في اي جروب تاني على ال CRM (Reduced Interest Campaign).
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about Offer"
+KB,1850,9f14998f1fd455ca9cbeabfc6cfc90ac,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about triple zero on Card,عميل بيستفسر عن عرض التريبل زيرو على الكارت,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about triple zero on Card
+Question AR: عميل بيستفسر عن عرض التريبل زيرو على الكارت
+
+Script:
+عرض التريبل زيرو على كارت حالا عبارة عن زيرو فوايد - زیرو رسوم - زیرو مصاريف ادارية عند استخدام الكريديت على الكارت على فترة تقسيط تصل الى 6 شهور (1 - 2 - 3 - 4 - 5 - 6 شهور).
+- العرض متاح في الفترة من 13 أبريل حتى 18 أبريل.
+- العرض متاح لعملاء الموافقة الفورية (Instant Approval Only) وبعض الشركات.
+- العرض متاح على أول عملية Credit on Card على الكارت فقط.
+- في حالة سؤال العميل متاح السداد المبكر 45 يوم.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about triple zero on Card"
+KB,1851,7d474de2854855dda347e6dbcabbabcc,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about the Cashback offer,عميل بيستفسر عن عرض الكاش باك او الكوبون,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about the Cashback offer
+Question AR: عميل بيستفسر عن عرض الكاش باك او الكوبون
+
+Script:
+هيتم اخذ الرقم القومي ومعرفة من CRM اذا كان العميل فروع ام موافقة فورية مع عدم توضيح اي بيانات تخص الكارت الا في حالة مراجعة بيانات الكارت بالكامل.
+
+عرض الكاش باك هو رجوع 100% بحد أقصى (750 جنيه) للعملاء الذين سيقومون بعمل أول عملية شراء بحالا كريديت على الكارت Credit on Card يعني العميل ميكونش عمل عمليات Credit on Card قبل كدة ولا أي معاملة كريديت في العموم سواء بالكارت أو الكريديت.
+- الفترة من 1-6-2026 حتى 30-6-2026.
+- فترات التقسيط من 6 شهور حتى 36 شهر.
+- العرض متاح لعملاء الموافقة الفورية والشركات Instant Approval - Corporate.
+- المبلغ بينزل على كارت حالا بعد غلق أيقونة ""التقسيط بكارت حالا"" وانشاء القرض.
+- المبلغ بدون تاريخ انتهاء صلاحية يعني موجود على طول.
+- في حالة سؤال العميل عن السداد المبكر في حالة العروض والخصومات التي يتم الاعلان عنها، يلتزم العميل في حالة السداد المبكر بسداد كامل المديونية والعوائد على إجمالي مبلغ التمويل.
+
+عروض الكاش باك المتنوعة حسب الشيت (Daily Cashbacks on Halan Closed Loop wallet.xlsx):
+- 10% cashback, capped at 2,000 EGP (When using Credit on Card)
+- 20% cashback, capped at 1,000 EGP (When using Credit on Card)
+هنشوف رقم موبايل العميل موجود في أنهي شيت علشان نقوله قيمة الكاش باك.
+الكاش باك بينزل على محفظة التطبيق خلال 24 ساعة عمل.
+- Campaign ID: Halan Credit_on_card_activation -> استمتع بكاش باك 10% بحد أقصى 1000 ج لما تدفع بالكارت أول مرة من رصيد المشتريات على محفظة حالا العرض ساري لمدة 5 أيام فقط.
+- pending_activation_<=10k -> حالاً كارت مع باك كاش 10% اشتري بكارت حالاً واحصل على كاش باك 10% بحد أقصى 1000 ج لفترة محدودة فعل رصيدك العرض ساري لمدة يومين فقط.
+- pending_activation_>10k -> حالاً كارت مع باك كاش 10% اشتري بكارت حالاً واحصل على كاش باك 10% بحد أقصى 2000 ج لفترة محدودة فعل رصيدك العرض ساري لمدة يومين فقط.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about the Cashback offer"
+KB,1852,6379d41c8b295cec99ce671c22b9182d,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about tap to win game,عميل بيستفسر عن لعبة Tap to win,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about tap to win game
+Question AR: عميل بيستفسر عن لعبة Tap to win
+
+Script:
+بيتم اخذ الرقم القومي لمعرفة العميل اذا كان فروع ام موافقة فورية مع ضرورة عدم توضيح اي بيانات تخص الكارت الا بعد مراجعة بيانات الكارت بالكامل.
+- دي لعبة داخل التطبيق اسمها Tap To Win تقدر تكسب من 20 جنيه لحد 10,000 جنيه.
+
+الشروط:
+- ان حضرتك تقوم بمعاملات شراء بالكريديت باستخدام الكارت Credit on Card بقيمة 1000 جنيه او اكثر في اليوم.
+- بعد المعاملات تدخل اللعبة وبتختار كارت واحد فقط في اليوم.
+- الجائزة بتنزل على الكارت مباشرة.
+- متاحة لعملاء الموافقة الفورية، وعملاء الفروع محافظات (القاهرة - الجيزة - الاسكندرية) فقط.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about tap to win game"
+KB,1853,0385f444591559abbc9bdcfeb8363d72,0,Halan,Inquiry,Non-Technical Issue,No,ok,Inquiry about Predict and Win,عميل بيستفسر عن Predict and Win,yes,"Vertical: Halan | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No
+
+Question EN: Inquiry about Predict and Win
+Question AR: عميل بيستفسر عن Predict and Win
+
+Script:
+- دلوقتي تقدر تتوقع نتايج ماتشات مصر في بطولة امم افريقيا و تكسب 50 جنيه على محفظة حالا.
+- آخر ميعاد لتوقع نتيجة المباراة بيكون قبل ماتش مصر ب 5 دقائق.
+- في حالة التوقع صحيح، سيتم اضافة الجائزة على محفظة العميل خلال 4 ساعات عمل بعد نهاية المباراة.
+- ستكون متاحة لجميع العملاء.
+- Escalation: No
+- CRM: Halan Card → Inquiry → Inquiry about Predict and Win"
+KB,1854,37dbdbb9000f55ad9dd97293ddef1e47,0,Halan,Complain,Technical Issue,Yes,ok,Complaint about Triple zero not applied,عميل يشتكي من عدم تفعيل عرض التريبل زيرو على الكارت ونزول فوائد على الأقساط,yes,"Vertical: Halan | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Complaint about Triple zero not applied
+Question AR: عميل يشتكي من عدم تفعيل عرض التريبل زيرو على الكارت ونزول فوائد على الأقساط
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي)
+سیبم التأكد من عدم القيام بأي قرض Credit on Card مسبقا وأن العميل Instant Approval وفترة التقسيط تصل الى 6 شهور. وسيتم حل المشكلة خلال 7 أيام عمل.
+- Escalation: Yes
+- CRM: Halan Card → Complain → Complaint about Triple zero not applied"
+KB,1855,cce802fec2eb50ba9fea3763d0112de7,0,Halan,Complain,Technical Issue,Yes,ok,Complaint about Not showing 3 months in triple zero offer,عميل يشتكي من عدم ظهور فترة 3 شهور أثناء تحويل الكريديت وقت عرض التريبل زيرو,yes,"Vertical: Halan | Type: Complain | Issue: Technical Issue | Escalation: Yes
+
+Question EN: Complaint about Not showing 3 months in triple zero offer
+Question AR: عميل يشتكي من عدم ظهور فترة 3 شهور أثناء تحويل الكريديت وقت عرض التريبل زيرو
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي)
+
+- في حالة العميل مستحق ومستوفي شروطه الفنية: سيتم التأكد من عدم القيام بأي معاملة Credit on Card مسبقا وأن العميل موافقة فورية وغير موظف في MNT Halan. (Escalation: Yes)
+- في غير ذلك... سيتم توضيح السبب للعميل. (Escalation: No)
+- Escalation: Yes
+- CRM: Halan Card → Complain → Complaint about Not showing 3 months in triple zero offer"
+KB,1856,6dbb8ba7efa954f89ba0b5955b42c3c8,0,Halan,Complain,Financial Issue,No,ok,Complaint about Predict and win prize not added to wallet,عميل يشتكي من عدم نزل مبلغ Predict and Win على المحفظة,yes,"Vertical: Halan | Type: Complain | Issue: Financial Issue | Escalation: No
+
+Question EN: Complaint about Predict and win prize not added to wallet
+Question AR: عميل يشتكي من عدم نزل مبلغ Predict and Win على المحفظة
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة على الكارت / رصيد الكارت الحالي)
+سيتم التأكد من عدم نزول المبلغ على المحفظة بعد 4 ساعات من انتهاء ماتش مصر من خلال Admin Tool.
+
+- في حالة تأكيد عدم النزول الفعلي: هستأذن حضرتك تبعتلنا اسكرين شوت من التطبيق ان حضرتك توقعت النتيجة صحيحة، وانا من خلالي هقدم لحضرتك شكوى وسيتم الرد خلال 24 ساعة عمل وهيتم اضافة تفاصيل الشكوي والاسم بالكامل والرقم القومي. (Escalation: Yes)
+- في حالة غير ذلك يتم توضيح التفاصيل للعميل. (Escalation: No)
+- Escalation: No
+- CRM: Halan Card → Complain → Complaint about Predict and win prize not added to wallet"
+KB,1857,749b4179aabf50ad937c399395a87883,0,Halan,Complain,Financial Issue,Yes,ok,complaint about Cashback didn't reflect on card,عميل يشتكي من عدم نزل مبلغ الكاش باك على الكارت,yes,"Vertical: Halan | Type: Complain | Issue: Financial Issue | Escalation: Yes
+
+Question EN: complaint about Cashback didn't reflect on card
+Question AR: عميل يشتكي من عدم نزل مبلغ الكاش باك على الكارت
+
+Script:
+هيتم مراجعة الاسم ثلاثي والرقم القومي ويكون متواصل من نفس الرقم اما الاتي فيجب علي العميل الاجابة علي 2 من اصل 4 اسئلة ( اخر اربع ارقام من الكارت / العنوان في البطاقه الشخصية / اخر عملية ناجحة علي الكارت / رصيد الكارت الحالي)
+سيتم التأكد من يوم تفعيل حالا كريديت ويوم العملية ومكان الاستخدام وإذا كان Credit on Card ام لا.
+في حالة استحقاق العميل هقدم لحضرتك شكوى وهيتم حلها في أقرب وقت. هنضيف في التيكيت المعاملة اللي منزلش عليها الكاش باك.
+- Escalation: Yes
+- CRM: Halan Card → Complain → complaint about Cashback didn't reflect on card"

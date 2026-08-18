@@ -1,0 +1,20 @@
+=== BATCH 1 vs BATCH 2 ===
+
+1005: no exact batch2 script
+1083: no exact batch2 script
+1258: no exact batch2 script
+1259: no exact batch2 script
+1581: no exact batch2 script
+1637: no exact batch2 script
+491: no exact batch2 script
+525: no exact batch2 script
+546: no exact batch2 script
+550: no exact batch2 script
+559: no exact batch2 script
+699: no exact batch2 script
+862: no exact batch2 script
+
+=== ALL SKIPPED MATCHED BY BATCH 2 ===
+
+
+Total updates: 0

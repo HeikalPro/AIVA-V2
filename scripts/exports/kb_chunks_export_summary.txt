@@ -1,0 +1,25 @@
+Total rows exported: 662
+Primary only (chunk_index=0): True
+Output directory: D:\AIVA\AIVA-V2\scripts\exports
+
+Queue mapping:
+  tasaheel <- vertical = Tasaheel
+  gomla    <- vertical = Gomla
+  halan    <- all other verticals (CF, Pay, General, Halan, Saving, Gold, Commerce, ...)
+
+=== HALAN (506 rows) ===
+  CF: 172
+  Pay: 101
+  General: 98
+  Halan: 41
+  Saving: 39
+  Gold: 31
+  Commerce: 21
+  Salary lending: 2
+  Irrelevant Call: 1
+
+=== GOMLA (69 rows) ===
+  Gomla: 69
+
+=== TASAHEEL (87 rows) ===
+  Tasaheel: 87
