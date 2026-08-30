@@ -8,8 +8,10 @@ must stay intact (and the brand still readable) when they do not load.
 from __future__ import annotations
 
 import html
+from pathlib import Path
 
 from backend.config import get_settings
+from backend.services.email.base import EmailMessage, InlineImage
 
 # Navy from the GoChat247 / AIVA marks; the lighter blue matches the app's --primary.
 BRAND_NAVY = "#1b4b82"
@@ -22,7 +24,16 @@ CANVAS = "#f4f6f8"
 _FONT = "Arial, 'Helvetica Neue', Helvetica, sans-serif"
 _MONO = "'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace"
 
-# Served from the frontend's public/ folder (Vite copies it to the site root).
+# Logos ship with the backend so the mail carries them as inline (cid:) attachments.
+# That removes the dependency on a public URL, a deploy, and the recipient's
+# remote-image setting — clients that block remote images still render these.
+_ASSET_DIR = Path(__file__).resolve().parents[2] / "assets" / "email"
+
+_GOCHAT_CID = "aiva-gochat247-logo"
+_GOAI_CID = "aiva-goai-logo"
+
+# Fallback URLs, used only by senders that cannot attach (Zoho Mail API).
+# These point at the frontend's public/ folder, which Vite copies to the site root.
 _GOCHAT_LOGO_FILE = "GoChat247_blue_transparent.png"
 _GOAI_LOGO_FILE = "GoAI_logo.png"
 
@@ -41,6 +52,32 @@ def _goai_logo_url() -> str:
     if configured:
         return configured
     return f"{settings.frontend_url.rstrip('/')}/{_GOAI_LOGO_FILE}"
+
+
+def _brand_image_specs() -> list[tuple[str, Path, str]]:
+    """(cid, on-disk path, fallback url) for each logo the letterhead uses."""
+    return [
+        (_GOCHAT_CID, _ASSET_DIR / "gochat247.png", _gochat_logo_url()),
+        (_GOAI_CID, _ASSET_DIR / "goai.png", _goai_logo_url()),
+    ]
+
+
+def brand_inline_images() -> tuple[InlineImage, ...]:
+    """Logos to embed. Files missing on disk are skipped — the HTML then points
+    at their public URL instead, so the mail still renders (just remotely)."""
+    return tuple(
+        InlineImage(cid=cid, path=path, fallback_url=url)
+        for cid, path, url in _brand_image_specs()
+        if path.is_file()
+    )
+
+
+def _img_src(cid: str) -> str:
+    """cid: reference when the asset ships with us, else the public URL."""
+    for spec_cid, path, url in _brand_image_specs():
+        if spec_cid == cid:
+            return f"cid:{cid}" if path.is_file() else url
+    return ""
 
 
 def _aiva_logo_url() -> str:
@@ -67,7 +104,7 @@ def _aiva_wordmark_html() -> str:
 
 
 def _header_html(eyebrow: str | None) -> str:
-    logo = _gochat_logo_url()
+    logo = _img_src(_GOCHAT_CID)
     eyebrow_cell = ""
     if eyebrow:
         eyebrow_cell = (
@@ -75,12 +112,14 @@ def _header_html(eyebrow: str | None) -> str:
             f'line-height:16px;letter-spacing:1.5px;text-transform:uppercase;color:{MUTED};">'
             f"{html.escape(eyebrow)}</td>"
         )
+    # The mark is dark navy on transparent, so it needs a white plate under it —
+    # clients that force dark mode invert the cell behind it, not the image.
     return f"""\
 <tr>
-<td style="padding:24px 32px;border-bottom:3px solid {BRAND_NAVY};">
+<td bgcolor="#ffffff" style="padding:24px 32px;border-bottom:3px solid {BRAND_NAVY};background-color:#ffffff;">
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
 <tr>
-<td valign="middle" style="width:52px;padding-right:14px;">
+<td valign="middle" bgcolor="#ffffff" style="width:56px;padding-right:14px;background-color:#ffffff;border-radius:6px;">
 <img src="{html.escape(logo, quote=True)}" width="48" height="48" alt="GoChat247"
 style="display:block;width:48px;height:48px;border:0;outline:none;text-decoration:none;
 font-family:{_FONT};font-size:10px;line-height:14px;color:{BRAND_NAVY};">
@@ -102,10 +141,10 @@ def _footer_html(footer_note: str | None) -> str:
             f'<p style="margin:0 0 8px;font-family:{_FONT};font-size:12px;'
             f'line-height:18px;color:{MUTED};">{html.escape(footer_note)}</p>'
         )
-    goai = _goai_logo_url()
+    goai = _img_src(_GOAI_CID)
     return f"""\
 <tr>
-<td align="center" style="padding:24px 32px 28px;border-top:1px solid {BORDER};background-color:#fafbfc;">
+<td align="center" bgcolor="#ffffff" style="padding:24px 32px 28px;border-top:1px solid {BORDER};background-color:#ffffff;">
 <img src="{html.escape(goai, quote=True)}" width="170" alt="GoAI &mdash; Elevate your business with AI"
 style="display:block;width:170px;height:auto;margin:0 auto 14px;border:0;outline:none;
 text-decoration:none;font-family:{_FONT};font-size:11px;line-height:16px;color:{MUTED};">
@@ -325,3 +364,25 @@ def render_text(
     lines.append("This is an automated message from AIVA. Please do not reply to this email.")
     lines.append("AIVA - a GoChat247 product. (c) GoChat247. All rights reserved.")
     return "\n".join(lines) + "\n"
+
+
+def build_message(
+    *,
+    to: list[str],
+    subject: str,
+    preheader: str | None = None,
+    eyebrow: str | None = None,
+    **content,
+) -> EmailMessage:
+    """Build a ready-to-send message: HTML + plain-text twin + embedded logos.
+
+    Always use this rather than assembling EmailMessage by hand — it is what
+    guarantees the ``cid:`` references in the HTML have matching attachments.
+    """
+    return EmailMessage(
+        to=to,
+        subject=subject,
+        text_body=render_text(**content),
+        html_body=render_email(preheader=preheader, eyebrow=eyebrow, **content),
+        inline_images=brand_inline_images(),
+    )

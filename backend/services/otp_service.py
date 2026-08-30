@@ -20,8 +20,8 @@ from backend.config import Settings, get_settings
 from backend.database import Database
 from backend.exceptions import BadRequestError, UnauthorizedError
 from backend.services.auth_audit import log_auth_event
-from backend.services.email import EmailMessage, get_mail_sender
-from backend.services.email.templates import render_email, render_text
+from backend.services.email import get_mail_sender
+from backend.services.email.templates import build_message
 from backend.services.password_policy import validate_password
 
 _log = logging.getLogger(__name__)
@@ -143,11 +143,12 @@ async def _create_and_send_otp(
         "callout_label": "Verification code",
         "note": note,
     }
-    msg = EmailMessage(
+    msg = build_message(
         to=[email],
         subject=subject,
-        text_body=render_text(**content),
-        html_body=render_email(preheader=f"Your {app_name} verification code", eyebrow="Security", **content),
+        preheader=f"Your {app_name} verification code",
+        eyebrow="Security",
+        **content,
     )
     sent = await get_mail_sender().send(msg)
     if not sent:

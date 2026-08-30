@@ -11,9 +11,8 @@ from backend.auth.role_constants import (
 from backend.config import get_settings
 from backend.dependencies import get_db
 from backend.schemas.notifications import DeveloperNotifyOut
-from backend.services.email.base import EmailMessage
 from backend.services.email import get_mail_sender
-from backend.services.email.templates import render_email, render_text
+from backend.services.email.templates import build_message
 
 _log = logging.getLogger(__name__)
 
@@ -155,15 +154,12 @@ async def notify_developers_new_ticket(
         "cta_url": link,
     }
 
-    msg = EmailMessage(
+    msg = build_message(
         to=recipients,
         subject=f"[AIVA] New ticket #{ticket_id}: {subject}",
-        text_body=render_text(**content),
-        html_body=render_email(
-            preheader=f"Ticket #{ticket_id}: {subject}",
-            eyebrow="Support",
-            **content,
-        ),
+        preheader=f"Ticket #{ticket_id}: {subject}",
+        eyebrow="Support",
+        **content,
     )
     try:
         ok = await get_mail_sender().send(msg)
@@ -242,15 +238,12 @@ async def notify_developers_new_ingestion(
         "cta_url": link,
     }
 
-    msg = EmailMessage(
+    msg = build_message(
         to=recipients,
         subject=f"[AIVA] New ingestion request #{request_id}",
-        text_body=render_text(**content),
-        html_body=render_email(
-            preheader=f"Ingestion request #{request_id} awaiting processing",
-            eyebrow="Knowledge base",
-            **content,
-        ),
+        preheader=f"Ingestion request #{request_id} awaiting processing",
+        eyebrow="Knowledge base",
+        **content,
     )
     try:
         ok = await get_mail_sender().send(msg)
@@ -372,15 +365,12 @@ async def notify_error_admins_developers(
         "cta_url": link,
     }
 
-    msg = EmailMessage(
+    msg = build_message(
         to=recipients,
         subject=f"[AIVA] Error: {exception_type} at {route}",
-        text_body=render_text(**content),
-        html_body=render_email(
-            preheader=f"{exception_type} at {route}",
-            eyebrow="System alert",
-            **content,
-        ),
+        preheader=f"{exception_type} at {route}",
+        eyebrow="System alert",
+        **content,
     )
     try:
         ok = await get_mail_sender().send(msg)

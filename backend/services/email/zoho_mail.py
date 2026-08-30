@@ -104,6 +104,19 @@ class ZohoMailSender:
         )
         return None
 
+    @staticmethod
+    def _inline_html(msg: EmailMessage) -> str:
+        """Swap cid: references for public URLs.
+
+        The Zoho Mail API takes a single HTML string and carries no attachments,
+        so embedded images cannot survive this path — they degrade to remotely
+        fetched ones, which the recipient's client may still block.
+        """
+        html_body = msg.html_body or ""
+        for image in msg.inline_images:
+            html_body = html_body.replace(f"cid:{image.cid}", image.fallback_url)
+        return html_body
+
     async def send(self, msg: EmailMessage) -> bool:
         if not msg.to:
             return False
@@ -130,7 +143,7 @@ class ZohoMailSender:
             "askReceipt": "no",
         }
         if msg.html_body:
-            body["content"] = msg.html_body
+            body["content"] = self._inline_html(msg)
 
         url = f"{self._api_base}/accounts/{account_id}/messages"
         headers = {

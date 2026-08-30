@@ -4,6 +4,7 @@ import asyncio
 import logging
 import smtplib
 import ssl
+from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -23,19 +24,57 @@ class SmtpMailSender:
         s = self._settings
         return bool(s.smtp_host and s.smtp_password and s.smtp_from_email)
 
+    def _build_mime(self, msg: EmailMessage) -> MIMEMultipart:
+        """Assemble the MIME tree.
+
+        With inline images the shape must be::
+
+            multipart/related
+            +- multipart/alternative
+            |  +- text/plain
+            |  +- text/html          (references the images as cid:)
+            +- image/*               (one part per logo, with a Content-ID)
+
+        Clients that block remote images still render these, because they
+        travel with the message instead of being fetched at open time.
+        """
+        s = self._settings
+        alternative = MIMEMultipart("alternative")
+        alternative.attach(MIMEText(msg.text_body, "plain", "utf-8"))
+        if msg.html_body:
+            alternative.attach(MIMEText(msg.html_body, "html", "utf-8"))
+
+        images = [img for img in msg.inline_images if msg.html_body]
+        if images:
+            mime: MIMEMultipart = MIMEMultipart("related")
+            mime.attach(alternative)
+            for image in images:
+                try:
+                    data = image.path.read_bytes()
+                except OSError:
+                    # Losing a logo must never cost us the email itself.
+                    _log.warning("Inline image missing, skipping: %s", image.path)
+                    continue
+                part = MIMEImage(data)
+                # Angle brackets are required for cid: lookups to match.
+                part.add_header("Content-ID", f"<{image.cid}>")
+                part.add_header("Content-Disposition", "inline", filename=image.path.name)
+                mime.attach(part)
+        else:
+            mime = alternative
+
+        mime["Subject"] = msg.subject
+        mime["From"] = f"{s.smtp_from_name} <{s.smtp_from_email}>"
+        mime["To"] = ", ".join(msg.to)
+        return mime
+
     def _send_sync(self, msg: EmailMessage) -> bool:
         s = self._settings
         if not self._is_configured():
             _log.error("SMTP is not configured (SMTP_HOST, SMTP_PASSWORD, SMTP_FROM_EMAIL)")
             return False
 
-        mime = MIMEMultipart("alternative")
-        mime["Subject"] = msg.subject
-        mime["From"] = f"{s.smtp_from_name} <{s.smtp_from_email}>"
-        mime["To"] = ", ".join(msg.to)
-        mime.attach(MIMEText(msg.text_body, "plain", "utf-8"))
-        if msg.html_body:
-            mime.attach(MIMEText(msg.html_body, "html", "utf-8"))
+        mime = self._build_mime(msg)
 
         encryption = (s.smtp_encryption or "tls").lower()
         try:
