@@ -90,12 +90,16 @@ def _footer_html(footer_note: str | None) -> str:
     extra = ""
     if footer_note:
         extra = (
-            f'<p style="margin:0 0 8px;font-family:{_FONT};font-size:12px;'
+            f'<p style="margin:0 0 12px;font-family:{_FONT};font-size:12px;'
             f'line-height:18px;color:{MUTED};">{html.escape(footer_note)}</p>'
         )
+    logo = _gochat_logo_url()
     return f"""\
 <tr>
-<td style="padding:20px 32px 28px;border-top:1px solid {BORDER};background-color:#fafbfc;">
+<td align="center" style="padding:24px 32px 28px;border-top:1px solid {BORDER};background-color:#fafbfc;">
+<img src="{html.escape(logo, quote=True)}" width="44" height="44" alt="GoChat247"
+style="display:block;width:44px;height:44px;margin:0 auto 12px;border:0;outline:none;
+text-decoration:none;font-family:{_FONT};font-size:10px;line-height:14px;color:{BRAND_NAVY};">
 {extra}
 <p style="margin:0 0 8px;font-family:{_FONT};font-size:12px;line-height:18px;color:{MUTED};">
 This is an automated message from AIVA. Please do not reply to this email.
