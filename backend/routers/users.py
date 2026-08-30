@@ -5,8 +5,10 @@ from fastapi import APIRouter, Depends, Query
 
 from backend.auth.deps import (
     ROLE_ACCOUNT_MANAGER,
+    ROLE_AGENT,
     ROLE_ORG_ADMIN,
     ROLE_SUPER_ADMIN,
+    ROLE_SUPERVISOR,
     UserContext,
     require_account_access,
     require_roles,
@@ -47,6 +49,46 @@ router = APIRouter(prefix="/users", tags=["users"])
 
 async def _user_out(db: Database, user_id: int) -> UserOut:
     return await build_user_out(db, user_id)
+
+
+ACCOUNT_MANAGER_ASSIGNABLE_ROLES = {ROLE_SUPERVISOR, ROLE_AGENT}
+
+
+async def _require_assignable_by_account_manager(db: Database, role_id: int) -> None:
+    """Account managers may only hand out the roles beneath them."""
+    role_row = await db.fetch_one("SELECT name FROM AIVA_roles WHERE id = :id", {"id": role_id})
+    if not role_row:
+        raise NotFoundError("Role not found")
+    if str(role_row["name"]) not in ACCOUNT_MANAGER_ASSIGNABLE_ROLES:
+        raise ForbiddenError("Account managers can only assign the Supervisor or Agent role")
+
+
+async def _require_managed_by_account_manager(
+    db: Database,
+    current: UserContext,
+    user_id: int,
+) -> None:
+    """An account manager may only re-role supervisors/agents in their own accounts."""
+    role_rows = await db.fetch_all(
+        """
+        SELECT r.name FROM AIVA_user_roles ur
+        JOIN AIVA_roles r ON r.id = ur.role_id
+        WHERE ur.user_id = :user_id
+        """,
+        {"user_id": user_id},
+    )
+    if not {str(r["name"]) for r in role_rows}.issubset(ACCOUNT_MANAGER_ASSIGNABLE_ROLES):
+        raise ForbiddenError("Account managers can only change the role of supervisors and agents")
+
+    membership_rows = await db.fetch_all(
+        """
+        SELECT account_id FROM AIVA_account_users
+        WHERE user_id = :user_id AND status = 'ACTIVE'
+        """,
+        {"user_id": user_id},
+    )
+    if not {int(r["account_id"]) for r in membership_rows}.intersection(current.account_ids):
+        raise ForbiddenError("Account managers can only manage users in their own accounts")
 
 
 async def _replace_user_role(
@@ -99,11 +141,21 @@ async def list_users(
 @router.post("", response_model=UserOut, status_code=201)
 async def create_user(
     body: UserCreate,
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    user: Annotated[
+        UserContext,
+        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+    ],
     db: DbDep,
 ) -> UserOut:
     if not user.is_super_admin and body.organization_id != user.organization_id:
         raise ForbiddenError("Cannot create user in another organization")
+
+    if not user.is_super_admin and not user.is_org_admin:
+        await _require_assignable_by_account_manager(db, body.role_id)
+        if not body.account_id:
+            raise ForbiddenError("Account managers must assign the new user to one of their accounts")
+        if body.account_id not in user.account_ids:
+            raise ForbiddenError("Account managers can only create users in their own accounts")
 
     existing = await db.fetch_one(
         "SELECT id FROM AIVA_users WHERE LOWER(email) = LOWER(:email)",
@@ -247,12 +299,17 @@ async def update_user(
 async def set_user_role(
     user_id: int,
     body: UserRoleAssign,
-    current: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    current: Annotated[
+        UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ACCOUNT_MANAGER))
+    ],
     db: DbDep,
 ) -> UserOut:
     target = await db.fetch_one("SELECT id FROM AIVA_users WHERE id = :id", {"id": user_id})
     if not target:
         raise NotFoundError("User not found")
+    if not current.is_super_admin:
+        await _require_assignable_by_account_manager(db, body.role_id)
+        await _require_managed_by_account_manager(db, current, user_id)
     if user_id == current.id:
         role_row = await db.fetch_one("SELECT name FROM AIVA_roles WHERE id = :id", {"id": body.role_id})
         if not role_row or role_row.get("name") != ROLE_SUPER_ADMIN:
