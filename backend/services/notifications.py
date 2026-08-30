@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import html
 import logging
 import time
 
@@ -14,6 +13,7 @@ from backend.dependencies import get_db
 from backend.schemas.notifications import DeveloperNotifyOut
 from backend.services.email.base import EmailMessage
 from backend.services.email import get_mail_sender
+from backend.services.email.templates import render_email, render_text
 
 _log = logging.getLogger(__name__)
 
@@ -137,36 +137,33 @@ async def notify_developers_new_ticket(
     if len(desc_preview) > 500:
         desc_preview = desc_preview[:500] + "..."
 
-    text = (
-        f"A new support ticket was created in AIVA.\n\n"
-        f"Ticket ID: {ticket_id}\n"
-        f"Subject: {subject}\n"
-        f"Account: {account or '—'}\n"
-        f"Created by: {creator}\n"
-    )
-    if desc_preview:
-        text += f"\nDescription:\n{desc_preview}\n"
-    text += f"\nOpen AIVA: {link}\n"
-
-    html_body = (
-        f"<p>A new support ticket was created in <strong>AIVA</strong>.</p>"
-        f"<ul>"
-        f"<li><strong>Ticket ID:</strong> {ticket_id}</li>"
-        f"<li><strong>Subject:</strong> {html.escape(subject)}</li>"
-        f"<li><strong>Account:</strong> {html.escape(account or '—')}</li>"
-        f"<li><strong>Created by:</strong> {html.escape(creator)}</li>"
-        f"</ul>"
-    )
-    if desc_preview:
-        safe = html.escape(desc_preview).replace("\n", "<br>")
-        html_body += f"<p><strong>Description:</strong><br>{safe}</p>"
-    html_body += f'<p><a href="{html.escape(link)}">Open tickets in AIVA</a></p>'
+    content = {
+        "title": f"New support ticket #{ticket_id}",
+        "intro": (
+            "A new support ticket has been raised in AIVA and is awaiting review by "
+            "the development team. The details are summarised below."
+        ),
+        "details": [
+            ("Ticket ID", f"#{ticket_id}"),
+            ("Subject", subject),
+            ("Account", account or "—"),
+            ("Created by", creator),
+        ],
+        "block_label": "Description" if desc_preview else None,
+        "block_text": desc_preview or None,
+        "cta_label": "Open ticket in AIVA",
+        "cta_url": link,
+    }
 
     msg = EmailMessage(
         to=recipients,
         subject=f"[AIVA] New ticket #{ticket_id}: {subject}",
-        text_body=text,
-        html_body=html_body,
+        text_body=render_text(**content),
+        html_body=render_email(
+            preheader=f"Ticket #{ticket_id}: {subject}",
+            eyebrow="Support",
+            **content,
+        ),
     )
     try:
         ok = await get_mail_sender().send(msg)
@@ -227,36 +224,33 @@ async def notify_developers_new_ingestion(
     if len(desc_preview) > 500:
         desc_preview = desc_preview[:500] + "..."
 
-    text = (
-        f"A new knowledge-base ingestion request was created in AIVA.\n\n"
-        f"Request ID: {request_id}\n"
-        f"Type: {request_type or '—'}\n"
-        f"Account: {account_name or '—'}\n"
-        f"Requested by: {creator}\n"
-    )
-    if desc_preview:
-        text += f"\nKB description:\n{desc_preview}\n"
-    text += f"\nOpen AIVA: {link}\n"
-
-    html_body = (
-        f"<p>A new <strong>ingestion request</strong> was created in AIVA.</p>"
-        f"<ul>"
-        f"<li><strong>Request ID:</strong> {request_id}</li>"
-        f"<li><strong>Type:</strong> {html.escape(request_type or '—')}</li>"
-        f"<li><strong>Account:</strong> {html.escape(account_name or '—')}</li>"
-        f"<li><strong>Requested by:</strong> {html.escape(creator)}</li>"
-        f"</ul>"
-    )
-    if desc_preview:
-        safe = html.escape(desc_preview).replace("\n", "<br>")
-        html_body += f"<p><strong>KB description:</strong><br>{safe}</p>"
-    html_body += f'<p><a href="{html.escape(link)}">Open ingestion in AIVA</a></p>'
+    content = {
+        "title": f"New ingestion request #{request_id}",
+        "intro": (
+            "A new knowledge-base ingestion request has been submitted in AIVA and "
+            "is awaiting processing. The details are summarised below."
+        ),
+        "details": [
+            ("Request ID", f"#{request_id}"),
+            ("Type", request_type or "—"),
+            ("Account", account_name or "—"),
+            ("Requested by", creator),
+        ],
+        "block_label": "Knowledge-base description" if desc_preview else None,
+        "block_text": desc_preview or None,
+        "cta_label": "Open ingestion in AIVA",
+        "cta_url": link,
+    }
 
     msg = EmailMessage(
         to=recipients,
         subject=f"[AIVA] New ingestion request #{request_id}",
-        text_body=text,
-        html_body=html_body,
+        text_body=render_text(**content),
+        html_body=render_email(
+            preheader=f"Ingestion request #{request_id} awaiting processing",
+            eyebrow="Knowledge base",
+            **content,
+        ),
     )
     try:
         ok = await get_mail_sender().send(msg)
@@ -358,40 +352,35 @@ async def notify_error_admins_developers(
     if len(trace_preview) > 4000:
         trace_preview = trace_preview[:4000] + "\n... (truncated)"
 
-    text = (
-        f"An unhandled error occurred in AIVA.\n\n"
-        f"Type: {exception_type}\n"
-        f"Message: {exception_message or '—'}\n"
-        f"Where: {where or '—'}\n"
-        f"Status: {status_code or '—'}\n"
-        f"Request ID: {request_id or '—'}\n"
-        f"User: {user_email or 'anonymous'}\n"
-    )
-    if trace_preview:
-        text += f"\nStack trace:\n{trace_preview}\n"
-    text += f"\nOpen error logs: {link}\n"
-
-    html_body = (
-        f"<p>An <strong>unhandled error</strong> occurred in AIVA.</p>"
-        f"<ul>"
-        f"<li><strong>Type:</strong> {html.escape(exception_type)}</li>"
-        f"<li><strong>Message:</strong> {html.escape(exception_message or '—')}</li>"
-        f"<li><strong>Where:</strong> {html.escape(where or '—')}</li>"
-        f"<li><strong>Status:</strong> {status_code or '—'}</li>"
-        f"<li><strong>Request ID:</strong> {html.escape(request_id or '—')}</li>"
-        f"<li><strong>User:</strong> {html.escape(user_email or 'anonymous')}</li>"
-        f"</ul>"
-    )
-    if trace_preview:
-        safe = html.escape(trace_preview).replace("\n", "<br>")
-        html_body += f"<p><strong>Stack trace:</strong></p><pre>{safe}</pre>"
-    html_body += f'<p><a href="{html.escape(link)}">Open error logs in AIVA</a></p>'
+    content = {
+        "title": "Unhandled server error",
+        "intro": (
+            "An unhandled error was recorded on the AIVA server. Please review the "
+            "details below and investigate at your earliest convenience."
+        ),
+        "details": [
+            ("Type", exception_type),
+            ("Message", exception_message or "—"),
+            ("Where", where or "—"),
+            ("Status", str(status_code or "—")),
+            ("Request ID", request_id or "—"),
+            ("User", user_email or "anonymous"),
+        ],
+        "block_label": "Stack trace" if trace_preview else None,
+        "block_text": trace_preview or None,
+        "cta_label": "Open error logs in AIVA",
+        "cta_url": link,
+    }
 
     msg = EmailMessage(
         to=recipients,
         subject=f"[AIVA] Error: {exception_type} at {route}",
-        text_body=text,
-        html_body=html_body,
+        text_body=render_text(**content),
+        html_body=render_email(
+            preheader=f"{exception_type} at {route}",
+            eyebrow="System alert",
+            **content,
+        ),
     )
     try:
         ok = await get_mail_sender().send(msg)

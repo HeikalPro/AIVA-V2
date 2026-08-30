@@ -80,6 +80,13 @@ class Settings(BaseSettings):
     # Suppress duplicate alerts for the same (exception type, route) within this window.
     notify_errors_throttle_seconds: int = 300
     frontend_url: str = "http://localhost:5173"
+    # Logos shown in the email letterhead. Must be publicly reachable URLs — mail
+    # clients fetch them over the internet, so localhost only works in local tests.
+    # Empty falls back to <frontend_url>/GoChat247_blue_transparent.png.
+    email_logo_url: str = ""
+    # Optional AIVA wordmark artwork; empty renders the wordmark as styled text,
+    # which also keeps the brand readable when a client blocks remote images.
+    email_aiva_logo_url: str = ""
     zoho_mail_api_base: str = "https://mail.zoho.com/api"
     zoho_mail_from_address: str = ""
     zoho_mail_account_id: str | None = None

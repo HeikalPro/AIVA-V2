@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import hashlib
-import html
 import logging
 import secrets
 from datetime import datetime, timedelta, timezone
@@ -22,6 +21,7 @@ from backend.database import Database
 from backend.exceptions import BadRequestError, UnauthorizedError
 from backend.services.auth_audit import log_auth_event
 from backend.services.email import EmailMessage, get_mail_sender
+from backend.services.email.templates import render_email, render_text
 from backend.services.password_policy import validate_password
 
 _log = logging.getLogger(__name__)
@@ -117,24 +117,38 @@ async def _create_and_send_otp(
 
     app_name = settings.app_name
     if purpose == OTP_PURPOSE_SIGNUP:
-        subject = f"{app_name} — Verify your email"
-        intro = "Use this code to verify your email address:"
+        subject = f"{app_name} — Verify your email address"
+        title = "Verify your email address"
+        intro = (
+            "Thank you for registering. Please use the verification code below to "
+            "confirm your email address and activate your account."
+        )
     else:
         subject = f"{app_name} — Password reset code"
-        intro = "Use this code to reset your password:"
+        title = "Reset your password"
+        intro = (
+            "We received a request to reset the password for your account. "
+            "Please use the verification code below to continue."
+        )
 
-    text_body = (
-        f"{intro}\n\n"
-        f"Code: {otp}\n\n"
-        f"This code expires in {settings.otp_expiry_minutes} minutes.\n"
-        f"If you did not request this, you can ignore this email.\n"
+    minutes = settings.otp_expiry_minutes
+    note = (
+        f"For your security, this code expires in {minutes} minutes and can be used once. "
+        "If you did not request it, no action is required — you may safely ignore this email."
     )
-    html_body = (
-        f"<p>{html.escape(intro)}</p>"
-        f"<p style='font-size:24px;font-weight:bold;letter-spacing:4px'>{html.escape(otp)}</p>"
-        f"<p>This code expires in {settings.otp_expiry_minutes} minutes.</p>"
+    content = {
+        "title": title,
+        "intro": intro,
+        "callout": otp,
+        "callout_label": "Verification code",
+        "note": note,
+    }
+    msg = EmailMessage(
+        to=[email],
+        subject=subject,
+        text_body=render_text(**content),
+        html_body=render_email(preheader=f"Your {app_name} verification code", eyebrow="Security", **content),
     )
-    msg = EmailMessage(to=[email], subject=subject, text_body=text_body, html_body=html_body)
     sent = await get_mail_sender().send(msg)
     if not sent:
         _log.error("Failed to send OTP email to %s", email)
