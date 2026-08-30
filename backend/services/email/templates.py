@@ -24,6 +24,7 @@ _MONO = "'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace"
 
 # Served from the frontend's public/ folder (Vite copies it to the site root).
 _GOCHAT_LOGO_FILE = "GoChat247_blue_transparent.png"
+_GOAI_LOGO_FILE = "GoAI_logo.png"
 
 
 def _gochat_logo_url() -> str:
@@ -32,6 +33,14 @@ def _gochat_logo_url() -> str:
     if configured:
         return configured
     return f"{settings.frontend_url.rstrip('/')}/{_GOCHAT_LOGO_FILE}"
+
+
+def _goai_logo_url() -> str:
+    settings = get_settings()
+    configured = (settings.email_footer_logo_url or "").strip()
+    if configured:
+        return configured
+    return f"{settings.frontend_url.rstrip('/')}/{_GOAI_LOGO_FILE}"
 
 
 def _aiva_logo_url() -> str:
@@ -90,16 +99,16 @@ def _footer_html(footer_note: str | None) -> str:
     extra = ""
     if footer_note:
         extra = (
-            f'<p style="margin:0 0 12px;font-family:{_FONT};font-size:12px;'
+            f'<p style="margin:0 0 8px;font-family:{_FONT};font-size:12px;'
             f'line-height:18px;color:{MUTED};">{html.escape(footer_note)}</p>'
         )
-    logo = _gochat_logo_url()
+    goai = _goai_logo_url()
     return f"""\
 <tr>
 <td align="center" style="padding:24px 32px 28px;border-top:1px solid {BORDER};background-color:#fafbfc;">
-<img src="{html.escape(logo, quote=True)}" width="44" height="44" alt="GoChat247"
-style="display:block;width:44px;height:44px;margin:0 auto 12px;border:0;outline:none;
-text-decoration:none;font-family:{_FONT};font-size:10px;line-height:14px;color:{BRAND_NAVY};">
+<img src="{html.escape(goai, quote=True)}" width="170" alt="GoAI &mdash; Elevate your business with AI"
+style="display:block;width:170px;height:auto;margin:0 auto 14px;border:0;outline:none;
+text-decoration:none;font-family:{_FONT};font-size:11px;line-height:16px;color:{MUTED};">
 {extra}
 <p style="margin:0 0 8px;font-family:{_FONT};font-size:12px;line-height:18px;color:{MUTED};">
 This is an automated message from AIVA. Please do not reply to this email.

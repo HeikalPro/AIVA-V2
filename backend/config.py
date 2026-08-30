@@ -87,6 +87,9 @@ class Settings(BaseSettings):
     # Optional AIVA wordmark artwork; empty renders the wordmark as styled text,
     # which also keeps the brand readable when a client blocks remote images.
     email_aiva_logo_url: str = ""
+    # GoAI lockup shown at the foot of every email.
+    # Empty falls back to <frontend_url>/GoAI_logo.png.
+    email_footer_logo_url: str = ""
     zoho_mail_api_base: str = "https://mail.zoho.com/api"
     zoho_mail_from_address: str = ""
     zoho_mail_account_id: str | None = None
