@@ -247,7 +247,10 @@ async def get_user(
 async def update_user(
     user_id: int,
     body: UserUpdate,
-    current: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN))],
+    current: Annotated[
+        UserContext,
+        Depends(require_roles(ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_ACCOUNT_MANAGER)),
+    ],
     db: DbDep,
 ) -> UserOut:
     old = await db.fetch_one("SELECT * FROM AIVA_users WHERE id = :id", {"id": user_id})
@@ -255,6 +258,8 @@ async def update_user(
         raise NotFoundError("User not found")
     if not current.is_super_admin and int(old["organization_id"]) != current.organization_id:
         raise ForbiddenError("Cannot update user in another organization")
+    if not current.is_super_admin and not current.is_org_admin:
+        await _require_managed_by_account_manager(db, current, user_id)
 
     updates = body.model_dump(exclude_unset=True)
     updates.pop("role_id", None)
