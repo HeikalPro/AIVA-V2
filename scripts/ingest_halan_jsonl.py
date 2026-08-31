@@ -1,11 +1,11 @@
-"""Ingest halan_records_v1 JSONL into the Hallan corpus (append, not reindex).
+"""Ingest halan_records_v1 JSONL into the Halan corpus (append, not reindex).
 
 Usage:
   python scripts/ingest_halan_jsonl.py path/to/halan_cash_scripts.jsonl
   python scripts/ingest_halan_jsonl.py path/to/file.jsonl --dry-run
   python scripts/ingest_halan_jsonl.py path/to/file.jsonl --no-fix-ocr
 
-Expects one JSON object per line (adapter halan_records_v1). Default corpus is Hallan KB.
+Expects one JSON object per line (adapter halan_records_v1). Default corpus is Halan KB.
 """
 from __future__ import annotations
 
@@ -91,7 +91,7 @@ def _wait_job(svc: EmbeddingService, job_id: str, *, timeout_sec: int = 3600) ->
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Ingest halan_records_v1 JSONL into Hallan KB")
+    parser = argparse.ArgumentParser(description="Ingest halan_records_v1 JSONL into Halan KB")
     parser.add_argument("jsonl", type=Path, help="Path to .jsonl file")
     parser.add_argument("--corpus-id", default=DEFAULT_CORPUS_HEX, help="Corpus hex id")
     parser.add_argument("--dry-run", action="store_true", help="Validate only, do not ingest")
