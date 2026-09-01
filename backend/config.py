@@ -27,6 +27,9 @@ class Settings(BaseSettings):
     oracle_wallet_password: str | None = None
     oracle_pool_min: int = 2
     oracle_pool_max: int = 20
+    # Ping connections idle longer than this (seconds) before handing them out, so a
+    # connection dropped while idle surfaces as a retry instead of a request failure.
+    oracle_ping_interval: int = 10
     oracle_call_timeout_ms: int | None = None
 
     jwt_secret_key: str = "change-me-to-a-long-random-secret"

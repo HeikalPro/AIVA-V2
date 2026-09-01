@@ -112,6 +112,21 @@ def create_app() -> FastAPI:
     async def http_exception_handler(_request: Request, exc: HTTPException) -> JSONResponse:
         return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
 
+    @app.exception_handler(Exception)
+    async def unhandled_exception_handler(request: Request, exc: Exception) -> JSONResponse:
+        """Log the traceback and name the failure.
+
+        Without this an unhandled error becomes a bare 500 whose body is just
+        "Internal Server Error", which tells neither the caller nor the log what broke.
+        Endpoints that stream (chat) only log errors raised *inside* the generator, so a
+        failure during setup would otherwise vanish entirely.
+        """
+        _log.exception("Unhandled error on %s %s", request.method, request.url.path)
+        return JSONResponse(
+            status_code=500,
+            content={"detail": f"{type(exc).__name__}: {exc}"[:500] or "Internal Server Error"},
+        )
+
     @app.get("/health")
     async def health() -> dict[str, str]:
         return {"status": "ok"}

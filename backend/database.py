@@ -30,6 +30,7 @@ class Database:
             "dsn": s.oracle_dsn,
             "min": s.oracle_pool_min,
             "max": s.oracle_pool_max,
+            "ping_interval": s.oracle_ping_interval,
         }
         if s.oracle_wallet_dir:
             kwargs["config_dir"] = s.oracle_wallet_dir
