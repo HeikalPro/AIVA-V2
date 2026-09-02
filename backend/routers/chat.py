@@ -28,7 +28,11 @@ from backend.services.chat_queues import (
     resolve_search_verticals_for_session,
     session_out_from_row,
 )
-from backend.services.kb_queue_groups import dumps_active_queues_json, list_queue_catalog
+from backend.services.kb_queue_groups import (
+    dumps_active_queues_json,
+    list_queue_catalog,
+    parse_active_queues_json,
+)
 from backend.services.widget_features import parse_widget_features
 from backend.config import get_settings
 from backend.services.rag import format_llm_error, load_llm_config, sanitize_kb_source_url, stream_rag_response
@@ -337,6 +341,7 @@ async def list_message_ratings(
                cm.rated_at,
                cs.account_id,
                cs.user_id AS agent_user_id,
+               cs.active_queues,
                a.name AS account_name,
                a.organization_id,
                o.name AS organization_name,
@@ -376,6 +381,7 @@ async def list_message_ratings(
                 rating=rating,
                 feedback=data.get("feedback"),
                 rated_at=data.get("rated_at"),
+                active_queues=parse_active_queues_json(data.get("active_queues")) or [],
             )
         )
     return out
