@@ -17,6 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from embedding_service.config import get_settings
 from embedding_service.service import EmbeddingService
 
 DEFAULT_CORPUS_HEX = "091B8D61C54645EF86DF0D78E0B9AE0C"
@@ -97,6 +98,9 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", help="Validate only, do not ingest")
     parser.add_argument("--no-fix-ocr", action="store_true", help="Skip known OCR patches")
     parser.add_argument("--wait", action="store_true", help="Poll until job completes (inline mode)")
+    parser.add_argument("--inline", action="store_true",
+                        help="Run the ingest in-process instead of pushing to Redis "
+                             "(use when no queue worker is running, e.g. from a laptop)")
     args = parser.parse_args()
 
     if not args.jsonl.is_file():
@@ -107,7 +111,12 @@ def main() -> None:
         print(f"Dry run OK — {len(lines)} lines ready for corpus {args.corpus_id}")
         return
 
-    svc = EmbeddingService()
+    if args.inline:
+        settings = get_settings()
+        settings.redis_url = None
+        svc = EmbeddingService(settings)
+    else:
+        svc = EmbeddingService()
     try:
         result = svc.ingest(args.corpus_id, lines=lines)
         print(f"Ingest started: job_id={result['job_id']} mode={result.get('mode')}")
