@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+import asyncio
 import logging
+import re
 import time
 
 from backend.auth.role_constants import (
     ROLE_DEVELOPER,
-    ROLE_ORG_ADMIN,
     ROLE_SUPER_ADMIN,
 )
 from backend.config import get_settings
@@ -16,8 +17,8 @@ from backend.services.email.templates import build_message
 
 _log = logging.getLogger(__name__)
 
-# Roles that receive server-error alerts.
-ERROR_ALERT_ROLES = (ROLE_SUPER_ADMIN, ROLE_ORG_ADMIN, ROLE_DEVELOPER)
+# Roles that receive server-error alerts (super admins + developers only).
+ERROR_ALERT_ROLES = (ROLE_SUPER_ADMIN, ROLE_DEVELOPER)
 
 
 async def fetch_role_emails(
@@ -70,6 +71,70 @@ async def fetch_developer_emails(
         organization_id=organization_id,
         exclude_user_id=exclude_user_id,
     )
+
+
+async def _error_alert_recipients(organization_id: int | None) -> list[str]:
+    """Alert recipients: the org the error belongs to, plus the platform org.
+
+    Errors that can't be mapped to an org (anonymous traffic, or a widget whose
+    corpus matches no account) fall back to the platform org instead of querying
+    unscoped — otherwise one tenant's staff would receive another tenant's traces.
+    Leaving ``notify_platform_org_id`` unset keeps the old unscoped behaviour.
+    """
+    platform_org_id = get_settings().notify_platform_org_id
+    org_ids: list[int | None] = []
+    if organization_id is not None:
+        org_ids.append(organization_id)
+    if platform_org_id is not None and platform_org_id != organization_id:
+        org_ids.append(platform_org_id)
+    if not org_ids:
+        org_ids.append(None)
+
+    emails: list[str] = []
+    for org_id in org_ids:
+        for email in await fetch_role_emails(ERROR_ALERT_ROLES, organization_id=org_id):
+            if email not in emails:
+                emails.append(email)
+    return emails
+
+
+async def _send_alert(
+    *,
+    subject: str,
+    preheader: str,
+    eyebrow: str,
+    content: dict,
+    organization_id: int | None,
+) -> DeveloperNotifyOut:
+    """Resolve recipients, send one alert email, and report what happened. Never raises."""
+    try:
+        recipients = await _error_alert_recipients(organization_id)
+    except Exception:
+        _log.exception("Failed to resolve alert recipients")
+        return DeveloperNotifyOut(status="failed", message="Could not resolve recipients.")
+
+    if not recipients:
+        _log.warning("No admin/developer recipients for alert %r (org=%s)", subject, organization_id)
+        return DeveloperNotifyOut(
+            status="no_recipients",
+            message="No active admins or developers to email.",
+        )
+
+    msg = build_message(to=recipients, subject=subject, preheader=preheader, eyebrow=eyebrow, **content)
+    try:
+        ok = await get_mail_sender().send(msg)
+    except Exception:
+        _log.exception("Failed to send alert email %r", subject)
+        ok = False
+
+    if ok:
+        _log.info("Sent alert %r to %s", subject, ", ".join(recipients))
+        return DeveloperNotifyOut(
+            status="sent",
+            message=f"Error alert sent to: {', '.join(recipients)}",
+            recipients=recipients,
+        )
+    return DeveloperNotifyOut(status="failed", message="Error alert email was not sent.", recipients=recipients)
 
 
 async def _creator_display_name(user_id: int) -> str:
@@ -322,23 +387,6 @@ async def notify_error_admins_developers(
         )
         return DeveloperNotifyOut(status="disabled", message="Throttled duplicate error alert.")
 
-    try:
-        recipients = await fetch_role_emails(ERROR_ALERT_ROLES, organization_id=organization_id)
-    except Exception:
-        _log.exception("Failed to resolve error-alert recipients")
-        return DeveloperNotifyOut(status="failed", message="Could not resolve recipients.")
-
-    if not recipients:
-        _log.warning(
-            "No admin/developer recipients for error alert (%s); org=%s",
-            exception_type,
-            organization_id,
-        )
-        return DeveloperNotifyOut(
-            status="no_recipients",
-            message="No active admins or developers to email.",
-        )
-
     link = _frontend_link("/logs")
     where = f"{http_method or ''} {path or route}".strip()
     trace_preview = (stack_trace or "").strip()
@@ -365,24 +413,124 @@ async def notify_error_admins_developers(
         "cta_url": link,
     }
 
-    msg = build_message(
-        to=recipients,
+    return await _send_alert(
         subject=f"[AIVA] Error: {exception_type} at {route}",
         preheader=f"{exception_type} at {route}",
         eyebrow="System alert",
-        **content,
+        content=content,
+        organization_id=organization_id,
     )
-    try:
-        ok = await get_mail_sender().send(msg)
-    except Exception:
-        _log.exception("Failed to send error alert email")
-        ok = False
 
-    if ok:
-        _log.info("Sent error alert to %s", ", ".join(recipients))
+
+_URL_HOST_RE = re.compile(r"https?://([^/\s'\"]+)")
+_STATUS_RE = re.compile(r"\b([45]\d{2})\b")
+
+
+def _widget_error_label(error_message: str | None) -> str:
+    """Short, stable label for a widget failure — used in the subject and as the
+    throttle key, so an embeddings 503 and an LLM 401 stay separate buckets."""
+    text = (error_message or "").strip()
+    if not text:
+        return "Widget failure"
+    status = _STATUS_RE.search(text)
+    host = _URL_HOST_RE.search(text)
+    if status and host:
+        return f"{status.group(1)} from {host.group(1)}"
+    if host:
+        return f"Failure calling {host.group(1)}"
+    if status:
+        return f"HTTP {status.group(1)}"
+    return text.splitlines()[0][:60]
+
+
+async def notify_widget_failure(
+    *,
+    corpus_id: str | None,
+    account_id: int | None,
+    account_name: str | None,
+    organization_id: int | None,
+    query_text: str | None,
+    error_message: str | None,
+    stage: str = "Knowledge base retrieval",
+    force: bool = False,
+) -> DeveloperNotifyOut:
+    """Email admins + developers when a customer-facing widget turn fails.
+
+    These are degraded turns rather than crashes — the visitor asked something and
+    got no answer — so they have their own switch (``notify_widget_errors_enabled``)
+    and can be muted without losing server-error alerts.
+    """
+    settings = get_settings()
+    if not force and not settings.notify_widget_errors_enabled:
         return DeveloperNotifyOut(
-            status="sent",
-            message=f"Error alert sent to: {', '.join(recipients)}",
-            recipients=recipients,
+            status="disabled",
+            message="Widget failure notifications are turned off in server settings.",
         )
-    return DeveloperNotifyOut(status="failed", message="Error alert email was not sent.", recipients=recipients)
+
+    label = _widget_error_label(error_message)
+    route = f"widget:{corpus_id or 'unknown'}"
+    if not force and _error_alert_throttled(label, route, settings.notify_errors_throttle_seconds):
+        _log.info(
+            "Throttled widget alert for %s on %s (within %ss window)",
+            label,
+            route,
+            settings.notify_errors_throttle_seconds,
+        )
+        return DeveloperNotifyOut(status="disabled", message="Throttled duplicate widget alert.")
+
+    question = (query_text or "").strip()
+    if len(question) > 500:
+        question = question[:500] + "..."
+    detail = (error_message or "").strip().splitlines()
+    detail_line = detail[0][:300] if detail else "—"
+
+    account_label = account_name or (f"#{account_id}" if account_id is not None else "—")
+    content = {
+        "title": "Widget chat failure",
+        "intro": (
+            "A chat turn failed in the AIVA widget, so the visitor did not get an "
+            "answer. The details are summarised below."
+        ),
+        "details": [
+            ("Stage", stage),
+            ("Account", account_label),
+            ("Corpus", corpus_id or "—"),
+            ("Error", detail_line),
+        ],
+        "block_label": "Customer question" if question else None,
+        "block_text": question or None,
+        "cta_label": "Open error logs in AIVA",
+        "cta_url": _frontend_link("/logs"),
+    }
+
+    return await _send_alert(
+        subject=f"[AIVA] Widget failure: {label}",
+        preheader=f"{stage} failed for {account_label}",
+        eyebrow="Widget alert",
+        content=content,
+        organization_id=organization_id,
+    )
+
+
+# Strong references to fire-and-forget alert tasks so they aren't GC'd mid-flight.
+_alert_tasks: set[asyncio.Task] = set()
+
+
+def _spawn_alert(coro) -> None:
+    try:
+        task = asyncio.create_task(coro)
+    except RuntimeError:  # No running loop (shouldn't happen inside a request).
+        coro.close()
+        return
+    _alert_tasks.add(task)
+    task.add_done_callback(_alert_tasks.discard)
+
+
+def schedule_error_alert(**kwargs) -> None:
+    """Send the admin/developer error alert without delaying the caller's response."""
+    _spawn_alert(notify_error_admins_developers(**kwargs))
+
+
+def schedule_widget_failure_alert(**kwargs) -> None:
+    """Send the widget-failure alert without delaying the widget's logging ack."""
+    _spawn_alert(notify_widget_failure(**kwargs))

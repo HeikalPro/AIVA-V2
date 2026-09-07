@@ -82,6 +82,14 @@ class Settings(BaseSettings):
     notify_errors_enabled: bool = False
     # Suppress duplicate alerts for the same (exception type, route) within this window.
     notify_errors_throttle_seconds: int = 300
+    # Email the same recipients when a customer-facing widget turn fails (KB
+    # retrieval or LLM error). Separate switch so widget noise can be muted
+    # without losing server-error alerts.
+    notify_widget_errors_enabled: bool = False
+    # Always copy this org's admins/developers on error alerts, whichever tenant
+    # the error belongs to, and use it as the recipient scope when the org is
+    # unknown. Unset keeps the legacy unscoped lookup.
+    notify_platform_org_id: int | None = None
     frontend_url: str = "http://localhost:5173"
     # Logos shown in the email letterhead. Must be publicly reachable URLs — mail
     # clients fetch them over the internet, so localhost only works in local tests.
