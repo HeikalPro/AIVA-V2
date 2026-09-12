@@ -203,8 +203,11 @@ def check_oracle(settings: Settings, timeout: float = 20.0) -> CheckResult:
 
 
 def check_app(url: str, timeout: float = 10.0) -> CheckResult:
-    label = "Backend app"
-    hint = "The backend is not answering. Check its tmux session (tmux attach -t aiva) and restart it."
+    label = "AIVA app"
+    hint = (
+        "AIVA is not answering at this address. Check its tmux session (tmux attach -t aiva): "
+        "the backend - and the web UI, if this is the UI's address - must be running."
+    )
     try:
         with urllib.request.urlopen(url, timeout=timeout) as resp:
             code = resp.status
