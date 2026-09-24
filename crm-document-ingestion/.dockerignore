@@ -1,0 +1,16 @@
+# Only pyproject.toml, README.md, src/ and wheels/ are needed in the build context.
+.venv/
+.env
+.env.*
+!.env.example
+.git/
+**/__pycache__/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+tests/
+build/
+dist/
+input/
+output/
