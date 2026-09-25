@@ -63,6 +63,39 @@ class DriveItem(BaseModel):
     quick_xor_hash: str | None = None
     download_url: str | None = None  # pre-authenticated, short-lived (@microsoft.graph.downloadUrl)
     raw: dict[str, Any] = Field(default_factory=dict, repr=False)  # the Graph JSON, for anything not mapped
+    # Facets used by folder listings (all False/None for items built without them).
+    is_folder: bool = False  # the "folder" facet
+    child_count: int | None = None  # folder.childCount
+    is_root: bool = False  # the "root" facet: the drive's top-level folder
+    is_deleted: bool = False  # the "deleted" facet (delta responses)
+    parent_id: str | None = None  # parentReference.id
+
+
+class Site(BaseModel):
+    """A SharePoint site (https://learn.microsoft.com/graph/api/resources/site)."""
+
+    model_config = ConfigDict(frozen=True)
+
+    id: str  # "<hostname>,<site collection id>,<web id>"
+    name: str | None = None
+    display_name: str | None = None
+    web_url: str | None = None
+    hostname: str | None = None  # siteCollection.hostname
+    raw: dict[str, Any] = Field(default_factory=dict, repr=False)
+
+
+class Drive(BaseModel):
+    """A document library or OneDrive (https://learn.microsoft.com/graph/api/resources/drive)."""
+
+    model_config = ConfigDict(frozen=True)
+
+    id: str
+    name: str
+    drive_type: str | None = None  # documentLibrary | business | personal
+    web_url: str | None = None
+    description: str | None = None
+    site_id: str | None = None  # the site it was listed from, when known
+    raw: dict[str, Any] = Field(default_factory=dict, repr=False)
 
 
 class SourceMetadata(BaseModel):

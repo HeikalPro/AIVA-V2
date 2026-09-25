@@ -35,8 +35,27 @@ class ItemNotFoundError(GraphAPIError):
     """The drive item does not exist or the app cannot see it (HTTP 404)."""
 
 
+class DriveNotFoundError(ItemNotFoundError):
+    """No document library of the site matches the requested name; `available` lists the
+    names the app can see."""
+
+    def __init__(self, name: str, available: list[str]) -> None:
+        self.name = name
+        self.available = list(available)
+        found = ", ".join(self.available) or "none"
+        super().__init__(404, f"no document library named {name!r} (found: {found})", code="driveNotFound")
+
+
 class DownloadError(IngestionError):
     """The file content could not be downloaded (too large, not a file, network failure)."""
+
+
+class DownloadLimitError(DownloadError):
+    """The file is larger than the download limit (declared size, Content-Length or streamed bytes)."""
+
+    def __init__(self, message: str, *, limit: int) -> None:
+        self.limit = limit
+        super().__init__(message)
 
 
 class DocumentExtractionFailed(IngestionError):

@@ -4,3 +4,7 @@ __pycache__/
 .env
 zoho_auth/.env
 zoho_auth/.zoho_login_tokens.json
+# Document intelligence: uploaded client documents (this repository is public) and the
+# proprietary document-extractor wheel used by the Docker build
+data/doc_intel/
+wheels/*.whl

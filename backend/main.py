@@ -21,6 +21,7 @@ from slowapi.middleware import SlowAPIMiddleware
 
 from backend.config import get_settings
 from backend.dependencies import _database_singleton
+from backend.doc_intel.runtime import start_doc_intel, stop_doc_intel
 from backend.services.audit_schema import ensure_audit_schema
 from backend.services.account_schema import ensure_account_schema
 from backend.services.account_updates_schema import ensure_account_updates_schema
@@ -68,6 +69,8 @@ async def lifespan(app: FastAPI):
     embedding_svc = EmbeddingService()
     app.state.embedding_service = embedding_svc
     app.state.database = db
+    # Document intelligence: read-only install check + import worker. No DDL; never raises.
+    doc_intel = await start_doc_intel(app, db, embedding_svc)
 
     # Refresh SovereignEG model prices daily at 22:00 Africa/Cairo (warms cache on startup too).
     catalog_task = start_catalog_scheduler()
@@ -77,6 +80,7 @@ async def lifespan(app: FastAPI):
         yield
     finally:
         catalog_task.cancel()
+        await stop_doc_intel(doc_intel)
         embedding_svc.close()
         await db.close_pool()
         _log.info("AIVA backend shutdown complete")
