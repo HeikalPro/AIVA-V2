@@ -1,0 +1,12 @@
+# docker compose run --rm crm-ingest file /data/contract.docx --crm-only > out.json
+# Put input documents in ./input (mounted read-only; write results to stdout).
+# Settings (Microsoft credentials, CRM_*) come from .env when it exists.
+services:
+  crm-ingest:
+    build: .
+    image: crm-ingest:latest
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      - ./input:/data:ro

@@ -1,0 +1,53 @@
+# Document intelligence (knowledge-document import, SharePoint sync): extra packages for the backend environment.
+# See docs/document-intelligence-plan.md, section 6 (migration plan).
+#
+# 1) document-extractor is a proprietary GoChat247 library and is NOT on PyPI. Never let pip look
+#    it up in a package index: a public package with the same name would be installed instead
+#    (dependency confusion). Install the pinned version from the local wheel only, with no index
+#    and no dependencies:
+#
+#      pip install --no-index --no-deps --find-links wheels "document-extractor==0.1.0.dev0"
+#
+#    wheels/ must hold document_extractor-0.1.0.dev0-py3-none-any.whl (git-ignored). Build it with
+#      python -m pip wheel --no-deps --wheel-dir wheels <path-to-text_extraction_and_ocr>
+#
+# 2) Then its runtime dependencies, listed below:
+#
+#      pip install -r backend/requirements-docintel.txt
+#
+#    They mirror the wheel metadata of document-extractor 0.1.0.dev0: the base requirements plus
+#    the [ocr] extra. Deliberately NOT installed:
+#    - PyMuPDF (the [mupdf] extra) is AGPL-3.0. AIVA uses the pdfium engine and renders pages
+#      with pypdfium2.
+#    - The [intelligence], [vision-*], [ocr-azure] and [llamaparse] extras send document data
+#      to external services.
+#
+# 3) OCR needs the Tesseract binary with Arabic and English data (Debian/Ubuntu):
+#
+#      sudo apt-get install tesseract-ocr tesseract-ocr-ara tesseract-ocr-eng
+#
+# 4) The SharePoint / OneDrive sync (Flow 2) also needs crm-document-ingestion, which lives in this
+#    repository. Install it from the local path, WITHOUT dependencies:
+#
+#      pip install --no-deps ./crm-document-ingestion
+#
+#    Its dependencies are document-extractor (step 1) plus pydantic, pydantic-settings and httpx,
+#    which backend/requirements.txt already installs. --no-deps also keeps pip from looking
+#    document-extractor up in a package index. msal (its optional [msal] extra) is NOT needed:
+#    AIVA requests Microsoft tokens itself, over httpx.
+#
+#    The Docker image does steps 1-4 when built with --build-arg WITH_DOC_INTEL=1.
+
+# document-extractor 0.1.0.dev0: base requirements
+beautifulsoup4>=4.12
+charset-normalizer>=3.0
+lxml>=5.0
+mistune>=3.0
+pillow>=10.0
+pypdfium2>=5.0
+python-calamine>=0.3
+python-docx>=1.1
+striprtf>=0.0.26
+
+# document-extractor[ocr]
+pytesseract>=0.3.10

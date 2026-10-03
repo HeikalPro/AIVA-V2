@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crm-document-ingestion"
+version = "0.1.0"
+description = "CRM document ingestion: Microsoft Graph (OneDrive/SharePoint) -> document-extractor -> CRM entities."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # The shared extraction library. Consumed only through its public API; never modified here.
+    "document-extractor",
+    "pydantic>=2.6",
+    "pydantic-settings>=2.2",
+    "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+# Client-credentials auth against Entra ID. Only needed once real Microsoft credentials exist.
+msal = ["msal>=1.28"]
+dev = [
+    "pytest>=8",
+    "python-docx>=1.1",
+    "mypy>=1.10",
+    "ruff>=0.5",
+]
+
+[project.scripts]
+crm-ingest = "crm_ingestion.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+crm_ingestion = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+plugins = ["pydantic.mypy"]
+mypy_path = "src"
+
+[[tool.mypy.overrides]]
+module = ["document_extractor", "document_extractor.*", "msal", "docx"]
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"

@@ -20,3 +20,13 @@ zoho_auth/.env
 zoho_auth/.zoho_login_tokens.json
 **/.venv
 **/node_modules
+# Document intelligence: uploaded client documents must never be baked into an image
+data/doc_intel/
+# crm-document-ingestion: packaging leftovers and its local .env (venv and caches are covered above)
+**/*.egg-info
+crm-document-ingestion/.env
+# The WITH_DOC_INTEL=1 build installs crm-document-ingestion from its source: pip needs src/,
+# pyproject.toml and README.md (the package readme), not the tests or a local wheels/ folder.
+crm-document-ingestion/tests/
+crm-document-ingestion/wheels/
+!crm-document-ingestion/README.md
