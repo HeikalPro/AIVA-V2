@@ -1,0 +1,149 @@
+# document-extractor settings
+#
+# Point the library at this file with the environment variable
+#     DOCUMENT_EXTRACTOR_CONFIG=/path/to/document_extractor.toml
+# (picked up by DocumentExtractor() and extract()), or in code with
+#     DocumentExtractor(config="document_extractor.toml").
+#
+# Every key is optional: delete a line, or leave it commented out, and the library
+# default applies. Edits take effect on the next document; a file that does not
+# parse is rejected and the last good settings stay in use (a warning is logged).
+# Check a file with:  python -m document_extractor config check document_extractor.toml
+
+[extraction]
+mode = "balanced"                 # fast (no OCR) | balanced | accurate: presets for the settings left unset below
+# ocr = "auto"                    # auto | never | always; unset: the mode decides
+# region_ocr = true               # OCR pictures inside text pages; unset: the mode decides
+ocr_languages = ["eng"]           # ISO or Tesseract codes, e.g. ["ar", "en"]
+ocr_engine = "tesseract"          # tesseract | paddleocr | azure
+ocr_dpi = 300                     # render resolution of scanned PDF pages
+ocr_min_confidence = 0.45         # below this, OCR text is flagged low_ocr_confidence
+# images = "extract"              # skip | extract | lazy; unset: the mode decides
+# image_ocr = true                # OCR pictures in Office files; unset: the mode decides
+describe_images = false           # describe pictures with a vision model (network)
+# vision_provider = "anthropic"   # anthropic | openai | a registered provider name
+# vision_model = "claude-sonnet-5"  # the provider's model; unset: the provider's default
+max_described_images = 50         # per document
+max_image_ocr = 100               # pictures OCRed per document
+# classify_images = false         # photo / chart / screenshot ... per picture; unset: the mode decides
+# tables = "auto"                 # skip | auto | ml; unset: the mode decides
+# layout = "heuristic"            # none | heuristic | ml; unset: the mode decides
+keep_furniture = false            # keep page headers and footers in doc.text
+dehyphenate = true                # join words split across lines
+# max_pages = 500                 # pages read per document; unset: limits.max_pages
+pdf_engine = "auto"               # auto | pdfium | mupdf (AGPL)
+backend = "native"                # native | docling | llamaparse | a registered backend
+isolate = false                   # parse in a child process (untrusted input)
+# timeout = 600.0                 # seconds per document; unset: 5 x limits.subprocess_timeout
+workers = 1                       # processes for scanned PDF pages
+
+# ---- OCR pipeline -------------------------------------------------------------------
+
+[ocr.preprocessing]
+enabled = false                   # master switch: false leaves the image exactly as before
+upscale_factor = 2.0              # the most an image is enlarged (1 to 8)
+upscale_mode = "auto"             # auto: only when the text is small | always: every image
+target_text_height_px = 32        # auto mode enlarges until text lines are this tall (8 to 200)
+grayscale = true                  # convert to grey before OCR
+contrast_enhancement = true       # CLAHE local contrast, for faint text
+clahe_clip_limit = 2.0            # contrast strength (0.1 to 40)
+denoise = true                    # non-local means denoising
+denoise_strength = 7.0            # higher removes more noise and more detail (0 to 50)
+sharpen = true                    # unsharp mask
+sharpen_amount = 0.6              # sharpening strength (0 to 5)
+
+[ocr.segmentation]
+enabled = false                   # master switch: split an image of several app screens
+split_screens = true              # screens side by side, stacked or in a grid
+min_gutter_px = 12                # narrowest plain gap between two screens (1 to 1000)
+min_segment_px = 120              # a part smaller than this is not a screen (16 to 100000)
+max_segments = 12                 # more screens than this: the image is left whole (1 to 64)
+
+[ocr.layout]
+detect_regions = false            # label regions: title, button, input, text, status_bar, nav_bar
+preserve_coordinates = true       # keep a bbox on every OCR block
+
+# ---- OCR engines --------------------------------------------------------------------
+
+[engines.tesseract]
+# cmd = "C:/Program Files/Tesseract-OCR/tesseract.exe"  # unset: TESSERACT_CMD, then PATH
+# tessdata = "C:/Users/me/AppData/Local/tessdata"        # unset: TESSDATA_PREFIX
+
+[engines.paddleocr]
+# model_dir = "D:/models/paddleocr"         # unset: PADDLE_OCR_MODEL_DIR, then ~/.paddlex/official_models
+# allow_download = false                    # fetch missing models once; unset: PADDLE_OCR_ALLOW_DOWNLOAD
+# device = "cpu"                            # cpu | gpu:0
+# det_model = "PP-OCRv5_mobile_det"         # detection model
+# rec_model = "arabic_PP-OCRv5_mobile_rec"  # force one recognition model; unset: chosen from the languages
+# cpu_threads = 4                           # unset: PaddlePaddle's default
+
+[engines.azure]
+# endpoint = "https://<resource>.cognitiveservices.azure.com/"  # the key stays in AZURE_DI_KEY
+
+# ---- Limits and text --------------------------------------------------------------------
+
+[limits]
+max_bytes = 314572800             # largest input file (300 MB)
+max_pages = 5000
+max_rows_per_sheet = 200000
+max_cells_per_sheet = 5000000
+max_zip_entries = 10000
+max_zip_uncompressed = 1073741824  # 1 GB unpacked, against zip bombs
+max_zip_ratio = 200.0
+max_image_pixels = 80000000
+max_render_pixels = 30000000      # also caps an OCR upscale
+max_regions_per_page = 8
+subprocess_timeout = 120.0        # seconds for LibreOffice and other subprocesses
+
+[arabic]
+normalize_digits = false          # Arabic-Indic digits to Western
+strip_tatweel = false
+strip_diacritics = false
+
+# ---- Document intelligence (pip install document-extractor[intelligence]) ------------------------
+# A language model classifies the document, proposes OCR corrections, finds metadata,
+# extracts fields and writes a summary, through Microsoft Semantic Kernel. Results go to
+# document.intelligence with the blocks they came from; the blocks themselves never change.
+# Enabling it sends document text to the endpoint below.
+
+[intelligence]
+enabled = true                   # master switch
+provider = "openai-compatible"    # openai-compatible (OpenAI, vLLM, Ollama, LocalAI, LM Studio) | openai
+model = "gpt-5.1"                        # required when enabled, e.g. "gpt-4.1-mini" or "qwen2.5:7b-instruct"
+base_url = "https://backend.sovereigneg.com/v1"                     # e.g. "http://localhost:11434/v1" (Ollama); empty: api.openai.com
+api_key_env = "SOVEREIGNEG_API_KEY"    # the environment variable holding the key; the key never goes here
+timeout = 60.0                    # seconds per model call
+max_retries = 2
+temperature = 0.0
+max_input_chars = 24000           # document text sent per task; longer documents are cut (the trace says so)
+structured_output = "json_schema"  # json_schema | json_object | none: how the endpoint returns JSON
+
+[intelligence.classification]
+enabled = true
+labels = ["invoice", "contract", "report", "receipt", "unknown"]  # must include "unknown"
+
+[intelligence.ocr_correction]
+enabled = true                    # proposals are stored beside the blocks, never applied to them
+max_blocks = 50                   # OCR blocks sent per document, lowest confidence first
+below_confidence = 1.0            # only OCR blocks under this confidence; 1.0 = every OCR block
+
+[intelligence.metadata]
+enabled = true                    # language, dates and entities
+entity_types = ["person", "organization", "location", "money", "identifier"]
+
+[intelligence.extraction]
+enabled = true                    # fields per document type, from the schema tables below
+# One table per document type (a classification label):
+#   [intelligence.extraction.schemas.invoice]
+#   invoice_number = "string"
+#   issue_date = "date"
+#   total = { type = "number", description = "grand total including tax", required = true }
+# Types: string, number, integer, boolean, date, list
+
+[intelligence.summarization]
+enabled = true
+max_words = 120
+
+[extra]
+# settings read by plugins and backends, e.g.
+# llamaparse_tier = "agentic"

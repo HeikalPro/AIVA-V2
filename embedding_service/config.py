@@ -30,6 +30,17 @@ class Settings(BaseSettings):
     pool_min: int = 1
     pool_max: int = 8
 
+    oracle_ping_interval: int = Field(
+        default=10,
+        ge=0,
+        description=(
+            "Seconds a pooled connection may sit idle before it is pinged on acquire. "
+            "The KB pool often points at a remote DSN, where idle connections are silently "
+            "dropped by NAT/firewalls; without a ping the next caller gets a dead connection. "
+            "0 = ping on every acquire. Set via ORACLE_PING_INTERVAL."
+        ),
+    )
+
     oracle_call_timeout_ms: int | None = Field(
         default=None,
         ge=0,

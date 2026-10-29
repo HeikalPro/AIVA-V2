@@ -6,7 +6,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 
-from backend.auth.deps import ROLE_AGENT, ROLE_SUPER_ADMIN, ROLE_SUPERVISOR, UserContext, require_roles, require_roles_or_nav_permission
+from backend.auth.deps import ROLE_AGENT, ROLE_SUPER_ADMIN, ROLE_SUPERVISOR, UserContext, require_roles_or_nav_permission
 from backend.dependencies import DbDep, EmbeddingServiceDep
 from backend.exceptions import BadRequestError, ForbiddenError, NotFoundError
 from backend.schemas.chat import (
@@ -28,7 +28,11 @@ from backend.services.chat_queues import (
     resolve_search_verticals_for_session,
     session_out_from_row,
 )
-from backend.services.kb_queue_groups import dumps_active_queues_json, list_queue_catalog
+from backend.services.kb_queue_groups import (
+    dumps_active_queues_json,
+    list_queue_catalog,
+    parse_active_queues_json,
+)
 from backend.services.widget_features import parse_widget_features
 from backend.config import get_settings
 from backend.services.rag import format_llm_error, load_llm_config, sanitize_kb_source_url, stream_rag_response
@@ -303,14 +307,32 @@ async def get_session_messages(
 
 @router.get("/ratings", response_model=list[MessageRatingOut])
 async def list_message_ratings(
-    user: Annotated[UserContext, Depends(require_roles(ROLE_SUPER_ADMIN))],
+    user: Annotated[
+        UserContext,
+        Depends(require_roles_or_nav_permission("message-ratings", ROLE_SUPER_ADMIN)),
+    ],
     db: DbDep,
 ) -> list[MessageRatingOut]:
-    if not user.is_super_admin:
-        raise ForbiddenError("Super Admin only")
+    params: dict = {}
+    clauses = [
+        "cm.agent_rating IS NOT NULL",
+        "UPPER(cm.sender_type) IN ('AI', 'ASSISTANT')",
+    ]
 
+    if not user.is_super_admin:
+        clauses.append("a.organization_id = :organization_id")
+        params["organization_id"] = user.organization_id
+        if not user.is_org_admin:
+            account_ids = sorted(user.account_ids)
+            if not account_ids:
+                return []
+            placeholders = ", ".join(f":acct{i}" for i in range(len(account_ids)))
+            clauses.append(f"cs.account_id IN ({placeholders})")
+            params.update({f"acct{i}": aid for i, aid in enumerate(account_ids)})
+
+    where = " AND ".join(clauses)
     rows = await db.fetch_all(
-        """
+        f"""
         SELECT cm.id AS message_id,
                cm.session_id,
                cm.message_text,
@@ -319,6 +341,7 @@ async def list_message_ratings(
                cm.rated_at,
                cs.account_id,
                cs.user_id AS agent_user_id,
+               cs.active_queues,
                a.name AS account_name,
                a.organization_id,
                o.name AS organization_name,
@@ -330,11 +353,11 @@ async def list_message_ratings(
         JOIN AIVA_accounts a ON a.id = cs.account_id
         JOIN AIVA_organizations o ON o.id = a.organization_id
         JOIN AIVA_users u ON u.id = cs.user_id
-        WHERE cm.agent_rating IS NOT NULL
-          AND UPPER(cm.sender_type) IN ('AI', 'ASSISTANT')
+        WHERE {where}
         ORDER BY cm.rated_at DESC NULLS LAST, cm.id DESC
         FETCH FIRST 500 ROWS ONLY
-        """
+        """,
+        params,
     )
     out: list[MessageRatingOut] = []
     for row in rows:
@@ -358,6 +381,7 @@ async def list_message_ratings(
                 rating=rating,
                 feedback=data.get("feedback"),
                 rated_at=data.get("rated_at"),
+                active_queues=parse_active_queues_json(data.get("active_queues")) or [],
             )
         )
     return out

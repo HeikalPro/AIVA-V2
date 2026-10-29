@@ -27,6 +27,9 @@ class Settings(BaseSettings):
     oracle_wallet_password: str | None = None
     oracle_pool_min: int = 2
     oracle_pool_max: int = 20
+    # Ping connections idle longer than this (seconds) before handing them out, so a
+    # connection dropped while idle surfaces as a retry instead of a request failure.
+    oracle_ping_interval: int = 10
     oracle_call_timeout_ms: int | None = None
 
     jwt_secret_key: str = "change-me-to-a-long-random-secret"
@@ -79,7 +82,25 @@ class Settings(BaseSettings):
     notify_errors_enabled: bool = False
     # Suppress duplicate alerts for the same (exception type, route) within this window.
     notify_errors_throttle_seconds: int = 300
+    # Email the same recipients when a customer-facing widget turn fails (KB
+    # retrieval or LLM error). Separate switch so widget noise can be muted
+    # without losing server-error alerts.
+    notify_widget_errors_enabled: bool = False
+    # Always copy this org's admins/developers on error alerts, whichever tenant
+    # the error belongs to, and use it as the recipient scope when the org is
+    # unknown. Unset keeps the legacy unscoped lookup.
+    notify_platform_org_id: int | None = None
     frontend_url: str = "http://localhost:5173"
+    # Logos shown in the email letterhead. Must be publicly reachable URLs — mail
+    # clients fetch them over the internet, so localhost only works in local tests.
+    # Empty falls back to <frontend_url>/GoChat247_blue_transparent.png.
+    email_logo_url: str = ""
+    # Optional AIVA wordmark artwork; empty renders the wordmark as styled text,
+    # which also keeps the brand readable when a client blocks remote images.
+    email_aiva_logo_url: str = ""
+    # GoAI lockup shown at the foot of every email.
+    # Empty falls back to <frontend_url>/GoAI_logo.png.
+    email_footer_logo_url: str = ""
     zoho_mail_api_base: str = "https://mail.zoho.com/api"
     zoho_mail_from_address: str = ""
     zoho_mail_account_id: str | None = None

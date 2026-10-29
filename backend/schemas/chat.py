@@ -77,3 +77,4 @@ class MessageRatingOut(BaseModel):
     rating: Literal["up", "down"]
     feedback: str | None
     rated_at: str | None
+    active_queues: list[str] = Field(default_factory=list)

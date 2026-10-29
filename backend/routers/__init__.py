@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 
+from backend.doc_intel.routers import build_doc_intel_router
 from backend.routers import (
     account_updates,
     accounts,
@@ -42,4 +43,7 @@ def build_api_router() -> APIRouter:
     router.include_router(llm_configs.router)
     router.include_router(logs.router)
     router.include_router(system.router)
+    doc_intel_router = build_doc_intel_router()
+    if doc_intel_router is not None:
+        router.include_router(doc_intel_router)
     return router

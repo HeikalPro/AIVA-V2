@@ -1,0 +1,211 @@
+[
+ {
+  "chunk_id": "b1e1d6f91bc05d7e848e953efd478803",
+  "parent": "1901",
+  "idx": 0,
+  "chunker": "1",
+  "hash": "08569ca2a6de63b5bf1406fb8e5dc1135d093b08a72af4c7a18a0c8fde2030f1",
+  "text": "Vertical: 6-digits | Type: Request | Issue: Technical Issue | Escalation: No\n\nQuestion EN: Request to make PIN Code (6 Digits) - account stopped after wrong password attempts / reset 6-digit app card password\nQuestion AR: طلب إعادة تعيين الرقم السري 6 أرقام — «تم إيقاف حسابك» على كارت حالاً في التطبيق\n\nScript:\nأول حاجة يجب سؤال العميل عن مشكلته: هل هي 6 أرقام خاصة بخدمات الكارت من التطبيق (عميل يظهر له «تم إيقاف حسابك. برجاء التواصل مع خدمة العملاء» بعد الدخول على كارت حالاً على التطبيق)، أم هي 4 أرقام خاصة باستخدام الكارت في الماكينات؟\n\nRequest to make PIN Code (6 Digits) — Technical Issue:\n- يتم التأكد من عدم حظر حالاً كريديت من الـ CRM (إذا كان محظور سيتم التوضيح للعميل الفرق بين المشكلتين).\n- يتم التأكد من عدم وجود Negative balance في شيت الـ Google Sheets، وإذا كان موجود سنوضح له القيمة الواجب إيداعها حتى يتم حل المشكلة.\n- سيتم التأكد من عدم وجود شكوى (Negative Balance).\n\nالسكريبت:\n«المشكلة دي حصلت بسبب إدخال كلمة سر غير صحيحة عدة مرات على التطبيق. وأنا من خلالي هعمل إعادة ضبط لكلمة السر الـ 6 أرقام. هستأذن حضرتك بعد المكالمة هتدخل على «الخدمات» ثم «كارت حالاً» هتكتب:\n1- كلمة سر جديدة 6 أرقام غير متتاليين أو متشابهين (كلمة سر الكارت على التطبيق).\n2- بعدها حضرتك هتدخل على خدمات أو services في أسفل الشاشة تحت كلمة حسابات أو Account وتضغط على أيقونة الكارت — لو طلب الرقم السري للكارت هندخل الـ 6 أرقام السرية — ثم الضغط أعلى الشاشة على علامة الإعدادات (دائرة أعلى صورة الكارت) ثم «تعيين كلمة»، وتقوم بتعيين كلمة سر 4 أرقام غير متتاليين أو متشابهين وتعيد إدخالها مرة أخرى (كلمة سر الكارت على ماكينات الشراء والـ ATM).\n3- تسجيل خروج ثم تسجيل دخول مرة أخرى على التطبيق.»\n\nEscalation: No.",
+  "payload": {
+   "vertical": "6-digits",
+   "interaction_type": "Request",
+   "issue_type": "Technical Issue",
+   "escalation": "No",
+   "queue": "6-digits",
+   "answer_status": "ok",
+   "canonical_id": "1901"
+  },
+  "source_line": 1,
+  "model": "text-embedding-3-small"
+ },
+ {
+  "chunk_id": "b8b78c8bd6735982b48994a6a38a3899",
+  "parent": "1902",
+  "idx": 0,
+  "chunker": "1",
+  "hash": "3524a12366f6d6250a1f94dbe7aea668c991a211061c4adb806d2a092749bce6",
+  "text": "Vertical: 6-digits | Type: Complaint | Issue: Non-Technical Issue | Escalation: No\n\nQuestion EN: Error (حدث خطأ) when opening Halan Card on the app / customer forgot Halan Card ATM-POS password (4 digits) or wants to change it\nQuestion AR: ظهور «حدث خطأ» عند الدخول على كارت حالاً — أو نسيان كلمة سر الـ ATM أو الـ POS أو تغييرها\n\nScript:\nظهور «حدث خطأ» عند الدخول على كارت حالاً على تطبيق حالاً، أو عميل يشتكي من نسيان كلمة سر الـ ATM أو الـ POS أو يريد تغييرها (Complaint about customer forget Halan Card – ATM Password) — Non-Technical Issue:\n\n- يتم التأكد من عدم وجود Negative balance في شيت الـ Google Sheets:\nhttps://docs.google.com/spreadsheets/d/1chPwi4P20t9M6kY8SI8GKATPeODjzAUYL9bdOAeMSBI/edit?gid=0#gid=0\nوإذا كان موجود، سنوضح له القيمة الواجب إيداعها حتى يتم حل المشكلة.\n- سيتم التأكد من عدم وجود شكوى (Negative Balance).\n\nالخطوات:\n- حضرتك هتدخل على خدمات أو services في أسفل الشاشة تحت كلمة حسابات أو Account وتضغط على أيقونة الكارت — لو طلب الرقم السري للكارت هندخل الـ 6 أرقام السرية — ثم الضغط أعلى الشاشة على علامة الإعدادات (دائرة أعلى صورة الكارت) ثم «تغيير الرمز السري» / «تعيين كلمة»، وتقوم بتعيين كلمة سر 4 أرقام غير متتاليين أو متشابهين وتعيد إدخالها مرة أخرى (كلمة سر الكارت على ماكينات الشراء والـ ATM).\n- تسجيل خروج ثم تسجيل دخول مرة أخرى على التطبيق.\n\nEscalation: No.\n\nفي حالة إن العميل دخل على الإعدادات وأنشأ الباسورد الجديد وقام بتسجيل خروج ودخول ومازالت المشكلة موجودة (والرصيد مش ظاهر):\n«أنا بعتذر لحضرتك وأنا من خلالي هقدم شكوى وسيتم الرد والتواصل مع حضرتك خلال 24 ساعة عمل.»\nEscalation: Yes.",
+  "payload": {
+   "vertical": "6-digits",
+   "interaction_type": "Complaint",
+   "issue_type": "Non-Technical Issue",
+   "escalation": "No",
+   "queue": "6-digits",
+   "answer_status": "ok",
+   "canonical_id": "1902"
+  },
+  "source_line": 2,
+  "model": "text-embedding-3-small"
+ },
+ {
+  "chunk_id": "6c5e3a8e670d534a95acd27a4d46f36b",
+  "parent": "1903",
+  "idx": 0,
+  "chunker": "1",
+  "hash": "b06fcf678c16e6303371bb309d610432474bcc14cff09f099f50329689137567",
+  "text": "Vertical: 6-digits | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No\n\nQuestion EN: 6 Digits ticket details: Verification Passed, Branch Name coding, Call Disconnected\nQuestion AR: تفاصيل التيكت المطلوبة — كيو الـ 6 أرقام\n\nScript:\nتفاصيل التيكت المطلوبة (6 Digits):\n\nVerification Passed:\n- في حالة لو راجعت كل البيانات مع العميل: Verification Passed = Yes.\n- في حالة عدم مراجعة البيانات بشكل كامل: Verification Passed = No.\n\nالعميل ده فروع ولا كريدت اسكورينج؟ بنعرفه إزاي: بنفتح الـ CRM ونشوف خانة Branch Name:\n- لو فرع: هنختار branch.\n- لو موافقة فورية: هنختار Credit Scoring.\n- لو مش عنده ليميت: هنختار no limit.\n- لو متكود على أي حاجة تانية غير دول: هيكون other CF coding.\n(مثال من الـ CRM: Branch Name = credit scoring-Ismailia)\n\nCall Disconnected:\n- لو العميل قفل في نص المكالمة أو قفل قبل ما أوضح البيانات بشكل كامل: Call Disconnected = Yes.\n- لو كملت المكالمة لحد «شكراً لاتصالك بحالاً»: Call Disconnected = No.",
+  "payload": {
+   "vertical": "6-digits",
+   "interaction_type": "Inquiry",
+   "issue_type": "Non-Technical Issue",
+   "escalation": "No",
+   "queue": "6-digits",
+   "answer_status": "ok",
+   "canonical_id": "1903"
+  },
+  "source_line": 3,
+  "model": "text-embedding-3-small"
+ },
+ {
+  "chunk_id": "4941a543361656efb2581e942b181aa5",
+  "parent": "1904",
+  "idx": 0,
+  "chunker": "1",
+  "hash": "803eb69f551e346b0b5764282200c4824245bf5c636cc6218caa9f9042d946e2",
+  "text": "Vertical: 6-digits | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No\n\nQuestion EN: Halan Credit stopped / balance stopped - customer blocked (Is Blocked in CRM)\nQuestion AR: حالاً كريدت موقوف أو الرصيد موقوف — عميل بلوك\n\nScript:\nفي حالة لو العميل وضح إن حالاً كريدت موقوف أو الرصيد موقوف:\n\nأول حاجة هنراجع البيانات من الـ CRM:\n1- أراجع الاسم رباعي.\n2- الرقم القومي الخاص بالعميل.\n3- لابد أن يكون التواصل من نفس رقم الموبايل.\n\nبيكون ظاهر في الـ CRM بالشكل ده: Is Blocked = BLOCKED.\n\nالحالة الأولى: لو العميل blocked customer وموجود في الشيت:\nhttps://docs.google.com/spreadsheets/d/1p0KJTkoLiHDlRG-bJSaVAB0WwdLt70ZCmn0Hy8MiH4k/edit?gid=139668510#gid=139668510\n\nالحالة الثانية: في حالة لو العميل فروع: هنوضح للعميل إن الحظر موجود من جانب قسم الائتمان، ولو حابب تفاصيل أكتر يتابع مع الفرع — مواعيد الفرع من 9 صباحاً حتى 5 مساءً ماعدا الجمعة والسبت والإجازات الرسمية.\n\nالحالة الثالثة: في حالة إن العميل موافقة فورية: هنوضح للعميل بأن حظر الحد الائتماني موجود من جانب إدارة الائتمان.",
+  "payload": {
+   "vertical": "6-digits",
+   "interaction_type": "Inquiry",
+   "issue_type": "Non-Technical Issue",
+   "escalation": "No",
+   "queue": "6-digits",
+   "answer_status": "ok",
+   "canonical_id": "1904"
+  },
+  "source_line": 4,
+  "model": "text-embedding-3-small"
+ },
+ {
+  "chunk_id": "e69c208aebae510794142500a0e72fa9",
+  "parent": "1905",
+  "idx": 0,
+  "chunker": "1",
+  "hash": "e63f4c500034c7d6e5000550f98020cfb266495f46e2062502ce44092babe349",
+  "text": "Vertical: 6-digits | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No\n\nQuestion EN: Data confidentiality script (never share PIN / OTP)\nQuestion AR: سكريبت سرية البيانات — عدم مشاركة كلمة السر أو الـ OTP\n\nScript:\nسكريبت سرية البيانات:\n\n«أنا بعتذر لحضرتك، ولكن حابب أوضح إنه حفاظاً على سرية بيانات حضرتك، أستأذنك منشاركش كلمة السر أو كلمة السر ذات المرة الواحدة OTP الخاصين بالمحفظة أو الكارت مع أي شخص. مع العلم إحنا كخدمة عملاء حالاً مش بنطلب أي أرقام سرية خاصة بيك خلال المكالمة دي أو أي مكالمة لاحقة.»\n\nهنوضح للعميل: منشاركش أرقام سرية ولا رقم سري ذات مرة واحدة OTP مع أي شخص أو جهة، لأننا خدمة عملاء مش بنطلبها في المكالمة دي ولا أي مكالمة لاحقة.",
+  "payload": {
+   "vertical": "6-digits",
+   "interaction_type": "Inquiry",
+   "issue_type": "Non-Technical Issue",
+   "escalation": "No",
+   "queue": "6-digits",
+   "answer_status": "ok",
+   "canonical_id": "1905"
+  },
+  "source_line": 5,
+  "model": "text-embedding-3-small"
+ },
+ {
+  "chunk_id": "0a70fe587d055d6cb0d8f7af6bb6d735",
+  "parent": "1906",
+  "idx": 0,
+  "chunker": "1",
+  "hash": "2d12ccbd3b8e3b20f7efa07bb885cbe0bf54d810aedf70b31364c232794ac6a0",
+  "text": "Vertical: 6-digits | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No\n\nQuestion EN: Wrong IVR on 6 Digit Queue - handling and ticket form details\nQuestion AR: مكالمة وصلت غلط على كيو الـ 6 أرقام (Wrong IVR) — التعامل وبيانات التيكت\n\nScript:\nWrong IVR — لو العميل وصل غلط على 6 Digit Queue واستفساره يخص خدمة تانية:\n\nبنوجه العميل للكيو الصحيح (راجع سكريبتات التحويل: Gomla Queue / Saving Queue / Cash & Card Queue / Halan Inbound Queue)، وبنعمل تيكت Wrong IVR بالبيانات دي:\n- Reporter Email: الإيميل الخاص بيك (لازم ينتهي بـ @gochat247.com).\n- Login ID: الـ Aheeva Login ID.\n- Channel: Incoming call.\n- Vertical: Wrong IVR.\n- Call Received on - Hotline: 6 Digit Queue.\n- Transferred To: الكيو اللي تم توجيه العميل ليه (الاختيارات: Halan Inbound Queue / Halan Gomla Queue / Talabeyah Queue / Halan Saving Queue / Rest PIN IVR / 6 Digit Queue / Cash & Card Queue / Mashroey Queue).\n- Caller Number: رقم العميل المتصل.",
+  "payload": {
+   "vertical": "6-digits",
+   "interaction_type": "Inquiry",
+   "issue_type": "Non-Technical Issue",
+   "escalation": "No",
+   "queue": "6-digits",
+   "answer_status": "ok",
+   "canonical_id": "1906"
+  },
+  "source_line": 6,
+  "model": "text-embedding-3-small"
+ },
+ {
+  "chunk_id": "913ac0328a96591ba57427c2e1e3599a",
+  "parent": "1907",
+  "idx": 0,
+  "chunker": "1",
+  "hash": "1cb3c7f782b13744b53480c9196a37771a03421d14b9aaf2b1874c2fbf4095d6",
+  "text": "Vertical: 6-digits | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No\n\nQuestion EN: Wrong IVR - route customer to Gomla Queue (16303 option 5)\nQuestion AR: تحويل العميل لكيو جملة — Wrong IVR\n\nScript:\nWrong IVR — التحويل لـ Gomla Queue:\n\nامتى: العميل عامل أوردر من متجر حالاً جملة (زي إنه عامل أوردر مثلاً لمنتجات زي منتجات السوبر ماركت)، أو عنده شكوى على أوردر وصل فيه مشكلة كان طالبه من حالاً جملة.\n\nبنوضح للعميل يتواصل على 16303 ويختار رقم 5.",
+  "payload": {
+   "vertical": "6-digits",
+   "interaction_type": "Inquiry",
+   "issue_type": "Non-Technical Issue",
+   "escalation": "No",
+   "queue": "6-digits",
+   "answer_status": "ok",
+   "canonical_id": "1907"
+  },
+  "source_line": 7,
+  "model": "text-embedding-3-small"
+ },
+ {
+  "chunk_id": "47a99665c527583589125b795eabea2a",
+  "parent": "1908",
+  "idx": 0,
+  "chunker": "1",
+  "hash": "244002328d270c62ff7dc30067feceb7a01358bf3c8c140931d23efd2022ee5d",
+  "text": "Vertical: 6-digits | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No\n\nQuestion EN: Wrong IVR - route customer to Saving Queue (16303 option 4 then 1)\nQuestion AR: تحويل العميل لكيو التحويش — Wrong IVR\n\nScript:\nWrong IVR — التحويل لـ Saving Queue:\n\nامتى: لو العميل متواصل بخصوص التحويش والاستثمار أو العائد الخاص بمحفظة التحويش أو الدهب أو قسط الجمعية أو امتى هيقبض الجمعية، أو لو العميل محتاج يعرف قسط الجمعية سُمِع ولا لأ.\n\nبنوضح للعميل يتواصل على 16303 ويختار رقم 4 ثم رقم 1.",
+  "payload": {
+   "vertical": "6-digits",
+   "interaction_type": "Inquiry",
+   "issue_type": "Non-Technical Issue",
+   "escalation": "No",
+   "queue": "6-digits",
+   "answer_status": "ok",
+   "canonical_id": "1908"
+  },
+  "source_line": 8,
+  "model": "text-embedding-3-small"
+ },
+ {
+  "chunk_id": "bdedb24e833252ac8d8902bc5f541f86",
+  "parent": "1909",
+  "idx": 0,
+  "chunker": "1",
+  "hash": "37e751bd1eff2c7211f0e170394c8c3d89aa07f42a52053376771a3fb41eb815",
+  "text": "Vertical: 6-digits | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No\n\nQuestion EN: Wrong IVR - route customer to Cash & Card Queue (16303 option 1 then 4)\nQuestion AR: تحويل العميل لكيو الكاش والكارت — Wrong IVR\n\nScript:\nWrong IVR — التحويل لـ Cash & Card Queue:\n\nامتى:\n- مش قادر يفعّل حالاً كريديت على كارت حالاً.\n- مش قادر يشتري بالكارت أو مش عارف إزاي يقدر يسحب بالكارت.\n- مرتب العميل مش نازل على كارت حالاً.\n- لو العميل محتاج يعرف طريقة السداد المبكر.\n- لو العميل محتاج يعرف طرق الإيداع على محفظة حالاً.\n- لو العميل محتاج يراجع معاملة أو عملية تمت من المحفظة.\n- لو العميل بيستفسر أو بيشكي من عملية سحب من محفظة حالاً كاش ومتمتش، أو دفع قسط عن طريق المحفظة.\n\nبنوضح للعميل يتواصل على 16303 ويختار رقم 1 ثم رقم 4.",
+  "payload": {
+   "vertical": "6-digits",
+   "interaction_type": "Inquiry",
+   "issue_type": "Non-Technical Issue",
+   "escalation": "No",
+   "queue": "6-digits",
+   "answer_status": "ok",
+   "canonical_id": "1909"
+  },
+  "source_line": 9,
+  "model": "text-embedding-3-small"
+ },
+ {
+  "chunk_id": "6bfbb28bd2a454989fa48313eef30529",
+  "parent": "1910",
+  "idx": 0,
+  "chunker": "1",
+  "hash": "24d40da181d6a0acacac345b1535411ead3aa038ae88532865325806fabf4c4a",
+  "text": "Vertical: 6-digits | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No\n\nQuestion EN: Wrong IVR - route customer to Halan Inbound Queue (16303 option 2)\nQuestion AR: تحويل العميل لكيو حالاً إنباوند — Wrong IVR\n\nScript:\nWrong IVR — التحويل لـ Halan Inbound Queue:\n\nامتى:\n- لو العميل تواصل بخصوص إن التطبيق مش بيفتح معاه: بيتم تحويله لحالاً إنباوند — خدمة عملاء التطبيق.\n- أو لو محتاج يعرف ليه الرصيد (حالاً كريديت — رصيد التطبيق) موقوف.\n- أو لو طالب أوردر من التطبيق.\n\nبنوضح للعميل يتواصل على 16303 ثم يضغط رقم 2.",
+  "payload": {
+   "vertical": "6-digits",
+   "interaction_type": "Inquiry",
+   "issue_type": "Non-Technical Issue",
+   "escalation": "No",
+   "queue": "6-digits",
+   "answer_status": "ok",
+   "canonical_id": "1910"
+  },
+  "source_line": 10,
+  "model": "text-embedding-3-small"
+ },
+ {
+  "chunk_id": "7bffe1b2cbb956e2bc0b065092e5e740",
+  "parent": "1911",
+  "idx": 0,
+  "chunker": "1",
+  "hash": "2bb3a3c23eb9f8d7ba0ba88d93521f3d9f627ed6b78b962d61bdbe01cb5167f6",
+  "text": "Vertical: 6-digits | Type: Inquiry | Issue: Non-Technical Issue | Escalation: No\n\nQuestion EN: When and how to verify Halan Card customer data (basic data + 2 of 4 additional questions)\nQuestion AR: متى وكيف تتم مراجعة بيانات عميل كارت حالاً — البيانات الأساسية والإضافية\n\nScript:\nيجب مراجعة البيانات مع عميل كارت حالاً في الحالات الآتية (ولازم يكون العميل بنفسه اللي بيتواصل معانا):\n- في حالة توضيح أي معلومات خاصة بالكارت نفسه.\n- في حالة تقديم شكوى للعميل.\n- في حالة متابعة الشكاوى.\n- في حالة اتخاذ أي أكشن أو إجراء للعميل.\n- في حالة تقديم طلب للعميل.\n\nالبيانات الأساسية التي يتم مراجعتها مع العملاء في الحالات السابقة:\n- نفس رقم الهاتف المفعل بيه الكارت.\n- الرقم القومي.\n- الاسم ثلاثي.\n\nالبيانات الإضافية — يجب على العميل الإجابة على 2 من أصل 4 أسئلة:\n- آخر أربع أرقام من الكارت.\n- آخر عملية ناجحة، حتى لو تحويل ليميت — قيمتها كام أو تاريخها امتى.\n- رصيد الكارت الحالي.\n- العنوان المذكور على البطاقة الشخصية.\n\nوفي حالة إن العميل وضح بيانات غلط أثناء أي نقطة إضافية، سيتم سؤاله عن أخرى. وإذا لم ينجح، سيتم التوضيح في النهاية إن البيانات غير متطابقة مع مراعاة عدم توضيح معلومات عن الجزء الخطأ.\n\nلكن لو استفسار العميل استفسار عام لا يتم مراجعة البيانات ويتم توضيح الاستفسار بشكل كامل. مثال: إيه هو كارت حالاً / رسوم استلام الكارت / طريقة تفعيل الكارت.",
+  "payload": {
+   "vertical": "6-digits",
+   "interaction_type": "Inquiry",
+   "issue_type": "Non-Technical Issue",
+   "escalation": "No",
+   "queue": "6-digits",
+   "answer_status": "ok",
+   "canonical_id": "1911"
+  },
+  "source_line": 11,
+  "model": "text-embedding-3-small"
+ }
+]

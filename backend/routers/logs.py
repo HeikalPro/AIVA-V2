@@ -41,7 +41,11 @@ from backend.services.log_queries import (
     list_sign_in_logs,
 )
 from backend.services.rag_retrieval_log import list_rag_retrievals, persist_rag_retrieval
-from backend.services.notifications import notify_error_admins_developers
+from backend.services.notifications import (
+    notify_error_admins_developers,
+    schedule_error_alert,
+    schedule_widget_failure_alert,
+)
 from backend.schemas.notifications import DeveloperNotifyOut
 
 router = APIRouter(prefix="/logs", tags=["logs"])
@@ -315,15 +319,21 @@ async def log_widget_turn(
     if x_widget_log_secret != secret:
         raise HTTPException(status_code=401, detail="Invalid widget log secret")
 
-    # Resolve the account (and org, for UI scoping) from the corpus the widget used.
+    # Resolve the account (and org, for UI scoping and alert recipients) from the
+    # corpus the widget used.
     account_id: int | None = None
+    account_name: str | None = None
+    account_org_id: int | None = None
     if body.corpus_id:
         acct = await db.fetch_one(
-            "SELECT id FROM AIVA_accounts WHERE corpus_id = :corpus_id",
+            "SELECT id, name, organization_id FROM AIVA_accounts WHERE corpus_id = :corpus_id",
             {"corpus_id": body.corpus_id},
         )
         if acct:
             account_id = int(acct["id"])
+            account_name = str(acct["name"]) if acct.get("name") else None
+            if acct.get("organization_id") is not None:
+                account_org_id = int(acct["organization_id"])
 
     chunks = [c.model_dump() for c in body.chunks]
     if body.retrieval_status:
@@ -371,6 +381,20 @@ async def log_widget_turn(
         error_message=body.llm_error,
         source="WIDGET",
     )
+
+    # A failed turn means a visitor asked something and got nothing back — alert
+    # on it. EMPTY is a normal "no KB match" and stays quiet.
+    if status == "FAILED" or body.llm_error:
+        retrieval_failed = status == "FAILED"
+        schedule_widget_failure_alert(
+            corpus_id=body.corpus_id,
+            account_id=account_id,
+            account_name=account_name,
+            organization_id=account_org_id,
+            query_text=body.query_text,
+            error_message=body.retrieval_error if retrieval_failed else body.llm_error,
+            stage="Knowledge base retrieval" if retrieval_failed else "LLM completion",
+        )
     return WidgetTurnAck(ok=True)
 
 
@@ -409,5 +433,18 @@ async def log_widget_error(
         path="aiva_chatbot /chat",
         status_code=body.status_code,
         org_id=org_id,
+    )
+    # Throttle per corpus so one tenant's crash loop can't mute another's.
+    schedule_error_alert(
+        exception_type=body.exception_type,
+        exception_message=body.exception_message,
+        stack_trace=body.stack_trace,
+        http_method="POST",
+        path="aiva_chatbot /chat",
+        route_template=f"widget:{body.corpus_id or 'unknown'}",
+        status_code=body.status_code,
+        request_id=None,
+        user_email=None,
+        organization_id=org_id,
     )
     return WidgetTurnAck(ok=True)
